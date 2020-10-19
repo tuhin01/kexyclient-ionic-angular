@@ -1,0 +1,13 @@
+<ion-card>
+  <ion-card-header [class.blue]="accordionExapanded" (click)="toggleAccordion()">
+      <ion-item>
+        <button ion-button clear small icon-only item-right>
+          <ion-icon [class.blue]="accordionExapanded" [name]="icon"></ion-icon>
+        </button>
+        {{ title }}
+      </ion-item>
+  </ion-card-header>
+  <ion-card-content [class.tr-expanded]="accordionExapanded">
+    <ng-content></ng-content>
+  </ion-card-content>
+</ion-card>

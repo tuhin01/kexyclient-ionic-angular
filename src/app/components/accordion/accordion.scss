@@ -1,0 +1,40 @@
+accordion {
+
+  font-family: 'Montserrat', sans-serif;
+
+  .card {
+    margin: 0;
+    width: 100%;
+    box-shadow: none !important;
+    .item-inner {
+      border-bottom: 1px solid #f4f7fb !important;
+    }
+  }
+  .card-header {
+    background-color: white;
+    color: lightgray;
+    padding: 0;
+    .label {
+      color: #7e8491;
+    }
+  }
+  .blue {
+    .label {
+      color: #095cd1 !important;
+    }
+  }
+
+  ion-icon {
+    font-size: 25px !important;
+    color: #7e8491;
+  }
+
+  .card-content {
+    padding: 0;
+    height: 0;
+    background: #f4f7fb;
+  }
+  .tr-expanded {
+    height: auto !important;
+  }
+}

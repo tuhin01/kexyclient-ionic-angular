@@ -1,0 +1,20 @@
+<div class="tr-tabs" *ngIf="isRestaurant">
+  <ion-row>
+    <ion-col col-3 (click)="bottomHomeBtnTapped()" class="{{selectedPage == 'home' ? selectedClass : ''}}">
+      <ion-icon name="{{homeIcon}}"></ion-icon>
+      <p>Home</p>
+    </ion-col>
+    <ion-col col-3 (click)="bottomMessageBtnTapped()" class="{{selectedPage == 'message' ? selectedClass : ''}}">
+      <ion-icon name="{{messageIcon}}"></ion-icon>
+      <p>Messages</p>
+    </ion-col>
+    <ion-col col-3 (click)="bottomDistributorTapped()" class="{{selectedPage == 'contacts' ? selectedClass : ''}}">
+      <ion-icon name="{{contactsIcon}}"></ion-icon>
+      <p>Contacts</p>
+    </ion-col>
+    <ion-col col-3 (click)="bottomAddOrderTapped('order')" class="{{selectedPage == 'order' ? selectedClass : ''}}">
+      <ion-icon name="{{orderIcon}}"></ion-icon>
+      <p>Quick Order</p>
+    </ion-col>
+  </ion-row>
+</div>

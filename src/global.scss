@@ -1,0 +1,345 @@
+/*
+ * App Global CSS
+ * ----------------------------------------------------------------------------
+ * Put style rules here that you want to apply globally. These styles are for
+ * the entire app and not just one component. Additionally, this file can be
+ * used as an entry point to import other CSS/Sass files to be included in the
+ * output CSS.
+ * For more information on global stylesheets, visit the documentation:
+ * https://ionicframework.com/docs/layout/global-stylesheets
+ */
+
+/* Core CSS required for Ionic components to work properly */
+@import "~@ionic/angular/css/core.css";
+
+/* Basic CSS for apps built with Ionic */
+@import "~@ionic/angular/css/normalize.css";
+@import "~@ionic/angular/css/structure.css";
+@import "~@ionic/angular/css/typography.css";
+@import '~@ionic/angular/css/display.css';
+
+/* Optional CSS utils that can be commented out */
+@import "~@ionic/angular/css/padding.css";
+@import "~@ionic/angular/css/float-elements.css";
+@import "~@ionic/angular/css/text-alignment.css";
+@import "~@ionic/angular/css/text-transformation.css";
+@import "~@ionic/angular/css/flex-utils.css";
+
+body,
+html, ion-app {
+  font-family: 'Montserrat', sans-serif !important;
+  -webkit-user-select: text;
+  -moz-user-select: text;
+  -ms-user-select: text;
+  user-select: text;
+}
+
+.common.title {
+  font-size: 40px;
+}
+
+.blue {
+  color: #095cd1 !important;
+}
+
+.common.para {
+  font-size: 24px;
+}
+
+.small-text {
+  font-size: 12px !important;
+  font-weight: 300;
+}
+
+.common.button {
+  display: block;
+  background-color: white;
+  width: calc(100% - 60px);
+  margin: auto;
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 500;
+  text-transform: capitalize;
+  border: 1px solid #88a9d6;
+  -webkit-box-shadow: 0px 0px 4px 0px #dbe0fc;
+  box-shadow: 0px 0px 4px 0px #dbe0fc;
+}
+.common.button.btn-cannabis {
+  border: 1px solid rgba(54, 149, 96, .5);
+}
+
+ion-nav ion-header ion-navbar.toolbar .toolbar-background{
+  background: rgb(44,162,221) !important;
+  background: linear-gradient(90deg, rgba(44,162,221,1) 0%, rgba(41,93,208,1) 100%) !important;
+}
+
+
+ion-nav ion-header.tr-cannabis ion-navbar.toolbar .toolbar-background{
+  background: rgb(54, 149, 96) !important;
+  background: linear-gradient(90deg, rgb(54, 149, 96) 0%, rgb(3, 94, 43) 100%) !important
+}
+.submit-buttons.cannabis {
+  .button {
+    border: 1px solid rgb(54, 149, 96) !important;
+  }
+}
+button.cannabis.button-ios, .cannabis.toggle-ios.toggle-checked .toggle-icon {
+  background-color: rgb(54, 149, 96) !important;
+}
+.cannabis-color, .location-headline.cannabis, .cannabis.icon-ios-primary  {
+  color: rgb(54, 149, 96) !important;
+}
+.cannabis.checkbox-ios .checkbox-checked, .cannabis .checkbox-checked {
+  border: 1px solid rgb(54, 149, 96) !important;
+  background-color: rgb(54, 149, 96) !important;
+}
+.cannabis .checkbox-checked {
+
+}
+
+.user-pp {
+  position: relative;
+  background: white;
+  background-size: contain;
+  background-repeat: no-repeat;
+  width: 45px;
+  height: 45px;
+  border-radius: 50%;
+  line-height: 45px;
+  text-align: center;
+  color: #000000d4;
+  margin: 0;
+  font-size: 14px;
+  font-weight: 600;
+  letter-spacing: 1px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1), 0 1px 3px rgba(0, 0, 0, 0.08);
+}
+
+.bgimg {
+  background-image: url("./assets/imgs/bg.png");
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+.lightBlueBg {
+  background-color: #f3f7fc;
+}
+
+.vertical-align-content > * {
+  display: flex !important;
+  align-content: center !important;
+  align-items: center !important;
+}
+
+.vertical-separator {
+  width: 100%;
+  height: 2px;
+  margin: 8px 0;
+  background: #d1d4d7;
+}
+
+.border-bottom {
+  border-bottom: 1px solid lightgray;
+  padding-bottom: 7px;
+  padding-top: 10px;
+}
+
+.kexy-ion-scroll {
+  white-space: nowrap;
+  height: 110px;
+  margin: 0;
+}
+
+.tr-kx-icon {
+  align-content: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+}
+
+.validation-errors {
+  .error-message {
+    margin-top: 6px;
+    color: red;
+  }
+}
+
+.tr-kexy-login-start-box {
+  h2 {
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 500;
+  }
+
+  p {
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 200;
+  }
+}
+
+.user-profile-pic {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  vertical-align: middle;
+  background: black;
+  background-size: contain;
+  //display: table-cell;
+  overflow: hidden;
+  background-repeat: no-repeat;
+  background-position: center center;
+
+  img {
+    width: 100%;
+    vertical-align: middle;
+  }
+}
+
+.kexy-list {
+  width: 100%;
+
+  ion-item {
+    margin-bottom: 10px;
+    border-radius: 10px;
+    .item-inner {
+      border-bottom: none !important;
+    }
+    ion-label {
+      white-space: normal;
+      font-family: 'Montserrat', sans-serif !important;
+      font-size: 14px;
+    }
+    ion-avatar {
+
+      margin: 5px auto;
+      border: 1px solid #488aff;
+      overflow: hidden;
+      border-radius: 50%;
+
+      img {
+        //width: auto;
+        margin: auto;
+        //border-radius: unset !important;
+      }
+
+    }
+  }
+
+}
+
+.tr-badge {
+  font-size: 11px;
+  background: red;
+  width: 18px;
+  height: 18px;
+  line-height: 18px;
+  border-radius: 50%;
+  font-weight: bold;
+  position: absolute;
+  top: 3px;
+  right: 5px;
+}
+
+::-webkit-scrollbar {
+  width: 0 !important
+}
+
+.profile-photo {
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
+  object-fit: cover;
+}
+
+.tr-login-text {
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 300;
+}
+
+.lightGreyBg {
+  background: #eff3f7 !important;;
+}
+
+// To enable click but still keep the segment disabled segemnt ios
+.segment-ios .segment-button-disabled {
+  pointer-events: auto !important;
+}
+
+
+.submit-buttons {
+  .button {
+    width: 100%;
+    font-size: 13px;
+    border: 1px solid #88a9d6;
+    -webkit-box-shadow: 0px 0px 4px 0px rgba(219, 224, 252, 1);
+    -moz-box-shadow: 0px 0px 4px 0px rgba(219, 224, 252, 1);
+    box-shadow: 0px 0px 4px 0px rgba(219, 224, 252, 1);
+  }
+}
+
+.dashboard-segment {
+  padding: 10px 0 0 0;
+  margin-top: -5px;
+  background: white;
+
+  .segment-button {
+    font-size: 12px;
+    color: gray;
+    text-transform: capitalize;
+    font-weight: 600;
+  }
+
+  .segment-activated {
+    color: #095cd1;
+  }
+}
+.dashboard-segment.cannabis {
+  .segment-button {
+    border-color: transparent;
+  }
+  .segment-activated {
+    color: rgb(54, 149, 96);
+    background-color: white;
+    border-color: rgb(54, 149, 96);
+  }
+}
+
+.tr-kexy-internal-build {
+  color: #d8d5d5;
+  position: absolute;
+  bottom: 0;
+  left: 16px;
+}
+
+.traddoverlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.5);
+  z-index: 90;
+}
+
+.tr-last-btn {
+  margin-bottom: 50px;
+}
+.scroll-content {
+  margin-bottom: 70px;
+}
+
+.customSplash {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  z-index: 999;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background: white;
+  padding: 0 50px;
+  text-align: center;
+}
+
+.alert-message {
+  text-align: left !important;
+}
