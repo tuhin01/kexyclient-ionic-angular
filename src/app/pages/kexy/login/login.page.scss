@@ -1,0 +1,38 @@
+ion-content {
+  font-family: "Montserrat", sans-serif;
+}
+
+ion-label {
+  display: inline;
+  position: relative;
+  bottom: 3px;
+  left: 10px;
+}
+
+ion-col {
+  padding-bottom: 0 !important;
+}
+
+.text-input {
+  margin-bottom: 2px;
+}
+
+ion-icon {
+  font-weight: bold;
+  font-size: 20px;
+}
+
+.login-header {
+  font-size: 23px;
+  margin-bottom: 0;
+  font-weight: 400;
+}
+
+.login-subtitle {
+  font-size: 16px;
+  margin-top: 5px;
+  margin-bottom: 30px;
+}
+.scroll-content {
+  margin-bottom: 0 !important;
+}
