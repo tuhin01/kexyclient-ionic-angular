@@ -115,21 +115,27 @@ button.cannabis.button-ios, .cannabis.toggle-ios.toggle-checked .toggle-icon {
 }
 
 .bgimg {
-  background-image: url("./assets/imgs/bg.png");
-  background-repeat: no-repeat;
-  background-size: cover;
+  background-image: url("./assets/imgs/bg.png") !important;
+  background-repeat: no-repeat !important;
+  background-size: cover !important;
+  background-color: transparent !important;
 }
 
 .lightBlueBg {
   background-color: #f3f7fc;
 }
-
-.vertical-align-content > * {
+.vertical-align-content {
   display: flex !important;
-  align-content: center !important;
+  flex-direction: column !important;
+  height: 100vh !important;
+  justify-content: center !important;
   align-items: center !important;
+  align-content: center !important;
 }
 
+ion-content.bgimg {
+  --ion-background-color: transparent;
+}
 .vertical-separator {
   width: 100%;
   height: 2px;
@@ -153,7 +159,7 @@ button.cannabis.button-ios, .cannabis.toggle-ios.toggle-checked .toggle-icon {
   align-content: center;
   display: flex;
   flex-direction: column;
-  justify-content: flex-end;
+  justify-content: center;
 }
 
 .validation-errors {
@@ -343,3 +349,4 @@ button.cannabis.button-ios, .cannabis.toggle-ios.toggle-checked .toggle-icon {
 .alert-message {
   text-align: left !important;
 }
+

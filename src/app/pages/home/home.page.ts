@@ -1,11 +1,10 @@
 import {Component, OnInit} from '@angular/core';
 import {BasePage} from '../basePage';
 import {HttpClient} from '@angular/common/http';
-import {AlertController, LoadingController, MenuController} from '@ionic/angular';
+import {AlertController, LoadingController, MenuController, NavController} from '@ionic/angular';
 import {ActivatedRoute, Router} from '@angular/router';
 import {apis, constants} from '../../../common/shared';
 import {Storage} from '@ionic/storage';
-import {FormBuilder} from '@angular/forms';
 
 @Component({
   selector: 'app-home',
@@ -24,10 +23,10 @@ export class HomePage extends BasePage implements OnInit{
       public httpClient: HttpClient,
       public loadingCtrl: LoadingController,
       public alertCtrl: AlertController,
-      public formBuilder: FormBuilder,
-      public menu: MenuController
+      public menu: MenuController,
+      public navCtrl: NavController
   ) {
-    super(router, route, httpClient, loadingCtrl, alertCtrl, storage, menu);
+    super(router, route, httpClient, loadingCtrl, alertCtrl, storage, menu, navCtrl);
 
 
     // NOTE: The following is used to trigger the permission dialog.
@@ -36,18 +35,21 @@ export class HomePage extends BasePage implements OnInit{
     navigator.geolocation.watchPosition((data) => {
       console.log("navigator.geolocation updated. ", data);
     });
+
+    this._route();
+
   }
 
   ngOnInit() {
     console.log("ngOnInit HomePage");
-    this._route();
   }
 
   private async _route() {
     //USER_APP_TYEP
     let appType = await window.localStorage.getItem(constants.USER_APP_TYEP);
-    if (!appType) {
-      await this.router.navigate(["/app-select"]);
+    console.log({appType});
+   if (!appType) {
+      await this.setRoot("/app-select");
       return;
     }
 
@@ -61,7 +63,7 @@ export class HomePage extends BasePage implements OnInit{
     let distributorDashboardPage;
     let supplierDashboardPage;
     if (appType === constants.RESTAURANT) {
-      loginDecisionPage = 'LoginDecisionPage';
+      loginDecisionPage = '/kexy-login-decision';
       autoCreatedUserUpdate = "AutoCreatedUserUpdate";
       joinRequestPage = "JoinRequestPage";
       messagePage = "MessagePage";
@@ -71,7 +73,7 @@ export class HomePage extends BasePage implements OnInit{
       distributorDashboardPage = "DistributorDashboardPage";
       supplierDashboardPage = "SupplierDashboardPage";
     } else {
-      loginDecisionPage = 'CannabisLoginDecisionPage';
+      loginDecisionPage = '/kexy-login-decision';
       autoCreatedUserUpdate = "CannabisAutoCreatedUserUpdate";
       joinRequestPage = "CannabisJoinRequestPage";
       messagePage = "CannabisMessagePage";
@@ -90,8 +92,7 @@ export class HomePage extends BasePage implements OnInit{
     console.log("Is Invited", isInvited);
 
     if (!user) {
-      // TODO - Fix
-      //this.app.getRootNavs()[0].setRoot(loginDecisionPage);
+      await this.setRoot(loginDecisionPage);
       return;
     }
 

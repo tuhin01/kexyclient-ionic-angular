@@ -1,4 +1,4 @@
-import {AlertController, LoadingController, MenuController,} from '@ionic/angular';
+import {AlertController, LoadingController, MenuController, NavController,} from '@ionic/angular';
 import {Storage} from '@ionic/storage';
 import {HttpClient, HttpErrorResponse, HttpHeaders} from '@angular/common/http';
 import {ApiDef, constants} from '../../common/shared';
@@ -18,7 +18,8 @@ export class BasePage {
     public loadingCtrl: LoadingController,
     public alertCtrl: AlertController,
     public storage: Storage,
-    public menu: MenuController
+    public menu: MenuController,
+    public navCtrl: NavController
   ) {
     this.config = getConfig();
     this.baseUri = this.config.baseUri;
@@ -236,9 +237,6 @@ export class BasePage {
     await this.storage.remove(constants.USER_SETTINGS);
   }
 
-  async setRootWithAnimation(Page: any, parameters = {}) {
-    // this.navCtrl.setRoot(Page, parameters, { animate: true, direction: 'forward' });
-  }
 
   protected _enableDistributorMenu() {
     this.menu.enable(false, "supplierMenu");
@@ -263,4 +261,20 @@ export class BasePage {
     this.menu.enable(false, "supplierMenu");
     this.menu.enable(false, "restaurantMenu");
   }
+
+  async navigateTo(url, params = {}) {
+    await this.router.navigate([url], {state:params});
+  }
+
+  async setRoot(url, params = {}) {
+    await this.navCtrl.navigateForward(url, { animated: false, replaceUrl: true, state: params });
+  }
+  async setRootWithAnimationForward(url, params = {}) {
+    await this.navCtrl.navigateForward(url, { animated: true, replaceUrl: true, animationDirection: 'forward', state: params });
+  }
+
+  async setRootWithAnimationBackword(url, params = {}) {
+    await this.navCtrl.navigateForward(url, { animated: true, replaceUrl: true, animationDirection: 'back', state: params });
+  }
+
 }

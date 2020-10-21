@@ -1,6 +1,6 @@
 import { Component, OnInit } from "@angular/core";
 import { constants } from "../../../common/shared";
-import { Router } from "@angular/router";
+import { NavController } from "@ionic/angular";
 
 @Component({
   selector: "app-app-select",
@@ -10,7 +10,7 @@ import { Router } from "@angular/router";
 export class AppSelectPage implements OnInit {
   public initialHref;
 
-  constructor(private router: Router) {}
+  constructor(public navCtrl: NavController) {}
 
   ngOnInit() {}
   async selectApp(app: string) {
@@ -18,7 +18,8 @@ export class AppSelectPage implements OnInit {
     // Reload the app to show the correct statusbar color based on cannabis or restaurant
     // window.location = this.initialHref;
     console.log({ app });
-    await this.router.navigate(["/kexy-login"]);
+    await this.navCtrl.navigateForward('/home', { animated: false, replaceUrl: true });
+
     // window.location.reload();
     // await this.navCtrl.setRoot(HomePage);
   }

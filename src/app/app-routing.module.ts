@@ -13,12 +13,16 @@ const routes: Routes = [
   },
   {
     path: "",
-    redirectTo: "app-select",
+    redirectTo: "home",
     pathMatch: "full",
   },
   {
     path: "kexy-login",
     loadChildren: () => import("./pages/kexy/login/login.module").then((m) => m.LoginPageModule),
+  },
+  {
+    path: 'kexy-login-decision',
+    loadChildren: () => import('./pages/kexy/login-decision/login-decision.module').then( m => m.LoginDecisionPageModule)
   },
 ];
 

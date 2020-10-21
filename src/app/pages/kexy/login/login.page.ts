@@ -1,11 +1,11 @@
 import { Component, OnInit } from "@angular/core";
 import { ActivatedRoute, Router } from "@angular/router";
 import { FormBuilder, FormControl, FormGroup, Validators } from "@angular/forms";
-import {apis, constants} from '../../../../common/shared';
+import { apis, constants } from "../../../../common/shared";
 import { Storage } from "@ionic/storage";
 import { BasePage } from "../../basePage";
-import {HttpClient} from '@angular/common/http';
-import {AlertController, LoadingController, MenuController} from '@ionic/angular';
+import { HttpClient } from "@angular/common/http";
+import { AlertController, LoadingController, MenuController, NavController } from "@ionic/angular";
 
 @Component({
   selector: "app-login",
@@ -20,16 +20,17 @@ export class LoginPage extends BasePage implements OnInit {
   public loginText = "Login using phone number?";
 
   constructor(
-      public router: Router,
-      public route: ActivatedRoute,
-      public storage: Storage,
-      public httpClient: HttpClient,
-      public loadingCtrl: LoadingController,
-      public alertCtrl: AlertController,
-      public formBuilder: FormBuilder,
-      public menu: MenuController
+    public router: Router,
+    public route: ActivatedRoute,
+    public storage: Storage,
+    public httpClient: HttpClient,
+    public loadingCtrl: LoadingController,
+    public alertCtrl: AlertController,
+    public formBuilder: FormBuilder,
+    public menu: MenuController,
+    public navCtrl: NavController
   ) {
-    super(router, route, httpClient, loadingCtrl, alertCtrl, storage, menu);
+    super(router, route, httpClient, loadingCtrl, alertCtrl, storage, menu, navCtrl);
   }
 
   ngOnInit() {
@@ -64,8 +65,6 @@ export class LoginPage extends BasePage implements OnInit {
     this.removeLocalUserData();
     this._loadLastUsedPhone();
     this._loadLastUsedEmail();
-
-
   }
 
   getEmail() {
@@ -91,7 +90,6 @@ export class LoginPage extends BasePage implements OnInit {
   }
 
   async primaryFormSubmitted() {
-    console.log(this.primaryForm.value);
     if (!this.primaryForm.valid) {
       return;
     }
@@ -106,15 +104,15 @@ export class LoginPage extends BasePage implements OnInit {
     }
 
     if (this.isMobileLogin) {
-        data.phone = data.phone.replace(/\D/g, '');
-        let res = await this.callApi(apis.API_USER_MOBILE_LOGIN, data);
-        if (!res.success) return;
-        data = {email: res.data.email, password: res.data.password};
-        await this.storage.set('__LAST_USED_EMAIL', null);
-        await this.storage.set('MOBILE_LOGIN', this.primaryForm.value.phone);
+      data.phone = data.phone.replace(/\D/g, "");
+      let res = await this.callApi(apis.API_USER_MOBILE_LOGIN, data);
+      if (!res.success) return;
+      data = { email: res.data.email, password: res.data.password };
+      await this.storage.set("__LAST_USED_EMAIL", null);
+      await this.storage.set("MOBILE_LOGIN", this.primaryForm.value.phone);
     } else {
-        await this.storage.set('MOBILE_LOGIN', null);
-        await this.storage.set('__LAST_USED_EMAIL', data.email);
+      await this.storage.set("MOBILE_LOGIN", null);
+      await this.storage.set("__LAST_USED_EMAIL", data.email);
     }
 
     await this.handleLogin(data);
@@ -123,11 +121,11 @@ export class LoginPage extends BasePage implements OnInit {
   async handleLogin(data) {
     let res = await this.callApi(apis.API_USER_LOGIN, data);
     if (!res.success) return;
-    console.log(res)
+    console.log(res);
     // If master password is used to login then do not check firebase auth
     // as it will fail since we do not know user's real password
     if (!res.data.used_masterpassword) {
-        // TODO - Fix when firebase is updated
+      // TODO - Fix when firebase is updated
     }
     await this.storeDataAfterLogin(res.data);
 
@@ -139,9 +137,9 @@ export class LoginPage extends BasePage implements OnInit {
     // this.navCtrl.push("ForgetPasswordPage");
   }
 
-  createOrJoinTapped() {
-    // TODO - Fix
-    // this.setRootWithAnimation(LoginDecisionPage, {from: 'login'});
+  async createOrJoinTapped() {
+    await this.setRootWithAnimationBackword("/kexy-login-decision", { from: "login" });
+    return;
   }
 
   public initialHref;
