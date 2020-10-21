@@ -4,6 +4,7 @@ import { ActivatedRoute, Router } from "@angular/router";
 import { Storage } from "@ionic/storage";
 import { HttpClient } from "@angular/common/http";
 import { AlertController, LoadingController, MenuController, NavController } from "@ionic/angular";
+import {routeConstants} from '../../../../common/routeConstants';
 
 @Component({
   selector: "app-login-decision",
@@ -37,7 +38,7 @@ export class LoginDecisionPage extends BasePage implements OnInit {
         let lastUsedEmail = await this.storage.get("__LAST_USED_EMAIL");
         console.log({ lastUsedEmail });
         if (lastUsedEmail) {
-          await this.setRoot("/kexy-login");
+          await this.setRoot(routeConstants.KEXY.LOGIN);
         }
       } catch (ex) {
         ("pass");
@@ -46,7 +47,7 @@ export class LoginDecisionPage extends BasePage implements OnInit {
   }
 
   async loginTapped() {
-    await this.navigateTo("/kexy-login");
+    await this.navigateTo(routeConstants.KEXY.LOGIN);
   }
 
   joinTapped(event): void {

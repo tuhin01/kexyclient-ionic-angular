@@ -5,6 +5,7 @@ import {AlertController, LoadingController, MenuController, NavController} from 
 import {ActivatedRoute, Router} from '@angular/router';
 import {apis, constants} from '../../../common/shared';
 import {Storage} from '@ionic/storage';
+import {routeConstants} from '../../../common/routeConstants';
 
 @Component({
   selector: 'app-home',
@@ -49,7 +50,7 @@ export class HomePage extends BasePage implements OnInit{
     let appType = await window.localStorage.getItem(constants.USER_APP_TYEP);
     console.log({appType});
    if (!appType) {
-      await this.setRoot("/app-select");
+      await this.setRoot(routeConstants.APP_SELECT);
       return;
     }
 
@@ -63,7 +64,7 @@ export class HomePage extends BasePage implements OnInit{
     let distributorDashboardPage;
     let supplierDashboardPage;
     if (appType === constants.RESTAURANT) {
-      loginDecisionPage = '/kexy-login-decision';
+      loginDecisionPage = routeConstants.KEXY.LOGIN_DICISION;
       autoCreatedUserUpdate = "AutoCreatedUserUpdate";
       joinRequestPage = "JoinRequestPage";
       messagePage = "MessagePage";

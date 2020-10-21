@@ -1,6 +1,7 @@
 import { Component, OnInit } from "@angular/core";
 import { constants } from "../../../common/shared";
 import { NavController } from "@ionic/angular";
+import {routeConstants} from '../../../common/routeConstants';
 
 @Component({
   selector: "app-app-select",
@@ -18,7 +19,7 @@ export class AppSelectPage implements OnInit {
     // Reload the app to show the correct statusbar color based on cannabis or restaurant
     // window.location = this.initialHref;
     console.log({ app });
-    await this.navCtrl.navigateForward('/home', { animated: false, replaceUrl: true });
+    await this.navCtrl.navigateForward( routeConstants.HOME, { animated: false, replaceUrl: true });
 
     // window.location.reload();
     // await this.navCtrl.setRoot(HomePage);
