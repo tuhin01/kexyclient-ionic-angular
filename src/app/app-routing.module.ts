@@ -14,7 +14,7 @@ const routes: Routes = [
   },
   {
     path: "",
-    redirectTo: "home",
+    redirectTo: routeConstants.HOME,
     pathMatch: "full",
   },
   {
@@ -24,6 +24,14 @@ const routes: Routes = [
   {
     path: routeConstants.KEXY.LOGIN_DICISION,
     loadChildren: () => import('./pages/kexy/login-decision/login-decision.module').then( m => m.LoginDecisionPageModule)
+  },
+  {
+    path: routeConstants.KEXY.FORGET_PASSWORD,
+    loadChildren: () => import('./pages/kexy/forget-password/forget-password.module').then( m => m.ForgetPasswordPageModule)
+  },
+  {
+    path: routeConstants.KEXY.PASSWORD_RESET,
+    loadChildren: () => import('./pages/kexy/password-reset/password-reset.module').then( m => m.PasswordResetPageModule)
   },
 ];
 

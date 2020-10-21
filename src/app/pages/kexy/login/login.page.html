@@ -7,7 +7,7 @@
   </ion-toolbar>
 </ion-header>
 
-<ion-content class="ion-padding bgimg">
+<ion-content class="bgimg">
   <div class="ion-text-center ion-margin-top" style="width: 100%">
     <img alt="Kexy Logo" (click)="logoTapped()" width="196" src="../../assets/imgs/logo.png" />
   </div>
@@ -20,7 +20,7 @@
       </ion-col>
     </ion-row>
 
-    <form [formGroup]="primaryForm" (ngSubmit)="primaryFormSubmitted()">
+    <form class="ion-padding" [formGroup]="primaryForm" (ngSubmit)="primaryFormSubmitted()">
       <label *ngIf="!isMobileLogin">
         <ion-row class="border-bottom">
           <ion-col size="1" class="tr-kx-icon">
@@ -110,7 +110,7 @@
         </ion-col>
       </ion-row> -->
 
-      <ion-row padding>
+      <ion-row class="ion-padding-top">
         <ion-col size="12">
           <ion-button
             [disabled]="!primaryForm.valid"

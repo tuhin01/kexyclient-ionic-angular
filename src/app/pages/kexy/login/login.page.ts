@@ -6,6 +6,7 @@ import { Storage } from "@ionic/storage";
 import { BasePage } from "../../basePage";
 import { HttpClient } from "@angular/common/http";
 import { AlertController, LoadingController, MenuController, NavController } from "@ionic/angular";
+import {routeConstants} from '../../../../common/routeConstants';
 
 @Component({
   selector: "app-login",
@@ -128,17 +129,15 @@ export class LoginPage extends BasePage implements OnInit {
       // TODO - Fix when firebase is updated
     }
     await this.storeDataAfterLogin(res.data);
-
-    // await this.navCtrl.setRoot(HomePage);
+    await this.setRootWithAnimationForward(routeConstants.HOME);
   }
 
-  forgotPasswordTapped() {
-    // TODO - Fix
-    // this.navCtrl.push("ForgetPasswordPage");
+  async forgotPasswordTapped() {
+    await this.navigateTo(routeConstants.KEXY.FORGET_PASSWORD);
   }
 
   async createOrJoinTapped() {
-    await this.setRootWithAnimationBackword("/kexy-login-decision", { from: "login" });
+    await this.setRootWithAnimationBackword(routeConstants.KEXY.LOGIN_DICISION, { from: "login" });
     return;
   }
 
