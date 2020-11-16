@@ -63,6 +63,10 @@ const routes: Routes = [
         (m) => m.AddNewProductPageModule
       ),
   },
+  {
+    path: routeConstants.KEXY.REGISTER,
+    loadChildren: () => import('./pages/kexy/register/register.module').then( m => m.RegisterPageModule)
+  },
 ];
 
 @NgModule({
