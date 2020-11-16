@@ -285,11 +285,10 @@ export class RestaurantCreatePage extends BasePage implements OnInit {
     await this.storage.remove(constants.IS_INVITED);
     await this.storage.remove(constants.IS_JOIN_TYPE);
 
-    
-    // TODO - Fix me
-    // this.navCtrl.push("InviteRestaurantEmployeePage", {
-    //   restaurant_id: this.restaurant_id,
-    // });
+
+    this.navigateTo(routeConstants.KEXY.INVITE_RESTAURANT_EMPLOYEE, {
+      restaurant_id: this.restaurant_id,
+    });
   }
 
   getDate(date) {

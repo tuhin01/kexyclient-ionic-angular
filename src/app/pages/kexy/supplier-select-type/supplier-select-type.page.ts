@@ -33,14 +33,12 @@ export class SupplierSelectTypePage extends BasePage implements OnInit {
 }
 
   ngOnInit() {
-  }
-  ionViewDidLoad() {
-    console.log('ionViewDidLoad CannabisSupplierSelectTypePage');
+    this._disableMenu();
   }
 
   public nextBtnTapped(): void {
     const restaurantIdList = this.params.restaurantIdList;
-    this.navigateTo(routeConstants.KEXY.RESTAURANT_CREATE)
-    
+    //TODO- Fix
+    // this.navCtrl.push("SupplierCreatePage", { side: this.side, restaurantIdList });
   }
 }

@@ -18,6 +18,7 @@ export const routeConstants = {
     RESTAURANT_TYPE: "kexy-restaurant-type",
     SUPPLIER_SELECT_TYPE: "kexy-supplier-select-type",
     RESTAURANT_CREATE: "kexy-restaurant-create",
+    INVITE_RESTAURANT_EMPLOYEE: "kexy-invite-restaurant-employee",
 
   },
 };

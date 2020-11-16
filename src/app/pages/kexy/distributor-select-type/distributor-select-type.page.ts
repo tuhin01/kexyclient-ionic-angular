@@ -29,6 +29,7 @@ export class DistributorSelectTypePage extends BasePage implements OnInit {
   }
 
   ngOnInit() {
+    this._disableMenu();
   }
   public nextBtnTapped() {
     const restaurantIdList = this.params.restaurantIdList;

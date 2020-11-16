@@ -4,6 +4,7 @@ import { Router, ActivatedRoute } from '@angular/router';
 import { LoadingController, AlertController, MenuController, NavController } from '@ionic/angular';
 import { BasePage } from '../../basePage';
 import {Storage} from '@ionic/storage';
+import { routeConstants } from 'src/common/routeConstants';
 
 @Component({
   selector: 'app-restaurant-type',
@@ -36,7 +37,9 @@ export class RestaurantTypePage extends BasePage implements OnInit {
     const email = this.params.email;
     const distributorIdList = this.params.distributorIdList;
 
-    //TODO- Fix
-    // this.navCtrl.push("RestaurantCreatePage", { side: this.side, email, distributorIdList });
+    this.navigateTo(routeConstants.KEXY.RESTAURANT_CREATE, {
+      side: this.side, email, distributorIdList
+    });
+    
   }
 }
