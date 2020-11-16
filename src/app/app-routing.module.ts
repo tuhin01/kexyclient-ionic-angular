@@ -67,6 +67,10 @@ const routes: Routes = [
     path: routeConstants.KEXY.REGISTER,
     loadChildren: () => import('./pages/kexy/register/register.module').then( m => m.RegisterPageModule)
   },
+  {
+    path: routeConstants.KEXY.JOIN_MARKETPLACED,
+    loadChildren: () => import('./pages/kexy/join-marketplace/join-marketplace.module').then( m => m.JoinMarketplacePageModule)
+  },
 ];
 
 @NgModule({

@@ -6,6 +6,7 @@ import { AlertController, LoadingController, MenuController, NavController } fro
 import { BasePage } from "../../basePage";
 import { FormControl, FormGroup, Validators } from "@angular/forms";
 import { apis } from "../../../../common/shared";
+import {routeConstants} from '../../../../common/routeConstants';
 
 @Component({
   selector: "app-email-verification",
@@ -80,16 +81,14 @@ export class EmailVerificationPage extends BasePage implements OnInit {
 
     if (joinByInvitation) {
       let { organization_invitations, employee_invitations } = res.data;
-      // TODO - Fix
-      // return this.navCtrl.push("JoinMarketplacePage", {
-      //   email: this.email,
-      //   organization_invitations,
-      //   employee_invitations,
-      // });
+      await this.navigateTo(routeConstants.KEXY.JOIN_MARKETPLACED, {
+        email: this.email,
+        organization_invitations,
+        employee_invitations,
+      });
     } else {
       Object.assign(data, { is_invited: this.isInvited, type: this.type });
-      // TODO - Fix
-      // return this.navCtrl.push(RegisterPage, data);
+      await this.navigateTo(routeConstants.KEXY.REGISTER, data);
     }
   }
 
