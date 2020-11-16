@@ -68,8 +68,8 @@ export class HomePage extends BasePage implements OnInit{
       autoCreatedUserUpdate = "AutoCreatedUserUpdate";
       joinRequestPage = "JoinRequestPage";
       messagePage = "MessagePage";
-      welcomePage = "WelcomePage";
-      marketPlaceTypePage = "MarketPlaceTypePage";
+      welcomePage = routeConstants.KEXY.WELCOME;
+      marketPlaceTypePage = routeConstants.KEXY.MARKETPLACE_TYPE;
       restaurantDashboardPage = "RestaurantDashboardPage";
       distributorDashboardPage = "DistributorDashboardPage";
       supplierDashboardPage = "SupplierDashboardPage";
@@ -138,14 +138,14 @@ export class HomePage extends BasePage implements OnInit{
         if (joinRequest.data.request) {
           if (joinRequest.data.request.status !== "accepted") {
             await this.storage.set(constants.IS_JOIN_TYPE, "request_sent");
-            // TODO - Fix
-            // await this.navCtrl.setRoot(welcomePage);
+           
+            this.setRoot(welcomePage);
+            
             return;
           }
         }
       }
-      // TODO - Fix
-      // await this.navCtrl.setRoot(marketPlaceTypePage);
+      this.setRoot(marketPlaceTypePage);
       return;
     }
     let org = organizationList.shift();

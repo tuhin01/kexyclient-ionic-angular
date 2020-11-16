@@ -79,6 +79,11 @@ const routes: Routes = [
     path: routeConstants.KEXY.WELCOME,
     loadChildren: () => import('./pages/kexy/welcome/welcome.module').then( m => m.WelcomePageModule)
   },
+  {
+    path: routeConstants.KEXY.MARKETPLACE_TYPE,
+    loadChildren: () => import('./pages/kexy/market-place-type/market-place-type.module').then( m => m.MarketPlaceTypePageModule)
+  },
+
 ];
 
 @NgModule({

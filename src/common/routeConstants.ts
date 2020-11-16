@@ -13,6 +13,7 @@ export const routeConstants = {
     JOIN_MARKETPLACED: "kexy-join-marketplace",
     TERMS_AND_CONDITION: "kexy-terms-conditions",
     WELCOME: "kexy-welcome",
+    MARKETPLACE_TYPE: "kexy-marketplace-type",
 
   },
 };

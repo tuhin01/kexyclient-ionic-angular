@@ -91,8 +91,9 @@ export class RegisterPage extends BasePage implements OnInit {
   private async setNextPage(user: any): Promise<any> {
     if (this.organization_invitations && this.organization_invitations.length) {
       let acceptInvitationApiRes = await this.callApi(apis.MAKE_INVITATION_ACCEPTED_UPON_REGISTER, { email: this.email });
-      // TODO - Fix me
-      // this.navCtrl.setRoot("MarketPlaceTypePage", { organization_invitations: this.organization_invitations });
+
+      this.setRoot(routeConstants.KEXY.MARKETPLACE_TYPE, { organization_invitations: this.organization_invitations });
+
     } else {
       if (this.employee_invitations && this.employee_invitations.length) {
         let addEmployeeApiRes = await this.callApi(apis.API_ADD_EMPLOYEE_FROM_INVITATION, {
@@ -101,18 +102,19 @@ export class RegisterPage extends BasePage implements OnInit {
           email: this.email,
         });
         let invitation = this.employee_invitations[0];
-        // TODO - Fix me
-        // this.navCtrl.push("WelcomePage", {
-        //   distributor_id: invitation.distributor_id,
-        //   restaurant_id: invitation.restaurant_id,
-        //   role: invitation.role,
-        // });
+        this.navigateTo(routeConstants.KEXY.WELCOME, {
+          distributor_id: invitation.distributor_id,
+          restaurant_id: invitation.restaurant_id,
+          role: invitation.role,
+        });
+
       } else {
         console.log(this.type);
         await this.storage.set(constants.IS_INVITED, this.isInvited);
         await this.storage.set(constants.IS_JOIN_TYPE, this.type);
-        // TODO - Fix me
-        // await this.navCtrl.setRoot(HomePage);
+
+        this.setRoot(routeConstants.HOME);
+        
       }
     }
   }

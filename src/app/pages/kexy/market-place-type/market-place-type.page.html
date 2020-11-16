@@ -1,0 +1,64 @@
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-buttons slot="start">
+      <ion-back-button></ion-back-button>
+    </ion-buttons>
+    <ion-title>Type of Marketplace</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+
+<ion-content  class="bgimg ion-padding" style="height: 100vh;">
+
+  <div class="ion-text-center ion-padding-top ion-margin-top" style="width:100%">
+    <img alt="Kexy Logo" width="196" src="../../assets/imgs/logo.png" />
+  </div>
+
+  <ion-grid class="ion-padding-top">
+
+    <ion-row class="ion-padding-top">
+      <ion-col size="12">
+        <ion-card class="ion-text-center">
+          <ion-card-header>
+            <strong>Type of Marketplace</strong>
+          </ion-card-header>
+          <ion-card-content>
+
+            <ion-list radio-group [(ngModel)]="marketPlaceType">
+              <ion-item>
+                <ion-radio checked="true" value="restaurant"></ion-radio>
+                <ion-label>Restaurant or Bar</ion-label>
+              </ion-item>
+              <ion-item>
+                <ion-radio value="distributor"></ion-radio>
+                <ion-label>Distributor</ion-label>
+              </ion-item>
+              <ion-item>
+                <ion-radio value="supplier"></ion-radio>
+                <ion-label>Supplier</ion-label>
+              </ion-item>
+            </ion-list>
+
+          </ion-card-content>
+        </ion-card>
+      </ion-col>
+    </ion-row>
+
+    <ion-row class="ion-padding-top">
+      <ion-col size="12">
+        <ion-button
+        (click)="nextBtnTapped()"
+        type="submit"
+        color="light"
+        expand="full"
+        shape="round"
+        class="common button"
+        >Next</ion-button
+      >
+      </ion-col>
+    </ion-row>
+
+  </ion-grid>
+
+
+</ion-content>
