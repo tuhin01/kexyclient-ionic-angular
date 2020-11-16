@@ -12,8 +12,8 @@ import { routeConstants } from 'src/common/routeConstants';
 })
 export class MarketPlaceTypePage extends BasePage implements OnInit {
   private readonly params: any;
-  private marketPlaceType: string = 'restaurant';
   private organization_invitations;
+  public marketPlaceType: string = 'restaurant';
 
   constructor(
     public router: Router,

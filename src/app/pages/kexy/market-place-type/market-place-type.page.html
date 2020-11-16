@@ -24,19 +24,38 @@
           </ion-card-header>
           <ion-card-content>
 
-            <ion-list radio-group [(ngModel)]="marketPlaceType">
-              <ion-item>
-                <ion-radio checked="true" value="restaurant"></ion-radio>
-                <ion-label>Restaurant or Bar</ion-label>
-              </ion-item>
-              <ion-item>
-                <ion-radio value="distributor"></ion-radio>
-                <ion-label>Distributor</ion-label>
-              </ion-item>
-              <ion-item>
-                <ion-radio value="supplier"></ion-radio>
-                <ion-label>Supplier</ion-label>
-              </ion-item>
+<!--            <ion-list radio-group [(ngModel)]="marketPlaceType">-->
+<!--              <ion-item>-->
+<!--                <ion-radio checked="true" value="restaurant"></ion-radio>-->
+<!--                <ion-label>Restaurant or Bar</ion-label>-->
+<!--              </ion-item>-->
+<!--              <ion-item>-->
+<!--                <ion-radio value="distributor"></ion-radio>-->
+<!--                <ion-label>Distributor</ion-label>-->
+<!--              </ion-item>-->
+<!--              <ion-item>-->
+<!--                <ion-radio value="supplier"></ion-radio>-->
+<!--                <ion-label>Supplier</ion-label>-->
+<!--              </ion-item>-->
+<!--            </ion-list>-->
+
+            <ion-list mode="ios" >
+              <ion-radio-group [(ngModel)]="marketPlaceType">
+                <ion-item>
+                  <ion-label>Restaurant or Bar</ion-label>
+                  <ion-radio slot="start" value="restaurant"></ion-radio>
+                </ion-item>
+
+                <ion-item>
+                  <ion-label>Distributor</ion-label>
+                  <ion-radio slot="start" value="distributor"></ion-radio>
+                </ion-item>
+
+                <ion-item>
+                  <ion-label>Supplier</ion-label>
+                  <ion-radio slot="start" value="supplier"></ion-radio>
+                </ion-item>
+              </ion-radio-group>
             </ion-list>
 
           </ion-card-content>
