@@ -59,8 +59,8 @@ private nextBtnTapped() {
         this.navigateTo(routeConstants.KEXY.RESTAURANT_TYPE)
     }
     if (this.marketPlaceType === 'supplier') {
-           //TODO - Fix
-      // this.navCtrl.push("SupplierSelectTypePage", {distributorIdList});
+
+           this.navigateTo(routeConstants.KEXY.SUPPLIER_SELECT_TYPE)
     }
 
   }
