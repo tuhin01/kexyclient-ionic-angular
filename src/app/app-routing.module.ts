@@ -83,6 +83,11 @@ const routes: Routes = [
     path: routeConstants.KEXY.MARKETPLACE_TYPE,
     loadChildren: () => import('./pages/kexy/market-place-type/market-place-type.module').then( m => m.MarketPlaceTypePageModule)
   },
+  {
+    path: routeConstants.KEXY.DISTRIBUTOR_SELECT_TYPE,
+    loadChildren: () => import('./pages/kexy/distributor-select-type/distributor-select-type.module').then( m => m.DistributorSelectTypePageModule)
+  },
+
 
 ];
 

@@ -14,6 +14,7 @@ export const routeConstants = {
     TERMS_AND_CONDITION: "kexy-terms-conditions",
     WELCOME: "kexy-welcome",
     MARKETPLACE_TYPE: "kexy-marketplace-type",
+    DISTRIBUTOR_SELECT_TYPE: "kexy-distributor-select-type",
 
   },
 };

@@ -4,6 +4,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { AlertController, LoadingController, MenuController, NavController } from '@ionic/angular';
 import { BasePage } from '../../basePage';
 import {Storage} from '@ionic/storage';
+import { routeConstants } from 'src/common/routeConstants';
 @Component({
   selector: 'app-market-place-type',
   templateUrl: './market-place-type.page.html',
@@ -50,9 +51,9 @@ private nextBtnTapped() {
 
 
     if (this.marketPlaceType === 'distributor') {
-      //TODO - Fix
-
-      // this.navCtrl.push("DistributorSelectTypePage", {restaurantIdList});
+     
+      this.navigateTo(routeConstants.KEXY.DISTRIBUTOR_SELECT_TYPE)
+     
     }
     if (this.marketPlaceType === 'restaurant') {
       //TODO - Fix
