@@ -1,0 +1,57 @@
+<ion-content padding class="bgimg vertical-align-content list-avatar-page">
+  <ion-grid>
+    <ion-row>
+      <ion-col class="tr-kexy-login-start-box ion-text-center">
+        <h2>Welcome!</h2>
+        <p>KÉXY is here to save you time and money!</p>
+        <div *ngIf="isJoinType === 'request_sent' && joinToOrg !== ''">
+          <p>
+            Your request to join <strong>{{joinToOrg}}</strong> has been sent. Please wait until
+            they approve it.
+          </p>
+          <p>You will be notified by email and text once you have been approved.</p>
+        </div>
+      </ion-col>
+    </ion-row>
+
+    <ion-row padding *ngIf="isJoinType === 'request_sent' && joinToOrg !== ''">
+      <ion-col size="12">
+        <ion-button
+          (click)="checkRequestTapped()"
+          color="light"
+          expand="full"
+          shape="round"
+          class="common button"
+          >Check Request Status</ion-button
+        >
+      </ion-col>
+    </ion-row>
+
+    <ion-row padding>
+      <ion-col size="12">
+        <ion-button
+                (click)="exploreKexyTapped()"
+                color="light"
+                expand="full"
+                shape="round"
+                class="common button"
+        >Explore KEXY</ion-button
+        >
+      </ion-col>
+    </ion-row>
+
+    <ion-row class="ion-padding-top" *ngIf="!isJoinType">
+      <ion-col class="ion-text-center">
+        <p>
+          Not your first KEXY marketplace?
+          <span class="link" (click)="skipTutorialTapped()">Skip the tutorial</span>
+        </p>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+
+  <p *ngIf="isJoinType === 'request_sent' && joinToOrg !== ''" class="tr-select-other-company">
+    <strong>{{joinToOrg}}</strong> is not your company? <br />
+    <span class="link" (click)="changeCompanyTapped()">Select Another Company</span>
+  </p>
+</ion-content>

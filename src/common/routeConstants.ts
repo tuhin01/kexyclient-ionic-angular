@@ -12,6 +12,7 @@ export const routeConstants = {
     ADD_NEW_PRODUCT: "kexy-add-new-product",
     JOIN_MARKETPLACED: "kexy-join-marketplace",
     TERMS_AND_CONDITION: "kexy-terms-conditions",
+    WELCOME: "kexy-welcome",
 
   },
 };

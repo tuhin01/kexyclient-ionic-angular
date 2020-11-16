@@ -75,6 +75,10 @@ const routes: Routes = [
     path: routeConstants.KEXY.TERMS_AND_CONDITION,
     loadChildren: () => import('./pages/kexy/terms-and-conditions/terms-and-conditions.module').then( m => m.TermsAndConditionsPageModule)
   },
+  {
+    path: routeConstants.KEXY.WELCOME,
+    loadChildren: () => import('./pages/kexy/welcome/welcome.module').then( m => m.WelcomePageModule)
+  },
 ];
 
 @NgModule({
