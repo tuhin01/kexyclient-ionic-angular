@@ -29,12 +29,9 @@ export class DistributorSelectTypePage extends BasePage implements OnInit {
   }
 
   ngOnInit() {
-    //TODO -FIX
-    
-    // public nextBtnTapped(): void {
-    //   const restaurantIdList = this.navParams.get('restaurantIdList');
-    //   this.navCtrl.push("DistributorCreatePage", { side: this.side, restaurantIdList });
-    // }
   }
-
+  public nextBtnTapped() {
+    const restaurantIdList = this.params.restaurantIdList;
+    // this.navCtrl.push("DistributorCreatePage", { side: this.side, restaurantIdList });
+  }
 }
