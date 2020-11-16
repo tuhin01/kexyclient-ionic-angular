@@ -119,10 +119,10 @@ export class BasePage {
         };
       }
     }
-    // if (shouldBlockUi) {
-    //   loading.dismiss();
-    //   this.isShowing = false;
-    // }
+    if (shouldBlockUi) {
+      await loading.dismiss();
+      this.isShowing = false;
+    }
 
     if ("__DEV_ONLY__" in results) {
       console.log(results.__DEV_ONLY__);

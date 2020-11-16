@@ -1,6 +1,6 @@
 import { NgModule } from "@angular/core";
 import { PreloadAllModules, RouterModule, Routes } from "@angular/router";
-import {routeConstants} from '../common/routeConstants';
+import { routeConstants } from "../common/routeConstants";
 
 const routes: Routes = [
   {
@@ -23,23 +23,45 @@ const routes: Routes = [
   },
   {
     path: routeConstants.KEXY.LOGIN_DICISION,
-    loadChildren: () => import('./pages/kexy/login-decision/login-decision.module').then( m => m.LoginDecisionPageModule)
+    loadChildren: () =>
+      import("./pages/kexy/login-decision/login-decision.module").then(
+        (m) => m.LoginDecisionPageModule
+      ),
   },
   {
     path: routeConstants.KEXY.FORGET_PASSWORD,
-    loadChildren: () => import('./pages/kexy/forget-password/forget-password.module').then( m => m.ForgetPasswordPageModule)
+    loadChildren: () =>
+      import("./pages/kexy/forget-password/forget-password.module").then(
+        (m) => m.ForgetPasswordPageModule
+      ),
   },
   {
     path: routeConstants.KEXY.PASSWORD_RESET,
-    loadChildren: () => import('./pages/kexy/password-reset/password-reset.module').then( m => m.PasswordResetPageModule)
+    loadChildren: () =>
+      import("./pages/kexy/password-reset/password-reset.module").then(
+        (m) => m.PasswordResetPageModule
+      ),
   },
   {
-    path: 'email-confirmation',
-    loadChildren: () => import('./pages/kexy/email-confirmation/email-confirmation.module').then( m => m.EmailConfirmationPageModule)
+    path: routeConstants.KEXY.EMAIL_CONFIRMATION,
+    loadChildren: () =>
+      import("./pages/kexy/email-confirmation/email-confirmation.module").then(
+        (m) => m.EmailConfirmationPageModule
+      ),
   },
   {
-    path: 'add-new-product',
-    loadChildren: () => import('./pages/kexy/add-new-product/add-new-product.module').then( m => m.AddNewProductPageModule)
+    path: routeConstants.KEXY.EMAIL_VERIFICATION,
+    loadChildren: () =>
+      import("./pages/kexy/email-verification/email-verification.module").then(
+        (m) => m.EmailVerificationPageModule
+      ),
+  },
+  {
+    path: routeConstants.KEXY.ADD_NEW_PRODUCT,
+    loadChildren: () =>
+      import("./pages/kexy/add-new-product/add-new-product.module").then(
+        (m) => m.AddNewProductPageModule
+      ),
   },
 ];
 

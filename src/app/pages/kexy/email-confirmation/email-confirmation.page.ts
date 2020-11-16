@@ -6,6 +6,7 @@ import { HttpClient } from "@angular/common/http";
 import { AlertController, LoadingController, MenuController, NavController } from "@ionic/angular";
 import { FormControl, FormGroup, Validators } from "@angular/forms";
 import { apis, constants } from "../../../../common/shared";
+import { routeConstants } from "../../../../common/routeConstants";
 
 @Component({
   selector: "app-email-confirmation",
@@ -13,12 +14,13 @@ import { apis, constants } from "../../../../common/shared";
   styleUrls: ["./email-confirmation.page.scss"],
 })
 export class EmailConfirmationPage extends BasePage implements OnInit {
-  params;
-  primaryForm;
+  private readonly params: any;
+  private typeEmailConfirmation: string = "registrer";
+
+  public primaryForm;
   public title: string = "";
   public subTitle: string = "";
-  public typeEmailConfirmation: string = "registrer";
-  submitDisabled: boolean = false;
+  public submitDisabled: boolean = false;
 
   constructor(
     public router: Router,
@@ -79,10 +81,10 @@ export class EmailConfirmationPage extends BasePage implements OnInit {
     if (res.is_invited) {
       isInvited = true;
     }
-    // this.navCtrl.push("EmailVerificationPage", {
-    //   type: this.typeEmailConfirmation,
-    //   is_invited: isInvited,
-    //   email: this.primaryForm.value.email
-    // });
+    await this.navigateTo(routeConstants.KEXY.EMAIL_VERIFICATION, {
+      type: this.typeEmailConfirmation,
+      is_invited: isInvited,
+      email: this.primaryForm.value.email,
+    });
   }
 }

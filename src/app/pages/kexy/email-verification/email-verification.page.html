@@ -1,0 +1,80 @@
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-buttons slot="start">
+      <ion-back-button></ion-back-button>
+    </ion-buttons>
+    <ion-title>Verify Your Email Address</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="bgimg ion-padding">
+  <ion-grid>
+    <ion-row>
+      <ion-col>
+        <div class="ion-text-center">
+          <img style="width: 190px" src="../../assets/imgs/check-your-email.png" alt="" />
+        </div>
+      </ion-col>
+    </ion-row>
+
+    <ion-row class="ion-padding-top">
+      <ion-col class="tr-kexy-login-start-box ion-padding-bottom">
+        <h2 class="ion-text-center">Check your email</h2>
+        <p>
+          We sent you an email to <strong>{{email}}</strong> containing a 6 digit verification code.
+          Please check your inbox (and also, the spam folder) for the mail and paste the code below.
+        </p>
+      </ion-col>
+    </ion-row>
+
+    <form [formGroup]="primaryForm" (ngSubmit)="primaryFormSubmitted()">
+      <p class="ion-text-center ion-no-margin"><strong>Your confirmation code</strong></p>
+
+      <label>
+        <ion-row class="border-bottom">
+          <ion-col size="1" class="tr-kx-icon">
+            <ion-icon name="ios-lock-outline"></ion-icon>
+          </ion-col>
+          <ion-col size="11">
+            <ion-input
+              formControlName="confirmation_code"
+              type="number"
+              class="ion-text-center"
+            ></ion-input>
+          </ion-col>
+        </ion-row>
+      </label>
+
+      <div class="validation-errors ion-text-center">
+        <div
+          class="error-message"
+          *ngIf="!primaryForm.controls.confirmation_code.valid && (primaryForm.get('confirmation_code').dirty || primaryForm.get('confirmation_code').touched)"
+        >
+          Please enter the code we sent to your email address.
+        </div>
+      </div>
+
+      <ion-row class="ion-margin-top">
+        <ion-col size="12">
+          <ion-button
+            [disabled]="!primaryForm.valid"
+            type="submit"
+            color="light"
+            expand="full"
+            shape="round"
+            class="common button"
+            >Confirm
+          </ion-button>
+        </ion-col>
+      </ion-row>
+
+      <ion-row class="ion-padding-top">
+        <ion-col class="ion-text-center">
+          <span class="link" (click)="resendVerificationCode();" *ngIf="showResendButton"
+            >Resend Code</span
+          >
+        </ion-col>
+      </ion-row>
+    </form>
+  </ion-grid>
+</ion-content>
