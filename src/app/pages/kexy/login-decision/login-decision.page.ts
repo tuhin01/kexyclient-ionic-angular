@@ -4,7 +4,7 @@ import { ActivatedRoute, Router } from "@angular/router";
 import { Storage } from "@ionic/storage";
 import { HttpClient } from "@angular/common/http";
 import { AlertController, LoadingController, MenuController, NavController } from "@ionic/angular";
-import {routeConstants} from '../../../../common/routeConstants';
+import { routeConstants } from "../../../../common/routeConstants";
 
 @Component({
   selector: "app-login-decision",
@@ -13,6 +13,7 @@ import {routeConstants} from '../../../../common/routeConstants';
 })
 export class LoginDecisionPage extends BasePage implements OnInit {
   params;
+
   constructor(
     public router: Router,
     public route: ActivatedRoute,
@@ -31,7 +32,9 @@ export class LoginDecisionPage extends BasePage implements OnInit {
 
   ngOnInit() {
     this._disableMenu();
-    if (this.params && this.params.from && this.params.from === "login") return;
+    if (this.params && this.params.from && this.params.from === "login") {
+      return;
+    }
 
     (async () => {
       try {
@@ -50,17 +53,11 @@ export class LoginDecisionPage extends BasePage implements OnInit {
     await this.navigateTo(routeConstants.KEXY.LOGIN);
   }
 
-  joinTapped(event): void {
-    // TODO - Fix
-    // this.navCtrl.push("EmailConfirmationPage", {
-    //   type: "join"
-    // });
+  async joinTapped() {
+    await this.navigateTo(routeConstants.KEXY.EMAIL_CONFIRMATION, { type: "join" });
   }
 
-  registerTapped(event): void {
-    // TODO - Fix
-    // this.navCtrl.push("EmailConfirmationPage", {
-    //   type: "registrer"
-    // });
+  async registerTapped() {
+    await this.navigateTo(routeConstants.KEXY.EMAIL_CONFIRMATION, { type: "registrer" });
   }
 }

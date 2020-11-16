@@ -6,5 +6,6 @@ export const routeConstants = {
     LOGIN_DICISION: "kexy-login-decision",
     FORGET_PASSWORD: "kexy-forget-password",
     PASSWORD_RESET: "kexy-password-reset",
+    EMAIL_CONFIRMATION: "email-confirmation",
   },
 };

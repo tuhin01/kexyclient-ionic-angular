@@ -33,6 +33,10 @@ const routes: Routes = [
     path: routeConstants.KEXY.PASSWORD_RESET,
     loadChildren: () => import('./pages/kexy/password-reset/password-reset.module').then( m => m.PasswordResetPageModule)
   },
+  {
+    path: 'email-confirmation',
+    loadChildren: () => import('./pages/kexy/email-confirmation/email-confirmation.module').then( m => m.EmailConfirmationPageModule)
+  },
 ];
 
 @NgModule({
