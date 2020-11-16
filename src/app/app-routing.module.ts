@@ -37,6 +37,10 @@ const routes: Routes = [
     path: 'email-confirmation',
     loadChildren: () => import('./pages/kexy/email-confirmation/email-confirmation.module').then( m => m.EmailConfirmationPageModule)
   },
+  {
+    path: 'add-new-product',
+    loadChildren: () => import('./pages/kexy/add-new-product/add-new-product.module').then( m => m.AddNewProductPageModule)
+  },
 ];
 
 @NgModule({

@@ -8,9 +8,7 @@
 </ion-header>
 
 <ion-content class="bgimg">
-
   <ion-grid>
-
     <ion-row class="m-top-50">
       <ion-col>
         <div class="ion-text-center">
@@ -27,16 +25,22 @@
     </ion-row>
 
     <form [formGroup]="primaryForm" (ngSubmit)="primaryFormSubmitted()">
-
       <ion-row class="border-bottom">
         <ion-col size="1" class="tr-kx-icon">
           <ion-icon ios="mail-outline" md="mail-sharp"></ion-icon>
         </ion-col>
         <ion-col size="11">
-          <ion-input formControlName="email" type="email" placeholder="name@example.com"></ion-input>
+          <ion-input
+            formControlName="email"
+            type="email"
+            placeholder="name@example.com"
+          ></ion-input>
         </ion-col>
         <div class="validation-errors">
-          <div class="error-message" *ngIf="primaryForm.get('email').hasError('email') && (primaryForm.get('email').dirty || primaryForm.get('email').touched)">
+          <div
+            class="error-message"
+            *ngIf="primaryForm.get('email').hasError('email') && (primaryForm.get('email').dirty || primaryForm.get('email').touched)"
+          >
             Please enter a valid email address.
           </div>
         </div>
@@ -44,23 +48,18 @@
 
       <ion-row class="ion-margin-top">
         <ion-col size="12">
-<!--          <button type="submit" ion-button color="light" full round [disabled]="!primaryForm.valid || submitDisabled" class="common button">Confirm</button>-->
+          <!--          <button type="submit" ion-button color="light" full round [disabled]="!primaryForm.valid || submitDisabled" class="common button">Confirm</button>-->
           <ion-button
-                  [disabled]="!primaryForm.valid || submitDisabled"
-                  type="submit"
-                  color="light"
-                  expand="full"
-                  shape="round"
-                  class="common button"
-          >Confirm
+            [disabled]="!primaryForm.valid || submitDisabled"
+            type="submit"
+            color="light"
+            expand="full"
+            shape="round"
+            class="common button"
+            >Confirm
           </ion-button>
         </ion-col>
       </ion-row>
-
-
     </form>
-
   </ion-grid>
-
-
 </ion-content>

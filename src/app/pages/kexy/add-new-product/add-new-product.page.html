@@ -1,0 +1,251 @@
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-buttons slot="start">
+      <ion-back-button></ion-back-button>
+    </ion-buttons>
+    <ion-title>{{title}}</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="lightGreyBg">
+  <div class="dashboard-segment">
+    <ion-segment (ionChange)="segmentChanged($event)" [(ngModel)]="restaurantSide" mode="md">
+      <ion-segment-button [disabled]="allowedSide === 'boh'" id="segment1" value="foh">
+        FOH
+      </ion-segment-button>
+      <ion-segment-button [disabled]="allowedSide === 'foh'" id="segment2" value="boh">
+        BOH
+      </ion-segment-button>
+    </ion-segment>
+  </div>
+
+  <ion-grid class="ion-no-padding">
+    <!-- Category Slide Section-->
+    <ion-row class="ion-no-padding">
+      <ion-col size="12" class="ion-no-padding">
+        <p class="location-headline">CATEGORIES</p>
+      </ion-col>
+      <ion-col class="kexy-scroll-left-to-right" size="12">
+        <div class="kexy-ion-scroll ion-text-left" scrollY="true">
+          <ion-item
+            *ngFor="let cat of categoryList"
+            class="kexy-marketplace-card ion-align-items-start ion-text-center"
+          >
+            <div
+              (click)="categoryTapped(cat)"
+              [class.active]="selectedCategory && cat.id === selectedCategory.id"
+              class="scroll-left-to-right-image"
+            >
+              <img [alt]="cat.name" [src]="baseUriForImages + cat.photo" />
+            </div>
+            <p class="marketplace-name">{{cat.name}}</p>
+          </ion-item>
+        </div>
+      </ion-col>
+    </ion-row>
+
+    <form (ngSubmit)="primaryFormSubmitted()" [formGroup]="primaryForm" style="margin: 0 8px">
+      <!-- first_name - start -->
+      <label>
+        <ion-row class="border-bottom">
+          <ion-col size="12">
+            <ion-input
+              [(ngModel)]="product.name"
+              formControlName="product_name"
+              placeholder="Product Name*"
+              type="text"
+            ></ion-input>
+          </ion-col>
+        </ion-row>
+        <div class="validation-errors">
+          <div
+            *ngIf="!primaryForm.controls.product_name.valid && (primaryForm.get('product_name').dirty || primaryForm.get('product_name').touched)"
+            class="error-message"
+          >
+            Please enter a valid product name.
+          </div>
+        </div>
+      </label>
+      <!-- first_name - end -->
+      <!-- last_name - start -->
+      <label>
+        <ion-row class="border-bottom">
+          <ion-col size="12">
+            <ion-input
+              [(ngModel)]="product.par_level"
+              formControlName="par_level"
+              placeholder="Par Level"
+              type="text"
+            ></ion-input>
+          </ion-col>
+        </ion-row>
+      </label>
+      <!-- email - start -->
+      <label>
+        <ion-row class="border-bottom">
+          <ion-col size="12">
+            <ion-input
+              [(ngModel)]="product.unit"
+              formControlName="unit"
+              placeholder="Unit/Size*"
+              type="text"
+            ></ion-input>
+          </ion-col>
+        </ion-row>
+        <div class="validation-errors">
+          <div
+            *ngIf="!primaryForm.controls.unit.valid && (primaryForm.get('unit').dirty || primaryForm.get('unit').touched)"
+            class="error-message"
+          >
+            Please enter a valid unit/size.
+          </div>
+        </div>
+      </label>
+
+      <!-- last_name - start -->
+      <label>
+        <ion-row class="border-bottom">
+          <ion-col size="12" style="position: relative">
+            <ion-input
+              (ionBlur)="leaveDistributorField()"
+              (ionChange)="searchDistributor()"
+              [(ngModel)]="product.distributor.name"
+              formControlName="distributor_name"
+              placeholder="Distributor"
+              type="text"
+            >
+            </ion-input>
+            <ion-list
+              [class.hidden]="hideDistributorSearchResult"
+              style="
+                position: absolute;
+                top: 46px;
+                left: 0;
+                right: 0;
+                z-index: 100;
+                height: 200px;
+                overflow: scroll;
+              "
+            >
+              <ion-item
+                (click)="selectDistributor(distributor)"
+                *ngFor="let distributor of searchDistributorList"
+              >
+                {{ distributor.name }}
+              </ion-item>
+            </ion-list>
+          </ion-col>
+        </ion-row>
+        <div class="validation-errors">
+          <div
+            *ngIf="!primaryForm.controls.distributor_name.valid && (primaryForm.get('distributor_name').dirty || primaryForm.get('distributor_name').touched)"
+            class="error-message"
+          >
+            Please enter a valid distributor name.
+          </div>
+        </div>
+      </label>
+
+      <label>
+        <ion-row class="border-bottom">
+          <ion-col size="12" style="position: relative">
+            <ion-input
+              (ionBlur)="leaveRepField()"
+              (ionChange)="searchRep()"
+              [(ngModel)]="product.employee.name"
+              formControlName="rep_name"
+              placeholder="Rep Name (First & Last)"
+              type="text"
+            >
+            </ion-input>
+            <ion-list
+              [class.hidden]="hideRepSearchResult"
+              style="
+                position: absolute;
+                top: 46px;
+                left: 0;
+                right: 0;
+                z-index: 100;
+                height: 200px;
+                overflow: scroll;
+              "
+            >
+              <ion-item (click)="selectRep(rep)" *ngFor="let rep of searchRepList">
+                {{ rep.employee_name }}
+              </ion-item>
+            </ion-list>
+          </ion-col>
+        </ion-row>
+        <div class="validation-errors">
+          <div
+            *ngIf="!primaryForm.controls.rep_name.valid && (primaryForm.get('rep_name').dirty || primaryForm.get('rep_name').touched)"
+            class="error-message"
+          >
+            Please enter a valid rep name.
+          </div>
+        </div>
+      </label>
+
+      <!-- email - start -->
+      <label *ngIf="shouldShowEmailPhoneFiled">
+        <ion-row class="border-bottom">
+          <ion-col size="12">
+            <ion-input
+              [(ngModel)]="product.employee.email"
+              [disabled]="product.employee.is_claimed"
+              formControlName="rep_email"
+              placeholder="Rep Email"
+              type="email"
+            ></ion-input>
+          </ion-col>
+        </ion-row>
+        <div class="validation-errors">
+          <div
+            *ngIf="!primaryForm.controls.rep_email.valid && (primaryForm.get('rep_email').dirty || primaryForm.get('rep_email').touched)"
+            class="error-message"
+          >
+            Please enter a valid email address.
+          </div>
+        </div>
+      </label>
+      <!-- email - end -->
+
+      <label *ngIf="shouldShowEmailPhoneFiled">
+        <ion-row class="border-bottom">
+          <ion-col size="12">
+            <ion-input
+              [(ngModel)]="product.employee.phone"
+              [disabled]="product.employee.is_claimed"
+              formControlName="rep_phone"
+              placeholder="Rep Number"
+              type="tel"
+            ></ion-input>
+          </ion-col>
+        </ion-row>
+        <div class="validation-errors">
+          <div
+            *ngIf="!primaryForm.controls.rep_phone.valid && (primaryForm.get('rep_phone').dirty || primaryForm.get('rep_phone').touched)"
+            class="error-message"
+          >
+            Please enter a valid US Mobile Phone Number.
+          </div>
+        </div>
+      </label>
+
+      <ion-row padding>
+        <ion-col size="12">
+          <ion-button
+            type="submit"
+            color="light"
+            expand="full"
+            shape="round"
+            class="common button ion-margin-top"
+            >SUBMIT
+          </ion-button>
+        </ion-col>
+      </ion-row>
+    </form>
+  </ion-grid>
+</ion-content>
+
+<kexy-bottom-nagigation-bar [selectedPage]="'order'"></kexy-bottom-nagigation-bar>
