@@ -87,6 +87,11 @@ const routes: Routes = [
     path: routeConstants.KEXY.DISTRIBUTOR_SELECT_TYPE,
     loadChildren: () => import('./pages/kexy/distributor-select-type/distributor-select-type.module').then( m => m.DistributorSelectTypePageModule)
   },
+  {
+    path: routeConstants.KEXY.RESTAURANT_TYPE,
+    loadChildren: () => import('./pages/kexy/restaurant-type/restaurant-type.module').then( m => m.RestaurantTypePageModule)
+  },
+
 
 
 ];
