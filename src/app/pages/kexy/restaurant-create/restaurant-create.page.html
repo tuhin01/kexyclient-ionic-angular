@@ -7,7 +7,7 @@
   </ion-toolbar>
 </ion-header>
 
-<ion-content padding class="bgimg">
+<ion-content  class="bgimg ion-padding">
   <div *ngIf="modalShow" class="overlay"></div>
 
   <div class="width-100 ion-text-center ion-padding-top ion-margin-top">
@@ -150,16 +150,26 @@
           <div class="tr-kexy-edit-side">
             <ion-item>
               <ion-label>Country</ion-label>
-              <ion-select
-                (ionChange)="onCountrySelect()"
-                [(ngModel)]="geolocationDetails.country"
-                formControlName="country"
-              >
-                <ion-option *ngFor="let country of countryList" [value]="country.abbreviation"
-                  >{{ country.name }}</ion-option
-                >
+              <ion-select (ionChange)="onCountrySelect()"
+                          [(ngModel)]="geolocationDetails.country"
+                          formControlName="country">
+                <ion-select-option *ngFor="let country of countryList" [value]="country.abbreviation">{{ country.name }}</ion-select-option>
+
               </ion-select>
             </ion-item>
+
+<!--            <ion-item>-->
+<!--              <ion-label>Country</ion-label>-->
+<!--              <ion-select-->
+<!--                (ionChange)="onCountrySelect()"-->
+<!--                [(ngModel)]="geolocationDetails.country"-->
+<!--                formControlName="country"-->
+<!--              >-->
+<!--                <ion-option *ngFor="let country of countryList" [value]="country.abbreviation"-->
+<!--                  >{{ country.name }}</ion-option-->
+<!--                >-->
+<!--              </ion-select>-->
+<!--            </ion-item>-->
           </div>
         </ion-col>
         <div class="validation-errors ion-text-center">
@@ -181,11 +191,11 @@
             <ion-item>
               <ion-label>{{stateLabel}}</ion-label>
               <ion-select formControlName="state" [(ngModel)]="geolocationDetails.state">
-                <ion-option *ngFor="let state of statesList" [value]="state.abbreviation"
-                  >{{ state.name }}</ion-option
-                >
+                <ion-select-option *ngFor="let state of statesList" [value]="state.abbreviation">{{ state.name }}</ion-select-option>
+
               </ion-select>
             </ion-item>
+
           </div>
         </ion-col>
         <div class="validation-errors ion-text-center">

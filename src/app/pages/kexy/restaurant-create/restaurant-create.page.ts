@@ -285,9 +285,7 @@ export class RestaurantCreatePage extends BasePage implements OnInit {
     await this.storage.remove(constants.IS_INVITED);
     await this.storage.remove(constants.IS_JOIN_TYPE);
 
-    // this.navCtrl.push("CannabisRestaurantSetupDistributorRepPage", {
-    //   restaurant_id, zip_code, side
-    // });
+    
     // TODO - Fix me
     // this.navCtrl.push("InviteRestaurantEmployeePage", {
     //   restaurant_id: this.restaurant_id,
@@ -308,7 +306,6 @@ export class RestaurantCreatePage extends BasePage implements OnInit {
 
   public async termsClicked() {
     await this.navigateTo(routeConstants.KEXY.TERMS_AND_CONDITION);
-    //this.navCtrl.push(TermsAndConditionsPage);
   }
 
   onCountrySelect() {

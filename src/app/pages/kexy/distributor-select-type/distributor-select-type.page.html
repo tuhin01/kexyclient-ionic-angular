@@ -20,20 +20,25 @@
             <strong>Select Primary Focus</strong>
           </ion-card-header>
           <ion-card-content>
-            <ion-list radio-group [(ngModel)]="side">
-              <ion-item>
-                <ion-radio checked="true" value="FOH"></ion-radio>
-                <ion-label>Front of the House</ion-label>
-              </ion-item>
-              <ion-item>
-                <ion-radio value="BOH"></ion-radio>
-                <ion-label>Back of the House</ion-label>
-              </ion-item>
-              <ion-item>
-                <ion-radio value="BOTH"></ion-radio>
-                <ion-label>Both</ion-label>
-              </ion-item>
+            <ion-list mode="ios" >
+              <ion-radio-group [(ngModel)]="side">
+                <ion-item>
+                  <ion-label>Front of the House (FOH)</ion-label>
+                  <ion-radio slot="start" value="FOH"></ion-radio>
+                </ion-item>
+
+                <ion-item>
+                  <ion-label>Back of the House (BOH)</ion-label>
+                  <ion-radio slot="start" value="BOH"></ion-radio>
+                </ion-item>
+
+                <ion-item>
+                  <ion-label>Both</ion-label>
+                  <ion-radio slot="start" value="BOTH"></ion-radio>
+                </ion-item>
+              </ion-radio-group>
             </ion-list>
+
           </ion-card-content>
         </ion-card>
       </ion-col>
