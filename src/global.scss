@@ -32,8 +32,12 @@ html, ion-app {
   -moz-user-select: text;
   -ms-user-select: text;
   user-select: text;
+  
 }
-
+// Temporary fix
+a, p, h1, h2,h3,h4,h5,h6,span, button, .ionicon, svg, ion-icon {
+  color: #000 !important;
+}
 .common.title {
   font-size: 40px;
 }
