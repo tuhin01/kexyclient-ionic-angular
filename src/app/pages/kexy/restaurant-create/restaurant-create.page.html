@@ -1,9 +1,241 @@
 <ion-header>
-  <ion-toolbar>
-    <ion-title>RestaurantCreate</ion-title>
+  <ion-toolbar color="primary">
+    <ion-buttons slot="start">
+      <ion-back-button></ion-back-button>
+    </ion-buttons>
+    <ion-title>Restaurant/Bar Create</ion-title>
   </ion-toolbar>
 </ion-header>
 
-<ion-content>
+<ion-content padding class="bgimg">
+  <div *ngIf="modalShow" class="overlay"></div>
 
+  <div class="width-100 ion-text-center ion-padding-top ion-margin-top">
+    <img alt="Kexy Logo" width="196" src="../../assets/imgs/logo.png" />
+  </div>
+
+  <div *ngIf="modalShow" class="tr-modal-popup">
+    <p class="ion-no-margin ion-text-end">
+      <ion-icon (click)="modalCloseTapped()" name="close" class="tr-modal-close"></ion-icon>
+    </p>
+    <div class="tr-loading" *ngIf="placeSuggestionList.length < 1">
+      <div class="loading-spinner">
+        <ion-spinner class="spinner spinner-md spinner-crescent spinner-md-crescent">
+          <svg viewBox="0 0 64 64" style="animation-duration: 750ms">
+            <circle transform="translate(32,32)" r="26"></circle>
+          </svg>
+        </ion-spinner>
+      </div>
+      <div class="loading-content">Loading restaurants nearby, please wait.</div>
+    </div>
+
+    <div *ngIf="placeSuggestionList.length > 0">
+      <p class="tr-list-title">List of restaurants nearby</p>
+      <ion-item *ngFor="let placeSuggestion of placeSuggestionList; let i of index;">
+        <ion-icon name="restaurant" item-start></ion-icon>
+        <ion-label (click)="addressClicked(placeSuggestion)">
+          {{placeSuggestion.name}}<br />
+          {{placeSuggestion.address}}
+        </ion-label>
+      </ion-item>
+    </div>
+  </div>
+
+  <ion-grid>
+    <ion-row class="ion-padding-top">
+      <ion-col>
+        <div class="ion-text-center" [hidden]="!imageUrl">
+          <img class="profile-photo" [src]="imageUrl" />
+        </div>
+        <ion-button (click)="presentFileChooser()" expand="full" shape="round">
+          <ion-icon name="attach"></ion-icon> Upload Company Logo
+        </ion-button>
+      </ion-col>
+    </ion-row>
+
+    <form [formGroup]="restaurantCreateForm" (ngSubmit)="restaurantCreateFormSubmitted()">
+      <label id="nameEditField">
+        <ion-row class="border-bottom">
+          <ion-col size="1" class="tr-kx-icon">
+            <ion-icon name="restaurant"></ion-icon>
+          </ion-col>
+          <ion-col size="11">
+            <ion-input
+              formControlName="name"
+              placeholder="Restaurant/Bar Name"
+              type="text"
+            ></ion-input>
+          </ion-col>
+        </ion-row>
+        <div class="validation-errors ion-text-center">
+          <div
+            class="error-message"
+            *ngIf="!restaurantCreateForm.controls.name.valid && (restaurantCreateForm.get('name').dirty || restaurantCreateForm.get('name').touched)"
+          >
+            Please enter a valid Restaurant/Bar Name.
+          </div>
+        </div>
+      </label>
+
+      <label>
+        <ion-row class="border-bottom">
+          <ion-col size="1" class="tr-kx-icon">
+            <ion-icon name="ios-call-outline"></ion-icon>
+          </ion-col>
+          <ion-col size="11">
+            <ion-input
+              formControlName="phone"
+              placeholder="Restaurant/Bar Phone Number"
+              type="tel"
+            ></ion-input>
+          </ion-col>
+        </ion-row>
+        <div class="validation-errors ion-text-center">
+          <div
+            class="error-message"
+            *ngIf="!restaurantCreateForm.controls.phone.valid && (restaurantCreateForm.get('phone').dirty || restaurantCreateForm.get('phone').touched)"
+          >
+            Please enter a valid 10 digit US/Canada Mobile Phone Number.
+          </div>
+        </div>
+      </label>
+
+      <label>
+        <ion-row class="border-bottom">
+          <ion-col size="12">
+            <ion-input
+              placeholder="Street Address"
+              type="text"
+              formControlName="street_address"
+              [(ngModel)]="geolocationDetails.street_address"
+            ></ion-input>
+          </ion-col>
+        </ion-row>
+        <div class="validation-errors ion-text-center">
+          <div
+            class="error-message"
+            *ngIf="!restaurantCreateForm.controls.street_address.valid && (restaurantCreateForm.get('street_address').dirty || restaurantCreateForm.get('street_address').touched)"
+          >
+            Please enter a valid Street Address.
+          </div>
+        </div>
+      </label>
+
+      <label>
+        <ion-row class="border-bottom">
+          <ion-col size="12">
+            <ion-input
+              placeholder="City"
+              type="text"
+              formControlName="city"
+              [(ngModel)]="geolocationDetails.city"
+            ></ion-input>
+          </ion-col>
+        </ion-row>
+        <div class="validation-errors ion-text-center">
+          <div
+            class="error-message"
+            *ngIf="!restaurantCreateForm.controls.city.valid && (restaurantCreateForm.get('city').dirty || restaurantCreateForm.get('city').touched)"
+          >
+            Please enter a valid City name.
+          </div>
+        </div>
+      </label>
+
+      <ion-row class="border-bottom">
+        <ion-col class="tr-kx-icon" size="1">
+          <ion-icon name="ios-browsers-outline"></ion-icon>
+        </ion-col>
+        <ion-col size="11">
+          <div class="tr-kexy-edit-side">
+            <ion-item>
+              <ion-label>Country</ion-label>
+              <ion-select
+                (ionChange)="onCountrySelect()"
+                [(ngModel)]="geolocationDetails.country"
+                formControlName="country"
+              >
+                <ion-option *ngFor="let country of countryList" [value]="country.abbreviation"
+                  >{{ country.name }}</ion-option
+                >
+              </ion-select>
+            </ion-item>
+          </div>
+        </ion-col>
+        <div class="validation-errors ion-text-center">
+          <div
+            *ngIf="!restaurantCreateForm.controls.country.valid && (restaurantCreateForm.get('country').dirty || restaurantCreateForm.get('country').touched)"
+            class="error-message"
+          >
+            Please select a country from the list.
+          </div>
+        </div>
+      </ion-row>
+
+      <ion-row class="border-bottom">
+        <ion-col size="1" class="tr-kx-icon">
+          <ion-icon name="ios-browsers-outline"></ion-icon>
+        </ion-col>
+        <ion-col size="11">
+          <div class="tr-kexy-edit-side">
+            <ion-item>
+              <ion-label>{{stateLabel}}</ion-label>
+              <ion-select formControlName="state" [(ngModel)]="geolocationDetails.state">
+                <ion-option *ngFor="let state of statesList" [value]="state.abbreviation"
+                  >{{ state.name }}</ion-option
+                >
+              </ion-select>
+            </ion-item>
+          </div>
+        </ion-col>
+        <div class="validation-errors ion-text-center">
+          <div
+            class="error-message"
+            *ngIf="!restaurantCreateForm.controls.state.valid && (restaurantCreateForm.get('state').dirty || restaurantCreateForm.get('state').touched)"
+          >
+            Please select a <span style="text-transform: lowercase">{{stateLabel}}</span> from the
+            list.
+          </div>
+        </div>
+      </ion-row>
+
+      <label>
+        <ion-row class="border-bottom">
+          <ion-col size="1" class="tr-kx-icon">
+            <ion-icon name="ios-bookmark-outline"></ion-icon>
+          </ion-col>
+          <ion-col size="11">
+            <ion-input
+              placeholder="{{zipLabel}}"
+              formControlName="zip_code"
+              [(ngModel)]="geolocationDetails.zip_code"
+            ></ion-input>
+          </ion-col>
+        </ion-row>
+        <div class="validation-errors ion-text-center">
+          <div
+            class="error-message"
+            *ngIf="!restaurantCreateForm.controls.zip_code.valid && (restaurantCreateForm.get('zip_code').dirty || restaurantCreateForm.get('zip_code').touched)"
+          >
+            Please enter a valid {{zipLabel}}.
+          </div>
+        </div>
+      </label>
+
+      <ion-row class="ion-padding-top">
+        <ion-col size="12">
+          <ion-button
+            type="submit"
+            [disabled]="!restaurantCreateForm.valid"
+            (click)="signupBtnTapped()"
+            color="light"
+            expand="full"
+            shape="round"
+            class="common button"
+            >Confirm</ion-button
+          >
+        </ion-col>
+      </ion-row>
+    </form>
+  </ion-grid>
 </ion-content>

@@ -7,14 +7,12 @@
   </ion-toolbar>
 </ion-header>
 
-<ion-content  class="bgimg ion-padding">
-
+<ion-content class="bgimg ion-padding">
   <div class="width-100 ion-text-center ion-padding-top ion-margin-top">
     <img alt="Kexy Logo" width="196" src="../../assets/imgs/logo.png" />
   </div>
 
   <ion-grid class="ion-padding-top">
-
     <ion-row class="ion-padding-top">
       <ion-col size="12">
         <ion-card class="ion-text-center">
@@ -22,9 +20,7 @@
             <strong>Select Primary Focus</strong>
           </ion-card-header>
           <ion-card-content>
-
             <ion-list radio-group [(ngModel)]="side">
-
               <ion-item>
                 <ion-radio checked="true" value="FOH"></ion-radio>
                 <ion-label>Front of the House</ion-label>
@@ -37,9 +33,7 @@
                 <ion-radio value="BOTH"></ion-radio>
                 <ion-label>Both</ion-label>
               </ion-item>
-
             </ion-list>
-
           </ion-card-content>
         </ion-card>
       </ion-col>
@@ -49,16 +43,13 @@
       <ion-col size="12">
         <ion-button
           (click)="nextBtnTapped()"
-            color="light"
-            expand="full"
-            shape="round"
-            class="common button"
-            >Next</ion-button
-          >
+          color="light"
+          expand="full"
+          shape="round"
+          class="common button"
+          >Next</ion-button
+        >
       </ion-col>
     </ion-row>
-
   </ion-grid>
-
-
 </ion-content>

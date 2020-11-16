@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { FormsModule } from '@angular/forms';
+import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 
 import { IonicModule } from '@ionic/angular';
 
@@ -9,12 +9,13 @@ import { RestaurantCreatePageRoutingModule } from './restaurant-create-routing.m
 import { RestaurantCreatePage } from './restaurant-create.page';
 
 @NgModule({
-  imports: [
-    CommonModule,
-    FormsModule,
-    IonicModule,
-    RestaurantCreatePageRoutingModule
-  ],
+    imports: [
+        CommonModule,
+        FormsModule,
+        IonicModule,
+        RestaurantCreatePageRoutingModule,
+        ReactiveFormsModule
+    ],
   declarations: [RestaurantCreatePage]
 })
 export class RestaurantCreatePageModule {}
