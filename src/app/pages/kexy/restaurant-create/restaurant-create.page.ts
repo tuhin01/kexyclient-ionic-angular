@@ -8,8 +8,6 @@ import { FormGroup, FormControl, Validators, FormBuilder } from "@angular/forms"
 import { statesUS } from "../../../../assets/statesUS";
 import { countries } from "../../../../assets/Countries";
 import { statesCanada } from "../../../../assets/statesCanada";
-
-import { Geolocation } from "@ionic-native/geolocation";
 import { LocationService } from "../../../services/location.service";
 import { apis, constants } from "../../../../common/shared";
 import { routeConstants } from "../../../../common/routeConstants";
@@ -61,7 +59,6 @@ export class RestaurantCreatePage extends BasePage implements OnInit {
     public alertCtrl: AlertController,
     public menu: MenuController,
     public navCtrl: NavController,
-    private geolocation: Geolocation,
     private locationService: LocationService,
     private fb: FormBuilder
   ) {
@@ -127,22 +124,22 @@ export class RestaurantCreatePage extends BasePage implements OnInit {
     await this._showLocationSuggestions();
   }
   async _showLocationSuggestions() {
-    let geolocation;
-    try {
-      geolocation = await this.geolocation.getCurrentPosition();
-    } catch (ex) {
-      console.error(ex);
-      this.modalShow = false;
-      await this.showAwaitableAlert(
-        "Geolocation",
-        "You must allow geolocation in the settings of the App."
-      );
-      return;
-    }
+    // let geolocation;
+    // try {
+    //   geolocation = await this.geolocation.getCurrentPosition();
+    // } catch (ex) {
+    //   console.error(ex);
+    //   this.modalShow = false;
+    //   await this.showAwaitableAlert(
+    //     "Geolocation",
+    //     "You must allow geolocation in the settings of the App."
+    //   );
+    //   return;
+    // }
 
-    console.log({ geolocation });
+    // console.log({ geolocation });
 
-    let { latitude, longitude } = geolocation.coords;
+    // let { latitude, longitude } = geolocation.coords;
 
     // let location = new google.maps.LatLng(latitude, longitude);
     // this.googlePlacesService = new google.maps.places.PlacesService(document.createElement("div"));
