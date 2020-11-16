@@ -11,5 +11,7 @@ export const routeConstants = {
     EMAIL_VERIFICATION: "kexy-email-verification",
     ADD_NEW_PRODUCT: "kexy-add-new-product",
     JOIN_MARKETPLACED: "kexy-join-marketplace",
+    TERMS_AND_CONDITION: "kexy-terms-conditions",
+
   },
 };

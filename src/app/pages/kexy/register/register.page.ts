@@ -7,6 +7,7 @@ import {AlertController, LoadingController, MenuController, NavController} from 
 import {BasePage} from '../../basePage';
 import {FormControl, FormGroup, Validators} from '@angular/forms';
 import {apis, constants} from '../../../../common/shared';
+import {routeConstants} from '../../../../common/routeConstants';
 
 @Component({
   selector: 'app-register',
@@ -159,9 +160,8 @@ export class RegisterPage extends BasePage implements OnInit {
     await this.setNextPage(res2.data.user);
   }
 
-  public termsClicked(): void {
-    // TODO - Fix me
-    // this.navCtrl.push("TermsAndConditionsPage", {});
+  async termsClicked() {
+    await this.navigateTo(routeConstants.KEXY.TERMS_AND_CONDITION);
   }
 
   async presentFileChooser() {
