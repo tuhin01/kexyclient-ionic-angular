@@ -107,6 +107,10 @@ const routes: Routes = [
     path: routeConstants.KEXY.DISTRIBUTOR_CREATE,
     loadChildren: () => import('./pages/kexy/distributor-create/distributor-create.module').then( m => m.DistributorCreatePageModule)
   },
+  {
+    path: routeConstants.KEXY.RESTAURANT_DASHBOARD,
+    loadChildren: () => import('./pages/kexy/restaurant-dashboard/restaurant-dashboard.module').then( m => m.RestaurantDashboardPageModule)
+  },
 
 
 
