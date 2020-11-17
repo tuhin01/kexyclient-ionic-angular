@@ -129,10 +129,10 @@ export class SupplierCreatePage extends BasePage implements OnInit {
     //   supplier_id, zip_code_list, side
     // });
 
-    //TODO- Fix
-    // this.navCtrl.push("SupplierInviteEmployeePage", {
-    //   supplier_id: this.supplier_id
-    // });
+
+    this.navigateTo(routeConstants.KEXY.SUPPLIER_INVITE_EMPLOYEE,{
+      supplier_id: this.supplier_id
+    });
   }
 
   public termsClicked(): void {
