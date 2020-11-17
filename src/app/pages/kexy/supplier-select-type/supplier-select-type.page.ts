@@ -38,7 +38,10 @@ export class SupplierSelectTypePage extends BasePage implements OnInit {
 
   public nextBtnTapped(): void {
     const restaurantIdList = this.params.restaurantIdList;
-    //TODO- Fix
-    // this.navCtrl.push("SupplierCreatePage", { side: this.side, restaurantIdList });
+
+    this.navigateTo(routeConstants.KEXY.SUPPLIER_CREATE,{
+      side: this.side, restaurantIdList
+    })
+   
   }
 }

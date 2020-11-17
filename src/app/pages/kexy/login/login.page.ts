@@ -157,6 +157,7 @@ export class LoginPage extends BasePage implements OnInit {
     window.location = this.initialHref;
     // window.location.reload();
     // TODO - Fix
+    this.setRoot(routeConstants.HOME)
     //await this.navCtrl.setRoot(HomePage);
   }
 
