@@ -103,6 +103,11 @@ const routes: Routes = [
     path: routeConstants.KEXY.INVITE_RESTAURANT_EMPLOYEE,
     loadChildren: () => import('./pages/kexy/invite-restaurant-employee/invite-restaurant-employee.module').then( m => m.InviteRestaurantEmployeePageModule)
   },
+  {
+    path: routeConstants.KEXY.DISTRIBUTOR_CREATE,
+    loadChildren: () => import('./pages/kexy/distributor-create/distributor-create.module').then( m => m.DistributorCreatePageModule)
+  },
+
 
 
 
