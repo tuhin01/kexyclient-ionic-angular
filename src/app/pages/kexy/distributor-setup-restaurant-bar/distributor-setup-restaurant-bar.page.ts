@@ -5,6 +5,7 @@ import { LoadingController, AlertController, MenuController, NavController } fro
 import { BasePage } from '../../basePage';
 import {Storage} from '@ionic/storage';
 import { apis } from 'src/common/shared';
+import { routeConstants } from 'src/common/routeConstants';
 
 @Component({
   selector: 'app-distributor-setup-restaurant-bar',
@@ -183,10 +184,11 @@ export class DistributorSetupRestaurantBarPage extends BasePage implements OnIni
     if (!res) return;
     let res2 = await this.processInvites();
     if (!res2) return;
-    //TODO - Fix
-    // this.navCtrl.push("InviteDistributorEmployeePage", {
-    //   distributor_id: this.distributor_id
-    // });
+
+    this.navigateTo(routeConstants.KEXY.INVITE_DISTRIBUTOR_EMPLOYEE,{
+      distributor_id: this.distributor_id
+    })
+
   }
 
   public changeListener($event: any): void {

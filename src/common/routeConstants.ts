@@ -21,6 +21,7 @@ export const routeConstants = {
     INVITE_RESTAURANT_EMPLOYEE: "kexy-invite-restaurant-employee",
     DISTRIBUTOR_CREATE: "kexy-distributor-create",
     DISTRIBUTOR_SETUP_RESTAURANT_BAR: "kexy-distributor-setup-restaurant-bar",
+    INVITE_DISTRIBUTOR_EMPLOYEE: "kexy-invite-distributor-employee",
 
   },
 };

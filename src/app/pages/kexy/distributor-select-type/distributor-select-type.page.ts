@@ -4,6 +4,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { LoadingController, AlertController, MenuController, NavController } from '@ionic/angular';
 import { BasePage } from '../../basePage';
 import {Storage} from '@ionic/storage';
+import { routeConstants } from 'src/common/routeConstants';
 @Component({
   selector: 'app-distributor-select-type',
   templateUrl: './distributor-select-type.page.html',
@@ -33,6 +34,7 @@ export class DistributorSelectTypePage extends BasePage implements OnInit {
   }
   public nextBtnTapped() {
     const restaurantIdList = this.params.restaurantIdList;
+    this.navigateTo(routeConstants.KEXY.DISTRIBUTOR_CREATE)
     // this.navCtrl.push("DistributorCreatePage", { side: this.side, restaurantIdList });
   }
 }

@@ -135,9 +135,7 @@ export class DistributorCreatePage extends BasePage implements OnInit {
     this.navigateTo(routeConstants.KEXY.DISTRIBUTOR_SETUP_RESTAURANT_BAR,{
       distributor_id, zip_code_list, side
     })
-    // this.navCtrl.push("DistributorSetupRestaurantBarPage", {
-    //   distributor_id, zip_code_list, side
-    // });
+ 
   }
 
   async presentFileChooser() {
