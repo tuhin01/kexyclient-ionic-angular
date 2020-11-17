@@ -41,7 +41,7 @@ export class DistributorCreatePage extends BasePage implements OnInit {
     }
   }
 
-  ngOnInit() {
+  async ngOnInit() {
     this._disableMenu();
 
     this.distributorCreateForm = new FormGroup({
@@ -131,8 +131,10 @@ export class DistributorCreatePage extends BasePage implements OnInit {
     await this.storage.remove(constants.IS_JOIN_TYPE);
 
     this.distributor_id = distributor_id;
-    //TODO -Fix
 
+    this.navigateTo(routeConstants.KEXY.DISTRIBUTOR_SETUP_RESTAURANT_BAR,{
+      distributor_id, zip_code_list, side
+    })
     // this.navCtrl.push("DistributorSetupRestaurantBarPage", {
     //   distributor_id, zip_code_list, side
     // });

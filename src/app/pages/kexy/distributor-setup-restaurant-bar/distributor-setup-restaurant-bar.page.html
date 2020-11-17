@@ -1,0 +1,126 @@
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-buttons slot="start">
+      <ion-back-button></ion-back-button>
+    </ion-buttons>
+    <ion-title>Select Restaurants & Bars</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content  class="lightBlueBg ion-padding">
+
+  <ion-searchbar animated="true" [(ngModel)]="search_string" (ionInput)="searchStringChanged()"></ion-searchbar>
+
+  <ion-grid>
+
+    <ion-row>
+      <ion-col size="6">
+        <p><strong>Showing all restaurants/bars in the following zip code(s): {{searchedWithZipCode}}</strong></p>
+      </ion-col>
+      <ion-col size="6" class="ion-text-center">
+        <ion-button
+                (click)="changeZipCode()"
+                color="light"
+                size="small"
+                fill="clear"
+                class="kexy-zip-code-btn"
+        >Add additional zip codes</ion-button
+        >
+        <p><span class="link"></span></p>
+      </ion-col>
+    </ion-row>
+
+    <ion-row>
+      <ion-col>
+        <p>Select all the restaurants or bars you work with</p>
+      </ion-col>
+    </ion-row>
+
+    <ion-item  class="bg-transparent ion-no-padding" id="checkAll" *ngIf="restaurant_list.length !== 0">
+      <ion-label>Select All</ion-label>
+      <ion-checkbox [(ngModel)]="allSelected" (ionChange)="selectAllRestaurant()"></ion-checkbox>
+    </ion-item>
+
+    <ion-row class="kexy-card-area">
+      <ion-col size="6" *ngFor="let restaurant of restaurant_list">
+        <ion-item class="kexy-marketplace-card ion-text-center" [class.checked]="(selected_restaurant_id_list.indexOf(restaurant.id) > -1)" (click)="toggleRestaurantSelection(restaurant.id)">
+          <ion-label>
+            <div class="person-name">{{restaurant.name}}</div>
+            <div class="marketplace-name">{{restaurant.street_address}}</div>
+          </ion-label>
+        </ion-item>
+      </ion-col>
+      <ion-col size="12" class="ion-text-center" *ngIf="restaurant_list.length === 0">
+        <b>Sorry. We found no restaurants or bars with the zip code you provided.</b>
+      </ion-col>
+    </ion-row>
+
+    <ion-row>
+      <ion-col>
+        <p>Are there any restaurants or bars you work with that aren’t listed?  If so, invite them below.</p>
+      </ion-col>
+    </ion-row>
+
+    <ion-row>
+      <ion-col size="12">
+        <strong><u>Email Address</u></strong>
+      </ion-col>
+    </ion-row>
+
+    <ion-row  class="border-bottom ion-no-padding" *ngFor="let invited of invited_list; let i = index;">
+      <ion-col size="1" class="tr-kx-icon">
+        <ion-icon name="ios-mail-outline"></ion-icon>
+      </ion-col>
+      <ion-col size="10">
+        {{invited}}
+      </ion-col>
+      <ion-col size="1" class="tr-kx-icon">
+        <ion-icon name="ios-trash-outline" (click)="deleteInviteTapped(i)"></ion-icon>
+      </ion-col>
+    </ion-row>
+
+    <ion-row>
+      <ion-col class="ion-text-center">
+        <ion-button
+                (click)="addAnotherInvitation()"
+                color="light"
+                size="small"
+                fill="clear"
+                class="kexy-zip-code-btn"
+
+        > <ion-icon name="add"></ion-icon>
+          Add another invitation</ion-button
+        >
+<!--        <button ion-button color="light" icon-start small clear class="" >-->
+<!--         -->
+<!--        </button>-->
+      </ion-col>
+    </ion-row>
+
+    <!--TODO - Check back later-->
+    <!--<ion-row>-->
+      <!--<ion-col class="kexy-input-file" text-center>-->
+        <!--<label class="kexy-input-file-label" for="invitation_input" color="primary" stacked>-->
+          <!--<ion-icon name="add"></ion-icon>-->
+          <!--&nbsp;Upload a list of invitations-->
+        <!--</label>-->
+        <!--<input class="kexy-file" id="invitation_input" type="file" accept=".csv, application/vnd.ms-excel, application/vnd.openxmlformats-officedocument.spreadsheetml.sheet" (change)="changeListener($event)" />-->
+      <!--</ion-col>-->
+    <!--</ion-row>-->
+
+    <ion-row>
+      <ion-col size="12">
+        <ion-button
+                (click)="continueBtnTapped()"
+                expand="block"
+                color="light"
+                shape="round"
+                class="common button"
+        >Continue</ion-button
+        >
+        </ion-col>
+    </ion-row>
+
+  </ion-grid>
+
+</ion-content>
