@@ -238,28 +238,28 @@ export class BasePage {
   }
 
 
-  protected _enableDistributorMenu() {
-    this.menu.enable(false, "supplierMenu");
-    this.menu.enable(false, "restaurantMenu");
-    this.menu.enable(true, "distributorMenu");
+  protected async _enableDistributorMenu() {
+    await this.menu.enable(false, "supplierMenu");
+    await this.menu.enable(false, "restaurantMenu");
+    await this.menu.enable(true, "distributorMenu");
   }
 
-  protected _enableRestaurantMenu() {
-    this.menu.enable(false, "distributorMenu");
-    this.menu.enable(false, "supplierMenu");
-    this.menu.enable(true, "restaurantMenu");
+  protected async _enableRestaurantMenu() {
+    await this.menu.enable(false, "distributorMenu");
+    await this.menu.enable(false, "supplierMenu");
+    await this.menu.enable(true, "restaurantMenu");
   }
 
-  protected _enableSupplierMenu() {
-    this.menu.enable(false, "distributorMenu");
-    this.menu.enable(false, "restaurantMenu");
-    this.menu.enable(true, "supplierMenu");
+  protected async _enableSupplierMenu() {
+    await this.menu.enable(false, "distributorMenu");
+    await this.menu.enable(false, "restaurantMenu");
+    await this.menu.enable(true, "supplierMenu");
   }
 
-  protected _disableMenu() {
-    this.menu.enable(false, "distributorMenu");
-    this.menu.enable(false, "supplierMenu");
-    this.menu.enable(false, "restaurantMenu");
+  protected async _disableMenu() {
+    await this.menu.enable(false, "distributorMenu");
+    await this.menu.enable(false, "supplierMenu");
+    await this.menu.enable(false, "restaurantMenu");
   }
 
   async navigateTo(url, params = {}) {

@@ -47,6 +47,7 @@ export class RestaurantDashboardPage extends BasePage implements OnInit {
   async ngOnInit() {
     this.notificationCount = 0;
     this.online_user_list = [];
+    await this._enableRestaurantMenu();
     await this._loadDefaultSide();
 
     this.currentUser = await this.storage.get(constants.STORAGE_USER);
@@ -67,11 +68,11 @@ export class RestaurantDashboardPage extends BasePage implements OnInit {
   }
 
   async openMenu() {
-    await this.menu.open();
+    await this.menu.open('restaurantMenu');
   }
 
   async ionViewDidEnter() {
-    this._enableRestaurantMenu();
+    await this._enableRestaurantMenu();
     await this._getDashboardData();
     // TODO - Fix me
     // this.nodeSocket.emit("request-push", { event: "conversation-list-updated" });

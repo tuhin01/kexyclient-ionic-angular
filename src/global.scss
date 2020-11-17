@@ -134,7 +134,10 @@ button.cannabis.button-ios, .cannabis.toggle-ios.toggle-checked .toggle-icon {
   align-items: center !important;
   align-content: center !important;
 }
-
+.ripple-parent {
+  position: relative;
+  overflow: hidden;
+}
 ion-content.bgimg {
   --ion-background-color: transparent;
 }
