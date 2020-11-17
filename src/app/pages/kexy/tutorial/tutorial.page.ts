@@ -35,6 +35,6 @@ export class TutorialPage extends BasePage implements OnInit {
     this.isSignup = this.params.get('signup') ? this.params.get('signup') : false;
   }
   public async skipTutorialTapped() {
-    this.setRoot(routeConstants.HOME)
+    this.setRoot(routeConstants.HOME);
   }
 }
