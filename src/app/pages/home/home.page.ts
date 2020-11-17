@@ -1,34 +1,32 @@
-import {Component, OnInit} from '@angular/core';
-import {BasePage} from '../basePage';
-import {HttpClient} from '@angular/common/http';
-import {AlertController, LoadingController, MenuController, NavController} from '@ionic/angular';
-import {ActivatedRoute, Router} from '@angular/router';
-import {apis, constants} from '../../../common/shared';
-import {Storage} from '@ionic/storage';
-import {routeConstants} from '../../../common/routeConstants';
+import { Component, OnInit } from "@angular/core";
+import { BasePage } from "../basePage";
+import { HttpClient } from "@angular/common/http";
+import { AlertController, LoadingController, MenuController, NavController } from "@ionic/angular";
+import { ActivatedRoute, Router } from "@angular/router";
+import { apis, constants } from "../../../common/shared";
+import { Storage } from "@ionic/storage";
+import { routeConstants } from "../../../common/routeConstants";
 
 @Component({
-  selector: 'app-home',
-  templateUrl: 'home.page.html',
-  styleUrls: ['home.page.scss'],
+  selector: "app-home",
+  templateUrl: "home.page.html",
+  styleUrls: ["home.page.scss"],
 })
-export class HomePage extends BasePage implements OnInit{
-
+export class HomePage extends BasePage implements OnInit {
   isAlreadySubscribed: any;
   subscriptionTimestamp: number;
 
   constructor(
-      public router: Router,
-      public route: ActivatedRoute,
-      public storage: Storage,
-      public httpClient: HttpClient,
-      public loadingCtrl: LoadingController,
-      public alertCtrl: AlertController,
-      public menu: MenuController,
-      public navCtrl: NavController
+    public router: Router,
+    public route: ActivatedRoute,
+    public storage: Storage,
+    public httpClient: HttpClient,
+    public loadingCtrl: LoadingController,
+    public alertCtrl: AlertController,
+    public menu: MenuController,
+    public navCtrl: NavController
   ) {
     super(router, route, httpClient, loadingCtrl, alertCtrl, storage, menu, navCtrl);
-
 
     // NOTE: The following is used to trigger the permission dialog.
     // serves no purpose otherwise.
@@ -38,7 +36,6 @@ export class HomePage extends BasePage implements OnInit{
     });
 
     this._route();
-
   }
 
   ngOnInit() {
@@ -48,8 +45,8 @@ export class HomePage extends BasePage implements OnInit{
   private async _route() {
     //USER_APP_TYEP
     let appType = await window.localStorage.getItem(constants.USER_APP_TYEP);
-    console.log({appType});
-   if (!appType) {
+    console.log({ appType });
+    if (!appType) {
       await this.setRoot(routeConstants.APP_SELECT);
       return;
     }
@@ -74,7 +71,7 @@ export class HomePage extends BasePage implements OnInit{
       distributorDashboardPage = "DistributorDashboardPage";
       supplierDashboardPage = "SupplierDashboardPage";
     } else {
-      loginDecisionPage = '/kexy-login-decision';
+      loginDecisionPage = "/kexy-login-decision";
       autoCreatedUserUpdate = "CannabisAutoCreatedUserUpdate";
       joinRequestPage = "CannabisJoinRequestPage";
       messagePage = "CannabisMessagePage";
@@ -129,18 +126,26 @@ export class HomePage extends BasePage implements OnInit{
     let res = await this.callApi(apis.API_USER_GET_USER_ORGANIZATIONS, {});
     // console.log(res.data);
     if (!res.success) return;
-    let organizationList = [].concat(res.data.restaurant_list, res.data.distributor_list, res.data.supplier_list);
+    let organizationList = [].concat(
+      res.data.restaurant_list,
+      res.data.distributor_list,
+      res.data.supplier_list
+    );
     // console.log(organizationList);
     if (organizationList.length === 0) {
       if (isJoinType !== "create_new") {
-        let joinRequest = await this.callApi(apis.API_CHECK_JOIN_REQUEST, {}, { shouldBlockUi: false });
+        let joinRequest = await this.callApi(
+          apis.API_CHECK_JOIN_REQUEST,
+          {},
+          { shouldBlockUi: false }
+        );
         if (!joinRequest.success) return;
         if (joinRequest.data.request) {
           if (joinRequest.data.request.status !== "accepted") {
             await this.storage.set(constants.IS_JOIN_TYPE, "request_sent");
-           
+
             this.setRoot(welcomePage);
-            
+
             return;
           }
         }
@@ -151,13 +156,16 @@ export class HomePage extends BasePage implements OnInit{
     let org = organizationList.shift();
     if (organizationList.length > 1) {
       await this.showAwaitableAlert(
-          "Warning!",
-          "You are a member of more than one organizations. Currently we support only one organization per user. The first organization will automatically be selected."
+        "Warning!",
+        "You are a member of more than one organizations. Currently we support only one organization per user. The first organization will automatically be selected."
       );
     }
 
     if (org.status !== "active") {
-      await this.showAwaitableAlert("Warning!", "Your account access has been removed. Please contact your company.");
+      await this.showAwaitableAlert(
+        "Warning!",
+        "Your account access has been removed. Please contact your company."
+      );
       await this.removeLocalUserData();
       // TODO - Fix
       await this.router.navigate(["/kexy-login"]);
@@ -181,7 +189,11 @@ export class HomePage extends BasePage implements OnInit{
 
     if (org.type === constants.ORGANIZATION_TYPE_RESTAURANT) {
       // this.navCtrl.setRoot("CannabisRestaurantTabsPage");
-      let settings = await this.callApi(apis.API_GET_USER_SETTINGS, { restaurant_id: org.restaurant_id }, { shouldBlockUi: false });
+      let settings = await this.callApi(
+        apis.API_GET_USER_SETTINGS,
+        { restaurant_id: org.restaurant_id },
+        { shouldBlockUi: false }
+      );
       console.log(res);
       if (settings.data.settings) {
         await this.storage.set(constants.USER_SETTINGS, settings.data.settings);
@@ -191,8 +203,7 @@ export class HomePage extends BasePage implements OnInit{
           restaurant_id: 0,
         });
       }
-      // TODO - Fix
-      // await this.navCtrl.setRoot(restaurantDashboardPage);
+      await this.navigateTo(routeConstants.KEXY.RESTAURANT_DASHBOARD);
       return;
     } else if (org.type === constants.ORGANIZATION_TYPE_DISTRIBUTOR) {
       // TODO - Fix
@@ -204,5 +215,4 @@ export class HomePage extends BasePage implements OnInit{
       return;
     }
   }
-
 }

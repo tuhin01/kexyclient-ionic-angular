@@ -29,6 +29,7 @@
     "cordova-ios": "^5.1.1",
     "ng-socket-io": "^0.2.4",
     "rxjs": "~6.5.5",
+    "rxjs-compat": "^6.5.2",
     "tslib": "^2.0.0",
     "zone.js": "~0.10.3",
     "@ionic-native/geolocation": "^4.20.0",

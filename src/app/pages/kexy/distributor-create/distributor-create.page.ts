@@ -147,9 +147,8 @@ export class DistributorCreatePage extends BasePage implements OnInit {
     // }
   }
 
-  private termsClicked(): void {
-    this.navigateTo(routeConstants.KEXY.TERMS_AND_CONDITION)
-
+  async termsClicked() {
+    await this.navigateTo(routeConstants.KEXY.TERMS_AND_CONDITION)
   }
 
 }

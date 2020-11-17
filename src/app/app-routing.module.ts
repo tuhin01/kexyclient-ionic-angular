@@ -132,6 +132,10 @@ const routes: Routes = [
 
 
 
+  {
+    path: routeConstants.KEXY.RESTAURANT_DASHBOARD,
+    loadChildren: () => import('./pages/kexy/restaurant-dashboard/restaurant-dashboard.module').then( m => m.RestaurantDashboardPageModule)
+  },
 
 
 

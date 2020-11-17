@@ -3,6 +3,7 @@ import {ProgressBarComponent} from './progress-bar/progress-bar';
 import {KexyBottomNagigationBarComponent} from './kexy-bottom-nagigation-bar/kexy-bottom-nagigation-bar';
 import {IonicModule} from '@ionic/angular';
 import {AccordionComponent} from './accordion/accordion';
+import {CommonModule} from '@angular/common';
 
 @NgModule({
   declarations: [
@@ -10,9 +11,10 @@ import {AccordionComponent} from './accordion/accordion';
     KexyBottomNagigationBarComponent,
     AccordionComponent,
   ],
-  imports: [
-    IonicModule
-  ],
+    imports: [
+        IonicModule,
+        CommonModule
+    ],
   exports: [
     ProgressBarComponent,
     KexyBottomNagigationBarComponent,
