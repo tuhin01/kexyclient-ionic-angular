@@ -115,6 +115,7 @@ export class DistributorCreatePage extends BasePage implements OnInit {
       distributor_create_res = await this.callApi(apis.API_DISTRIBUTOR_EDIT, data);
       distributor_id = this.distributor_id;
     }
+
     if (!distributor_create_res.success) {
       return;
     }

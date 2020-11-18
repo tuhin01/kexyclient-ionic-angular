@@ -31,9 +31,10 @@ export class HomePage extends BasePage implements OnInit {
     // NOTE: The following is used to trigger the permission dialog.
     // serves no purpose otherwise.
     // TODO - Move it to where make more sense (Only request permission for restaurant)
-    navigator.geolocation.watchPosition((data) => {
-      console.log("navigator.geolocation updated. ", data);
-    });
+    // TODO - Fix me
+    // navigator.geolocation.watchPosition((data) => {
+    //   console.log("navigator.geolocation updated. ", data);
+    // });
 
     this._route();
   }
@@ -52,32 +53,35 @@ export class HomePage extends BasePage implements OnInit {
     }
 
     let loginDecisionPage;
+    let loginPage;
     let autoCreatedUserUpdate;
     let joinRequestPage;
     let messagePage;
     let welcomePage;
     let marketPlaceTypePage;
-    let restaurantDashboardPage;
+    let restaurantTabsPage;
     let distributorDashboardPage;
     let supplierDashboardPage;
     if (appType === constants.RESTAURANT) {
       loginDecisionPage = routeConstants.KEXY.LOGIN_DICISION;
+      loginPage = routeConstants.KEXY.LOGIN;
       autoCreatedUserUpdate = "AutoCreatedUserUpdate";
       joinRequestPage = "JoinRequestPage";
       messagePage = "MessagePage";
       welcomePage = routeConstants.KEXY.WELCOME;
       marketPlaceTypePage = routeConstants.KEXY.MARKETPLACE_TYPE;
-      restaurantDashboardPage = "RestaurantDashboardPage";
+      restaurantTabsPage = routeConstants.KEXY.RESTAURANT_TABS;
       distributorDashboardPage = "DistributorDashboardPage";
       supplierDashboardPage = "SupplierDashboardPage";
     } else {
       loginDecisionPage = "/kexy-login-decision";
+      loginPage = routeConstants.KEXY.LOGIN;
       autoCreatedUserUpdate = "CannabisAutoCreatedUserUpdate";
       joinRequestPage = "CannabisJoinRequestPage";
       messagePage = "CannabisMessagePage";
       welcomePage = "CannabisWelcomePage";
       marketPlaceTypePage = "CannabisMarketPlaceTypePage";
-      restaurantDashboardPage = "CannabisRestaurantDashboardPage";
+      restaurantTabsPage = "CannabisRestaurantDashboardPage";
       distributorDashboardPage = "CannabisDistributorDashboardPage";
       supplierDashboardPage = "CannabisSupplierDashboardPage";
     }
@@ -144,13 +148,13 @@ export class HomePage extends BasePage implements OnInit {
           if (joinRequest.data.request.status !== "accepted") {
             await this.storage.set(constants.IS_JOIN_TYPE, "request_sent");
 
-            this.setRoot(welcomePage);
+            await this.setRoot(welcomePage);
 
             return;
           }
         }
       }
-      this.setRoot(marketPlaceTypePage);
+      await this.setRoot(marketPlaceTypePage);
       return;
     }
     let org = organizationList.shift();
@@ -167,9 +171,7 @@ export class HomePage extends BasePage implements OnInit {
         "Your account access has been removed. Please contact your company."
       );
       await this.removeLocalUserData();
-      // TODO - Fix
-      await this.router.navigate(["/kexy-login"]);
-      // await this.navCtrl.setRoot(LoginPage);
+      await this.setRoot(loginPage);
       return;
     }
 
@@ -203,7 +205,7 @@ export class HomePage extends BasePage implements OnInit {
           restaurant_id: 0,
         });
       }
-      await this.navigateTo(routeConstants.KEXY.RESTAURANT_DASHBOARD);
+      await this.setRoot(restaurantTabsPage);
       return;
     } else if (org.type === constants.ORGANIZATION_TYPE_DISTRIBUTOR) {
       // TODO - Fix

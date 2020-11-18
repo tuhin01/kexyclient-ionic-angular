@@ -1,14 +1,20 @@
-import { HttpClient } from '@angular/common/http';
-import { Component, OnInit } from '@angular/core';
-import { Router, ActivatedRoute } from '@angular/router';
-import { LoadingController, AlertController, MenuController, NavController, NavParams } from '@ionic/angular';
-import { BasePage } from '../../basePage';
-import {Storage} from '@ionic/storage';
-import { routeConstants } from 'src/common/routeConstants';
+import { HttpClient } from "@angular/common/http";
+import { Component, OnInit } from "@angular/core";
+import { Router, ActivatedRoute } from "@angular/router";
+import {
+  LoadingController,
+  AlertController,
+  MenuController,
+  NavController,
+  NavParams,
+} from "@ionic/angular";
+import { BasePage } from "../../basePage";
+import { Storage } from "@ionic/storage";
+import { routeConstants } from "src/common/routeConstants";
 @Component({
-  selector: 'app-tutorial',
-  templateUrl: './tutorial.page.html',
-  styleUrls: ['./tutorial.page.scss'],
+  selector: "app-tutorial",
+  templateUrl: "./tutorial.page.html",
+  styleUrls: ["./tutorial.page.scss"],
 })
 export class TutorialPage extends BasePage implements OnInit {
   private readonly params: any;
@@ -23,18 +29,17 @@ export class TutorialPage extends BasePage implements OnInit {
     public alertCtrl: AlertController,
     public menu: MenuController,
     public navCtrl: NavController,
-    public navParams: NavParams
-) {
-  super(router, route, httpClient, loadingCtrl, alertCtrl, storage, menu, navCtrl);
-  if (this.router.getCurrentNavigation().extras.state) {
-    this.params = this.router.getCurrentNavigation().extras.state;
+  ) {
+    super(router, route, httpClient, loadingCtrl, alertCtrl, storage, menu, navCtrl);
+    if (this.router.getCurrentNavigation().extras.state) {
+      this.params = this.router.getCurrentNavigation().extras.state;
+    }
   }
-}
 
   ngOnInit() {
-    this.isSignup = this.params.get('signup') ? this.params.get('signup') : false;
+    this.isSignup = this.params?.signup ? this.params.signup : false;
   }
   public async skipTutorialTapped() {
-    this.setRoot(routeConstants.HOME);
+    await this.setRoot(routeConstants.HOME);
   }
 }

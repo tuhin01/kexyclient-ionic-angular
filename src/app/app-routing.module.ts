@@ -127,14 +127,9 @@ const routes: Routes = [
     path: routeConstants.KEXY.TUTORIAL,
     loadChildren: () => import('./pages/kexy/tutorial/tutorial.module').then( m => m.TutorialPageModule)
   },
-
-
-
-
-
   {
-    path: routeConstants.KEXY.RESTAURANT_DASHBOARD,
-    loadChildren: () => import('./pages/kexy/restaurant-dashboard/restaurant-dashboard.module').then( m => m.RestaurantDashboardPageModule)
+    path: routeConstants.KEXY.RESTAURANT_TABS,
+    loadChildren: () => import('./pages/kexy/restaurant-tabs/restaurant-tabs.module').then( m => m.RestaurantTabsPageModule)
   },
 
 
