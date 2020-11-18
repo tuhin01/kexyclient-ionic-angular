@@ -15,7 +15,10 @@ export const constants = {
   IS_JOIN_TYPE: 'is_join_type',
   JOIN_TO_ORG: 'join_to_org',
   USER_SETTINGS: 'user_settings',
-  JOB_TITLE: 'job_title'
+  JOB_TITLE: 'job_title',
+  RESTAURANT_MENU: 'restaurantMenu',
+  SUPPLIER_MENU: 'supplierMenu',
+  DISTRIBUTOR_MENU: 'distributorMenu',
 };
 
 

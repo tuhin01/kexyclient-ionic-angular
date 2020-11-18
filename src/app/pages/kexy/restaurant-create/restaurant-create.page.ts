@@ -69,7 +69,7 @@ export class RestaurantCreatePage extends BasePage implements OnInit {
   }
 
   async ngOnInit() {
-    this._disableMenu();
+    await this._disableMenu();
 
     this.restaurantCreateForm = new FormGroup({
       // job_title: new FormControl('', Validators.compose([
@@ -286,7 +286,7 @@ export class RestaurantCreatePage extends BasePage implements OnInit {
     await this.storage.remove(constants.IS_JOIN_TYPE);
 
 
-    this.navigateTo(routeConstants.KEXY.INVITE_RESTAURANT_EMPLOYEE, {
+    await this.setRootWithAnimationForward(routeConstants.KEXY.INVITE_RESTAURANT_EMPLOYEE, {
       restaurant_id: this.restaurant_id,
     });
   }

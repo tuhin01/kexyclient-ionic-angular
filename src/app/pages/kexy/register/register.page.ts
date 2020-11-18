@@ -92,7 +92,7 @@ export class RegisterPage extends BasePage implements OnInit {
     if (this.organization_invitations && this.organization_invitations.length) {
       let acceptInvitationApiRes = await this.callApi(apis.MAKE_INVITATION_ACCEPTED_UPON_REGISTER, { email: this.email });
 
-      this.setRoot(routeConstants.KEXY.MARKETPLACE_TYPE, { organization_invitations: this.organization_invitations });
+      await this.setRoot(routeConstants.KEXY.MARKETPLACE_TYPE, { organization_invitations: this.organization_invitations });
 
     } else {
       if (this.employee_invitations && this.employee_invitations.length) {
@@ -102,7 +102,7 @@ export class RegisterPage extends BasePage implements OnInit {
           email: this.email,
         });
         let invitation = this.employee_invitations[0];
-        this.navigateTo(routeConstants.KEXY.WELCOME, {
+        await this.navigateTo(routeConstants.KEXY.WELCOME, {
           distributor_id: invitation.distributor_id,
           restaurant_id: invitation.restaurant_id,
           role: invitation.role,
@@ -113,7 +113,7 @@ export class RegisterPage extends BasePage implements OnInit {
         await this.storage.set(constants.IS_INVITED, this.isInvited);
         await this.storage.set(constants.IS_JOIN_TYPE, this.type);
 
-        this.setRoot(routeConstants.HOME);
+        await this.setRoot(routeConstants.HOME);
         
       }
     }

@@ -2,7 +2,13 @@
   <ion-grid class="dashboard-grid">
     <ion-row class="dashboard-header">
       <ion-col size="6" class="ion-no-padding">
-        <ion-button fill="clear" color="light" class="ripple-parent" (click)="openMenu()" style="background: transparent">
+        <ion-button
+          fill="clear"
+          color="light"
+          class="ripple-parent"
+          (click)="openMenu()"
+          style="background: transparent"
+        >
           <ion-icon slot="icon-only" name="menu"></ion-icon>
           <ion-ripple-effect></ion-ripple-effect>
         </ion-button>
@@ -19,8 +25,8 @@
             expand="block"
             shape="round"
             class="common button"
-            >Place an Order</ion-button
-          >
+          >Place an Order
+          </ion-button>
         </ion-col>
         <ion-col size="12">
           <ion-button
@@ -29,8 +35,8 @@
             expand="block"
             shape="round"
             class="common button"
-            >Take Inventory</ion-button
-          >
+          >Take Inventory
+          </ion-button>
         </ion-col>
         <ion-col size="12">
           <ion-button
@@ -39,8 +45,8 @@
             expand="block"
             shape="round"
             class="common button"
-            >View Orders</ion-button
-          >
+          >View Orders
+          </ion-button>
         </ion-col>
         <ion-col size="12">
           <ion-button
@@ -49,8 +55,8 @@
             expand="block"
             shape="round"
             class="common button"
-            >View Inventory</ion-button
-          >
+          >View Inventory
+          </ion-button>
         </ion-col>
       </ion-row>
     </ion-list>
@@ -59,8 +65,6 @@
 </ion-content>
 
 <!--<kexy-bottom-nagigation-bar [selectedPage]="'home'"></kexy-bottom-nagigation-bar>-->
-
-
 
 <!--Note popup overlay-->
 <div class="traddoverlay" [class.hidden]="!openSimSimNotice"></div>

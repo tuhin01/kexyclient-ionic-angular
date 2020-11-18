@@ -1,9 +1,9 @@
-import {AlertController, LoadingController, MenuController, NavController,} from '@ionic/angular';
-import {Storage} from '@ionic/storage';
-import {HttpClient, HttpErrorResponse, HttpHeaders} from '@angular/common/http';
-import {ApiDef, constants} from '../../common/shared';
-import {getConfig} from '../../common/config';
-import {ActivatedRoute, Router} from '@angular/router';
+import { AlertController, LoadingController, MenuController, NavController } from "@ionic/angular";
+import { Storage } from "@ionic/storage";
+import { HttpClient, HttpErrorResponse, HttpHeaders } from "@angular/common/http";
+import { ApiDef, constants } from "../../common/shared";
+import { getConfig } from "../../common/config";
+import { ActivatedRoute, Router } from "@angular/router";
 
 export class BasePage {
   public config: any;
@@ -38,13 +38,15 @@ export class BasePage {
         header: title,
         subHeader: subTitle,
         message,
-        buttons: [{
-          text: 'Ok',
-          handler: () => {
-            alert.dismiss().then(() => accept());
-            return false;
-          }
-        }]
+        buttons: [
+          {
+            text: "Ok",
+            handler: () => {
+              alert.dismiss().then(() => accept());
+              return false;
+            },
+          },
+        ],
       });
       await alert.present();
     });
@@ -70,7 +72,7 @@ export class BasePage {
     } else {
       headers = new HttpHeaders({ "Content-Type": "application/json", Accept: "application/json" });
     }
-    return await this.httpClient.post(url, data, {headers: headers}).toPromise();
+    return await this.httpClient.post(url, data, { headers: headers }).toPromise();
   }
 
   public async callApi(apiDef: ApiDef, data, opt: any = {}) {
@@ -82,8 +84,8 @@ export class BasePage {
     } = opt;
 
     let loading = await this.loadingCtrl.create({
-      spinner: 'crescent',
-      message: 'Talking to the server. Please wait.'
+      spinner: "crescent",
+      message: "Talking to the server. Please wait.",
     });
     if (shouldBlockUi) {
       if (!this.isShowing) {
@@ -210,9 +212,12 @@ export class BasePage {
 
       // EXPLAIN: handle network errors
       let subTitle = "We cannot serve that request at this time";
-      if ("code" in results.error)
+      if ("code" in results.error) {
         subTitle = `We cannot serve that request at this time. Error code ${results.error.code}.`;
-      if ("message" in results.error) subTitle = results.error.message;
+      }
+      if ("message" in results.error) {
+        subTitle = results.error.message;
+      }
       await this.showAwaitableAlert("Sorry!", subTitle);
     }
 
@@ -237,44 +242,53 @@ export class BasePage {
     await this.storage.remove(constants.USER_SETTINGS);
   }
 
-
   protected async _enableDistributorMenu() {
-    await this.menu.enable(false, "supplierMenu");
-    await this.menu.enable(false, "restaurantMenu");
-    await this.menu.enable(true, "distributorMenu");
+    await this.menu.enable(false, constants.SUPPLIER_MENU);
+    await this.menu.enable(false, constants.RESTAURANT_MENU);
+    await this.menu.enable(true, constants.DISTRIBUTOR_MENU);
   }
 
   protected async _enableRestaurantMenu() {
-    await this.menu.enable(false, "distributorMenu");
-    await this.menu.enable(false, "supplierMenu");
-    await this.menu.enable(true, "restaurantMenu");
+    await this.menu.enable(false, constants.DISTRIBUTOR_MENU);
+    await this.menu.enable(false, constants.SUPPLIER_MENU);
+    await this.menu.enable(true, constants.RESTAURANT_MENU);
   }
 
   protected async _enableSupplierMenu() {
-    await this.menu.enable(false, "distributorMenu");
-    await this.menu.enable(false, "restaurantMenu");
-    await this.menu.enable(true, "supplierMenu");
+    await this.menu.enable(false, constants.DISTRIBUTOR_MENU);
+    await this.menu.enable(false, constants.RESTAURANT_MENU);
+    await this.menu.enable(true, constants.SUPPLIER_MENU);
   }
 
   protected async _disableMenu() {
-    await this.menu.enable(false, "distributorMenu");
-    await this.menu.enable(false, "supplierMenu");
-    await this.menu.enable(false, "restaurantMenu");
+    await this.menu.enable(false, constants.DISTRIBUTOR_MENU);
+    await this.menu.enable(false, constants.SUPPLIER_MENU);
+    await this.menu.enable(false, constants.RESTAURANT_MENU);
   }
 
   async navigateTo(url, params = {}) {
-    await this.router.navigate([url], {state:params});
+    await this.router.navigate([url], { state: params });
   }
 
   async setRoot(url, params = {}) {
     await this.navCtrl.navigateForward(url, { animated: false, replaceUrl: true, state: params });
   }
+
   async setRootWithAnimationForward(url, params = {}) {
-    await this.navCtrl.navigateForward(url, { animated: true, replaceUrl: true, animationDirection: 'forward', state: params });
+    await this.navCtrl.navigateForward(url, {
+      animated: true,
+      replaceUrl: true,
+      animationDirection: "forward",
+      state: params,
+    });
   }
 
   async setRootWithAnimationBackword(url, params = {}) {
-    await this.navCtrl.navigateForward(url, { animated: true, replaceUrl: true, animationDirection: 'back', state: params });
+    await this.navCtrl.navigateForward(url, {
+      animated: true,
+      replaceUrl: true,
+      animationDirection: "back",
+      state: params,
+    });
   }
-
 }

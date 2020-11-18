@@ -33,11 +33,11 @@ export class RestaurantTypePage extends BasePage implements OnInit {
 
   ngOnInit() {
   }
-  public nextBtnTapped(): void {
+  async nextBtnTapped() {
     const email = this.params.email;
     const distributorIdList = this.params.distributorIdList;
 
-    this.navigateTo(routeConstants.KEXY.RESTAURANT_CREATE, {
+    await this.navigateTo(routeConstants.KEXY.RESTAURANT_CREATE, {
       side: this.side, email, distributorIdList
     });
     
