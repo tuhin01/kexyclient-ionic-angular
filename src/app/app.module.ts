@@ -12,6 +12,7 @@ import { IonicStorageModule } from "@ionic/storage";
 import { HttpClientModule } from "@angular/common/http";
 import { Camera } from "@ionic-native/camera/ngx";
 
+
 @NgModule({
   declarations: [AppComponent],
   entryComponents: [],

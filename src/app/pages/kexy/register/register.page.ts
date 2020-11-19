@@ -8,6 +8,7 @@ import { BasePage } from "../../basePage";
 import { FormControl, FormGroup, Validators } from "@angular/forms";
 import { apis, constants } from "../../../../common/shared";
 import { routeConstants } from "../../../../common/routeConstants";
+import { CameraService } from "../../../services/camera.service";
 
 @Component({
   selector: "app-register",
@@ -34,7 +35,8 @@ export class RegisterPage extends BasePage implements OnInit {
     public loadingCtrl: LoadingController,
     public alertCtrl: AlertController,
     public menu: MenuController,
-    public navCtrl: NavController
+    public navCtrl: NavController,
+    private cameraService: CameraService,
   ) {
     super(router, route, httpClient, loadingCtrl, alertCtrl, storage, menu, navCtrl);
     if (this.router.getCurrentNavigation().extras.state) {
@@ -178,10 +180,9 @@ export class RegisterPage extends BasePage implements OnInit {
   }
 
   async presentFileChooser() {
-    // TODO - Fix me
-    // let imageData = await this.takePhoto.presentFileChooser();
-    // if (imageData) {
-    //   this.imageUrl = imageData;
-    // }
+    let imageData = await this.cameraService.presentFileChooser();
+    if (imageData) {
+      this.imageUrl = imageData;
+    }
   }
 }

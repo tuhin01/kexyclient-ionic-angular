@@ -189,8 +189,4 @@ export class RestaurantDashboardPage extends BasePage implements OnInit {
     this.employeeScheduleTapped();
   }
 
-  editProfile() {
-    console.log("click editProfile");
-    this.navigateTo(routeConstants.KEXY.EDIT_PROFILE);
-  }
 }
