@@ -15,7 +15,6 @@ import {routeConstants} from '../../../../common/routeConstants';
   styleUrls: ['./register.page.scss'],
 })
 export class RegisterPage extends BasePage implements OnInit {
-  private readonly params: any;
   private email: string;
   private employee_invitations: Array<EmployeeInvitation>;
   private organization_invitations: Array<any>;
@@ -37,9 +36,6 @@ export class RegisterPage extends BasePage implements OnInit {
       public navCtrl: NavController,
   ) {
     super(router, route, httpClient, loadingCtrl, alertCtrl, storage, menu, navCtrl);
-    if (this.router.getCurrentNavigation().extras.state) {
-      this.params = this.router.getCurrentNavigation().extras.state;
-    }
   }
 
   ngOnInit() {
