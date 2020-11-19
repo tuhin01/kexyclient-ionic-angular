@@ -7,7 +7,7 @@
   </ion-toolbar>
 </ion-header>
 
-<ion-content  class="bgimg ion-padding">
+<ion-content class="bgimg ion-padding">
   <div *ngIf="modalShow" class="overlay"></div>
 
   <div class="width-100 ion-text-center ion-padding-top ion-margin-top">
@@ -53,7 +53,7 @@
       </ion-col>
     </ion-row>
 
-    <form [formGroup]="restaurantCreateForm" (ngSubmit)="restaurantCreateFormSubmitted()">
+    <form [formGroup]="primaryFormGroup" (ngSubmit)="restaurantCreateFormSubmitted()">
       <label id="nameEditField">
         <ion-row class="border-bottom">
           <ion-col size="1" class="tr-kx-icon">
@@ -70,7 +70,7 @@
         <div class="validation-errors ion-text-center">
           <div
             class="error-message"
-            *ngIf="!restaurantCreateForm.controls.name.valid && (restaurantCreateForm.get('name').dirty || restaurantCreateForm.get('name').touched)"
+            *ngIf="!primaryFormGroup.controls.name.valid && (primaryFormGroup.get('name').dirty || primaryFormGroup.get('name').touched)"
           >
             Please enter a valid Restaurant/Bar Name.
           </div>
@@ -93,7 +93,7 @@
         <div class="validation-errors ion-text-center">
           <div
             class="error-message"
-            *ngIf="!restaurantCreateForm.controls.phone.valid && (restaurantCreateForm.get('phone').dirty || restaurantCreateForm.get('phone').touched)"
+            *ngIf="!primaryFormGroup.controls.phone.valid && (primaryFormGroup.get('phone').dirty || primaryFormGroup.get('phone').touched)"
           >
             Please enter a valid 10 digit US/Canada Mobile Phone Number.
           </div>
@@ -114,7 +114,7 @@
         <div class="validation-errors ion-text-center">
           <div
             class="error-message"
-            *ngIf="!restaurantCreateForm.controls.street_address.valid && (restaurantCreateForm.get('street_address').dirty || restaurantCreateForm.get('street_address').touched)"
+            *ngIf="!primaryFormGroup.controls.street_address.valid && (primaryFormGroup.get('street_address').dirty || primaryFormGroup.get('street_address').touched)"
           >
             Please enter a valid Street Address.
           </div>
@@ -135,7 +135,7 @@
         <div class="validation-errors ion-text-center">
           <div
             class="error-message"
-            *ngIf="!restaurantCreateForm.controls.city.valid && (restaurantCreateForm.get('city').dirty || restaurantCreateForm.get('city').touched)"
+            *ngIf="!primaryFormGroup.controls.city.valid && (primaryFormGroup.get('city').dirty || primaryFormGroup.get('city').touched)"
           >
             Please enter a valid City name.
           </div>
@@ -150,31 +150,23 @@
           <div class="tr-kexy-edit-side">
             <ion-item>
               <ion-label>Country</ion-label>
-              <ion-select (ionChange)="onCountrySelect()"
-                          [(ngModel)]="geolocationDetails.country"
-                          formControlName="country">
-                <ion-select-option *ngFor="let country of countryList" [value]="country.abbreviation">{{ country.name }}</ion-select-option>
-
+              <ion-select
+                (ionChange)="onCountrySelect()"
+                [(ngModel)]="geolocationDetails.country"
+                formControlName="country"
+              >
+                <ion-select-option
+                  *ngFor="let country of countryList"
+                  [value]="country.abbreviation"
+                  >{{ country.name }}</ion-select-option
+                >
               </ion-select>
             </ion-item>
-
-<!--            <ion-item>-->
-<!--              <ion-label>Country</ion-label>-->
-<!--              <ion-select-->
-<!--                (ionChange)="onCountrySelect()"-->
-<!--                [(ngModel)]="geolocationDetails.country"-->
-<!--                formControlName="country"-->
-<!--              >-->
-<!--                <ion-option *ngFor="let country of countryList" [value]="country.abbreviation"-->
-<!--                  >{{ country.name }}</ion-option-->
-<!--                >-->
-<!--              </ion-select>-->
-<!--            </ion-item>-->
           </div>
         </ion-col>
         <div class="validation-errors ion-text-center">
           <div
-            *ngIf="!restaurantCreateForm.controls.country.valid && (restaurantCreateForm.get('country').dirty || restaurantCreateForm.get('country').touched)"
+            *ngIf="!primaryFormGroup.controls.country.valid && (primaryFormGroup.get('country').dirty || primaryFormGroup.get('country').touched)"
             class="error-message"
           >
             Please select a country from the list.
@@ -191,17 +183,17 @@
             <ion-item>
               <ion-label>{{stateLabel}}</ion-label>
               <ion-select formControlName="state" [(ngModel)]="geolocationDetails.state">
-                <ion-select-option *ngFor="let state of statesList" [value]="state.abbreviation">{{ state.name }}</ion-select-option>
-
+                <ion-select-option *ngFor="let state of statesList" [value]="state.abbreviation"
+                  >{{ state.name }}</ion-select-option
+                >
               </ion-select>
             </ion-item>
-
           </div>
         </ion-col>
         <div class="validation-errors ion-text-center">
           <div
             class="error-message"
-            *ngIf="!restaurantCreateForm.controls.state.valid && (restaurantCreateForm.get('state').dirty || restaurantCreateForm.get('state').touched)"
+            *ngIf="!primaryFormGroup.controls.state.valid && (primaryFormGroup.get('state').dirty || primaryFormGroup.get('state').touched)"
           >
             Please select a <span style="text-transform: lowercase">{{stateLabel}}</span> from the
             list.
@@ -225,7 +217,7 @@
         <div class="validation-errors ion-text-center">
           <div
             class="error-message"
-            *ngIf="!restaurantCreateForm.controls.zip_code.valid && (restaurantCreateForm.get('zip_code').dirty || restaurantCreateForm.get('zip_code').touched)"
+            *ngIf="!primaryFormGroup.controls.zip_code.valid && (primaryFormGroup.get('zip_code').dirty || primaryFormGroup.get('zip_code').touched)"
           >
             Please enter a valid {{zipLabel}}.
           </div>
@@ -236,7 +228,7 @@
         <ion-col size="12">
           <ion-button
             type="submit"
-            [disabled]="!restaurantCreateForm.valid"
+            [disabled]="!primaryFormGroup.valid"
             (click)="signupBtnTapped()"
             color="light"
             expand="full"

@@ -38,7 +38,7 @@ export class RestaurantCreatePage extends BasePage implements OnInit {
   public statesList: Array<States> = [];
   public countryList: Array<Country> = [];
   public placeSuggestionList = [];
-  public restaurantCreateForm: FormGroup;
+  public primaryFormGroup: FormGroup;
   public imageUrl = null;
   public stateLabel: string = "State";
   public zipLabel: string = "Zip Code";
@@ -66,17 +66,8 @@ export class RestaurantCreatePage extends BasePage implements OnInit {
     if (this.router.getCurrentNavigation().extras.state) {
       this.params = this.router.getCurrentNavigation().extras.state;
     }
-  }
 
-  async ngOnInit() {
-    await this._disableMenu();
-
-    this.restaurantCreateForm = new FormGroup({
-      // job_title: new FormControl('', Validators.compose([
-      //   Validators.required,
-      //   Validators.minLength(0),
-      //   Validators.maxLength(128)
-      // ])),
+    this.primaryFormGroup = new FormGroup({
       name: new FormControl(
         "",
         Validators.compose([Validators.required, Validators.minLength(0), Validators.maxLength(64)])
@@ -116,6 +107,11 @@ export class RestaurantCreatePage extends BasePage implements OnInit {
         ])
       ),
     });
+
+  }
+
+  async ngOnInit() {
+    await this._disableMenu();
 
     this.user = await this.storage.get(constants.STORAGE_USER);
     this.job_title = await this.storage.get(constants.JOB_TITLE);
@@ -192,9 +188,9 @@ export class RestaurantCreatePage extends BasePage implements OnInit {
 
   addressClicked(placeSuggestion) {
     let { name, address, city, place_id } = placeSuggestion;
-    this.restaurantCreateForm.controls["name"].setValue(name);
-    this.restaurantCreateForm.controls["street_address"].setValue(address);
-    this.restaurantCreateForm.controls["city"].setValue(city);
+    this.primaryFormGroup.controls["name"].setValue(name);
+    this.primaryFormGroup.controls["street_address"].setValue(address);
+    this.primaryFormGroup.controls["city"].setValue(city);
     this.placeSuggestionList = [];
     this.modalShow = false;
     // TODO - Fix
@@ -212,19 +208,19 @@ export class RestaurantCreatePage extends BasePage implements OnInit {
     //       return;
     //     }
     //     if (results.formatted_phone_number) {
-    //       this.restaurantCreateForm.controls["phone"].setValue(results.formatted_phone_number);
+    //       this.primaryFormGroup.controls["phone"].setValue(results.formatted_phone_number);
     //     }
     //   }
     // );
   }
 
   public signupBtnTapped(): void {
-    console.log(this.restaurantCreateForm);
+    console.log(this.primaryFormGroup);
     //this.restaurantCreateFormSubmitted();
   }
 
   async restaurantCreateFormSubmitted(): Promise<void> {
-    if (!this.restaurantCreateForm.valid) {
+    if (!this.primaryFormGroup.valid) {
       return;
     }
 
@@ -246,7 +242,7 @@ export class RestaurantCreatePage extends BasePage implements OnInit {
       await this.showAwaitableAlert("Error", "Please select your state");
       return;
     }
-    Object.assign(data, this.restaurantCreateForm.value);
+    Object.assign(data, this.primaryFormGroup.value);
     let restaurant_create_res;
     let restaurant_id;
     console.log(this.restaurant_id, data);
@@ -314,7 +310,7 @@ export class RestaurantCreatePage extends BasePage implements OnInit {
         this.statesList = statesUS;
         this.stateLabel = "State";
         this.zipLabel = "Zip Code";
-        this.restaurantCreateForm.setControl(
+        this.primaryFormGroup.setControl(
           "zip_code",
           this.fb.control("", [
             Validators.required,
@@ -328,7 +324,7 @@ export class RestaurantCreatePage extends BasePage implements OnInit {
         this.statesList = statesCanada;
         this.stateLabel = "Province";
         this.zipLabel = "Postal Code";
-        this.restaurantCreateForm.setControl(
+        this.primaryFormGroup.setControl(
           "zip_code",
           this.fb.control("", [
             Validators.required,
