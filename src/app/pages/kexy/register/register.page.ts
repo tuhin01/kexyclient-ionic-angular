@@ -1,20 +1,21 @@
-import { Component, OnInit } from '@angular/core';
-import {EmployeeInvitation} from '../../../interfaces/api-response-model';
-import {ActivatedRoute, Router} from '@angular/router';
-import {Storage} from '@ionic/storage';
-import {HttpClient} from '@angular/common/http';
-import {AlertController, LoadingController, MenuController, NavController} from '@ionic/angular';
-import {BasePage} from '../../basePage';
-import {FormControl, FormGroup, Validators} from '@angular/forms';
-import {apis, constants} from '../../../../common/shared';
-import {routeConstants} from '../../../../common/routeConstants';
+import { Component, OnInit } from "@angular/core";
+import { EmployeeInvitation } from "../../../interfaces/api-response-model";
+import { ActivatedRoute, Router } from "@angular/router";
+import { Storage } from "@ionic/storage";
+import { HttpClient } from "@angular/common/http";
+import { AlertController, LoadingController, MenuController, NavController } from "@ionic/angular";
+import { BasePage } from "../../basePage";
+import { FormControl, FormGroup, Validators } from "@angular/forms";
+import { apis, constants } from "../../../../common/shared";
+import { routeConstants } from "../../../../common/routeConstants";
 
 @Component({
-  selector: 'app-register',
-  templateUrl: './register.page.html',
-  styleUrls: ['./register.page.scss'],
+  selector: "app-register",
+  templateUrl: "./register.page.html",
+  styleUrls: ["./register.page.scss"],
 })
 export class RegisterPage extends BasePage implements OnInit {
+  protected readonly params: any;
   private email: string;
   private employee_invitations: Array<EmployeeInvitation>;
   private organization_invitations: Array<any>;
@@ -26,16 +27,19 @@ export class RegisterPage extends BasePage implements OnInit {
   public imageUrl = null;
 
   constructor(
-      public router: Router,
-      public route: ActivatedRoute,
-      public storage: Storage,
-      public httpClient: HttpClient,
-      public loadingCtrl: LoadingController,
-      public alertCtrl: AlertController,
-      public menu: MenuController,
-      public navCtrl: NavController,
+    public router: Router,
+    public route: ActivatedRoute,
+    public storage: Storage,
+    public httpClient: HttpClient,
+    public loadingCtrl: LoadingController,
+    public alertCtrl: AlertController,
+    public menu: MenuController,
+    public navCtrl: NavController
   ) {
     super(router, route, httpClient, loadingCtrl, alertCtrl, storage, menu, navCtrl);
+    if (this.router.getCurrentNavigation().extras.state) {
+      this.params = this.router.getCurrentNavigation().extras.state;
+    }
   }
 
   ngOnInit() {
@@ -49,34 +53,44 @@ export class RegisterPage extends BasePage implements OnInit {
 
     this.primaryForm = new FormGroup({
       first_name: new FormControl(
-          "",
-          Validators.compose([
-            Validators.required,
-            Validators.minLength(0),
-            Validators.maxLength(64),
-            Validators.pattern("^[a-zA-Z- ]+$"),
-          ])
+        "",
+        Validators.compose([
+          Validators.required,
+          Validators.minLength(0),
+          Validators.maxLength(64),
+          Validators.pattern("^[a-zA-Z- ]+$"),
+        ])
       ),
       last_name: new FormControl(
-          "",
-          Validators.compose([
-            Validators.required,
-            Validators.minLength(0),
-            Validators.maxLength(64),
-            Validators.pattern("^[a-zA-Z- ]+$"),
-          ])
+        "",
+        Validators.compose([
+          Validators.required,
+          Validators.minLength(0),
+          Validators.maxLength(64),
+          Validators.pattern("^[a-zA-Z- ]+$"),
+        ])
       ),
-      job_title: new FormControl("", Validators.compose([Validators.required, Validators.minLength(0), Validators.maxLength(128)])),
+      job_title: new FormControl(
+        "",
+        Validators.compose([
+          Validators.required,
+          Validators.minLength(0),
+          Validators.maxLength(128),
+        ])
+      ),
       phone: new FormControl(
-          "",
-          Validators.compose([
-            Validators.required,
-            Validators.minLength(0),
-            Validators.maxLength(21),
-            Validators.pattern(/^\(?([0-9]{3})\)?[-. ]?([0-9]{3})[-. ]?([0-9]{4})$/),
-          ])
+        "",
+        Validators.compose([
+          Validators.required,
+          Validators.minLength(0),
+          Validators.maxLength(21),
+          Validators.pattern(/^\(?([0-9]{3})\)?[-. ]?([0-9]{3})[-. ]?([0-9]{4})$/),
+        ])
       ),
-      password: new FormControl("", Validators.compose([Validators.required, Validators.minLength(8), Validators.maxLength(64)])),
+      password: new FormControl(
+        "",
+        Validators.compose([Validators.required, Validators.minLength(8), Validators.maxLength(64)])
+      ),
     });
   }
 
@@ -86,10 +100,13 @@ export class RegisterPage extends BasePage implements OnInit {
 
   private async setNextPage(user: any): Promise<any> {
     if (this.organization_invitations && this.organization_invitations.length) {
-      let acceptInvitationApiRes = await this.callApi(apis.MAKE_INVITATION_ACCEPTED_UPON_REGISTER, { email: this.email });
+      let acceptInvitationApiRes = await this.callApi(apis.MAKE_INVITATION_ACCEPTED_UPON_REGISTER, {
+        email: this.email,
+      });
 
-      await this.setRoot(routeConstants.KEXY.MARKETPLACE_TYPE, { organization_invitations: this.organization_invitations });
-
+      await this.setRoot(routeConstants.KEXY.MARKETPLACE_TYPE, {
+        organization_invitations: this.organization_invitations,
+      });
     } else {
       if (this.employee_invitations && this.employee_invitations.length) {
         let addEmployeeApiRes = await this.callApi(apis.API_ADD_EMPLOYEE_FROM_INVITATION, {
@@ -103,14 +120,12 @@ export class RegisterPage extends BasePage implements OnInit {
           restaurant_id: invitation.restaurant_id,
           role: invitation.role,
         });
-
       } else {
         console.log(this.type);
         await this.storage.set(constants.IS_INVITED, this.isInvited);
         await this.storage.set(constants.IS_JOIN_TYPE, this.type);
 
         await this.setRoot(routeConstants.HOME);
-        
       }
     }
   }
@@ -153,7 +168,7 @@ export class RegisterPage extends BasePage implements OnInit {
     await this.storage.set(constants.JOB_TITLE, this.primaryForm.value.job_title);
 
     // Call API to create user in getkexy website
-    await this.callApi(apis.API_CREATE_USER_IN_WEBSITE, loginData, {shouldBlockUi: false});
+    await this.callApi(apis.API_CREATE_USER_IN_WEBSITE, loginData, { shouldBlockUi: false });
 
     await this.setNextPage(res2.data.user);
   }
@@ -169,5 +184,4 @@ export class RegisterPage extends BasePage implements OnInit {
     //   this.imageUrl = imageData;
     // }
   }
-
 }

@@ -7,6 +7,7 @@ import { AlertController, LoadingController, MenuController, NavController } fro
 import { FormControl, FormGroup, Validators } from "@angular/forms";
 import { apis, constants } from "../../../../common/shared";
 import { routeConstants } from "../../../../common/routeConstants";
+import { CameraService } from "../../../services/camera.service";
 
 @Component({
   selector: "app-edit-profile",
@@ -20,7 +21,14 @@ export class EditProfilePage extends BasePage implements OnInit {
 
   primaryForm: FormGroup;
   imageUrl: any = null;
-  userInfo: any = {}; // TODO model
+  userInfo: any = {
+    first_name: "",
+    last_name: "",
+    phone: "",
+    job_title: "",
+    email: "",
+    logo_image_url: ""
+  }; // TODO model
   orgInfo: any = {}; // TODO model
 
   constructor(
@@ -31,7 +39,8 @@ export class EditProfilePage extends BasePage implements OnInit {
     public loadingCtrl: LoadingController,
     public alertCtrl: AlertController,
     public menu: MenuController,
-    public navCtrl: NavController
+    public navCtrl: NavController,
+    private cameraService: CameraService
   ) {
     super(router, route, httpClient, loadingCtrl, alertCtrl, storage, menu, navCtrl);
   }
@@ -39,7 +48,7 @@ export class EditProfilePage extends BasePage implements OnInit {
   ngOnInit() {
     this.primaryForm = new FormGroup({
       first_name: new FormControl(
-        "",
+        this.userInfo.first_name,
         Validators.compose([
           Validators.required,
           Validators.minLength(0),
@@ -48,7 +57,7 @@ export class EditProfilePage extends BasePage implements OnInit {
         ])
       ),
       last_name: new FormControl(
-        "",
+        this.userInfo.last_name,
         Validators.compose([
           Validators.required,
           Validators.minLength(0),
@@ -57,7 +66,7 @@ export class EditProfilePage extends BasePage implements OnInit {
         ])
       ),
       phone: new FormControl(
-        "",
+        this.userInfo.phone,
         Validators.compose([
           Validators.required,
           Validators.minLength(0),
@@ -66,14 +75,17 @@ export class EditProfilePage extends BasePage implements OnInit {
         ])
       ),
       job_title: new FormControl(
-        "",
+        this.orgInfo.job_title,
         Validators.compose([
           Validators.required,
           Validators.minLength(0),
           Validators.maxLength(128),
         ])
       ),
-      email: new FormControl("", Validators.compose([Validators.required, Validators.email])),
+      email: new FormControl(
+        this.userInfo.email,
+        Validators.compose([Validators.required, Validators.email])
+      ),
     });
 
     this.getUserData();
@@ -89,6 +101,14 @@ export class EditProfilePage extends BasePage implements OnInit {
     if (this.userInfo.logo_image_url)
       this.imageUrl = this.baseUriForImages + this.userInfo.logo_image_url;
     console.log(this.userInfo);
+
+    this.primaryForm.setValue({
+      first_name: this.userInfo.first_name,
+      last_name: this.userInfo.last_name,
+      email: this.userInfo.email,
+      phone: this.userInfo.phone,
+      job_title: this.orgInfo.job_title,
+    });
   }
 
   async changePassword() {
@@ -189,10 +209,10 @@ export class EditProfilePage extends BasePage implements OnInit {
   }
 
   async presentFileChooser() {
-    // let imageData = await this.takePhoto.presentFileChooser();
-    // if (imageData) {
-    //   this.imageUrl = imageData;
-    //   this.newImageUploaded = true;
-    // }
+    let imageData = await this.cameraService.presentFileChooser();
+    if (imageData) {
+      this.imageUrl = imageData;
+      this.newImageUploaded = true;
+    }
   }
 }

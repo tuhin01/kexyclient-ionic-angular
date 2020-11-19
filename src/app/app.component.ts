@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 
-import { NavController, Platform } from "@ionic/angular";
+import { IonRouterOutlet, NavController, Platform } from "@ionic/angular";
 import { SplashScreen } from '@ionic-native/splash-screen/ngx';
 import { StatusBar } from '@ionic-native/status-bar/ngx';
 import { constants } from "../common/shared";
@@ -77,7 +77,7 @@ export class AppComponent {
       supplierDashboardPage = "SupplierDashboardPage";
     } else {
       this.isRestaurant = false;
-      editProfilePage = "CannabisEditProfilePage";
+      editProfilePage = routeConstants.KEXY.EDIT_PROFILE;
       editDistributorPage = "CannabisEditDistributorPage";
       invitePeoplePage = "CannabisInvitePeoplePage";
       distributorDashboardPage = "CannabisDistributorDashboardPage";
@@ -118,7 +118,7 @@ export class AppComponent {
   }
 
   async openPage(page) {
-    console.log("TDDDD", { page });
+    console.log("TDDDD",  page.url);
     // Reset the content nav to have just this page
     // we wouldn't want the back button to show in this scenario
     await this.navigateTo(page.url);

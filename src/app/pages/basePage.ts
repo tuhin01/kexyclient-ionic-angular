@@ -10,7 +10,7 @@ export class BasePage {
   private readonly baseUri;
   public baseUriForImages;
   public isShowing = false;
-  protected readonly params: any;
+  // protected readonly params: any;
 
 
   constructor(
@@ -26,9 +26,6 @@ export class BasePage {
     this.config = getConfig();
     this.baseUri = this.config.baseUri;
     this.baseUriForImages = this.baseUri.replace("/v1", "");
-    if (this.router.getCurrentNavigation().extras.state) {
-      this.params = this.router.getCurrentNavigation().extras.state;
-    }
   }
 
   /** This method will be used to ensure currently logged in user have access to visit current page. */

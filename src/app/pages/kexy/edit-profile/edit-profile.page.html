@@ -50,7 +50,6 @@
               placeholder="First Name"
               type="text"
               formControlName="first_name"
-              [(ngModel)]="userInfo.first_name"
             ></ion-input>
           </ion-col>
         </ion-row>
@@ -75,7 +74,6 @@
               placeholder="Last Name"
               type="text"
               formControlName="last_name"
-              [(ngModel)]="userInfo.last_name"
             ></ion-input>
           </ion-col>
         </ion-row>
@@ -99,7 +97,6 @@
               formControlName="job_title"
               placeholder="Job Title"
               type="text"
-              [(ngModel)]="orgInfo.job_title"
             ></ion-input>
           </ion-col>
         </ion-row>
@@ -124,7 +121,6 @@
               placeholder="Mobile Number"
               type="tel"
               formControlName="phone"
-              [(ngModel)]="userInfo.phone"
             ></ion-input>
           </ion-col>
         </ion-row>
@@ -144,7 +140,7 @@
             <ion-icon name="ios-mail-outline"></ion-icon>
           </ion-col>
           <ion-col size="11">
-            <ion-input [value]="userInfo.email" formControlName="email" type="email"></ion-input>
+            <ion-input formControlName="email" type="email"></ion-input>
           </ion-col>
         </ion-row>
         <div class="validation-errors ion-text-center">

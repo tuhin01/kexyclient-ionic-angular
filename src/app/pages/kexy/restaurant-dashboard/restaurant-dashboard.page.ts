@@ -5,6 +5,7 @@ import { Storage } from "@ionic/storage";
 import { HttpClient } from "@angular/common/http";
 import { AlertController, LoadingController, MenuController, NavController } from "@ionic/angular";
 import { apis, constants } from "../../../../common/shared";
+import { routeConstants } from "../../../../common/routeConstants";
 
 @Component({
   selector: "app-restaurant-dashboard",
@@ -186,5 +187,10 @@ export class RestaurantDashboardPage extends BasePage implements OnInit {
     await this.storage.set("__OPENSIMSIM_NOTICE", "showed");
     this.openSimSimNotice = false;
     this.employeeScheduleTapped();
+  }
+
+  editProfile() {
+    console.log("click editProfile");
+    this.navigateTo(routeConstants.KEXY.EDIT_PROFILE);
   }
 }
