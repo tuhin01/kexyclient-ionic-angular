@@ -3,12 +3,19 @@ import { BasePage } from "../../basePage";
 import { ActivatedRoute, Router } from "@angular/router";
 import { Storage } from "@ionic/storage";
 import { HttpClient } from "@angular/common/http";
-import { AlertController, LoadingController, MenuController, NavController, PopoverController } from "@ionic/angular";
+import {
+  AlertController,
+  LoadingController,
+  MenuController,
+  NavController,
+  PopoverController,
+} from "@ionic/angular";
 import { Settings } from "../../../model/Settings";
 import { apis, constants } from "../../../../common/shared";
 import { CameraService } from "../../../services/camera.service";
 import { Keyboard } from "@ionic-native/keyboard/ngx";
 import { routeConstants } from "../../../../common/routeConstants";
+import { PlaceOrderPopOverPage } from "../place-order-pop-over/place-order-pop-over.page";
 
 @Component({
   selector: "app-place-order",
@@ -18,7 +25,7 @@ import { routeConstants } from "../../../../common/routeConstants";
 export class PlaceOrderPage extends BasePage implements OnInit {
   protected params: any;
   public restaurantSide: string = "foh";
-  public isOrderPage: boolean = false;
+  public isOrderPage: boolean = true;
   public allowedSide = "";
   public loading;
 
@@ -73,7 +80,7 @@ export class PlaceOrderPage extends BasePage implements OnInit {
     public navCtrl: NavController,
     private cameraService: CameraService,
     private keyboard: Keyboard,
-    public popoverController: PopoverController,
+    public popoverController: PopoverController
   ) {
     super(router, route, httpClient, loadingCtrl, alertCtrl, storage, menu, navCtrl);
   }
@@ -86,7 +93,7 @@ export class PlaceOrderPage extends BasePage implements OnInit {
   }
 
   ionViewDidEnter() {
-    this.route.queryParams.subscribe(params => {
+    this.route.queryParams.subscribe((params) => {
       if (params) {
         this.params = params;
       }
@@ -165,7 +172,33 @@ export class PlaceOrderPage extends BasePage implements OnInit {
     this._resetNote();
   }
 
+  ionViewDidLeave() {
+    console.log("ionViewDidLeave called");
+    this.params = undefined;
+    this.isOrderPage = true;
+    this.pageType = "order";
+    console.log(this.params);
+    console.log(this.isOrderPage);
+    console.log(this.pageType);
+  }
+
+  ngOnDestroy() {
+    console.log("ngOnDestroy called");
+    this.params = undefined;
+    this.isOrderPage = true;
+    this.pageType = "order";
+    console.log(this.params);
+    console.log(this.isOrderPage);
+    console.log(this.pageType);
+  }
+
   async _preparePage() {
+    this._resetVariables();
+
+    console.log(this.params);
+    console.log(this.isOrderPage);
+    console.log(this.pageType);
+
     let inventory_id;
     if (this.params && this.params.pageType) {
       this.pageType = this.params.pageType;
@@ -175,8 +208,8 @@ export class PlaceOrderPage extends BasePage implements OnInit {
       inventory_id = this.params.inventory_id;
     }
     this.isOrderPage = this.pageType === "order";
+    console.log("isOrderPage", this.isOrderPage);
 
-    this._resetVariables();
     this.settings = await this.storage.get(constants.USER_SETTINGS);
     this.org = await this.storage.get(constants.STORAGE_ORGANIZATION);
     this.user = await this.storage.get(constants.STORAGE_USER);
@@ -847,6 +880,14 @@ export class PlaceOrderPage extends BasePage implements OnInit {
   }
 
   ionViewWillLeave() {
+    console.log("ionViewWillLeave called");
+    this.params = undefined;
+    this.isOrderPage = true;
+    this.pageType = "order";
+    console.log(this.params);
+    console.log(this.isOrderPage);
+    console.log(this.pageType);
+
     if (!this.preventPageLeave) return false;
     (async () => {
       let alertPopup = await this.alertCtrl.create({
@@ -932,43 +973,37 @@ export class PlaceOrderPage extends BasePage implements OnInit {
   isProductEdit: boolean = false;
 
   async presentPopover(event) {
-    // TODO - Fix me
-    // const popover = this.popoverCtrl.create("PlaceOrderPopOverPage", {
-    //   isOrderPage: this.isOrderPage,
-    // });
-    // await popover.present({
-    //   ev: event,
-    // });
-    //
-
-
     const popover = await this.popoverController.create({
-      component: "",
-      cssClass: 'my-custom-class',
+      component: PlaceOrderPopOverPage,
       event,
       translucent: true,
+      mode: "ios",
+      cssClass: "tr-popover",
       componentProps: {
         isOrderPage: this.isOrderPage,
+      },
+    });
+
+    popover.onWillDismiss().then(async (data) => {
+      console.log({data});
+      switch (data) {
+        case "addCategory":
+          this.showCategoryModal = true;
+          break;
+        case "addProduct":
+          await this.addProduct();
+          break;
+        case "editProduct":
+          this.isProductEdit = true;
+          break;
+        case "cancel":
+          this.isProductEdit = false;
+          break;
+        default:
+          break;
       }
     });
 
-    let data = await popover.onWillDismiss();
-    switch (data) {
-      case "addCategory":
-        this.showCategoryModal = true;
-        break;
-      case "addProduct":
-        await this.addProduct();
-        break;
-      case "editProduct":
-        this.isProductEdit = true;
-        break;
-      case "cancel":
-        this.isProductEdit = false;
-        break;
-      default:
-        break;
-    }
     return await popover.present();
   }
 
