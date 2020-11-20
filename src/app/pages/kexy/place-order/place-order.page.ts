@@ -3,7 +3,7 @@ import { BasePage } from "../../basePage";
 import { ActivatedRoute, Router } from "@angular/router";
 import { Storage } from "@ionic/storage";
 import { HttpClient } from "@angular/common/http";
-import { AlertController, LoadingController, MenuController, NavController } from "@ionic/angular";
+import { AlertController, LoadingController, MenuController, NavController, PopoverController } from "@ionic/angular";
 import { Settings } from "../../../model/Settings";
 import { apis, constants } from "../../../../common/shared";
 import { CameraService } from "../../../services/camera.service";
@@ -72,7 +72,8 @@ export class PlaceOrderPage extends BasePage implements OnInit {
     public menu: MenuController,
     public navCtrl: NavController,
     private cameraService: CameraService,
-    private keyboard: Keyboard
+    private keyboard: Keyboard,
+    public popoverController: PopoverController,
   ) {
     super(router, route, httpClient, loadingCtrl, alertCtrl, storage, menu, navCtrl);
   }
@@ -939,22 +940,36 @@ export class PlaceOrderPage extends BasePage implements OnInit {
     //   ev: event,
     // });
     //
-    // popover.onWillDismiss((data) => {
-    //   switch (data) {
-    //     case "addCategory":
-    //       this.showCategoryModal = true;
-    //       break;
-    //     case "addProduct":
-    //       this.addProduct();
-    //       break;
-    //     case "editProduct":
-    //       this.isProductEdit = true;
-    //       break;
-    //     case "cancel":
-    //       this.isProductEdit = false;
-    //       break;
-    //   }
-    // });
+
+
+    const popover = await this.popoverController.create({
+      component: "",
+      cssClass: 'my-custom-class',
+      event,
+      translucent: true,
+      componentProps: {
+        isOrderPage: this.isOrderPage,
+      }
+    });
+
+    let data = await popover.onWillDismiss();
+    switch (data) {
+      case "addCategory":
+        this.showCategoryModal = true;
+        break;
+      case "addProduct":
+        await this.addProduct();
+        break;
+      case "editProduct":
+        this.isProductEdit = true;
+        break;
+      case "cancel":
+        this.isProductEdit = false;
+        break;
+      default:
+        break;
+    }
+    return await popover.present();
   }
 
   categoryName: string = "";

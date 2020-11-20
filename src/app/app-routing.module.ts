@@ -135,6 +135,10 @@ const routes: Routes = [
     path: routeConstants.KEXY.EDIT_PROFILE,
     loadChildren: () => import('./pages/kexy/edit-profile/edit-profile.module').then( m => m.EditProfilePageModule)
   },
+  {
+    path: 'place-order-pop-over',
+    loadChildren: () => import('./pages/kexy/place-order-pop-over/place-order-pop-over.module').then( m => m.PlaceOrderPopOverPageModule)
+  },
 
 
 
