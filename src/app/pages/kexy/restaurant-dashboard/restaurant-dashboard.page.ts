@@ -69,7 +69,7 @@ export class RestaurantDashboardPage extends BasePage implements OnInit {
   }
 
   async openMenu() {
-    await this.menu.open('restaurantMenu');
+    await this.menu.open("restaurantMenu");
   }
 
   async ionViewDidEnter() {
@@ -143,7 +143,12 @@ export class RestaurantDashboardPage extends BasePage implements OnInit {
   }
 
   async addOrderTapped(type) {
-    // TODO - Fix
+    console.log({type});
+    await this.navigateTo(
+      `${routeConstants.KEXY.RESTAURANT_TABS}/${routeConstants.KEXY.PLACE_ORDER}`,
+      { pageType: type }
+    );
+    // await this.router.navigate([`kexy-restaurant-tabs/kexy-restaurant-place-order/${type}`], );
     // await this.setRootWithAnimation("PlaceOrderPage", { pageType: type });
   }
 
@@ -188,5 +193,4 @@ export class RestaurantDashboardPage extends BasePage implements OnInit {
     this.openSimSimNotice = false;
     this.employeeScheduleTapped();
   }
-
 }

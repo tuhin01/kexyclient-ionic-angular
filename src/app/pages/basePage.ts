@@ -269,7 +269,7 @@ export class BasePage {
   }
 
   async navigateTo(url, params = {}) {
-    await this.router.navigate([url], { state: params });
+    await this.router.navigate([url], { state: params, queryParams: params });
   }
 
   async setRoot(url, params = {}) {

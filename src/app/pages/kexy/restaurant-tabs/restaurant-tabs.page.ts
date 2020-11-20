@@ -19,7 +19,7 @@ export class RestaurantTabsPage implements OnInit {
     this.restaurantDashboard = routeConstants.KEXY.RESTAURANT_DASHBOARD;
     this.messagesPage = "kexy-restaurant-message";
     this.contactsPage = "kexy-restaurant-message";
-    this.placeOrderPage = "kexy-restaurant-message";
+    this.placeOrderPage = routeConstants.KEXY.PLACE_ORDER;
   }
 
 }

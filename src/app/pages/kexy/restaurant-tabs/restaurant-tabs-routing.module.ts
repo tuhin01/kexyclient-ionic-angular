@@ -6,23 +6,37 @@ import {routeConstants} from '../../../../common/routeConstants';
 
 const routes: Routes = [
   {
-    path: routeConstants.KEXY.RESTAURANT_TABS,
+    path: "",
     component: RestaurantTabsPage,
     children: [
       {
         path: routeConstants.KEXY.RESTAURANT_DASHBOARD,
-        loadChildren: () => import('../../../pages/kexy/restaurant-dashboard/restaurant-dashboard.module').then( m => m.RestaurantDashboardPageModule)
+        children: [
+          {
+            path: "",
+            loadChildren: () => import('../../../pages/kexy/restaurant-dashboard/restaurant-dashboard.module').then( m => m.RestaurantDashboardPageModule)
+          }
+        ],
+      },
+      {
+        path: routeConstants.KEXY.PLACE_ORDER,
+        children: [
+          {
+            path: "",
+            loadChildren: () => import('../../../pages/kexy/place-order/place-order.module').then( m => m.PlaceOrderPageModule)
+          }
+        ],
       },
       {
         path: "",
-        redirectTo: routeConstants.KEXY.RESTAURANT_TABS + "/" +routeConstants.KEXY.RESTAURANT_DASHBOARD,
+        redirectTo: routeConstants.KEXY.RESTAURANT_DASHBOARD,
         pathMatch: 'full'
       }
     ]
   },
   {
     path: "",
-    redirectTo: routeConstants.KEXY.RESTAURANT_TABS + "/" +routeConstants.KEXY.RESTAURANT_DASHBOARD,
+    redirectTo: routeConstants.KEXY.RESTAURANT_DASHBOARD,
     pathMatch: 'full'
   }
 ];

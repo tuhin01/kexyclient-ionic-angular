@@ -11,6 +11,7 @@ import { AppRoutingModule } from "./app-routing.module";
 import { IonicStorageModule } from "@ionic/storage";
 import { HttpClientModule } from "@angular/common/http";
 import { Camera } from "@ionic-native/camera/ngx";
+import { Keyboard } from '@ionic-native/keyboard/ngx';
 
 
 @NgModule({
@@ -28,6 +29,7 @@ import { Camera } from "@ionic-native/camera/ngx";
     StatusBar,
     SplashScreen,
     Camera,
+    Keyboard,
     { provide: RouteReuseStrategy, useClass: IonicRouteStrategy },
   ],
   bootstrap: [AppComponent],
