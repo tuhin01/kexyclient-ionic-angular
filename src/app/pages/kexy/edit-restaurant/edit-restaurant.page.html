@@ -138,8 +138,8 @@
                             <ion-label class="d-none">State</ion-label>
                             <ion-select placeholder="Select your state" formControlName="state"
                                         [(ngModel)]="orgInfo.state">
-                                <ion-option *ngFor="let state of statesList"
-                                            [value]="state.abbreviation">{{ state.name }}</ion-option>
+                                <ion-select-option *ngFor="let state of statesList"
+                                            [value]="state.abbreviation">{{ state.name }}</ion-select-option>
                             </ion-select>
                         </ion-item>
                     </ion-col>

@@ -1,0 +1,253 @@
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-buttons slot="start">
+      <ion-back-button></ion-back-button>
+    </ion-buttons>
+    <ion-title>Invite Your Co-Workers</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content  class="bgimg ion-no-padding">
+
+  <!--  <div class="dashboard-segment">-->
+  <!--    <ion-segment mode="md" [(ngModel)]="selectedTab" (ionChange)="onSegemntChange()">-->
+  <!--      <ion-segment-button id="segment1" value="employee">-->
+  <!--        Invite Your Co-Workers-->
+  <!--      </ion-segment-button>-->
+  <!--      <ion-segment-button id="segment2" value="organization">-->
+  <!--        <span *ngIf="is_restaurant">Invite a Distributor</span>-->
+  <!--        <span *ngIf="is_distributor">Invite a Restaurant or Bar</span>-->
+  <!--      </ion-segment-button>-->
+  <!--    </ion-segment>-->
+  <!--  </div>-->
+  
+  
+    <div [ngSwitch]="selectedTab">
+      <!-- List section -->
+      <div style="padding-left: 6px; padding-right: 6px">
+  
+        <ion-grid>
+          <ion-row class="ion-justify-content-center ion-padding-top">
+            <ion-col>
+              <ion-button
+                      (click)="requestsToJoin()"
+                      color="light"
+                      expand="full"
+                      shape="round"
+                      class="common button"
+                      style="text-transform: initial"
+              >List of requests to join</ion-button>
+
+            </ion-col>
+          </ion-row>
+          <p class="tr-list-user-title">List of invited co-workers</p>
+          <ion-row class="border-bottom">
+            <ion-col size="7">
+              <strong>Email</strong>
+            </ion-col>
+            <ion-col size="3">
+              <strong>Role</strong>
+            </ion-col>
+            <ion-col size="2" style="padding-left: 0">
+              <strong style="font-size: 12px;">Resend</strong>
+            </ion-col>
+          </ion-row>
+          <div *ngIf="employee_invitation_list.length > 0">
+            <ion-row *ngFor="let invitation of employee_invitation_list">
+              <ion-col size="7">
+                {{invitation.email}}
+              </ion-col>
+              <ion-col size="3">
+                <span class="ion-text-capitalize">{{invitation.role}}</span>
+              </ion-col>
+              <ion-col size="2" class="ion-no-padding">
+                <ion-button
+                        (click)="resendEmployeeInvitation(invitation)"
+                        color="primary"
+                        class="common button ion-no-padding ion-no-margin"
+                        style="height: auto"
+                        size="small"
+                        fill="clear"
+                ><u>Resend</u></ion-button>
+              </ion-col>
+            </ion-row>
+          </div>
+  
+  
+          <ion-row>
+            <p style="margin: 50px 0 10px 5px">Invite your co-workers and employees to join KÉXY</p>
+          </ion-row>
+  
+          <ion-row>
+            <ion-col>
+              <strong>Email Address</strong>
+            </ion-col>
+          </ion-row>
+  
+          <form [formGroup]="employeeForm" (ngSubmit)="employeeFormSubmitted()">
+  
+            <div formArrayName="invited_employee_list" class="ion-margin-bottom">
+              <label *ngFor="let email of employeeForm.controls.invited_employee_list.controls; let i = index"
+                     [formGroupName]="i">
+                <ion-row class="border-bottom ion-no-padding">
+                  <ion-col size="1" class="tr-kx-icon">
+                    <ion-icon name="ios-mail-outline"></ion-icon>
+                  </ion-col>
+                  <ion-col size="7">
+                    <ion-input placeholder="name@example.com" formControlName="email" type="email"></ion-input>
+                  </ion-col>
+                  <ion-col size="3">
+                    <ion-select formControlName="role" interface="popover">
+                      <ion-select-option value="admin">Admin</ion-select-option>
+                      <ion-select-option value="manager">Manager</ion-select-option>
+                      <ion-select-option value="employee">Employee</ion-select-option>
+                    </ion-select>
+
+                  </ion-col>
+                  <ion-col size="1" class="tr-kx-icon">
+                    <ion-icon name="ios-trash-outline" (click)="trashedTapped(i)"></ion-icon>
+                  </ion-col>
+                </ion-row>
+                <div class="validation-errors ion-text-center" >
+                  <div
+                    *ngIf="!this.employeeForm.controls.invited_employee_list.controls[i].valid && this.employeeForm.controls.invited_employee_list.controls[i].dirty"
+                    class="error-message">
+                    Please enter a valid email
+                  </div>
+                </div>
+              </label>
+            </div>
+  
+          </form>
+  
+          <ion-row>
+            <ion-col class="ion- text-center" size="12">
+              <ion-button
+                      (click)="addNewInvite()"
+                      color="primary"
+                      fill="clear"
+                      size="small"
+                      class="kexy-add-more-invite-btn"
+              ><u>+ Add another invitation</u></ion-button>
+
+            </ion-col>
+          </ion-row>
+  
+          <ion-row class="ion-padding-top ion-justify-content-center">
+            <ion-col>
+              <ion-button
+                      (click)="employeeFormSubmitted()"
+                      color="light"
+                      expand="full"
+                      shape="round"
+                      class="common button"
+                      style="text-transform: initial"
+              >Send Invitation(s)</ion-button>
+            </ion-col>
+          </ion-row>
+  
+        </ion-grid>
+  
+      </div>
+  
+      <!-- Add section -->
+  <!--    <div style="padding-left: 6px; padding-right: 6px" *ngSwitchCase="'organization'">-->
+  
+  <!--      <ion-grid>-->
+  <!--        <ion-row justify-content-center padding-top>-->
+  <!--          <ion-col>-->
+  <!--            <button (click)="requestsToJoin()" class="common button" color="light" full ion-button round-->
+  <!--                    style="text-transform: initial">List of requests to join-->
+  <!--            </button>-->
+  <!--          </ion-col>-->
+  <!--        </ion-row>-->
+  <!--        <p class="tr-list-user-title">List of invited emails</p>-->
+  <!--        <ion-row class="border-bottom">-->
+  <!--          <ion-col col-10>-->
+  <!--            <strong>Email</strong>-->
+  <!--          </ion-col>-->
+  
+  <!--          <ion-col col-2 style="padding-left: 0">-->
+  <!--            <strong style="font-size: 12px;">Resend</strong>-->
+  <!--          </ion-col>-->
+  <!--        </ion-row>-->
+  <!--        <div *ngIf="org_invitation_list.length > 0">-->
+  <!--          <ion-row *ngFor="let invitation of org_invitation_list">-->
+  <!--            <ion-col col-10>-->
+  <!--              {{invitation.email}}-->
+  <!--            </ion-col>-->
+  <!--            <ion-col col-2 no-padding>-->
+  <!--              <button (click)="resendOrgInvitation(invitation)" clear color="primary" ion-button no-margin no-padding-->
+  <!--                      small style="height: auto">-->
+  <!--                <u>Resend</u>-->
+  <!--              </button>-->
+  <!--            </ion-col>-->
+  <!--          </ion-row>-->
+  <!--        </div>-->
+  
+  
+  <!--        <ion-row>-->
+  <!--          <p *ngIf="is_restaurant" style="margin: 50px 0 10px 5px" text-left>Invite distributorList/reps to join KÉXY</p>-->
+  <!--          <p *ngIf="is_distributor" style="margin: 50px 0 10px 5px" text-left>Invite restaurants/bars to join KÉXY</p>-->
+  <!--        </ion-row>-->
+  
+  <!--        <ion-row>-->
+  <!--          <ion-col>-->
+  <!--            <strong>Email Address</strong>-->
+  <!--          </ion-col>-->
+  <!--        </ion-row>-->
+  
+  <!--        <form [formGroup]="organizationInviteForm" (ngSubmit)="organizationInviteFormSubmitted()">-->
+  
+  <!--          <div formArrayName="invited_email_list" margin-bottom>-->
+  <!--            <label *ngFor="let email of organizationInviteForm.controls.invited_email_list.controls; let i = index"-->
+  <!--                   [formGroupName]="i">-->
+  <!--              <ion-row no-padding class="border-bottom">-->
+  <!--                <ion-col col-1 class="tr-kx-icon">-->
+  <!--                  <ion-icon name="ios-mail-outline"></ion-icon>-->
+  <!--                </ion-col>-->
+  <!--                <ion-col col-10>-->
+  <!--                  <ion-input placeholder="name@example.com" formControlName="email" type="email"></ion-input>-->
+  <!--                </ion-col>-->
+  
+  <!--                <ion-col col-1 class="tr-kx-icon">-->
+  <!--                  <ion-icon name="ios-trash-outline" (click)="trashedTapped(i)"></ion-icon>-->
+  <!--                </ion-col>-->
+  <!--              </ion-row>-->
+  <!--              <div class="validation-errors" text-center>-->
+  <!--                <div-->
+  <!--                  *ngIf="!this.organizationInviteForm.controls.invited_email_list.controls[i].valid && this.organizationInviteForm.controls.invited_email_list.controls[i].dirty"-->
+  <!--                  class="error-message">-->
+  <!--                  Please enter a valid email-->
+  <!--                </div>-->
+  <!--              </div>-->
+  <!--            </label>-->
+  <!--          </div>-->
+  
+  <!--        </form>-->
+  
+  <!--        <ion-row>-->
+  <!--          <ion-col text-center col-12>-->
+  <!--            <button ion-button color="primary" small clear class="kexy-add-more-invite-btn" (click)="addNewInvite()">-->
+  <!--              <u>+ Add another invitation</u>-->
+  <!--            </button>-->
+  <!--          </ion-col>-->
+  <!--        </ion-row>-->
+  
+  <!--        <ion-row padding-top justify-content-center>-->
+  <!--          <ion-col>-->
+  <!--            <button (click)="organizationInviteFormSubmitted()" class="common button" color="light" full ion-button-->
+  <!--                    round-->
+  <!--                    style="text-transform: initial">Send Invitation(s)-->
+  <!--            </button>-->
+  <!--          </ion-col>-->
+  <!--        </ion-row>-->
+  
+  <!--      </ion-grid>-->
+  
+  <!--    </div>-->
+    </div>
+  
+  </ion-content>
+  
+  <kexy-bottom-nagigation-bar></kexy-bottom-nagigation-bar>
