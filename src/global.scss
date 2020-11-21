@@ -469,15 +469,18 @@ ion-content.bgimg {
     border-bottom: 1px solid #f4f7fb !important;
   }
   .tr-card-header  {
+      --background: white;
+    --border-color: #eeeeee;
     .item-native{
       background-color: white;
       --ion-background-color: white;
       color: lightgray;
       padding: 0;
+      border: 1px solid red;
     }
-    //.label {
-    //  color: #7e8491;
-    //}
+    .label {
+      color: #e3e4e6;
+    }
   }
   .blue {
     .label {
@@ -494,6 +497,9 @@ ion-content.bgimg {
     padding: 0;
     height: 0;
     background: #f4f7fb;
+    .item-inner {
+      border: none;
+    }
   }
   .tr-expanded {
     height: auto !important;

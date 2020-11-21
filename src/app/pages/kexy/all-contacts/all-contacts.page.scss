@@ -72,7 +72,12 @@ ion-item-sliding .item {
     margin-top: 0px;
   }
 }
-
+ion-item {
+  --border-color: transparent;
+}
+.tr-item-border {
+  border-bottom: 1px solid #eeeeee;
+}
 .tr-kexy-contact {
   background: white;
   display: block;
