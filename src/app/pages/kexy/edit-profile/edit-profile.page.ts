@@ -46,6 +46,7 @@ export class EditProfilePage extends BasePage implements OnInit {
   }
 
   ngOnInit() {
+    this._enableRestaurantMenu();
     this.primaryForm = new FormGroup({
       first_name: new FormControl(
         this.userInfo.first_name,

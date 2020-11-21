@@ -68,7 +68,7 @@ export class AppComponent {
       invitePeoplePage = "InvitePeoplePage";
       distributorDashboardPage = "DistributorDashboardPage";
       logoutPage = "LogoutPage";
-      editRestaurantPage = "EditRestaurantPage";
+      editRestaurantPage = routeConstants.KEXY.EDIT_RESTAURANT;
       editSubscriptionPage = "EditSubscriptionPage";
       settingsPage = "SettingsPage";
       tutorialPage = "TutorialPage";

@@ -135,6 +135,11 @@ const routes: Routes = [
     path: routeConstants.KEXY.EDIT_PROFILE,
     loadChildren: () => import('./pages/kexy/edit-profile/edit-profile.module').then( m => m.EditProfilePageModule)
   },
+  {
+    path: routeConstants.KEXY.EDIT_RESTAURANT,
+    loadChildren: () => import('./pages/kexy/edit-restaurant/edit-restaurant.module').then( m => m.EditRestaurantPageModule)
+  },
+
 
 
 
