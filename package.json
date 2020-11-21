@@ -41,6 +41,7 @@
     "ng-socket-io": "^0.2.4",
     "rxjs": "~6.5.5",
     "rxjs-compat": "^6.5.2",
+    "socket.io": "^2.2.0",
     "tslib": "^2.0.0",
     "zone.js": "~0.10.3"
   },
