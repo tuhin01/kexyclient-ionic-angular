@@ -4,10 +4,8 @@ import { ActivatedRoute, Router } from "@angular/router";
 import { Storage } from "@ionic/storage";
 import { HttpClient } from "@angular/common/http";
 import { AlertController, LoadingController, MenuController, NavController } from "@ionic/angular";
-import { CameraService } from "../../../services/camera.service";
 import { NodeSocketService } from "../../../services/node-socket.service";
 import { apis, constants } from "../../../../common/shared";
-import { routeConstants } from "../../../../common/routeConstants";
 
 @Component({
   selector: "app-all-contacts",
