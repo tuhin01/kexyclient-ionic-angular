@@ -29,6 +29,7 @@ export const routeConstants = {
     RESTAURANT_DASHBOARD: "kexy-restaurant-dashboard",
     EDIT_PROFILE: "kexy-restaurant-edit-profile",
     PLACE_ORDER: "kexy-restaurant-place-order",
+    CONTACTS: "kexy-restaurant-contacts",
 
   },
 };

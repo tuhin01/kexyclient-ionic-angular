@@ -28,6 +28,10 @@ const routes: Routes = [
         ],
       },
       {
+        path: routeConstants.KEXY.CONTACTS,
+        loadChildren: () => import('../../../pages/kexy/contacts/contacts.module').then( m => m.ContactsPageModule)
+      },
+      {
         path: "",
         redirectTo: routeConstants.KEXY.RESTAURANT_DASHBOARD,
         pathMatch: 'full'
