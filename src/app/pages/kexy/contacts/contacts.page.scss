@@ -1,0 +1,120 @@
+ion-item {
+  background-color: rgb(244, 247, 251) !important;
+  padding-left: 0 !important;
+}
+
+.item-block .item-inner {
+  border-bottom: 0.55px solid #c8c7ccbd !important;
+  padding: 5px 0px !important;
+}
+
+.dashboard-segment {
+  padding: 0;
+  margin-top: 0;
+  background: white;
+
+  .segment-button {
+    font-size: 13px;
+    color: gray;
+  }
+
+  .segment-activated {
+    color: #488aff;
+  }
+}
+
+.content-md {
+  .scroll-content {
+    padding: 6px 0 16px 0 !important;
+  }
+}
+
+.avatar-missing {
+  background: white;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+
+  p {
+    font-size: 16px;
+    text-align: center;
+    line-height: 40px;
+    color: black;
+    font-weight: bold;
+  }
+}
+
+.online-indicator {
+  display: none;
+}
+.tr-kexy-contact-select {
+  float: left;
+  position: relative;
+  width: 16px;
+  height: 16px;
+  border: 1px solid transparent;
+  margin-left: 5px;
+  border-radius: 50%;
+  ion-icon {
+    color: #488aff;
+    font-size: 18px;
+    margin-left: 0;
+    position: relative;
+    top: -2px;
+  }
+}
+.tr-kexy-contact-select.tr-contact {
+  top: -2px;
+}
+.tr-contact-deselected {
+  width: 16px;
+  height: 16px;
+  border: 1px solid gray;
+  border-radius: 50%;
+}
+
+.online-indicator.online {
+  display: inline-block;
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  margin-right: 0;
+  margin-top: 3px;
+  float: left;
+  background: rgb(0, 191, 24);
+}
+
+.unread-message {
+  background: red;
+  padding: 2px 8px;
+  border-radius: 4px;
+  color: white;
+  font-weight: bold;
+}
+
+.user-pp {
+  background: white;
+  background-size: contain;
+  background-repeat: no-repeat;
+  width: 45px;
+  height: 45px;
+  border-radius: 50%;
+  line-height: 45px;
+  text-align: center;
+  color: #000000d4;
+  margin: 0;
+  font-size: 14px;
+  font-weight: bold;
+  letter-spacing: 1px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1), 0 1px 3px rgba(0, 0, 0, 0.08);
+}
+.tr-kexy-item {
+  padding-left: 0;
+  h2 {
+    margin-top: 0px;
+  }
+}
+
+ion-navbar[hidebackbutton] button[menutoggle] {
+  display: block !important;
+}
