@@ -3,10 +3,157 @@
     <ion-buttons slot="start">
       <ion-back-button></ion-back-button>
     </ion-buttons>
-    <ion-title>Register</ion-title>
+    <ion-title *ngIf="!isInGroupSelectionMode">All Contacts</ion-title>
+    <ion-title *ngIf="isInGroupSelectionMode">Select People</ion-title>
+    <ion-buttons class="tr-toolbar-icon" slot="end">
+      <ion-button *ngIf="isInGroupSelectionMode" fill="clear" (click)="groupSelectionCancelTapped()">
+        <ion-icon name="close-circle-outline"></ion-icon>
+      </ion-button>
+      <ion-button *ngIf="isInGroupSelectionMode" fill="clear" (click)="groupSelectionConfirmTapped()">
+        <ion-icon name="checkmark-circle"></ion-icon>
+      </ion-button>
+      <ion-button *ngIf="!isInGroupSelectionMode" fill="clear" (click)="addParticipantsTapped()">
+        <ion-icon name="people"></ion-icon>
+      </ion-button>
+    </ion-buttons>
   </ion-toolbar>
 </ion-header>
 
-<ion-content>
+<ion-content class="lightBlueBg">
 
+  <div class="dashboard-segment" *ngIf="isInGroupSelectionMode">
+    <ion-segment mode="md" [(ngModel)]="contactSide">
+      <ion-segment-button id="segment1" value="conversations">
+        Messages
+      </ion-segment-button>
+      <ion-segment-button id="segment2" value="contacts">
+        Contacts
+      </ion-segment-button>
+    </ion-segment>
+  </div>
+
+  <!-- contacts - start -->
+  <div style="padding: 16px 16px 16px 16px">
+    <ion-searchbar *ngIf="contactSide === 'contacts' && contact_list.length > 0" animated="true"
+                   [(ngModel)]="search_string" (change)="searchStringChanged()"
+                   (ionCancel)="searchCanceled()"></ion-searchbar>
+    <ion-list *ngIf="contactSide === 'contacts'">
+      <!-- If there are no contacts -->
+      <div class="tr-contact-empty" *ngIf="contact_list.length < 1">
+        <p text-center>There are no contacts yet</p>
+      </div>
+
+
+
+      <ion-item-sliding *ngFor="let contact of contact_list; let i = index;">
+        <ion-item class="tr-kexy-item" (click)="contactTapped(i)">
+
+          <div class="user-profile-pic" *ngIf="contact.logo_image_url != ''" item-start
+               [ngStyle]="{'background-image': 'url(' + baseUriForImages + contact.logo_image_url + ')'}">
+          </div>
+          <div class="user-profile-pic" item-start *ngIf="contact.logo_image_url == ''"
+               [ngStyle]="{'background': nameToColor(contact.first_name, contact.last_name)}">
+            {{nameToInitials(contact.first_name, contact.last_name)}}
+          </div>
+
+          <div item-end *ngIf="contact.unread_message > 0" class="unread-message">
+            {{contact.unread_message}} unread
+          </div>
+
+          <div item-end class="online-indicator" [class.online]="online_user_list.indexOf(contact.user_id) > -1"></div>
+
+          <div item-end class="tr-kexy-contact-select tr-contact"
+               *ngIf="isInGroupSelectionMode && selected_contact_list.indexOf(contact) > -1">
+            <ion-icon name="ios-checkmark-circle"></ion-icon>
+          </div>
+
+          <div item-end class="tr-kexy-contact-select tr-contact"
+               *ngIf="isInGroupSelectionMode && selected_contact_list.indexOf(contact) == -1">
+            <div class="tr-contact-deselected"></div>
+          </div>
+
+          <h2>{{contact.first_name}} {{contact.last_name}}</h2>
+          <p>{{contact.company_name}}</p>
+        </ion-item>
+      </ion-item-sliding>
+    </ion-list>
+    <!-- contacts - end -->
+
+    <!-- conversations - start -->
+    <ion-searchbar
+      *ngIf="contactSide === 'conversations' && (conversation_list.length > 0 || (conversation_list.length < 1 && isConversationListEmptyBecauseOfSearchResult))"
+      animated="true" [(ngModel)]="search_string2" (input)="searchStringChanged2()" (ionCancel)="searchCanceled2()"
+      (ionClear)="searchCanceled2()">
+    </ion-searchbar>
+    <ion-list *ngIf="contactSide === 'conversations'">
+      <!-- If there are no conversations -->
+      <div class="tr-conversation-empty"
+           *ngIf="conversation_list.length < 1 && !isConversationListEmptyBecauseOfSearchResult">
+        <p text-center>You don’t have any contacts added yet. Once you initiate a conversation with a contact they will
+          appear here.</p>
+      </div>
+
+      <div class="tr-conversation-empty"
+           *ngIf="conversation_list.length < 1 && isConversationListEmptyBecauseOfSearchResult">
+        <p text-center>No conversations found with that search criteria.</p>
+      </div>
+
+      <ion-item-sliding *ngFor="let conversation of conversation_list; let i = index;">
+        <ion-item class="tr-kexy-item" (click)="conversationTapped(i)">
+
+          <ng-template [ngIf]="conversation.type === 'bidirectional'">
+            <ng-template ngFor let-participant [ngForOf]="conversation.participant_list">
+              <ng-template [ngIf]="participant.user_id !== currentUser.id">
+
+                <div class="user-profile-pic" *ngIf="participant.logo_image_url != ''" item-start
+                     [ngStyle]="{'background-image': 'url(' + baseUriForImages + participant.logo_image_url + ')'}">
+                </div>
+                <div class="user-profile-pic" item-start *ngIf="participant.logo_image_url == ''"
+                     [ngStyle]="{'background': nameToColor(participant.first_name, participant.last_name)}">
+                  {{nameToInitials(participant.first_name, participant.last_name)}}
+                </div>
+
+                <div item-end class="tr-kexy-contact-select tr-contact"
+                     *ngIf="selected_conversation_list.indexOf(conversation) > -1">
+                  <ion-icon name="ios-checkmark-circle"></ion-icon>
+                </div>
+                <div item-end class="tr-kexy-contact-select tr-contact"
+                     *ngIf="selected_conversation_list.indexOf(conversation) == -1">
+                  <div class="tr-contact-deselected"></div>
+                </div>
+                <div item-end class="online-indicator"
+                     [class.online]="online_user_list.indexOf(participant.user_id) > -1">
+                </div>
+
+                <h2
+                  [class.bold]="conversation.unread_message_count > 0">{{participant.first_name}} {{participant.last_name}}</h2>
+                <p [class.bold]="conversation.unread_message_count > 0">{{participant.company_name}}</p>
+              </ng-template>
+            </ng-template>
+          </ng-template>
+          <ng-template [ngIf]="conversation.type === 'group'">
+
+            <div [class.bold]="conversation.unread_message_count > 0">
+              <div class="user-profile-pic" item-start>
+              </div>
+              <ng-template ngFor let-participant [ngForOf]="conversation.participant_list">
+                <ng-template [ngIf]="participant.user_id !== currentUser.id">
+                  <h2 style="display:inline-block;">{{participant.first_name}} {{participant.last_name}}; </h2>
+                </ng-template>
+              </ng-template>
+            </div>
+            <div item-end *ngIf="conversation.unread_message_count > 0" class="unread-message">
+              {{conversation.unread_message_count}} unread
+            </div>
+          </ng-template>
+        </ion-item>
+        <!--      <ion-item-options side="right">-->
+        <!--        <button ion-button color="danger" (click)="deleteConversationTapped(conversation)">-->
+        <!--          <ion-icon name="trash"></ion-icon>-->
+        <!--        </button>-->
+        <!--      </ion-item-options>-->
+      </ion-item-sliding>
+    </ion-list>
+    <!-- conversations - start -->
+  </div>
 </ion-content>

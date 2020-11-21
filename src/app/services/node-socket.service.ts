@@ -180,13 +180,14 @@ export class NodeSocketService {
 
     this.endPointList.forEach(endPoint => {
 
-      endPoint.observable = Observable.create((observer) => {
+      endPoint.observable = new Observable((observer) => {
         this.socket.on(endPoint.eventName, (data) => {
           console.log(`(NodeSocketProvider)> Received: "${endPoint.eventName}"`);
           this._message(`(NodeSocketProvider)> Received: "${endPoint.eventName}"`);
           observer.next(data);
+          observer.complete();
         });
-      }).share();
+      });
 
     });
   }
@@ -198,7 +199,7 @@ export class NodeSocketService {
 
   private initMaintainOnlineList() {
 
-    this.userListObserver = Observable.create(observer => {
+    this.userListObserver = new Observable(observer => {
 
       let online_user_id_list = [];
 
@@ -240,7 +241,9 @@ export class NodeSocketService {
 
       this.emit('request-push', { event: 'online-list' });
 
-    }).share();
+      observer.complete();
+
+    });
 
   }
 

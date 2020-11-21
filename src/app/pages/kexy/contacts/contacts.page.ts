@@ -4,7 +4,6 @@ import { ActivatedRoute, Router } from "@angular/router";
 import { Storage } from "@ionic/storage";
 import { HttpClient } from "@angular/common/http";
 import { AlertController, LoadingController, MenuController, NavController } from "@ionic/angular";
-import { Socket } from "ng-socket-io";
 import { NodeSocketService } from "../../../services/node-socket.service";
 import { apis, constants } from "../../../../common/shared";
 import { routeConstants } from "../../../../common/routeConstants";
@@ -42,7 +41,6 @@ export class ContactsPage extends BasePage implements OnInit {
     public alertCtrl: AlertController,
     public menu: MenuController,
     public navCtrl: NavController,
-    private socket: Socket,
     private nodeSocket: NodeSocketService
   ) {
     super(router, route, httpClient, loadingCtrl, alertCtrl, storage, menu, navCtrl);
@@ -60,7 +58,7 @@ export class ContactsPage extends BasePage implements OnInit {
 
       this.online_user_list = [];
       this.contactSide = "contacts";
-      if (this.params.mode === "add-participants") {
+      if (this.params && this.params.mode === "add-participants") {
         this.isInGroupSelectionMode = true;
         this.preExistingConversation = this.params.conversation;
       } else {
