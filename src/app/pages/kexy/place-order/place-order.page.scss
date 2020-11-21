@@ -297,7 +297,7 @@
         width: 200px;
         left: 0;
         padding-left: 10px;
-        z-index: 100;
+        z-index: 90;
         background: white;
       }
     }
@@ -417,6 +417,7 @@
     text-align: center;
     border-bottom: 1px solid rgba(128, 128, 128, 0.33);
     padding: 10px;
+    color: black !important;
 
     .kexy-tr-modal-close {
       float: right;
@@ -427,6 +428,10 @@
 
   .note-content {
     padding: 10px;
+
+    ion-input{
+      color: black !important;
+    }
 
     textarea {
       margin: 0;

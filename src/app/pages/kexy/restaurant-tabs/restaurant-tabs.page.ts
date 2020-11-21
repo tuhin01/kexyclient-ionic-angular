@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { routeConstants } from "../../../../common/routeConstants";
+import { Router } from "@angular/router";
 
 @Component({
   selector: 'app-restaurant-tabs',
@@ -13,7 +14,9 @@ export class RestaurantTabsPage implements OnInit {
   public contactsPage: string;
   public placeOrderPage: string;
 
-  constructor() { }
+  constructor(
+    public router: Router,
+  ) { }
 
   ngOnInit() {
     this.restaurantDashboard = routeConstants.KEXY.RESTAURANT_DASHBOARD;
@@ -22,4 +25,10 @@ export class RestaurantTabsPage implements OnInit {
     this.placeOrderPage = routeConstants.KEXY.PLACE_ORDER;
   }
 
+  async placeOrderTabClicked() {
+    console.log("From tab");
+    await this.router.navigate(
+      [`${routeConstants.KEXY.RESTAURANT_TABS}/${routeConstants.KEXY.PLACE_ORDER}`],
+    );
+  }
 }
