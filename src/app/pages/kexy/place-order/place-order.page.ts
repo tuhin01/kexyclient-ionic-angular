@@ -266,8 +266,6 @@ export class PlaceOrderPage extends BasePage implements OnInit {
     }
   }
 
-  // ==================================================================
-
   async prepareLocationList() {
     let res = await this.callApi(
       apis.API_RESTAURANT_GET_LOCATION_IN_RESTAURANT_LIST,
