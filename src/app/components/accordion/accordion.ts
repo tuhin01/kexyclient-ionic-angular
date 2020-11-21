@@ -1,24 +1,20 @@
-import {Component, Input, ViewChild} from "@angular/core";
+import { Component, Input, ViewChild } from "@angular/core";
 
 @Component({
-  selector: 'accordion',
-  templateUrl: 'accordion.html'
+  selector: "accordion",
+  templateUrl: "accordion.html",
 })
 export class AccordionComponent {
-
   accordionExapanded = false;
   @ViewChild("cc") cardContent: any;
-  @Input('title') title: string;
+  @Input("title") title: string;
 
-  icon: string = "md-arrow-dropdown";
+  icon: string = "chevron-down-outline";
 
-  constructor() {
-  }
-
+  constructor() {}
 
   toggleAccordion() {
     this.accordionExapanded = !this.accordionExapanded;
-    this.icon = this.icon == "md-arrow-dropdown" ? "md-arrow-dropup" : "md-arrow-dropdown";
+    this.icon = this.icon == "chevron-down-outline" ? "chevron-up-outline" : "chevron-down-outline";
   }
-
 }

@@ -135,10 +135,6 @@ const routes: Routes = [
     path: routeConstants.KEXY.EDIT_PROFILE,
     loadChildren: () => import('./pages/kexy/edit-profile/edit-profile.module').then( m => m.EditProfilePageModule)
   },
-  {
-    path: 'all-contacts',
-    loadChildren: () => import('./pages/kexy/all-contacts/all-contacts.module').then( m => m.AllContactsPageModule)
-  },
 
 
 

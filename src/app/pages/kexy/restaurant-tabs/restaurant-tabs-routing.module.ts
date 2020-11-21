@@ -28,8 +28,8 @@ const routes: Routes = [
         ],
       },
       {
-        path: routeConstants.KEXY.CONTACTS,
-        loadChildren: () => import('../../../pages/kexy/contacts/contacts.module').then( m => m.ContactsPageModule)
+        path: routeConstants.KEXY.ALL_CONTACTS,
+        loadChildren: () => import('../../../pages/kexy/all-contacts/all-contacts.module').then( m => m.AllContactsPageModule)
       },
       {
         path: "",

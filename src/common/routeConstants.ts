@@ -30,6 +30,7 @@ export const routeConstants = {
     EDIT_PROFILE: "kexy-restaurant-edit-profile",
     PLACE_ORDER: "kexy-restaurant-place-order",
     CONTACTS: "kexy-restaurant-contacts",
+    ALL_CONTACTS: "kexy-restaurant-all-contacts",
 
   },
 };
