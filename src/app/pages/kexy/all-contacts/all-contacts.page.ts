@@ -28,7 +28,7 @@ export class AllContactsPage extends BasePage implements OnInit {
   public conversation_list: any = [];
   public conversation_list_backup: any = [];
   public isInGroupSelectionMode: boolean = false;
-  public preExistingConversation: any;
+  public preExistingConversation: any = null;
   public loadingDialog: any = null;
   public isConversationListEmptyBecauseOfSearchResult: boolean = false;
   public shouldIgnoreNextPageLeave: boolean;
@@ -61,14 +61,6 @@ export class AllContactsPage extends BasePage implements OnInit {
 
       this.online_user_list = [];
       this.contactSide = "restaurant_bar";
-      if (this.params.mode === "add-participants") {
-        this.isInGroupSelectionMode = true;
-        this.preExistingConversation = this.params.conversation;
-      } else {
-        this.isInGroupSelectionMode = false;
-        this.preExistingConversation = null;
-      }
-
       this.currentUser = await this.storage.get(constants.STORAGE_USER);
       this.nodeSocket.setUserId(this.currentUser.id);
       this.nodeSocket.event("conversation-list-updated").subscribe(({ conversation_list }) => {
@@ -161,10 +153,8 @@ export class AllContactsPage extends BasePage implements OnInit {
   }
 
   async addParticipantsTapped() {
-    await this.navigateTo(routeConstants.KEXY.ALL_CONTACTS, {
-      conversation: [],
-      mode: "add-participants",
-    });
+    this.isInGroupSelectionMode = true;
+    this.preExistingConversation = [];
   }
 
   groupSelectionConfirmTapped() {

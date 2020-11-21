@@ -77,6 +77,10 @@ ion-item {
 }
 .tr-item-border {
   border-bottom: 1px solid #eeeeee;
+  padding: 5px 0;
+}
+ion-searchbar {
+  background-color: lightgray;
 }
 .tr-kexy-contact {
   background: white;
@@ -102,11 +106,12 @@ ion-item {
     border-bottom: 1px solid rgba(128, 128, 128, 0.33);
     padding: 10px;
     font-size: 16px;
+    color: black;
 
     .kexy-tr-modal-close {
       float: right;
       font-size: 20px;
-      margin-top: -5px;
+      color: black;
     }
   }
 
@@ -117,7 +122,9 @@ ion-item {
       text-align: left;
       td {
         padding-bottom: 10px;
-        vertical-align: middle;
+        vertical-align: top;
+        color: black;
+        font-size: 14px;
       }
     }
   }

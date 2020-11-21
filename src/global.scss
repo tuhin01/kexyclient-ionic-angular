@@ -110,6 +110,7 @@ button.cannabis.button-ios, .cannabis.toggle-ios.toggle-checked .toggle-icon {
   text-align: center;
   color: #000000d4;
   margin: 0;
+  bottom: 5px;
   font-size: 14px;
   font-weight: 600;
   letter-spacing: 1px;
@@ -320,29 +321,41 @@ ion-content.bgimg {
 }
 
 .dashboard-segment {
-  padding: 10px 0 0 0;
-  margin-top: -5px;
   background: white;
-
-  .segment-button {
-    font-size: 12px;
-    color: gray;
-    text-transform: capitalize;
-    font-weight: 600;
-  }
-
-  .segment-activated {
-    color: #095cd1;
+  ion-segment-button {
+    ion-label {
+      font-size: 12px;
+      color: gray;
+      letter-spacing: normal;
+      text-transform: capitalize;
+      font-weight: 600;
+    }
+    &.segment-button-checked {
+      ion-label {
+        color: #095cd1;
+      }
+    }
   }
 }
 .dashboard-segment.cannabis {
-  .segment-button {
+  ion-segment-button {
     border-color: transparent;
-  }
-  .segment-activated {
-    color: rgb(54, 149, 96);
-    background-color: white;
-    border-color: rgb(54, 149, 96);
+
+    ion-label {
+      font-size: 12px;
+      color: gray;
+      letter-spacing: normal;
+      text-transform: capitalize;
+      font-weight: 600;
+    }
+
+    &.segment-button-checked {
+      ion-label {
+        color: rgb(54, 149, 96);
+        border-color: rgb(54, 149, 96);
+        background-color: white;
+      }
+    }
   }
 }
 
@@ -464,22 +477,20 @@ ion-content.bgimg {
   font-family: "Montserrat", sans-serif;
   margin: 0;
   width: 100%;
+  border-bottom: 1px solid #eee;
+  border-radius: 0;
   box-shadow: none !important;
-  .item-inner {
-    border-bottom: 1px solid #f4f7fb !important;
-  }
   .tr-card-header  {
       --background: white;
-    --border-color: #eeeeee;
-    .item-native{
-      background-color: white;
-      --ion-background-color: white;
-      color: lightgray;
-      padding: 0;
-      border: 1px solid red;
-    }
+    --border-color: #ffffff;
+    //--padding-start: 8px;
     .label {
       color: #e3e4e6;
+    }
+    ion-avatar {
+      width: 45px;
+      height: 45px;
+      line-height: 45px;
     }
   }
   .blue {
