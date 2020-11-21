@@ -214,7 +214,7 @@ export class AllContactsPage extends BasePage implements OnInit {
 
   async distributorSearchStringChanged() {
     if (this.distributor_supplier_search_string === "") {
-      this.restaurantSearchCanceled();
+      this.distributorSearchCanceled();
     }
 
     this.distributor_supplier_contact_list = this.distributor_supplier_contact_list_backup.filter(
