@@ -18,7 +18,7 @@ export class RestaurantTabsPage implements OnInit {
 
   ngOnInit() {
     this.restaurantDashboard = routeConstants.KEXY.RESTAURANT_DASHBOARD;
-    this.messagesPage = "kexy-restaurant-message";
+    this.messagesPage = routeConstants.KEXY.MESSAGE;
     this.contactsPage = routeConstants.KEXY.ALL_CONTACTS;
     this.placeOrderPage = routeConstants.KEXY.PLACE_ORDER;
   }

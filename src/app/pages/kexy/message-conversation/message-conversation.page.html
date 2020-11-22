@@ -68,7 +68,7 @@
       </ng-template>
     </ion-title>
     <ion-buttons slot="end">
-      <ion-button fill="clear">
+      <ion-button fill="clear" (click)="addParticipantsTapped()">
         <ion-icon name="person-add"></ion-icon>
       </ion-button>
     </ion-buttons>
@@ -76,7 +76,6 @@
 </ion-header>
 
 <ion-content padding class="lightBlueBg removeScrollBar" #myMessages>
-<!--  <div *ngIf="message_list && message_list.length < 5" style="width: 1px; height: 100vh"></div>-->
   <div
     *ngFor="let message of message_list"
     [ngClass]="{'chatbox': true, 'left': message.user_id !== currentUser.id, 'right': message.user_id === currentUser.id}"
@@ -95,14 +94,7 @@
 
       <!--Text Message-->
       <p *ngSwitchCase="'text'" class="message-text">
-        <span *ngIf="message.user_id === currentUser.id">
-<!--          ion-long-press-->
-<!--          [interval]="400"-->
-<!--          (pressEnded)="longPressEnded()"-->
-<!--          (longPressed)="messageLongTapped(message)"-->
-<!--        >-->
-          {{message.content}}
-        </span>
+        <span *ngIf="message.user_id === currentUser.id"> {{message.content}} </span>
         <span *ngIf="message.user_id !== currentUser.id">{{message.content}}</span>
       </p>
 
@@ -135,17 +127,17 @@
   <!--  <progress-bar *ngIf="progress > 0" [progress]="progress"></progress-bar>-->
 
   <ion-toolbar class="tr-input-toolbar">
-      <ion-textarea
-        class="message-input"
-        autofocus
-        (ionChange)="resizeInputMessageField($event)"
-        autoGrow="true"
-        [(ngModel)]="newMessageContent"
-        inputmode="text"
-        (focus)="onFocusInputMessage()"
-        spellcheck="true"
-        placeholder="Type here"
-      ></ion-textarea>
+    <ion-textarea
+      class="message-input"
+      autofocus
+      (ionChange)="resizeInputMessageField($event)"
+      autoGrow="true"
+      [(ngModel)]="newMessageContent"
+      inputmode="text"
+      (focus)="onFocusInputMessage()"
+      spellcheck="true"
+      placeholder="Type here"
+    ></ion-textarea>
     <ion-buttons slot="end">
       <ion-button fill="clear" (mousedown)="sendButtonTapped(); $event.preventDefault()">
         <ion-label>

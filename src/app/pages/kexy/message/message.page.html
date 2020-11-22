@@ -1,0 +1,130 @@
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-title>Messages</ion-title>
+    <ion-buttons slot="end">
+      <ion-button fill="clear" (click)="addParticipantsTapped()">
+        <ion-icon name="people"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="lightBlueBg ion-padding">
+  <ion-searchbar
+    *ngIf="conversation_list.length > 0 || (conversation_list.length < 1 && isConversationListEmptyBecauseOfSearchResult)"
+    animated="true"
+    color="light"
+    [(ngModel)]="search_string"
+    (input)="searchStringChanged()"
+    (ionCancel)="searchCanceled()"
+    (ionClear)="searchCanceled()"
+  ></ion-searchbar>
+
+  <!-- If there are no conversations -->
+  <div
+    class="tr-conversation-empty"
+    *ngIf="conversation_list.length < 1 && !isConversationListEmptyBecauseOfSearchResult"
+  >
+    <p class="ion-text-center">
+      You don’t have any contacts added yet. Once you initiate a conversation with a contact they
+      will appear here.
+    </p>
+    <ion-col size="12">
+      <ion-button
+        color="light"
+        expand="block"
+        shape="round"
+        class="common button"
+        (click)="addConversationTapped()"
+        >Add Conversations</ion-button
+      >
+    </ion-col>
+  </div>
+
+  <div
+    class="tr-conversation-empty"
+    *ngIf="conversation_list.length < 1 && isConversationListEmptyBecauseOfSearchResult"
+  >
+    <p class="ion-text-center">No conversations found with that search criteria.</p>
+  </div>
+  <div style="height: 20px"></div>
+  <div *ngFor="let conversation of conversation_list; let i = index;">
+    <div *ngIf="conversation.type === 'bidirectional'">
+      <ng-template ngFor let-participant [ngForOf]="conversation.participant_list">
+        <ng-template [ngIf]="participant.user_id !== currentUser.id">
+          <ion-list>
+            <ion-item-sliding>
+              <ion-item (click)="conversationTapped(i)" class="ion-no-padding" style="--border-color: transparent">
+                <ion-avatar slot="start">
+                  <div
+                    class="user-pp"
+                    *ngIf="participant.logo_image_url != ''"
+                    [ngStyle]="{'background-image': 'url(' + baseUriForImages + participant.logo_image_url + ')'}"
+                  ></div>
+                  <div class="user-pp" *ngIf="participant.logo_image_url == ''">
+                    {{nameToInitials(participant.first_name, participant.last_name)}}
+                  </div>
+                </ion-avatar>
+                <ion-label>
+                  <h2>{{participant.first_name}} {{participant.last_name}}</h2>
+                  <p>{{participant.company_name}}</p>
+                </ion-label>
+                <div slot="end">
+                  <div *ngIf="participant.unread_message > 0" class="unread-message">
+                    {{participant.unread_message}} unread
+                  </div>
+                  <div
+                    class="online-indicator"
+                    [class.online]="online_user_list.indexOf(participant.user_id) > -1"
+                  ></div>
+                </div>
+              </ion-item>
+              <ion-item-options style="--border-color: transparent" side="end">
+                <ion-item-option color="danger" (click)="deleteConversationTapped(conversation)"
+                  >Delete</ion-item-option
+                >
+              </ion-item-options>
+            </ion-item-sliding>
+          </ion-list>
+        </ng-template>
+      </ng-template>
+    </div>
+
+    <div *ngIf="conversation.type === 'group'">
+      <ion-list>
+        <ion-item-sliding>
+          <ion-item (click)="conversationTapped(i)" class="ion-no-padding" style="--border-color: transparent">
+            <ion-avatar slot="start">
+              <div
+                class="user-pp"
+                [ngStyle]="{'background-image': 'url(https://www.getkexy.com/KEXY_Connect_assets/logo.png)'}"
+              ></div>
+            </ion-avatar>
+            <ion-label>
+              <h2>
+                <span *ngFor="let participant of conversation.participant_list">
+                  {{participant.first_name}} {{participant.last_name}},
+                </span>
+              </h2>
+              <p>{{conversation.participant_list.length}} participants</p>
+            </ion-label>
+            <div slot="end">
+              <div *ngIf="conversation.unread_message > 0" class="unread-message">
+                {{conversation.unread_message}} unread
+              </div>
+              <div
+                class="online-indicator"
+                [class.online]="online_user_list.indexOf(conversation.user_id) > -1"
+              ></div>
+            </div>
+          </ion-item>
+          <ion-item-options side="end">
+            <ion-item-option color="danger" (click)="deleteConversationTapped(conversation)"
+              >Delete</ion-item-option
+            >
+          </ion-item-options>
+        </ion-item-sliding>
+      </ion-list>
+    </div>
+  </div>
+</ion-content>
