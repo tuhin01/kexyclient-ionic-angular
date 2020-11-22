@@ -143,6 +143,11 @@ const routes: Routes = [
     path: routeConstants.KEXY.INVITE_PEOPLE,
     loadChildren: () => import('./pages/kexy/invite-people/invite-people.module').then( m => m.InvitePeoplePageModule)
   },
+  {
+    path: routeConstants.KEXY.SETTINGS,
+    loadChildren: () => import('./pages/kexy/settings/settings.module').then( m => m.SettingsPageModule)
+  },
+
 
 
 

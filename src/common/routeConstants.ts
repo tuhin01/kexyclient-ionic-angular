@@ -33,6 +33,7 @@ export const routeConstants = {
     ALL_CONTACTS: "kexy-restaurant-all-contacts",
     EDIT_RESTAURANT: "kexy-edit-restaurant",
     INVITE_PEOPLE: "kexy-invite-people",
+    SETTINGS: "kexy-settings",
 
   },
 };

@@ -1,0 +1,32 @@
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-buttons slot="start">
+      <ion-menu-toggle>
+        <ion-menu-button></ion-menu-button>
+      </ion-menu-toggle>
+    </ion-buttons>
+    <ion-title>Settings</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content  class="lightBlueBg ion-padding">
+
+  <ion-item>
+      <ion-label>Par Level Change</ion-label>
+      <ion-toggle color="primary"
+                  (ionChange)="addOrUpdateSettings()"
+                  [(ngModel)]="settings.par_level_update"
+                  checked="{{settings.par_level_update}}">
+
+      </ion-toggle>
+  </ion-item>
+  <ion-item>
+      <ion-label>Rep Delivery Method</ion-label>
+      <ion-button
+              (click)="repDeliveryMethodEditTapped()"
+              fill="clear"
+      >Edit</ion-button>
+  </ion-item>
+
+
+</ion-content>
