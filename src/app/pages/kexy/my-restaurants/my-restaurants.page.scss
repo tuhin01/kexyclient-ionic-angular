@@ -1,0 +1,49 @@
+.ion-ios-more:before {
+    content: "\f1c9";
+    padding: 0 10px;
+  }
+
+  .dashboard-segment {
+    padding: 0;
+    background: white;
+  }
+
+  .check-uncheck-container {
+    margin-bottom: 12px;
+  }
+
+  ion-navbar[hidebackbutton] button[menutoggle] {
+    display: block !important;
+  }
+
+  #checkAll, #checkAllinSearch {
+    padding:0;
+    border: 0;
+    font-size: 12px;
+  }
+
+  #checkAll .item-inner, #checkAllinSearch .item-inner {
+    border: 0;
+  }
+
+  .kexy-list {
+    ion-avatar {
+      width: 36px;
+      height: 36px;
+      overflow: hidden;
+    }
+  }
+
+  .content-ios {
+    .dashboard-segment {
+      margin-top: 0;
+
+      .segment-ios {
+        padding: 0 10px;
+      }
+
+      .segment-button {
+        font-size: 14px;
+      }
+    }
+  }

@@ -1,0 +1,106 @@
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-title> My Restaurants/Bars</ion-title>
+    <ion-buttons slot="start">
+      <ion-button
+              (click)="addRestaurants()"
+              *ngIf="selected_restaurant_id_list.length && selectedTab === 'add'"
+      ><ion-icon name="checkmark-circle"></ion-icon></ion-button>
+      <ion-button
+              (click)="removeRestaurants()"
+              *ngIf="selected_restaurant_for_deletion_id_list.length && selectedTab === 'list'"
+      ><ion-icon name="trash"></ion-icon></ion-button>
+
+      <ion-button
+              (click)="presentActionSheet()"
+      ><ion-icon name="more"></ion-icon></ion-button>
+      </ion-buttons>
+
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="bgimg">
+  <div class="dashboard-segment">
+    <ion-segment mode="md" [(ngModel)]="selectedTab">
+      <ion-segment-button id="segment1" value="list">
+        My Restaurants & Bars
+      </ion-segment-button>
+      <ion-segment-button id="segment2" value="add">
+        Add Restaurants & Bars
+      </ion-segment-button>
+    </ion-segment>
+  </div>
+
+  <div [ngSwitch]="selectedTab">
+    <!-- List section -->
+    <div class="ion-padding-left ion-padding-right" *ngSwitchCase="'list'">
+
+      <ion-item  class="bg-transparent ion-no-padding" id="checkAll" *ngIf="restaurant_list.length !== 0">
+        <ion-label>Select All</ion-label>
+        <ion-checkbox [(ngModel)]="allCurrentOrgSelected" (ionChange)="selectAllCurrentRestaurant()"></ion-checkbox>
+      </ion-item>
+
+      <div>
+        <div *ngIf="!restaurant_list.length">
+          <p class="ion-text-center ion-margin-top ion-padding">There are no restaurants or bars associated with you. Please add some by searching or changing your zip code range</p>
+        </div>
+
+        <ion-list class="kexy-list">
+          <ion-item *ngFor="let restaurant of restaurant_list">
+            <ion-checkbox class="list-of-org" (ionChange)="toggleRestaurantSelectionForDeletion(restaurant.id)"></ion-checkbox>
+            <ion-avatar item-start>
+              <img [src]="baseUriForImages + restaurant.logo_image_url">
+            </ion-avatar>
+            <ion-label><strong>{{restaurant.name}}</strong><br>{{restaurant.street_address}}</ion-label>
+          </ion-item>
+
+        </ion-list>
+      </div>
+    </div>
+
+    <!-- Add section -->
+    <div class="ion-padding-left ion-padding-right" *ngSwitchCase="'add'">
+
+        <p *ngIf='!searchedByString'>List of restaurants/bars based on your zip code: {{searchedWithZipCode}}</p>
+
+      <ion-item  class="bg-transparent ion-no-padding" id="checkAllinSearch" *ngIf="restaurant_search_result.length !== 0">
+        <ion-label>Select All</ion-label>
+        <ion-checkbox [(ngModel)]="allSearchOrgSelected" (ionChange)="selectAllSearchRestaurant()"></ion-checkbox>
+      </ion-item>
+
+      <div>
+        <ion-list class="kexy-list">
+          <ion-item *ngFor="let search_result of restaurant_search_result">
+            <ion-checkbox class="list-of-search-org" (ionChange)="toggleRestaurantSelection(search_result.id)"></ion-checkbox>
+            <ion-avatar item-start>
+              <img [src]="baseUriForImages + search_result.logo_image_url">
+            </ion-avatar>
+            <ion-label>
+              <strong>{{search_result.name}}</strong> <br>
+              {{search_result.street_address}}
+            </ion-label>
+          </ion-item>
+        </ion-list>
+      </div>
+
+      <div class="ion-padding ion-text-center" style="padding-top: 0" *ngIf="isSearch && !restaurant_search_result.length" >
+        <p class="ion-text-center ion-margin-top">Sorry! We could not find a restaurant or bar matching your search.  Try one of the options below:</p>
+        <ion-button
+                (click)="changeZipCode()"
+                color="primary"
+                expand="block"
+                shape="round"
+        >Search with a Different Zip Code</ion-button>
+
+        <br>
+        <ion-button
+                (click)="changeSearchString()"
+                color="primary"
+                expand="block"
+                shape="round"
+        >Search a Restaurant By Name</ion-button>
+      </div>
+    </div>
+  </div>
+
+</ion-content>

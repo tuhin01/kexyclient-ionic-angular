@@ -146,8 +146,9 @@ export class DistributorDashboardPage extends BasePage implements OnInit {
   }
 
   addAnotherRestaurant() {
-      //TODO-Fix
-    // this.navCtrl.push("MyRestaurantsPage");
+   
+      this.navigateTo(routeConstants.KEXY.MY_RESTAURANTS)
+
   }
 
   private addAnotherRep(): void {
@@ -168,8 +169,9 @@ export class DistributorDashboardPage extends BasePage implements OnInit {
   }
 
   restaurantBarTapped() {
-    //TODO-Fix
-    // this.navCtrl.push("MyRestaurantsPage");
+   
+    this.navigateTo(routeConstants.KEXY.MY_RESTAURANTS)
+
   }
 
   // notificationTapped() {

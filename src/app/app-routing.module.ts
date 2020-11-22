@@ -163,6 +163,11 @@ const routes: Routes = [
     path: routeConstants.KEXY.DISTRIBUTOR_DASHBOARD,
     loadChildren: () => import('./pages/kexy/distributor-dashboard/distributor-dashboard.module').then( m => m.DistributorDashboardPageModule)
   },
+  {
+    path: routeConstants.KEXY.MY_RESTAURANTS,
+    loadChildren: () => import('./pages/kexy/my-restaurants/my-restaurants.module').then( m => m.MyRestaurantsPageModule)
+  },
+
 
 
 
