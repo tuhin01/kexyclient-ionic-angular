@@ -58,6 +58,14 @@ export class AllContactsPage extends BasePage implements OnInit {
     (async () => {
       await this._enableRestaurantMenu();
 
+      if (this.params && this.params.mode === "add-participants") {
+        this.isInGroupSelectionMode = true;
+        this.preExistingConversation = this.params.conversation;
+      } else {
+        this.isInGroupSelectionMode = false;
+        this.preExistingConversation = null;
+      }
+
       this.online_user_list = [];
       this.contactSide = "restaurant_bar";
       this.currentUser = await this.storage.get(constants.STORAGE_USER);

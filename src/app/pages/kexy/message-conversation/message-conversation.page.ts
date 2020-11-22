@@ -1,4 +1,4 @@
-import { Component, ElementRef, OnInit, ViewChild } from "@angular/core";
+import { Component, OnInit, ViewChild } from "@angular/core";
 import { BasePage } from "../../basePage";
 import { ActivatedRoute, Router } from "@angular/router";
 import { Storage } from "@ionic/storage";
@@ -6,6 +6,7 @@ import { HttpClient } from "@angular/common/http";
 import {
   ActionSheetController,
   AlertController,
+  IonContent,
   LoadingController,
   MenuController,
   NavController,
@@ -22,7 +23,7 @@ import { routeConstants } from "../../../../common/routeConstants";
   styleUrls: ["./message-conversation.page.scss"],
 })
 export class MessageConversationPage extends BasePage implements OnInit {
-  @ViewChild("myMessages") content = ElementRef;
+  @ViewChild("myMessages") content = IonContent;
 
   protected params: any;
 
@@ -85,8 +86,6 @@ export class MessageConversationPage extends BasePage implements OnInit {
       let subscription;
 
       subscription = this.nodeSocket.event("message-list").subscribe(({ message_list }) => {
-        console.log("(ws)> message-list", message_list);
-        console.log(this.conversation);
         this.message_list = message_list;
         this.scrollToBottom();
       });
@@ -260,7 +259,7 @@ export class MessageConversationPage extends BasePage implements OnInit {
 
   onFocusInputMessage() {
     console.log("onfocus called");
-    this.scrollToBottom(500);
+    this.scrollToBottom(100);
   }
 
   resizeInputMessageField(event: any): void {
@@ -270,7 +269,7 @@ export class MessageConversationPage extends BasePage implements OnInit {
     textarea.style.height = "auto";
     let height = textarea.scrollHeight;
     textarea.style.height = height + "px";
-    this.scrollToBottom(500);
+    this.scrollToBottom(100);
   }
 
   resizeInputMessageFieldToOriginal() {
@@ -287,19 +286,14 @@ export class MessageConversationPage extends BasePage implements OnInit {
     return obj.first_name;
   }
 
-  // UTILS ============================
-
   scrollToBottom(delay = 100) {
-    // TODO - Fix me
-    // setTimeout(() => {
-    //   if (this.content != null) {
-    //     try {
-    //       (<any>this.content).scrollToBottom();
-    //     } catch (ex) {
-    //       "pass";
-    //     }
-    //   }
-    // }, delay);
+    setTimeout(() => {
+      if (this.content != null) {
+        try {
+          (<any>this.content).scrollToBottom();
+        } catch (ex) {}
+      }
+    }, delay);
   }
 
   async showParticipantsTapped() {
@@ -307,8 +301,11 @@ export class MessageConversationPage extends BasePage implements OnInit {
       .map((participant) => {
         return participant.first_name + " " + participant.last_name;
       })
-      .join("<br> ");
-    await this.showAwaitableAlert("Participants", message);
+      .join(", ");
+    await this.showAwaitableAlert(
+      this.conversation.participant_list.length + " Participants",
+      message
+    );
   }
 
   async cameraTapped() {
