@@ -1,9 +1,177 @@
 <ion-header>
-  <ion-toolbar>
-    <ion-title>MessageConversation</ion-title>
+  <ion-toolbar color="primary">
+    <ion-buttons slot="start">
+      <ion-back-button></ion-back-button>
+    </ion-buttons>
+    <ion-title>
+      <ng-template [ngIf]="conversation && conversation.type === 'bidirectional'">
+        <ng-template ngFor let-participant [ngForOf]="conversation.participant_list">
+          <ng-template [ngIf]="participant.user_id !== currentUser.id">
+            <ion-row>
+              <ion-col size="4" class="ion-col">
+                <div class="user-online-status">
+                  <div
+                    class="user-pp"
+                    *ngIf="participant.logo_image_url != ''"
+                    [ngStyle]="{'background-image': 'url(' + baseUriForImages + participant.logo_image_url + ')'}"
+                  ></div>
+                  <div class="user-pp" slot="start" *ngIf="participant.logo_image_url == ''">
+                    {{nameToInitials(participant.first_name, participant.last_name)}}
+                  </div>
+
+                  <div
+                    class="online-indicator"
+                    [class.online]="online_user_list.indexOf(participant.user_id) > -1"
+                  ></div>
+                </div>
+              </ion-col>
+              <ion-col size="6">
+                <span class="kexy-user-name"
+                  >{{participant.first_name}} {{participant.last_name}}</span
+                >
+                <span class="kexy-company-name">{{participant.company_name}}</span>
+              </ion-col>
+            </ion-row>
+          </ng-template>
+        </ng-template>
+      </ng-template>
+
+      <ng-template [ngIf]="conversation && conversation.type === 'group'">
+        <ion-row>
+          <ion-col size="4" class="ion-col">
+            <div
+              class="user-profile-pic"
+              [ngStyle]="{'background-image': 'url(https://www.getkexy.com/KEXY_Connect_assets/logo.png)'}"
+            ></div>
+          </ion-col>
+          <ion-col size="7" style="overflow: hidden">
+            <span class="kexy-user-name" (click)="showParticipantsTapped()">
+              <ng-template
+                ngFor
+                let-participant
+                let-i="index"
+                [ngForOf]="conversation.participant_list"
+              >
+                <span *ngIf="participant.user_id !== currentUser.id">
+                  {{participant.first_name}} {{participant.last_name}}
+                  <ng-template [ngIf]="i < conversation.participant_list.length - 1">
+                    ,
+                  </ng-template>
+                </span>
+              </ng-template>
+            </span>
+            <span class="kexy-company-name"
+              >{{conversation.participant_list.length}} participants</span
+            >
+          </ion-col>
+        </ion-row>
+      </ng-template>
+    </ion-title>
+    <ion-buttons slot="end">
+      <ion-button fill="clear">
+        <ion-icon name="person-add"></ion-icon>
+      </ion-button>
+    </ion-buttons>
   </ion-toolbar>
 </ion-header>
 
-<ion-content>
+<ion-content padding class="lightBlueBg removeScrollBar" #myMessages>
+<!--  <div *ngIf="message_list && message_list.length < 5" style="width: 1px; height: 100vh"></div>-->
+  <div
+    *ngFor="let message of message_list"
+    [ngClass]="{'chatbox': true, 'left': message.user_id !== currentUser.id, 'right': message.user_id === currentUser.id}"
+  >
+    <div [ngSwitch]="message.type">
+      <p class="message-user-name" *ngIf="message.user_id !== currentUser.id">
+        {{getName(message)}}, {{message.created_at | date:'MM/dd/yy hh:mm aa'}}
+      </p>
+      <p
+        class="message-user-name"
+        style="text-align: right"
+        *ngIf="message.user_id === currentUser.id"
+      >
+        {{message.created_at | date:'MM/dd/yy hh:mm aa'}}
+      </p>
 
+      <!--Text Message-->
+      <p *ngSwitchCase="'text'" class="message-text">
+        <span *ngIf="message.user_id === currentUser.id">
+<!--          ion-long-press-->
+<!--          [interval]="400"-->
+<!--          (pressEnded)="longPressEnded()"-->
+<!--          (longPressed)="messageLongTapped(message)"-->
+<!--        >-->
+          {{message.content}}
+        </span>
+        <span *ngIf="message.user_id !== currentUser.id">{{message.content}}</span>
+      </p>
+
+      <!--Images Attachment-->
+      <div *ngSwitchCase="'image'" class="attachment-image">
+        <img
+          [src]="message.content"
+          (load)="imageLoaded()"
+          (click)="photoTapped(message.content)"
+        />
+        <span (click)="downloadContent(message)" class="download-link"> Download Photo </span>
+      </div>
+
+      <!--File Attachment-->
+      <div *ngSwitchCase="'file'" class="attachment-file">
+        <div class="file-box" (click)="downloadContent(message)">
+          <p class="file-name">{{message.file_original_name}}</p>
+          <p class="file-icon">
+            <ion-icon name="ios-document-outline"></ion-icon>
+            <span>File</span>
+          </p>
+          <p class="file-download">Download</p>
+        </div>
+      </div>
+    </div>
+  </div>
 </ion-content>
+
+<ion-footer>
+  <!--  <progress-bar *ngIf="progress > 0" [progress]="progress"></progress-bar>-->
+
+  <ion-toolbar class="tr-input-toolbar">
+      <ion-textarea
+        class="message-input"
+        autofocus
+        (ionChange)="resizeInputMessageField($event)"
+        autoGrow="true"
+        [(ngModel)]="newMessageContent"
+        inputmode="text"
+        (focus)="onFocusInputMessage()"
+        spellcheck="true"
+        placeholder="Type here"
+      ></ion-textarea>
+    <ion-buttons slot="end">
+      <ion-button fill="clear" (mousedown)="sendButtonTapped(); $event.preventDefault()">
+        <ion-label>
+          <ion-icon name="send"></ion-icon>
+        </ion-label>
+      </ion-button>
+
+      <ion-button *ngIf="!isTypingNewMessage" fill="clear" (click)="openFileDialog()">
+        <ion-label>
+          <ion-icon style="line-height: inherit; margin-bottom: 2px" name="attach"></ion-icon>
+        </ion-label>
+      </ion-button>
+
+      <input
+        *ngIf="!isTypingNewMessage"
+        type="file"
+        class="file-attach-input"
+        hidden
+        (change)="fileSelected($event)"
+      />
+
+      <ion-button *ngIf="!isTypingNewMessage" fill="clear" (click)="cameraTapped()">
+        <ion-label>
+          <ion-icon name="camera"></ion-icon>
+        </ion-label>
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-footer>

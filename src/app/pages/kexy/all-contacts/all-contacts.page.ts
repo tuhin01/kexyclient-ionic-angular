@@ -87,9 +87,11 @@ export class AllContactsPage extends BasePage implements OnInit {
           });
 
           if (this.isInGroupSelectionMode) this.isInGroupSelectionMode = false;
-          let conversationPage =
-            routeConstants.KEXY.RESTAURANT_TABS + "/" + routeConstants.KEXY.MESSAGE_CONV;
-          this.navigateTo(conversationPage, { conversation });
+          if (this.loadingDialog) {
+            this.loadingDialog.dismiss();
+            this.loadingDialog = null;
+          }
+          this.navigateTo(routeConstants.KEXY.MESSAGE_CONV, { conversation: JSON.stringify(conversation) });
         }
       });
 
@@ -98,13 +100,6 @@ export class AllContactsPage extends BasePage implements OnInit {
       await this._loadContacts("restaurant", true);
       await this._loadContacts("distributor", false);
     })();
-  }
-
-  ionViewWillLeave() {
-    if (this.loadingDialog) {
-      this.loadingDialog.dismiss();
-      this.loadingDialog = null;
-    }
   }
 
   async _loadContacts(type, blockUi = true) {
@@ -242,7 +237,7 @@ export class AllContactsPage extends BasePage implements OnInit {
         this.selected_contact_list.push(contact);
       }
     } else {
-      this._startConversation(contact);
+      await this._startConversation(contact);
     }
   }
 

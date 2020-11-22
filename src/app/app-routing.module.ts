@@ -135,6 +135,10 @@ const routes: Routes = [
     path: routeConstants.KEXY.EDIT_PROFILE,
     loadChildren: () => import('./pages/kexy/edit-profile/edit-profile.module').then( m => m.EditProfilePageModule)
   },
+  {
+    path: routeConstants.KEXY.MESSAGE_CONV,
+    loadChildren: () => import('./pages/kexy/message-conversation/message-conversation.module').then( m => m.MessageConversationPageModule)
+  },
 
 
 
