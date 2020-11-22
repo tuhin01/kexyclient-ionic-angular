@@ -6,6 +6,7 @@ import { Router, ActivatedRoute } from '@angular/router';
 import { LoadingController, AlertController, MenuController, NavController } from '@ionic/angular';
 import {apis, constants} from "../../../../common/shared";
 import {FormArray, FormBuilder, FormGroup, Validators} from "@angular/forms";
+import { routeConstants } from 'src/common/routeConstants';
 
 @Component({
   selector: 'app-invite-people',
@@ -269,7 +270,7 @@ export class InvitePeoplePage extends BasePage implements OnInit {
 
   requestsToJoin() {
 
-    // TODO - fix
+    this.navigateTo(routeConstants.KEXY.JOIN_REQUEST_LIST)
     // this.navCtrl.push('JoinRequestListPage');
   }
 }

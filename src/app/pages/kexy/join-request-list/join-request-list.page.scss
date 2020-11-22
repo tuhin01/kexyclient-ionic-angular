@@ -1,0 +1,44 @@
+ion-item {
+    background-color: #e2f1f9 !important;
+  }
+
+  .content-md {
+    .scroll-content {
+      padding: 6px 0 16px 0 !important;
+    }
+  }
+
+  .avatar-missing {
+    background: white;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+
+    p {
+      font-size: 16px;
+      text-align: center;
+      line-height: 40px;
+      color: black;
+      font-weight: bold;
+    }
+  }
+
+  .user-profile-pic {
+    color: white;
+    line-height: 40px;
+    text-align: center;
+    font-weight: bold;
+    float: left;
+    margin-top: 0 !important;
+  }
+  .tr-kexy-item {
+    padding-left: 0;
+    h2 {
+      margin-top: 0px;
+    }
+  }
+
+  .tr-contact-empty {
+    margin-top: 50px;
+    font-size: 16px;
+  }

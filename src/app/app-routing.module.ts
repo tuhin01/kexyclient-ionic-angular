@@ -151,6 +151,11 @@ const routes: Routes = [
     path: routeConstants.KEXY.REP_DELIVERY_METHOD,
     loadChildren: () => import('./pages/kexy/rep-delivery-method/rep-delivery-method.module').then( m => m.RepDeliveryMethodPageModule)
   },
+  {
+    path: routeConstants.KEXY.JOIN_REQUEST_LIST,
+    loadChildren: () => import('./pages/kexy/join-request-list/join-request-list.module').then( m => m.JoinRequestListPageModule)
+  },
+
 
 
 
