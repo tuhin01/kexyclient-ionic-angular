@@ -6,6 +6,7 @@ import { HttpClient } from "@angular/common/http";
 import { AlertController, LoadingController, MenuController, NavController } from "@ionic/angular";
 import { NodeSocketService } from "../../../services/node-socket.service";
 import { apis, constants } from "../../../../common/shared";
+import { routeConstants } from "../../../../common/routeConstants";
 
 @Component({
   selector: "app-all-contacts",
@@ -85,14 +86,10 @@ export class AllContactsPage extends BasePage implements OnInit {
             timestamp: Date.now(),
           });
 
-          if (this.isInGroupSelectionMode) {
-            this.isInGroupSelectionMode = false;
-            // TODO - Fix me
-            // this.navCtrl.push("MessageConversationPage", { conversation });
-          } else {
-            // TODO - Fix me
-            // this.navCtrl.push("MessageConversationPage", { conversation });
-          }
+          if (this.isInGroupSelectionMode) this.isInGroupSelectionMode = false;
+          let conversationPage =
+            routeConstants.KEXY.RESTAURANT_TABS + "/" + routeConstants.KEXY.MESSAGE_CONV;
+          this.navigateTo(conversationPage, { conversation });
         }
       });
 
@@ -249,9 +246,9 @@ export class AllContactsPage extends BasePage implements OnInit {
     }
   }
 
-  _startConversation(contact) {
+  async _startConversation(contact) {
     this.nodeSocket.emit("begin-conversation", { participant_id_list: [contact.user_id] });
-    this.loadingDialog = this.loadingCtrl.create({
+    this.loadingDialog = await this.loadingCtrl.create({
       spinner: "crescent",
       message: "Talking to the server. Please wait.",
     });
