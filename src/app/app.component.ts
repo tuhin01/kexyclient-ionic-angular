@@ -64,14 +64,14 @@ export class AppComponent {
     if (this.appType === constants.RESTAURANT) {
       this.isRestaurant = true;
       editProfilePage = routeConstants.KEXY.EDIT_PROFILE;
-      editDistributorPage = "EditDistributorPage";
+      editDistributorPage = routeConstants.KEXY.EDIT_DISTRIBUTOR;
       invitePeoplePage = routeConstants.KEXY.INVITE_PEOPLE;
       distributorDashboardPage = "DistributorDashboardPage";
       logoutPage = "LogoutPage";
       editRestaurantPage = routeConstants.KEXY.EDIT_RESTAURANT;
       editSubscriptionPage = "EditSubscriptionPage";
       settingsPage = routeConstants.KEXY.SETTINGS;
-      tutorialPage = "TutorialPage";
+      tutorialPage =  routeConstants.KEXY.TUTORIAL;
       restaurantDashboardPage = routeConstants.KEXY.RESTAURANT_TABS;
       editSupplierPage = "EditSupplierPage";
       supplierDashboardPage = "SupplierDashboardPage";

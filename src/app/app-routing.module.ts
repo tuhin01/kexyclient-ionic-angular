@@ -155,6 +155,11 @@ const routes: Routes = [
     path: routeConstants.KEXY.JOIN_REQUEST_LIST,
     loadChildren: () => import('./pages/kexy/join-request-list/join-request-list.module').then( m => m.JoinRequestListPageModule)
   },
+  {
+    path: routeConstants.KEXY.EDIT_DISTRIBUTOR,
+    loadChildren: () => import('./pages/kexy/edit-distributor/edit-distributor.module').then( m => m.EditDistributorPageModule)
+  },
+
 
 
 
