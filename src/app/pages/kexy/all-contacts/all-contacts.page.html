@@ -5,7 +5,7 @@
     </ion-buttons>
     <ion-title *ngIf="!isInGroupSelectionMode">All Contacts</ion-title>
     <ion-title *ngIf="isInGroupSelectionMode">Select People</ion-title>
-    <ion-buttons class="tr-toolbar-icon" slot="end">
+    <ion-buttons slot="end">
       <ion-button
         *ngIf="isInGroupSelectionMode"
         fill="clear"
@@ -31,17 +31,18 @@
   <div class="dashboard-segment">
     <ion-segment mode="md" [(ngModel)]="contactSide">
       <ion-segment-button id="segment1" value="restaurant_bar">
-        Restaurants & Bars
+        <ion-label>Restaurants & Bars</ion-label>
       </ion-segment-button>
       <ion-segment-button id="segment2" value="distributor_supplier">
-        Distributors & Suppliers
+        <ion-label>Distributors & Suppliers</ion-label>
       </ion-segment-button>
     </ion-segment>
   </div>
 
-  <div style="padding: 8px" *ngIf="contactSide=='restaurant_bar'">
+  <div style="padding: 16px" *ngIf="contactSide=='restaurant_bar'">
     <ion-searchbar
-      animated="true"
+      animated
+      color="light"
       [(ngModel)]="restaurant_search_string"
       (change)="restaurantSearchStringChanged()"
       (input)="restaurantSearchStringChanged()"
@@ -56,9 +57,9 @@
         title="{{restaurant.name}}"
       >
         <div *ngIf="restaurant.employee.length > 0">
-          <ion-item-sliding *ngFor="let contact of restaurant.employee; let i = index;">
+          <div class="tr-item-border" *ngFor="let contact of restaurant.employee; let i = index;">
             <ion-item (click)="contactTapped($event, contact)">
-              <ion-avatar item-start (click)="showContactInfo($event, contact)">
+              <ion-avatar slot="start" (click)="showContactInfo($event, contact)">
                 <div
                   class="user-pp"
                   *ngIf="contact.logo_image_url != ''"
@@ -68,9 +69,11 @@
                   {{nameToInitials(contact.first_name, contact.last_name)}}
                 </div>
               </ion-avatar>
-              <h2>{{contact.first_name}} {{contact.last_name}}</h2>
-              <p>{{contact.job_title}}</p>
-              <div clear item-end>
+              <ion-label>
+                <h2>{{contact.first_name}} {{contact.last_name}}</h2>
+                <p>{{contact.job_title}}</p>
+              </ion-label>
+              <div slot="end">
                 <div *ngIf="contact.unread_message > 0" class="unread-message">
                   {{contact.unread_message}} unread
                 </div>
@@ -90,7 +93,7 @@
                 ></div>
               </div>
             </ion-item>
-          </ion-item-sliding>
+          </div>
         </div>
         <div *ngIf="restaurant.employee.length == 0">
           <p style="padding: 16px">No Contacts</p>
@@ -102,6 +105,7 @@
   <div style="padding: 16px" *ngIf="contactSide=='distributor_supplier'">
     <ion-searchbar
       animated="true"
+      color="light"
       [(ngModel)]="distributor_supplier_search_string"
       (change)="distributorSearchStringChanged()"
       (input)="distributorSearchStringChanged()"
@@ -115,9 +119,9 @@
         title="{{distributor_supplier.name}}"
       >
         <div *ngIf="distributor_supplier.employee.length > 0">
-          <ion-item-sliding *ngFor="let contact of distributor_supplier.employee; let i = index;">
+          <div class="tr-item-border" *ngFor="let contact of distributor_supplier.employee; let i = index;">
             <ion-item (click)="contactTapped($event, contact)">
-              <ion-avatar item-start (click)="showContactInfo($event, contact)">
+              <ion-avatar slot="start" (click)="showContactInfo($event, contact)">
                 <div
                   class="user-pp"
                   *ngIf="contact.logo_image_url != ''"
@@ -127,9 +131,11 @@
                   {{nameToInitials(contact.first_name, contact.last_name)}}
                 </div>
               </ion-avatar>
-              <h2>{{contact.first_name}} {{contact.last_name}}</h2>
-              <p>{{contact.job_title}}</p>
-              <div clear item-end>
+              <ion-label>
+                <h2>{{contact.first_name}} {{contact.last_name}}</h2>
+                <p>{{contact.job_title}}</p>
+              </ion-label>
+              <div slot="end">
                 <div *ngIf="contact.unread_message > 0" class="unread-message">
                   {{contact.unread_message}} unread
                 </div>
@@ -149,7 +155,7 @@
                 ></div>
               </div>
             </ion-item>
-          </ion-item-sliding>
+          </div>
         </div>
         <div *ngIf="distributor_supplier.employee.length == 0">
           <p style="padding: 16px">No Contacts</p>
@@ -165,12 +171,12 @@
   <div class="note-header">
     <span><b>{{selectedContact.first_name + " " + selectedContact.last_name}}</b></span>
     <span class="kexy-tr-modal-close" (click)="closeContactDialog()">
-      <ion-icon name="close-outline"></ion-icon>
+      <ion-icon name="close"></ion-icon>
     </span>
   </div>
 
   <div class="note-content">
-    <ion-col col-12>
+    <ion-col size="12">
       <table>
         <tr>
           <td style="width: 60px">Email -</td>

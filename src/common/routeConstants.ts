@@ -39,6 +39,9 @@ export const routeConstants = {
     EDIT_DISTRIBUTOR: "kexy-edit-distributor",
     DISTRIBUTOR_DASHBOARD: "kexy-distributor-dashboard",
     MY_RESTAURANTS: "kexy-my-restaurants",
-    
+
+    MESSAGE_CONV: "kexy-restaurant-message-conversation",
+    MESSAGE: "kexy-restaurant-message",
+
   },
 };

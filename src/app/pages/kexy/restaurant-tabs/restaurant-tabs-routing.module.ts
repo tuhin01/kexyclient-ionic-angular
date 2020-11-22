@@ -1,8 +1,8 @@
-import { NgModule } from '@angular/core';
-import { Routes, RouterModule } from '@angular/router';
+import { NgModule } from "@angular/core";
+import { Routes, RouterModule } from "@angular/router";
 
-import { RestaurantTabsPage } from './restaurant-tabs.page';
-import {routeConstants} from '../../../../common/routeConstants';
+import { RestaurantTabsPage } from "./restaurant-tabs.page";
+import { routeConstants } from "../../../../common/routeConstants";
 
 const routes: Routes = [
   {
@@ -11,38 +11,42 @@ const routes: Routes = [
     children: [
       {
         path: routeConstants.KEXY.RESTAURANT_DASHBOARD,
-        children: [
-          {
-            path: "",
-            loadChildren: () => import('../../../pages/kexy/restaurant-dashboard/restaurant-dashboard.module').then( m => m.RestaurantDashboardPageModule)
-          }
-        ],
+        loadChildren: () =>
+          import("../../../pages/kexy/restaurant-dashboard/restaurant-dashboard.module").then(
+            (m) => m.RestaurantDashboardPageModule
+          ),
       },
       {
         path: routeConstants.KEXY.PLACE_ORDER,
-        children: [
-          {
-            path: "",
-            loadChildren: () => import('../../../pages/kexy/place-order/place-order.module').then( m => m.PlaceOrderPageModule)
-          }
-        ],
+        loadChildren: () =>
+          import("../../../pages/kexy/place-order/place-order.module").then(
+            (m) => m.PlaceOrderPageModule
+          ),
       },
       {
         path: routeConstants.KEXY.ALL_CONTACTS,
-        loadChildren: () => import('../../../pages/kexy/all-contacts/all-contacts.module').then( m => m.AllContactsPageModule)
+        loadChildren: () =>
+          import("../../../pages/kexy/all-contacts/all-contacts.module").then(
+            (m) => m.AllContactsPageModule
+          ),
+      },
+      {
+        path: routeConstants.KEXY.MESSAGE,
+        loadChildren: () =>
+          import("../../../pages/kexy/message/message.module").then((m) => m.MessagePageModule),
       },
       {
         path: "",
         redirectTo: routeConstants.KEXY.RESTAURANT_DASHBOARD,
-        pathMatch: 'full'
-      }
-    ]
+        pathMatch: "full",
+      },
+    ],
   },
   {
     path: "",
     redirectTo: routeConstants.KEXY.RESTAURANT_DASHBOARD,
-    pathMatch: 'full'
-  }
+    pathMatch: "full",
+  },
 ];
 
 @NgModule({

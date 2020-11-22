@@ -178,8 +178,11 @@
 
 }
 
-.kexy-product-search, .tr-date-user-order {
-  padding: 0 5px;
+.kexy-product-search {
+  padding: 0 16px;
+}
+.tr-date-user-order {
+  padding: 0 8px;
 }
 
 .kexy-add-location-btn {
@@ -191,9 +194,9 @@
 
   .icon-sort {
     background: white;
-    padding: 5px 3px;
-    font-size: 15px !important;
-    margin-left: 5px;
+    padding: 5px 1px;
+    font-size: 12px !important;
+    margin-left: 0;
     border-radius: 3px;
   }
 }
@@ -211,25 +214,18 @@
 }
 
 .kexy-product-sort {
-  margin-top: 8px;
+  font-size: 12px;
+  --padding-start: 0;
 }
 
 .kexy-all-product-show-toggle {
   background: transparent;
   padding-left: 0;
-
-  .item-inner {
-    border-bottom: none !important;
-    padding: 0 !important;
-    flex-direction: row-reverse !important;
-
-    .label {
-      font-size: 13px;
-    }
-
-    ion-toggle {
-      padding-left: 0;
-    }
+  --border-color: transparent;
+  --padding-start: 0px;
+  ion-label {
+    font-size: 13px;
+    padding-left: 4px;
   }
 }
 

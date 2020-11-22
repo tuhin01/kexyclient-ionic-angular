@@ -89,67 +89,17 @@ export class RestaurantDashboardPage extends BasePage implements OnInit {
     }
   }
 
-  async debugTapped() {
-    let now = await this.storage.get("SHOULD_DEBUG");
-    let next = now === "YES" ? "NO" : "YES";
-    await this.storage.set("SHOULD_DEBUG", next);
-    await this.showAwaitableAlert(
-      "Success!",
-      "Debug mode toggled. Please close the app and open again"
-    );
-  }
-
-  async segmentChanged(event) {
-    let allowedSide = this.org.side.toLowerCase();
-    if (allowedSide === "foh" && this.restaurantSide === "boh") {
-      await this.showAwaitableAlert(
-        "Sorry!",
-        "You are not authorized to access BOH features. Please contact your account admin to receive access."
-      );
-      (<any>document.querySelector("#segment1")).click(); // workaround for ionic not switching style
-      // this.restaurantSide = 'foh';
-    }
-    if (allowedSide === "boh" && this.restaurantSide === "foh") {
-      await this.showAwaitableAlert(
-        "Sorry!",
-        "You are not authorized to access FOH features. Please contact your account admin to receive access."
-      );
-      (<any>document.querySelector("#segment2")).click(); // workaround for ionic not switching style
-      // this.restaurantSide = 'boh';
-    }
-  }
-
-  _setupNotificationCountUpdate() {
-    // this.kFire.afStore
-    //     .collection("personal")
-    //     .doc(String(this.uid))
-    //     .collection("notification")
-    //     .valueChanges()
-    //     .subscribe(list => {
-    //         list = list.filter(item => !item.isRead);
-    //         this.notificationCount = list.length;
-    //     });
-  }
-
   async _getDashboardData(): Promise<any> {
     let res = await this.callApi(apis.API_USER_GET_DASHBOARD_DATA, {}, { shouldBlockUi: false });
     if (!res.success) return;
     // this.unreadMessageCount = res.data.unread_message;
   }
 
-  async contactBtnTapped() {
-    // TODO - Fix
-    // await this.setRootWithAnimation("AllContactsPage");
-  }
-
   async addOrderTapped(type) {
-    console.log({type});
     await this.navigateTo(
       `${routeConstants.KEXY.RESTAURANT_TABS}/${routeConstants.KEXY.PLACE_ORDER}`,
       { pageType: type }
     );
-    // await this.router.navigate([`kexy-restaurant-tabs/kexy-restaurant-place-order/${type}`], );
-    // await this.setRootWithAnimation("PlaceOrderPage", { pageType: type });
   }
 
   async reviewOrdersTapped(type) {

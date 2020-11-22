@@ -4,7 +4,6 @@ import { ActivatedRoute, Router } from "@angular/router";
 import { Storage } from "@ionic/storage";
 import { HttpClient } from "@angular/common/http";
 import { AlertController, LoadingController, MenuController, NavController } from "@ionic/angular";
-import { CameraService } from "../../../services/camera.service";
 import { NodeSocketService } from "../../../services/node-socket.service";
 import { apis, constants } from "../../../../common/shared";
 import { routeConstants } from "../../../../common/routeConstants";
@@ -28,7 +27,7 @@ export class AllContactsPage extends BasePage implements OnInit {
   public conversation_list: any = [];
   public conversation_list_backup: any = [];
   public isInGroupSelectionMode: boolean = false;
-  public preExistingConversation: any;
+  public preExistingConversation: any = null;
   public loadingDialog: any = null;
   public isConversationListEmptyBecauseOfSearchResult: boolean = false;
   public shouldIgnoreNextPageLeave: boolean;
@@ -61,14 +60,6 @@ export class AllContactsPage extends BasePage implements OnInit {
 
       this.online_user_list = [];
       this.contactSide = "restaurant_bar";
-      if (this.params.mode === "add-participants") {
-        this.isInGroupSelectionMode = true;
-        this.preExistingConversation = this.params.conversation;
-      } else {
-        this.isInGroupSelectionMode = false;
-        this.preExistingConversation = null;
-      }
-
       this.currentUser = await this.storage.get(constants.STORAGE_USER);
       this.nodeSocket.setUserId(this.currentUser.id);
       this.nodeSocket.event("conversation-list-updated").subscribe(({ conversation_list }) => {
@@ -95,14 +86,12 @@ export class AllContactsPage extends BasePage implements OnInit {
             timestamp: Date.now(),
           });
 
-          if (this.isInGroupSelectionMode) {
-            this.isInGroupSelectionMode = false;
-            // TODO - Fix me
-            // this.navCtrl.push("MessageConversationPage", { conversation });
-          } else {
-            // TODO - Fix me
-            // this.navCtrl.push("MessageConversationPage", { conversation });
+          if (this.isInGroupSelectionMode) this.isInGroupSelectionMode = false;
+          if (this.loadingDialog) {
+            this.loadingDialog.dismiss();
+            this.loadingDialog = null;
           }
+          this.navigateTo(routeConstants.KEXY.MESSAGE_CONV, { conversation: JSON.stringify(conversation) });
         }
       });
 
@@ -111,13 +100,6 @@ export class AllContactsPage extends BasePage implements OnInit {
       await this._loadContacts("restaurant", true);
       await this._loadContacts("distributor", false);
     })();
-  }
-
-  ionViewWillLeave() {
-    if (this.loadingDialog) {
-      this.loadingDialog.dismiss();
-      this.loadingDialog = null;
-    }
   }
 
   async _loadContacts(type, blockUi = true) {
@@ -161,10 +143,8 @@ export class AllContactsPage extends BasePage implements OnInit {
   }
 
   async addParticipantsTapped() {
-    await this.navigateTo(routeConstants.KEXY.ALL_CONTACTS, {
-      conversation: [],
-      mode: "add-participants",
-    });
+    this.isInGroupSelectionMode = true;
+    this.preExistingConversation = [];
   }
 
   groupSelectionConfirmTapped() {
@@ -224,7 +204,7 @@ export class AllContactsPage extends BasePage implements OnInit {
 
   async distributorSearchStringChanged() {
     if (this.distributor_supplier_search_string === "") {
-      this.restaurantSearchCanceled();
+      this.distributorSearchCanceled();
     }
 
     this.distributor_supplier_contact_list = this.distributor_supplier_contact_list_backup.filter(
@@ -257,13 +237,13 @@ export class AllContactsPage extends BasePage implements OnInit {
         this.selected_contact_list.push(contact);
       }
     } else {
-      this._startConversation(contact);
+      await this._startConversation(contact);
     }
   }
 
-  _startConversation(contact) {
+  async _startConversation(contact) {
     this.nodeSocket.emit("begin-conversation", { participant_id_list: [contact.user_id] });
-    this.loadingDialog = this.loadingCtrl.create({
+    this.loadingDialog = await this.loadingCtrl.create({
       spinner: "crescent",
       message: "Talking to the server. Please wait.",
     });

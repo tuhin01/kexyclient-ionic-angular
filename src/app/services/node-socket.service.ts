@@ -143,21 +143,21 @@ export class NodeSocketService {
     // this.messageLog = String(message) + '<br><br>' + this.messageLog;
     // this.messageLog = this.messageLog.slice(0, 500);
     // console.log("new message", message);
-    this.storage.get('SHOULD_DEBUG').then((now) => {
-      // console.log('now', now);
-      if (now === "YES") {
-        // let alert = this.alertCtrl.create({
-        //   title: '',
-        //   subTitle: '',
-        //   message: this.messageLog,
-        //   buttons: [{
-        //     text: 'Ok',
-        //   }]
-        // });
-        // alert.present();
-        //alert(message);
-      }
-    });
+    // this.storage.get('SHOULD_DEBUG').then((now) => {
+    //   // console.log('now', now);
+    //   if (now === "YES") {
+    //     // let alert = this.alertCtrl.create({
+    //     //   title: '',
+    //     //   subTitle: '',
+    //     //   message: this.messageLog,
+    //     //   buttons: [{
+    //     //     text: 'Ok',
+    //     //   }]
+    //     // });
+    //     // alert.present();
+    //     //alert(message);
+    //   }
+    // });
 
 
   }
@@ -185,7 +185,8 @@ export class NodeSocketService {
           console.log(`(NodeSocketProvider)> Received: "${endPoint.eventName}"`);
           this._message(`(NodeSocketProvider)> Received: "${endPoint.eventName}"`);
           observer.next(data);
-          observer.complete();
+          // observer.complete();
+          console.log("All Done");
         });
       });
 
@@ -241,7 +242,7 @@ export class NodeSocketService {
 
       this.emit('request-push', { event: 'online-list' });
 
-      observer.complete();
+      // observer.complete();
 
     });
 
