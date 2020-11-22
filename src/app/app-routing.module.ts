@@ -159,6 +159,11 @@ const routes: Routes = [
     path: routeConstants.KEXY.EDIT_DISTRIBUTOR,
     loadChildren: () => import('./pages/kexy/edit-distributor/edit-distributor.module').then( m => m.EditDistributorPageModule)
   },
+  {
+    path: routeConstants.KEXY.DISTRIBUTOR_DASHBOARD,
+    loadChildren: () => import('./pages/kexy/distributor-dashboard/distributor-dashboard.module').then( m => m.DistributorDashboardPageModule)
+  },
+
 
 
 

@@ -1,0 +1,65 @@
+<ion-content class="lightBlueBg" style="z-index: 100;">
+  <ion-grid class="dashboard-grid">
+      <!-- Dashboard top header - start -->
+      <ion-row class="dashboard-header">
+          <ion-col class="ion-no-padding"  size="6">
+              <ion-button
+                      class="dashboard-header-iocn"
+              ><ion-icon name="menu"></ion-icon></ion-button>
+<!--              <button ion-button menuToggle icon-only class="">-->
+
+<!--              </button>-->
+          </ion-col>
+          <ion-col class="ion-no-padding"  size="6"></ion-col>
+      </ion-row>
+      <!-- Dashboard top header - end -->
+
+      <!-- Dashboard Buttons - start -->
+      <ion-list>
+          <ion-row class="ion-padding">
+              <ion-col size="12">
+                  <ion-button
+                          (click)="messagesTapped()"
+                          color="light"
+                          expand="block"
+                          shape="round"
+                          class="common button"
+                  >Messages</ion-button>
+
+              </ion-col>
+              <ion-col size="12">
+                  <ion-button
+                          (click)="contactBtnTapped()"
+                          color="light"
+                          expand="block"
+                          shape="round"
+                          class="common button"
+                  >Contacts</ion-button>
+
+              </ion-col>
+              <ion-col size="12">
+                  <ion-button
+                          (click)="restaurantBarTapped()"
+                          color="light"
+                          expand="block"
+                          shape="round"
+                          class="common button"
+                  >Restaurants & Bars</ion-button>
+
+              </ion-col>
+
+              <ion-col size="12">
+                  <ion-button
+                          (click)="myOrdersTapped()"
+                          color="light"
+                          expand="block"
+                          shape="round"
+                          class="common button"
+                  >My Orders</ion-button>
+    
+              </ion-col>
+          </ion-row>
+      </ion-list>
+      <!-- Dashboard Buttons - end -->
+  </ion-grid>
+</ion-content>

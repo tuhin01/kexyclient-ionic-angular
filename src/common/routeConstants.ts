@@ -37,6 +37,7 @@ export const routeConstants = {
     REP_DELIVERY_METHOD: "kexy-rep-delivery-method",
     JOIN_REQUEST_LIST: "kexy-join-request-list",
     EDIT_DISTRIBUTOR: "kexy-edit-distributor",
+    DISTRIBUTOR_DASHBOARD: "kexy-distributor-dashboard",
     
   },
 };

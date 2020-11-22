@@ -1,0 +1,40 @@
+.dashboard-grid {
+    padding: 0;
+  }
+
+  .dashboard-header-iocn {
+    background: transparent !important;
+    box-shadow: none;
+    position: relative;
+  }
+
+  .tr-dashboard-icon-right {
+    float: right;
+  }
+
+  .tr-icon-notification {
+    margin-right: -10px;
+  }
+
+  .dashboard-header {
+    height: 232px;
+    zoom: 0.7;
+    background: url("../../assets/imgs/dashboard-bg.png") no-repeat center center !important;
+    background-size: cover;
+  }
+
+  .kexy-zip-code-btn {
+    color: black;
+    text-transform: initial;
+    text-decoration: underline;
+  }
+
+  .content-ios {
+    .dashboard-grid {
+      padding: 0;
+    }
+
+    .tr-badge {
+      top: 5px;
+    }
+  }
