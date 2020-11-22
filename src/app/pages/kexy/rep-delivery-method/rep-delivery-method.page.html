@@ -1,0 +1,57 @@
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-buttons slot="start">
+      <ion-menu-toggle>
+        <ion-menu-button></ion-menu-button>
+      </ion-menu-toggle>
+        <ion-button
+                (click)="updateRepDeliveryMethod()"
+        >SAVE</ion-button>
+    </ion-buttons>
+    <ion-title>Rep Delivery Method</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content  class="lightGreyBg ion-no-padding">
+  <ion-row class="tr-kexy-order-header">
+      <ion-col size="4" class="rep-info">Rep Name</ion-col>
+      <ion-col size="4" class="rep-info">Company</ion-col>
+      <ion-col size="4" class="ion-text-center" style="padding: 5px 0">
+          <span>Delivery Method</span>
+          <ion-row class="rep-checkbox-row">
+              <ion-col>Email</ion-col>
+              <ion-col>Text</ion-col>
+          </ion-row>
+      </ion-col>
+  </ion-row>
+
+  <div *ngIf="repList && repList.length > 0">
+      <ion-row *ngFor="let rep of repList" class="tr-kexy-rep-delivery">
+          <ion-col size="4" class="rep-info">{{rep.user.first_name + ' ' + rep.user.last_name }}</ion-col>
+          <ion-col size="4" class="rep-info">{{rep.distributor_name}}</ion-col>
+          <ion-col size="4" class="ion-text-center">
+              <ion-row class="rep-checkbox-row">
+                  <ion-col>
+                      <ion-checkbox
+                          (ionChange)="emailCheckboxChanged(rep.repDelivery)"
+                          [(ngModel)]="rep.repDelivery && rep.repDelivery.email_delivery"
+                          class="distributor-checkbox"
+                          color="primary"
+                          mode="md"
+                      ></ion-checkbox>
+                  </ion-col>
+                  <ion-col>
+                      <ion-checkbox
+                          (ionChange)="emailCheckboxChanged(rep.repDelivery)"
+                          [(ngModel)]="rep.repDelivery && rep.repDelivery.sms_delivery"
+                          class="distributor-checkbox"
+                          color="primary"
+                          mode="md"
+                      ></ion-checkbox>
+                  </ion-col>
+              </ion-row>
+          </ion-col>
+      </ion-row>
+  </div>
+</ion-content>
+

@@ -147,6 +147,11 @@ const routes: Routes = [
     path: routeConstants.KEXY.SETTINGS,
     loadChildren: () => import('./pages/kexy/settings/settings.module').then( m => m.SettingsPageModule)
   },
+  {
+    path: routeConstants.KEXY.REP_DELIVERY_METHOD,
+    loadChildren: () => import('./pages/kexy/rep-delivery-method/rep-delivery-method.module').then( m => m.RepDeliveryMethodPageModule)
+  },
+
 
 
 

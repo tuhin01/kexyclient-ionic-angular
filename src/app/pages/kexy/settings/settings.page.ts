@@ -4,9 +4,10 @@ import { Storage } from "@ionic/storage";
 import { HttpClient } from '@angular/common/http';
 import { Router, ActivatedRoute } from '@angular/router';
 import { LoadingController, AlertController, MenuController, NavController } from '@ionic/angular';
-import { CameraService } from 'src/app/services/camera.service';
+// import { CameraService } from 'src/app/services/camera.service';
 import {apis, constants} from "../../../../common/shared";
 import {Settings} from "../../../model/Settings";
+import { routeConstants } from 'src/common/routeConstants';
 @Component({
   selector: 'app-settings',
   templateUrl: './settings.page.html',
@@ -56,7 +57,8 @@ export class SettingsPage extends BasePage implements OnInit {
   }
 
   repDeliveryMethodEditTapped() {
-    //TODO - Fix
+
+    this.navigateTo(routeConstants.KEXY.REP_DELIVERY_METHOD)
     // this.navCtrl.push('RepDeliveryMethodPage');
   }
 }

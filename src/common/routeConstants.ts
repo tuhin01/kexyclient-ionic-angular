@@ -34,6 +34,7 @@ export const routeConstants = {
     EDIT_RESTAURANT: "kexy-edit-restaurant",
     INVITE_PEOPLE: "kexy-invite-people",
     SETTINGS: "kexy-settings",
+    REP_DELIVERY_METHOD: "kexy-rep-delivery-method",
 
   },
 };
