@@ -177,8 +177,8 @@ export class LoginPage extends BasePage implements OnInit {
       let isDev = window.localStorage.getItem(keyName);
       isDev = isDev === "NO" ? "YES" : "NO";
       window.localStorage.setItem(keyName, isDev);
-      // TODO - Fix
-      // this.navCtrl.push('LogoutPage');
+      this.navigateTo(routeConstants.KEXY.LOGOUT);
+     
       setTimeout(() => {
         window.location.reload();
       }, 500);

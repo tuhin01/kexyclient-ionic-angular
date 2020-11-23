@@ -51,13 +51,19 @@ export class MarketPlaceTypePage extends BasePage implements OnInit {
     }
 
     if (this.marketPlaceType === "distributor") {
-      await this.navigateTo(routeConstants.KEXY.DISTRIBUTOR_SELECT_TYPE);
+      await this.navigateTo(routeConstants.KEXY.DISTRIBUTOR_SELECT_TYPE,{
+        restaurantIdList
+      });
     }
     if (this.marketPlaceType === "restaurant") {
-      await this.navigateTo(routeConstants.KEXY.RESTAURANT_TYPE);
+      await this.navigateTo(routeConstants.KEXY.RESTAURANT_TYPE,{
+        distributorIdList
+      });
     }
     if (this.marketPlaceType === "supplier") {
-      await this.navigateTo(routeConstants.KEXY.SUPPLIER_SELECT_TYPE);
+      await this.navigateTo(routeConstants.KEXY.SUPPLIER_SELECT_TYPE, {
+        distributorIdList
+      });
     }
   }
 }

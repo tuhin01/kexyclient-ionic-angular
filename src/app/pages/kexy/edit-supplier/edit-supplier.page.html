@@ -1,0 +1,177 @@
+<ion-header>
+    <ion-toolbar color="primary">
+        <ion-buttons slot="start">
+            <ion-back-button></ion-back-button>
+        </ion-buttons>
+        <ion-title>Edit Company Details</ion-title>
+    </ion-toolbar>
+</ion-header>
+
+<ion-content class="bgimg ion-padding">
+
+    <div class="width-100 ion-text-center">
+        <img class="profile-photo" [src]="imageUrl" [hidden]="!imageUrl"/>
+        <img class="profile-photo" src="../../../../assets/imgs/no_profile_image.png" [hidden]="imageUrl"/>
+    </div>
+
+    <ion-grid>
+
+        <ion-row>
+            <ion-col>
+                <ion-button
+                        (click)="openFileDialog()"
+                        shape="round"
+                        expand="block"
+
+                >
+                    <ion-icon name="attach"></ion-icon>
+                    change Company Logo
+                </ion-button>
+
+                <input type="file" class="company-logo-file-input" hidden (change)="fileSelected($event)"/>
+            </ion-col>
+        </ion-row>
+
+        <form [formGroup]="supplierEditForm" (ngSubmit)="supplierEditFormSubmitted()">
+
+            <ion-row class="border-bottom">
+                <ion-col size="1" class="tr-kx-icon">
+                    <ion-icon name="ios-browsers-outline"></ion-icon>
+                </ion-col>
+                <ion-col size="11">
+                    <div class="tr-kexy-edit-side">
+                        <ion-item>
+                            <ion-label>FOH/BOH</ion-label>
+                            <ion-select formControlName="side" [(ngModel)]="orgInfo.side">
+                                <ion-select-option value="FOH">Front of the house (FOH)</ion-select-option>
+                                <ion-select-option value="BOH">Back of the house (BOH)</ion-select-option>
+                                <ion-select-option value="BOTH">BOTH</ion-select-option>
+                            </ion-select>
+                        </ion-item>
+                    </div>
+                </ion-col>
+            </ion-row>
+
+
+            <label>
+                <ion-row class="border-bottom">
+                    <ion-col size="1" class="tr-kx-icon">
+                        <ion-icon name="ios-person-outline"></ion-icon>
+                    </ion-col>
+                    <ion-col size="11">
+                        <ion-input placeholder="Job Title" type="text" formControlName="job_title"
+                                   [(ngModel)]="orgInfo.job_title"></ion-input>
+                    </ion-col>
+                </ion-row>
+                <div class="validation-errors ion-text-center">
+                    <div class="error-message"
+                         *ngIf="!supplierEditForm.controls.job_title.valid && (supplierEditForm.get('job_title').dirty || supplierEditForm.get('job_title').touched)">
+                        Please enter a valid Job Title.
+                    </div>
+                </div>
+            </label>
+
+            <label>
+                <ion-row class="border-bottom">
+                    <ion-col size="1" class="tr-kx-icon">
+                        <ion-icon name="ios-home-outline"></ion-icon>
+                    </ion-col>
+                    <ion-col size="11">
+                        <ion-input placeholder="Name of the Company" type="text" formControlName="name"
+                                   [(ngModel)]="orgInfo.name"></ion-input>
+                    </ion-col>
+                </ion-row>
+                <div class="validation-errors ion-text-center">
+                    <div class="error-message"
+                         *ngIf="!supplierEditForm.controls.name.valid && (supplierEditForm.get('name').dirty || supplierEditForm.get('name').touched)">
+                        Please enter a valid Company Name.
+                    </div>
+                </div>
+            </label>
+
+            <label>
+                <ion-row class="border-bottom">
+                    <ion-col size="1" class="tr-kx-icon">
+                        <ion-icon name="ios-call-outline"></ion-icon>
+                    </ion-col>
+                    <ion-col size="11">
+                        <ion-input placeholder="Mobile Number" type="tel" formControlName="phone"
+                                   [(ngModel)]="orgInfo.phone"></ion-input>
+                    </ion-col>
+                </ion-row>
+                <div class="validation-errors ion-text-center">
+                    <div class="error-message"
+                         *ngIf="!supplierEditForm.controls.phone.valid && (supplierEditForm.get('phone').dirty || supplierEditForm.get('phone').touched)">
+                        Please enter a valid 10 digit US Mobile Phone Number.
+                    </div>
+                </div>
+            </label>
+
+            <ion-row class="border-bottom">
+                <ion-col size="12">
+                    <p>List of the zip codes your territory covers</p>
+                </ion-col>
+            </ion-row>
+
+            <div formArrayName="zip_code_list" class="ion-margin-bottom">
+                <label [formGroupName]="i"
+                       *ngFor="let zip_code of supplierEditForm.controls.zip_code_list.controls; let i = index">
+                    <ion-row class="border-bottom">
+                        <ion-col size="1" class="tr-kx-icon">
+                            <ion-icon name="ios-list-outline"></ion-icon>
+                        </ion-col>
+                        <ion-col size="10">
+                            <ion-input placeholder="Zip Code" type="text" formControlName="zip_code"></ion-input>
+                        </ion-col>
+                        <ion-col size="1" class="tr-kx-icon">
+                            <ion-icon name="ios-trash-outline"
+                                      *ngIf="supplierEditForm.controls.zip_code_list.length > 1"
+                                      (click)="removeZipCode(i)"></ion-icon>
+                        </ion-col>
+                    </ion-row>
+                    <div class="validation-errors ion-text-center">
+                        <div class="error-message"
+                             *ngIf="!this.supplierEditForm.controls.zip_code_list.controls[i].valid && this.supplierEditForm.controls.zip_code_list.controls[i].dirty">
+                            Please enter a valid US zip code
+                        </div>
+                    </div>
+                    <ion-row class="border-bottom">
+                        <ion-col size="12">
+                            <ion-button
+                                    *ngIf="supplierEditForm.controls.zip_code_list.length - 1 === i"
+                                    (click)="addNewZipCode()"
+                                    color="light"
+                                    size="small"
+                                    fill="clear"
+                                    class="kexy-zip-code-btn"
+                            >
+                                <ion-icon name="ios-add-circle-outline"></ion-icon>
+                                Add another zip code
+                            </ion-button>
+
+                        </ion-col>
+                    </ion-row>
+                </label>
+            </div>
+
+            <ion-row class="ion-padding-top">
+                <ion-col size="12">
+                    <ion-button
+                            [disabled]="!supplierEditForm.valid"
+                            type="submit"
+                            color="light"
+                            expand="full"
+                            shape="round"
+                            class="common button"
+                    >Confirm
+                    </ion-button>
+
+                </ion-col>
+            </ion-row>
+
+        </form>
+
+    </ion-grid>
+
+
+</ion-content>

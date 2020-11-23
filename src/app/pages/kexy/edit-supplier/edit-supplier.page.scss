@@ -1,0 +1,63 @@
+ion-label {
+    display: inline;
+    position: relative;
+    bottom: 3px;
+    left: 10px;
+  }
+
+  ion-col {
+    padding-bottom: 0 !important;
+  }
+
+  .text-input {
+    margin-bottom: 2px;
+  }
+
+  ion-icon {
+    font-weight: bold;
+    font-size: 20px;
+  }
+
+  .profile-photo {
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    object-fit: cover;
+  }
+
+  .kexy-zip-code-btn {
+    color: black;
+    text-transform: initial;
+    margin-top: 20px;
+  }
+
+  .tr-kexy-edit-side {
+    .item-select {
+      padding-left: 0;
+      background-color: transparent;
+      font-size: 14px;
+      margin-bottom: -10px;
+
+      ion-label {
+        bottom: -3px;
+        left: 0px;
+      }
+
+      ion-select {
+        max-width: max-content;
+        padding-bottom: 0;
+      }
+
+      .item-inner {
+        border-bottom: none;
+      }
+    }
+  }
+
+  .scroll-content {
+    margin-bottom: 70px;
+  }
+
+  ion-navbar[hidebackbutton] button[menutoggle] {
+    display: block !important;
+  }

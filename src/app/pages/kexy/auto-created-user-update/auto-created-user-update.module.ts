@@ -4,18 +4,18 @@ import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 
 import { IonicModule } from '@ionic/angular';
 
-import { DistributorCreatePageRoutingModule } from './distributor-create-routing.module';
+import { AutoCreatedUserUpdatePageRoutingModule } from './auto-created-user-update-routing.module';
 
-import { DistributorCreatePage } from './distributor-create.page';
+import { AutoCreatedUserUpdatePage } from './auto-created-user-update.page';
 
 @NgModule({
     imports: [
         CommonModule,
         FormsModule,
         IonicModule,
-        DistributorCreatePageRoutingModule,
+        AutoCreatedUserUpdatePageRoutingModule,
         ReactiveFormsModule
     ],
-  declarations: [DistributorCreatePage]
+  declarations: [AutoCreatedUserUpdatePage]
 })
-export class DistributorCreatePageModule {}
+export class AutoCreatedUserUpdatePageModule {}

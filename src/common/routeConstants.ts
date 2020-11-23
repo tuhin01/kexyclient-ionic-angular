@@ -43,6 +43,12 @@ export const routeConstants = {
     MESSAGE: "kexy-restaurant-message",
     REVIEW_ORDER: "kexy-restaurant-review-order",
     FINALIZE_ORDER: "kexy-restaurant-finalize-order",
+    LOGOUT: "kexy-logout",
+    EDIT_SUPPLIER: "kexy-edit-supplier",
+    SUPPLIER_DASHBOARD: "kexy-supplier-dashboard",
+    DISTRIBUTOR_REP_ORDERS: "kexy-distributor-rep-orders",
+    DISTRIBUTOR_REP_ORDER_DETAILS: "kexy-distributor-rep-order-details",
+    AUTO_CREATED_USER_UPDATE: "kexy-auto-created-user-update",
 
   },
 };

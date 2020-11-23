@@ -4,18 +4,18 @@ import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 
 import { IonicModule } from '@ionic/angular';
 
-import { DistributorCreatePageRoutingModule } from './distributor-create-routing.module';
+import { EditSupplierPageRoutingModule } from './edit-supplier-routing.module';
 
-import { DistributorCreatePage } from './distributor-create.page';
+import { EditSupplierPage } from './edit-supplier.page';
 
 @NgModule({
     imports: [
         CommonModule,
         FormsModule,
         IonicModule,
-        DistributorCreatePageRoutingModule,
+        EditSupplierPageRoutingModule,
         ReactiveFormsModule
     ],
-  declarations: [DistributorCreatePage]
+  declarations: [EditSupplierPage]
 })
-export class DistributorCreatePageModule {}
+export class EditSupplierPageModule {}

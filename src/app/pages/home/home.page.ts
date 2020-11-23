@@ -65,14 +65,15 @@ export class HomePage extends BasePage implements OnInit {
     if (appType === constants.RESTAURANT) {
       loginDecisionPage = routeConstants.KEXY.LOGIN_DICISION;
       loginPage = routeConstants.KEXY.LOGIN;
-      autoCreatedUserUpdate = "AutoCreatedUserUpdate";
+      //TODO- Fix
+      autoCreatedUserUpdate = routeConstants.KEXY.AUTO_CREATED_USER_UPDATE;
       joinRequestPage = "JoinRequestPage";
-      messagePage = "MessagePage";
+      messagePage = routeConstants.KEXY.MESSAGE;
       welcomePage = routeConstants.KEXY.WELCOME;
       marketPlaceTypePage = routeConstants.KEXY.MARKETPLACE_TYPE;
       restaurantTabsPage = routeConstants.KEXY.RESTAURANT_TABS;
-      distributorDashboardPage = "DistributorDashboardPage";
-      supplierDashboardPage = "SupplierDashboardPage";
+      distributorDashboardPage = routeConstants.KEXY.DISTRIBUTOR_DASHBOARD;
+      supplierDashboardPage = routeConstants.KEXY.SUPPLIER_DASHBOARD;
     } else {
       loginDecisionPage = "/kexy-login-decision";
       loginPage = routeConstants.KEXY.LOGIN;
@@ -116,15 +117,7 @@ export class HomePage extends BasePage implements OnInit {
       const newMessagePopupThreshold = 3000;
       this.isAlreadySubscribed = true;
       this.subscriptionTimestamp = Date.now();
-      // this.kFire.subscribeToPushNotification((msg) => {
-      //   console.log('subscribeToPushNotification', msg);
-      //   let now = Date.now();
-      //   if (now - this.subscriptionTimestamp > newMessagePopupThreshold) {
-      //     console.log("Skipping opening of notification.");
-      //     return
-      //   }
-      //   this.navCtrl.push(messagePage);
-      // });
+   
     }
 
     let res = await this.callApi(apis.API_USER_GET_USER_ORGANIZATIONS, {});
@@ -208,12 +201,12 @@ export class HomePage extends BasePage implements OnInit {
       await this.setRoot(restaurantTabsPage);
       return;
     } else if (org.type === constants.ORGANIZATION_TYPE_DISTRIBUTOR) {
-      // TODO - Fix
-      // await this.navCtrl.setRoot(distributorDashboardPage);
+ 
+      this.setRoot(routeConstants.KEXY.DISTRIBUTOR_DASHBOARD);
       return;
     } else {
-      // TODO - Fix
-      // await this.navCtrl.setRoot(supplierDashboardPage);
+
+      this.setRoot(routeConstants.KEXY.SUPPLIER_DASHBOARD);
       return;
     }
   }

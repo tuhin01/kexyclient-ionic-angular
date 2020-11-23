@@ -38,8 +38,8 @@ export class InviteDistributorEmployeePage extends BasePage implements OnInit {
   }
 
   ngOnInit() {
-    this.distributor_id = this.params.get('distributor_id'); // TODO
-    this.from_page = this.params.get('from_page');
+    this.distributor_id = this.params.distributor_id; // TODO
+    this.from_page = this.params.from_page;
     this.primaryForm = new FormGroup({
       invited_employee_list: this.formBuilder.array([])
     });

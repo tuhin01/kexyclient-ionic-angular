@@ -183,6 +183,31 @@ const routes: Routes = [
     path: routeConstants.KEXY.MESSAGE_CONV,
     loadChildren: () => import('./pages/kexy/message-conversation/message-conversation.module').then( m => m.MessageConversationPageModule)
   },
+  {
+    path: routeConstants.KEXY.LOGOUT,
+    loadChildren: () => import('./pages/kexy/logout/logout.module').then( m => m.LogoutPageModule)
+  },
+ 
+  {
+    path: routeConstants.KEXY.EDIT_SUPPLIER,
+    loadChildren: () => import('./pages/kexy/edit-supplier/edit-supplier.module').then( m => m.EditSupplierPageModule)
+  },
+  {
+    path: routeConstants.KEXY.SUPPLIER_DASHBOARD,
+    loadChildren: () => import('./pages/kexy/supplier-dashboard/supplier-dashboard.module').then( m => m.SupplierDashboardPageModule)
+  },
+  {
+    path: routeConstants.KEXY.DISTRIBUTOR_REP_ORDERS,
+    loadChildren: () => import('./pages/kexy/distributor-rep-orders/distributor-rep-orders.module').then( m => m.DistributorRepOrdersPageModule)
+  },
+  {
+    path: routeConstants.KEXY.DISTRIBUTOR_REP_ORDER_DETAILS,
+    loadChildren: () => import('./pages/kexy/distributor-rep-order-details/distributor-rep-order-details.module').then( m => m.DistributorRepOrderDetailsPageModule)
+  },
+  {
+    path: routeConstants.KEXY.AUTO_CREATED_USER_UPDATE,
+    loadChildren: () => import('./pages/kexy/auto-created-user-update/auto-created-user-update.module').then( m => m.AutoCreatedUserUpdatePageModule)
+  },
 ];
 
 @NgModule({

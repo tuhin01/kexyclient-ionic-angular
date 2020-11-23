@@ -1,0 +1,88 @@
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-buttons slot="start">
+      <ion-back-button></ion-back-button>
+    </ion-buttons>
+    <ion-title>Claim Profile</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="bgimg ion-padding" >
+
+  <div class="width-100 ion-margin-top ion-padding-top ion-text-center">
+    <img class="profile-photo" src="../../../../assets/imgs/no_profile_image.png"/>
+  </div>
+
+  <ion-grid>
+
+
+    <!-- profile_photo - end -->
+
+    <form (ngSubmit)="primaryFormSubmitted()" [formGroup]="primaryForm">
+
+      <!-- email - start -->
+      <label>
+        <ion-row class="border-bottom">
+          <ion-col class="tr-kx-icon" size="1">
+            <ion-icon name="ios-mail-outline"></ion-icon>
+          </ion-col>
+          <ion-col size="11">
+            <ion-input [value]="userInfo.email" formControlName="email" type="email"></ion-input>
+          </ion-col>
+        </ion-row>
+        <div class="validation-errors ion-text-center" >
+          <div
+                  *ngIf="!primaryForm.controls.email.valid && (primaryForm.get('email').dirty || primaryForm.get('email').touched)"
+                  class="error-message">
+            Please enter a valid email address.
+          </div>
+        </div>
+      </label>
+      <!-- email - end -->
+
+      <label>
+        <ion-row class="border-bottom">
+          <ion-col class="tr-kx-icon" size="1">
+            <ion-icon name="ios-lock-outline"></ion-icon>
+          </ion-col>
+          <ion-col size="11">
+            <ion-input formControlName="current_password" placeholder="Old Password" type="password"></ion-input>
+          </ion-col>
+        </ion-row>
+      </label>
+
+      <label>
+        <ion-row class="border-bottom">
+          <ion-col class="tr-kx-icon" size="1">
+            <ion-icon name="ios-lock-outline"></ion-icon>
+          </ion-col>
+          <ion-col size="11">
+            <ion-input formControlName="new_password" placeholder="New Password" type="password"></ion-input>
+          </ion-col>
+        </ion-row>
+        <div class="validation-errors ion-text-center" >
+          <div *ngIf="!primaryForm.controls.new_password.valid && (primaryForm.get('new_password').dirty || primaryForm.get('new_password').touched)" class="error-message">
+            Please pick a strong password with at least 8 characters.
+          </div>
+        </div>
+      </label>
+
+      <ion-row class="ion-padding">
+        <ion-col size="12">
+          <ion-button
+                  [disabled]="!primaryForm.valid"
+                  type="submit"
+                  color="light"
+                  expand="full"
+                  shape="round"
+                  class="common button ion-margin-top"
+          >Update</ion-button>
+
+        </ion-col>
+      </ion-row>
+
+    </form>
+
+  </ion-grid>
+
+</ion-content>

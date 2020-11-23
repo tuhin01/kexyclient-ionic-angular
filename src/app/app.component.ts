@@ -67,14 +67,14 @@ export class AppComponent {
       editDistributorPage = routeConstants.KEXY.EDIT_DISTRIBUTOR;
       invitePeoplePage = routeConstants.KEXY.INVITE_PEOPLE;
       distributorDashboardPage = routeConstants.KEXY.DISTRIBUTOR_DASHBOARD;
-      logoutPage = "LogoutPage";
+      logoutPage = routeConstants.KEXY.LOGOUT;
       editRestaurantPage = routeConstants.KEXY.EDIT_RESTAURANT;
-      editSubscriptionPage = "EditSubscriptionPage";
+      editSubscriptionPage = routeConstants.KEXY.EDIT_SUPPLIER;
       settingsPage = routeConstants.KEXY.SETTINGS;
       tutorialPage =  routeConstants.KEXY.TUTORIAL;
       restaurantDashboardPage = routeConstants.KEXY.RESTAURANT_TABS;
-      editSupplierPage = "EditSupplierPage";
-      supplierDashboardPage = "SupplierDashboardPage";
+      editSupplierPage = routeConstants.KEXY.EDIT_SUPPLIER;
+      supplierDashboardPage = routeConstants.KEXY.SUPPLIER_DASHBOARD;
     } else {
       this.isRestaurant = false;
       editProfilePage = routeConstants.KEXY.EDIT_PROFILE;
