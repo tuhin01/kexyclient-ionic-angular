@@ -178,7 +178,11 @@ const routes: Routes = [
   {
     path: routeConstants.KEXY.MESSAGE_CONV,
     loadChildren: () => import('./pages/kexy/message-conversation/message-conversation.module').then( m => m.MessageConversationPageModule)
+  },  {
+    path: 'logout',
+    loadChildren: () => import('./pages/kexy/logout/logout.module').then( m => m.LogoutPageModule)
   },
+
 
 
 
