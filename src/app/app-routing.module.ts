@@ -208,6 +208,11 @@ const routes: Routes = [
     path: routeConstants.KEXY.AUTO_CREATED_USER_UPDATE,
     loadChildren: () => import('./pages/kexy/auto-created-user-update/auto-created-user-update.module').then( m => m.AutoCreatedUserUpdatePageModule)
   },
+  {
+    path: routeConstants.KEXY.JOIN_REQUEST,
+    loadChildren: () => import('./pages/kexy/join-request/join-request.module').then( m => m.JoinRequestPageModule)
+  },
+
 ];
 
 @NgModule({

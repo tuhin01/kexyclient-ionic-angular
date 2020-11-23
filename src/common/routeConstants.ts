@@ -49,6 +49,7 @@ export const routeConstants = {
     DISTRIBUTOR_REP_ORDERS: "kexy-distributor-rep-orders",
     DISTRIBUTOR_REP_ORDER_DETAILS: "kexy-distributor-rep-order-details",
     AUTO_CREATED_USER_UPDATE: "kexy-auto-created-user-update",
+    JOIN_REQUEST: "kexy-join-request",
 
   },
 };

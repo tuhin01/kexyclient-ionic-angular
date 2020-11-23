@@ -65,9 +65,8 @@ export class HomePage extends BasePage implements OnInit {
     if (appType === constants.RESTAURANT) {
       loginDecisionPage = routeConstants.KEXY.LOGIN_DICISION;
       loginPage = routeConstants.KEXY.LOGIN;
-      //TODO- Fix
       autoCreatedUserUpdate = routeConstants.KEXY.AUTO_CREATED_USER_UPDATE;
-      joinRequestPage = "JoinRequestPage";
+      joinRequestPage = routeConstants.KEXY.JOIN_REQUEST;
       messagePage = routeConstants.KEXY.MESSAGE;
       welcomePage = routeConstants.KEXY.WELCOME;
       marketPlaceTypePage = routeConstants.KEXY.MARKETPLACE_TYPE;

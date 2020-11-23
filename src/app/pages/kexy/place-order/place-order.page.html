@@ -320,11 +320,11 @@
           </div>
         </ion-row>
 
-        <ion-row *ngIf="inventory_date && productList.length <= 0" padding>
+        <ion-row *ngIf="inventory_date && productList.length <= 0" class="ion-padding">
           <ion-col class="ion-text-center"> No products found in this category. </ion-col>
         </ion-row>
 
-        <ion-row class="submit-buttons" padding>
+        <ion-row class="submit-buttons ion-padding">
           <ion-col [class.should_full_width]="is_from_finalize_order" size="6">
             <ion-button
               type="submit"

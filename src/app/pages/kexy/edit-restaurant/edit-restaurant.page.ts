@@ -21,10 +21,10 @@ interface StatesUS {
 })
 export class EditRestaurantPage extends BasePage implements OnInit {
   protected params: any;
-  private restaurantEditForm: FormGroup;
-  private imageUrl: any = null;
+   restaurantEditForm: FormGroup;
+  imageUrl: any = null;
   private newImageUploaded = false;
-  private orgInfo: any = {}; // TODO model
+   orgInfo: any = {}; // TODO model
   public statesList: Array<StatesUS> = [];
 
   constructor(

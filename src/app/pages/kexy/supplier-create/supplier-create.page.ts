@@ -17,8 +17,8 @@ import { CameraService } from 'src/app/services/camera.service';
 })
 export class SupplierCreatePage extends BasePage implements OnInit {
   private readonly params: any;
-  private supplierCreateForm: FormGroup;
-  private imageUrl = null;
+  supplierCreateForm: FormGroup;
+  imageUrl = null;
   private supplier_id: number = null;
   private job_title:string = '';
 

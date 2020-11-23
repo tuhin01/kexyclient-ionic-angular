@@ -15,21 +15,20 @@ import { routeConstants } from 'src/common/routeConstants';
 export class DistributorSetupRestaurantBarPage extends BasePage implements OnInit {
   private readonly params: any;
   private distributor_id: number;
-  private searchedWithZipCode: string;
+  public searchedWithZipCode: string;
   private zip_code_list;
   private side: string;
-  private search_string: string = "";
+   search_string: string = "";
   private userDetails: any;
   private file: any;
-  //private listOfValidEmails: any[] = [];
-  private listOfInvalidEmails: any[] = [];
-  private allSelected: boolean;
+  private listOfInvalidEmails = [];
+  allSelected: boolean;
 
   private emailRegExp: RegExp = /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
 
-  private restaurant_list: Object[] = [];
-  private selected_restaurant_id_list: number[] = [];
-  private invited_list: Object[] = [];
+   restaurant_list = [];
+   selected_restaurant_id_list = [];
+   invited_list = [];
 
   constructor(
     public router: Router,

@@ -17,8 +17,8 @@ import { routeConstants } from 'src/common/routeConstants';
 export class SupplierInviteEmployeePage extends BasePage implements OnInit {
   private readonly params: any;
   private supplier_id;
-  private primaryForm;
-  private from_page: string = null;
+  primaryForm;
+  from_page: string = null;
 
   constructor(
     public router: Router,

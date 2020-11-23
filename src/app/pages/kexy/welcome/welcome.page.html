@@ -1,4 +1,4 @@
-<ion-content padding class="bgimg vertical-align-content list-avatar-page">
+<ion-content  class="bgimg vertical-align-content list-avatar-page ion-padding">
   <ion-grid>
     <ion-row>
       <ion-col class="tr-kexy-login-start-box ion-text-center">
@@ -14,7 +14,7 @@
       </ion-col>
     </ion-row>
 
-    <ion-row padding *ngIf="isJoinType === 'request_sent' && joinToOrg !== ''">
+    <ion-row class="ion-padding" *ngIf="isJoinType === 'request_sent' && joinToOrg !== ''">
       <ion-col size="12">
         <ion-button
           (click)="checkRequestTapped()"
@@ -27,7 +27,7 @@
       </ion-col>
     </ion-row>
 
-    <ion-row padding>
+    <ion-row class="ion-padding">
       <ion-col size="12">
         <ion-button
                 (click)="exploreKexyTapped()"

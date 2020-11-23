@@ -12,7 +12,7 @@ import { routeConstants } from 'src/common/routeConstants';
 })
 export class DistributorSelectTypePage extends BasePage implements OnInit {
   private readonly params: any;
-  private side: string = 'FOH';
+  side: string = 'FOH';
   constructor(
     public router: Router,
     public route: ActivatedRoute,

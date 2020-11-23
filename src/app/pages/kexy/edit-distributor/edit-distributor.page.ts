@@ -18,10 +18,10 @@ import { CameraService } from 'src/app/services/camera.service';
 })
 export class EditDistributorPage extends BasePage implements OnInit {
 
-  private distributorEditForm: FormGroup;
-  private imageUrl: any = null;
+   distributorEditForm: FormGroup;
+  imageUrl: any = null;
   private newImageUploaded = false;
-  private orgInfo: any = {}; // TODO model
+   orgInfo: any = {}; // TODO model
 
   constructor(
     public router: Router,

@@ -17,9 +17,9 @@ import { routeConstants } from 'src/common/routeConstants';
 export class InviteRestaurantEmployeePage extends BasePage implements OnInit {
   private readonly params: any;
   public role: string;
-  private primaryForm: FormGroup;
+  primaryForm: FormGroup;
   private restaurant_id;
-  private from_page: string = null;
+   from_page: string = null;
   private showHeader: boolean = true;
   
   constructor(

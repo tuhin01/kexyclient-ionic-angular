@@ -15,9 +15,9 @@ import { apis } from 'src/common/shared';
 export class InviteDistributorEmployeePage extends BasePage implements OnInit {
   private readonly params: any;
   public role: string;
-  private primaryForm: FormGroup;
+  primaryForm: FormGroup;
   private distributor_id;
-  private from_page: string = null;
+   from_page: string = null;
   private showHeader: boolean = true;
 
   constructor(

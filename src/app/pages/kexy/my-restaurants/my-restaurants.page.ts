@@ -14,22 +14,22 @@ import { LoadingController, AlertController, ModalController, MenuController, Na
   styleUrls: ['./my-restaurants.page.scss'],
 })
 export class MyRestaurantsPage extends BasePage implements OnInit {
-  private restaurant_list = [];
-  private restaurant_search_result = [];
+  restaurant_list = [];
+   restaurant_search_result = [];
   // private showSearchBar: boolean = false;
   private defaultOrgZipCodeList;
   private zipCodeList;
   private side: string;
   private search_string: string = '';
   private organization;
-  private selected_restaurant_id_list: number[] = [];
-  private selected_restaurant_for_deletion_id_list: number[] = [];
+   selected_restaurant_id_list: number[] = [];
+   selected_restaurant_for_deletion_id_list: number[] = [];
   public selectedTab: string = "list";
   public isSearch: boolean = false;
-  private searchedByString: boolean = false;
-  private searchedWithZipCode: string;
-  private allCurrentOrgSelected: boolean;
-  private allSearchOrgSelected: boolean;
+   searchedByString: boolean = false;
+   searchedWithZipCode: string;
+   allCurrentOrgSelected: boolean;
+   allSearchOrgSelected: boolean;
 
   constructor(
     public router: Router,

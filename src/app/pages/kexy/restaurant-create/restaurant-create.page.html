@@ -11,7 +11,7 @@
   <div *ngIf="modalShow" class="overlay"></div>
 
   <div class="width-100 ion-text-center ion-padding-top ion-margin-top">
-    <img alt="Kexy Logo" width="196" src="../../assets/imgs/logo.png" />
+    <img alt="Kexy Logo" width="196" src="../../../../assets/imgs/logo.png" />
   </div>
 
   <div *ngIf="modalShow" class="tr-modal-popup">
@@ -32,7 +32,7 @@
     <div *ngIf="placeSuggestionList.length > 0">
       <p class="tr-list-title">List of restaurants nearby</p>
       <ion-item *ngFor="let placeSuggestion of placeSuggestionList; let i of index;">
-        <ion-icon name="restaurant" item-start></ion-icon>
+        <ion-icon name="restaurant" slot="start"></ion-icon>
         <ion-label (click)="addressClicked(placeSuggestion)">
           {{placeSuggestion.name}}<br />
           {{placeSuggestion.address}}

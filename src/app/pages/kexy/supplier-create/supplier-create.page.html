@@ -58,7 +58,7 @@
             <ion-input placeholder="Company Name" type="text" formControlName="name"></ion-input>
           </ion-col>
         </ion-row>
-        <div class="validation-errors" text-center>
+        <div class="validation-errors ion-text-center" >
           <div class="error-message"
             *ngIf="!supplierCreateForm.controls.name.valid && (supplierCreateForm.get('name').dirty || supplierCreateForm.get('name').touched)">
             Please enter a valid Company Name.
