@@ -11,6 +11,7 @@ import { statesCanada } from "../../../../assets/statesCanada";
 import { LocationService } from "../../../services/location.service";
 import { apis, constants } from "../../../../common/shared";
 import { routeConstants } from "../../../../common/routeConstants";
+import { CameraService } from 'src/app/services/camera.service';
 
 interface States {
   name: string;
@@ -60,7 +61,8 @@ export class RestaurantCreatePage extends BasePage implements OnInit {
     public menu: MenuController,
     public navCtrl: NavController,
     private locationService: LocationService,
-    private fb: FormBuilder
+    private fb: FormBuilder,
+    public cameraService: CameraService,
   ) {
     super(router, route, httpClient, loadingCtrl, alertCtrl, storage, menu, navCtrl);
     if (this.router.getCurrentNavigation().extras.state) {
@@ -292,11 +294,11 @@ export class RestaurantCreatePage extends BasePage implements OnInit {
   }
 
   async presentFileChooser() {
-    // TODO - Fix me
-    // let imageData = await this.takePhoto.presentFileChooser();
-    // if (imageData) {
-    //   this.imageUrl = imageData;
-    // }
+ 
+    let imageData = await this.cameraService.presentFileChooser();
+    if (imageData) {
+      this.imageUrl = imageData;
+    }
   }
 
   public async termsClicked() {

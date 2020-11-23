@@ -7,6 +7,7 @@ import {Storage} from '@ionic/storage';
 import { FormGroup, FormBuilder, FormControl, Validators, FormArray } from '@angular/forms';
 import { routeConstants } from 'src/common/routeConstants';
 import { constants, apis } from '../../../../common/shared';
+import { CameraService } from 'src/app/services/camera.service';
 
 
 @Component({
@@ -33,7 +34,7 @@ export class SupplierCreatePage extends BasePage implements OnInit {
     public navCtrl: NavController,
     public navParams: NavParams,
     public formBuilder: FormBuilder,
-    // public takePhoto: TakePhotoProvider,
+    public cameraService: CameraService,
 ) {
   super(router, route, httpClient, loadingCtrl, alertCtrl, storage, menu, navCtrl);
   if (this.router.getCurrentNavigation().extras.state) {
@@ -92,7 +93,7 @@ export class SupplierCreatePage extends BasePage implements OnInit {
   async supplierCreateFormSubmitted(): Promise<void> {
     if (!this.supplierCreateForm.valid) return;
 
-    let side = this.navParams.get('side');
+    let side = this.params.side;
     //const restaurant_id_list = this.navParams.get('restaurantIdList');
 
     if (!side) {
@@ -140,10 +141,10 @@ export class SupplierCreatePage extends BasePage implements OnInit {
   }
 
   async presentFileChooser() {
-    //TODO-FIX
-    // let imageData = await this.takePhoto.presentFileChooser();
-    // if (imageData) {
-    //   this.imageUrl = imageData;
-    // }
+
+    let imageData = await this.cameraService.presentFileChooser();
+    if (imageData) {
+      this.imageUrl = imageData;
+    }
   }
 }

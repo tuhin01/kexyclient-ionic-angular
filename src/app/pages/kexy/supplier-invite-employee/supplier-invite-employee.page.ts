@@ -40,8 +40,8 @@ export class SupplierInviteEmployeePage extends BasePage implements OnInit {
   ngOnInit() {
     this._disableMenu();
 
-    this.supplier_id = this.params.get('supplier_id');
-    this.from_page = this.params.get('from_page');
+    this.supplier_id = this.params.supplier_id;
+    this.from_page = this.params.from_page;
     this.primaryForm = new FormGroup({
       invited_employee_list: this.formBuilder.array([])
     });
