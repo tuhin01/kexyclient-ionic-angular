@@ -22,21 +22,6 @@
   background-size: cover;
 }
 
-.dashboard-segment {
-  padding: 0;
-  margin-top: -5px;
-  background: white;
-
-  .segment-button {
-    font-size: 16px;
-    color: gray;
-  }
-
-  .segment-activated {
-    color: #488aff;
-  }
-}
-
 .kexy-marketplace-card {
   width: 70px;
   height: 90px;
@@ -54,7 +39,6 @@
   .marketplace-name {
     color: gray;
     font-size: 12px;
-
   }
 
   ion-label {
@@ -75,7 +59,6 @@
     padding: 0 !important;
     border: none !important;
   }
-
 }
 
 .kexy-scroll-left-to-right {
@@ -116,7 +99,6 @@
     top: 5px;
   }
 }
-
 
 .hidden {
   display: none !important;

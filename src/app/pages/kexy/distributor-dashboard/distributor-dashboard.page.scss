@@ -1,40 +1,105 @@
 .dashboard-grid {
+  padding: 0;
+}
+
+.dashboard-header-iocn {
+  background: transparent !important;
+  box-shadow: none;
+  position: relative;
+}
+
+.tr-dashboard-icon-right {
+  float: right;
+}
+
+.tr-icon-notification {
+  margin-right: -10px;
+}
+
+.dashboard-header {
+  height: 162px;
+  background: url("../../../../assets/imgs/dashboard-bg.png") no-repeat center center;
+  background-size: cover;
+}
+
+.kexy-marketplace-card {
+  width: 70px;
+  height: 90px;
+  padding: 0 5px;
+  border-radius: 6px;
+  margin-right: 5px;
+  margin-left: 5px;
+  display: inline-block !important;
+
+  img {
+    height: 62px;
+    background: white;
+  }
+
+  .marketplace-name {
+    color: gray;
+    font-size: 12px;
+  }
+
+  ion-label {
+    white-space: unset;
+    margin: 0;
+  }
+
+  .radio-icon {
+    display: none;
+  }
+
+  .radio {
+    margin: 0 !important;
+  }
+
+  .item-inner {
+    margin: 0;
+    padding: 0 !important;
+    border: none !important;
+  }
+}
+
+.kexy-scroll-left-to-right {
+  padding: 16px 0 0 0;
+}
+
+.item-radio {
+  border: 2px solid white;
+}
+
+.item-radio-checked {
+  border: 2px solid cornflowerblue;
+}
+
+.recommended-deal-headline {
+  margin: 0 0 10px 5px;
+}
+
+.recommended-deal {
+  .kexy-marketplace-card {
+    border: none;
+    padding: 0 0 5px 0;
+  }
+}
+
+.kexy-zip-code-btn {
+  color: black;
+  text-transform: initial;
+  text-decoration: underline;
+}
+
+.content-ios {
+  .dashboard-grid {
     padding: 0;
   }
 
-  .dashboard-header-iocn {
-    background: transparent !important;
-    box-shadow: none;
-    position: relative;
+  .tr-badge {
+    top: 5px;
   }
+}
 
-  .tr-dashboard-icon-right {
-    float: right;
-  }
-
-  .tr-icon-notification {
-    margin-right: -10px;
-  }
-
-  .dashboard-header {
-    height: 232px;
-    zoom: 0.7;
-    background: url("../../../../assets/imgs/dashboard-bg.png") no-repeat center center !important;
-    background-size: cover;
-  }
-
-  .kexy-zip-code-btn {
-    color: black;
-    text-transform: initial;
-    text-decoration: underline;
-  }
-
-  .content-ios {
-    .dashboard-grid {
-      padding: 0;
-    }
-
-    .tr-badge {
-      top: 5px;
-    }
-  }
+.hidden {
+  display: none !important;
+}

@@ -25,16 +25,19 @@
     <ion-header *ngIf="!isRestaurant" class="sidebar-header cannabis"></ion-header>
 
     <ion-content>
-      <ion-list>
-        <ion-item>
-          <ion-icon name="mail" slot="start"></ion-icon>
-          <ion-label>Dis 1</ion-label>
+      <ion-menu-toggle
+        auto-hide="false"
+        class="sidebar-menu"
+        [class.cannabis]="!isRestaurant"
+        *ngFor="let p of distributorMenuPages"
+        (click)="openPage(p)"
+      >
+        <ion-item [ngClass]="p.cssClass">
+          <ion-icon name="{{ p.icon }}" slot="start"></ion-icon>
+          <ion-label>{{ p.title }}</ion-label>
         </ion-item>
-        <ion-item>
-          <ion-icon name="paper-plane" slot="start"></ion-icon>
-          <ion-label>Dis 2</ion-label>
-        </ion-item>
-      </ion-list>
+      </ion-menu-toggle>
+      <p class="tr-kexy-internal-build">Internal Build - 1.0.5</p>
     </ion-content>
   </ion-menu>
 
@@ -43,16 +46,19 @@
     <ion-header *ngIf="!isRestaurant" class="sidebar-header cannabis"></ion-header>
 
     <ion-content>
-      <ion-list>
-        <ion-item>
-          <ion-icon name="mail" slot="start"></ion-icon>
-          <ion-label>Sup 1</ion-label>
+      <ion-menu-toggle
+        auto-hide="false"
+        class="sidebar-menu"
+        [class.cannabis]="!isRestaurant"
+        *ngFor="let p of supplierMenuPages"
+        (click)="openPage(p)"
+      >
+        <ion-item [ngClass]="p.cssClass">
+          <ion-icon name="{{ p.icon }}" slot="start"></ion-icon>
+          <ion-label>{{ p.title }}</ion-label>
         </ion-item>
-        <ion-item>
-          <ion-icon name="paper-plane" slot="start"></ion-icon>
-          <ion-label>Sup 2</ion-label>
-        </ion-item>
-      </ion-list>
+      </ion-menu-toggle>
+      <p class="tr-kexy-internal-build">Internal Build - 1.0.5</p>
     </ion-content>
   </ion-menu>
 

@@ -4,14 +4,15 @@ import { HttpClient, HttpErrorResponse, HttpHeaders } from "@angular/common/http
 import { ApiDef, constants } from "../../common/shared";
 import { getConfig } from "../../common/config";
 import { ActivatedRoute, Router } from "@angular/router";
+import { OnInit } from "@angular/core";
 
-export class BasePage {
+export class BasePage implements OnInit {
   public config: any;
   private readonly baseUri;
   public baseUriForImages;
   public isShowing = false;
+  public org: any;
   // protected readonly params: any;
-
 
   constructor(
     public router: Router,
@@ -26,6 +27,19 @@ export class BasePage {
     this.config = getConfig();
     this.baseUri = this.config.baseUri;
     this.baseUriForImages = this.baseUri.replace("/v1", "");
+  }
+
+  ngOnInit() {
+    (async () => {
+      this.org = await this.storage.get(constants.STORAGE_ORGANIZATION);
+      if (this.org.type === constants.ORGANIZATION_TYPE_RESTAURANT) {
+        await this._enableRestaurantMenu();
+      } else if (this.org.type === constants.ORGANIZATION_TYPE_DISTRIBUTOR) {
+        await this._enableDistributorMenu();
+      } else {
+        await this._enableSupplierMenu();
+      }
+    })();
   }
 
   /** This method will be used to ensure currently logged in user have access to visit current page. */

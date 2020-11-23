@@ -27,9 +27,9 @@ export class EditProfilePage extends BasePage implements OnInit {
     phone: "",
     job_title: "",
     email: "",
-    logo_image_url: ""
-  }; // TODO model
-  orgInfo: any = {}; // TODO model
+    logo_image_url: "",
+  };
+  orgInfo: any = {};
 
   constructor(
     public router: Router,
@@ -46,7 +46,6 @@ export class EditProfilePage extends BasePage implements OnInit {
   }
 
   ngOnInit() {
-    this._enableRestaurantMenu();
     this.primaryForm = new FormGroup({
       first_name: new FormControl(
         this.userInfo.first_name,
@@ -95,7 +94,6 @@ export class EditProfilePage extends BasePage implements OnInit {
   async getUserData(): Promise<any> {
     this.userInfo = await this.storage.get(constants.STORAGE_USER);
     this.orgInfo = await this.storage.get(constants.STORAGE_ORGANIZATION);
-
     this.emailBackup = this.userInfo.email;
     this.phoneBackup = this.userInfo.phone;
 
