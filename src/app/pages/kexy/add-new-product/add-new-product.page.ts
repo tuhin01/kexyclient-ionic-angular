@@ -297,6 +297,7 @@ export class AddNewProductPage extends BasePage implements OnInit {
   }
 
   selectDistributor(distributor) {
+
     this.product.distributor.id = distributor.id;
     this.product.distributor.name = distributor.name;
     this.ignoreNextFilter = true;

@@ -30,9 +30,14 @@
 
 .kexy-scroll-left-to-right {
   padding: 0;
+  overflow-x: scroll;
+  overflow-y: hidden;
+  white-space: nowrap;
 
   .kexy-ion-scroll {
     height: 125px;
+    display: flex;
+    align-items: flex-start;
 
     .kexy-marketplace-card {
       width: calc(115px * (375 / 750));
