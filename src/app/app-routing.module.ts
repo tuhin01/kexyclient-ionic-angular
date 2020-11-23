@@ -167,7 +167,7 @@ const routes: Routes = [
     path: routeConstants.KEXY.MY_RESTAURANTS,
     loadChildren: () => import('./pages/kexy/my-restaurants/my-restaurants.module').then( m => m.MyRestaurantsPageModule)
   },
-
+ 
 
 
 
@@ -195,6 +195,11 @@ const routes: Routes = [
     path: routeConstants.KEXY.DISTRIBUTOR_REP_ORDERS,
     loadChildren: () => import('./pages/kexy/distributor-rep-orders/distributor-rep-orders.module').then( m => m.DistributorRepOrdersPageModule)
   },
+  {
+    path: routeConstants.KEXY.DISTRIBUTOR_REP_ORDER_DETAILS,
+    loadChildren: () => import('./pages/kexy/distributor-rep-order-details/distributor-rep-order-details.module').then( m => m.DistributorRepOrderDetailsPageModule)
+  },
+
 
 
  

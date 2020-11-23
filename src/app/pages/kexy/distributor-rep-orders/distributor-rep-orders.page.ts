@@ -5,6 +5,7 @@ import {apis, constants} from "../../../../common/shared";
 import { HttpClient } from '@angular/common/http';
 import { Router, ActivatedRoute } from '@angular/router';
 import { LoadingController, AlertController, MenuController, NavController } from '@ionic/angular';
+import { routeConstants } from 'src/common/routeConstants';
 
 @Component({
   selector: 'app-distributor-rep-orders',
@@ -67,22 +68,18 @@ export class DistributorRepOrdersPage extends BasePage implements OnInit {
   }
 
   orderTapped(order) {
-    // let order_id = order.order_id;
-    // let order_status = order.status;
-    // let order_date = order.order.order_date;
-    // let order_number = order.order.order_number;
-    // let restaurant_name = order.order.restaurant.name;
-    // TODO- Fix
-  //   this.navCtrl.push(
-  //     'DistributorRepOrderDetailsPage',
-  //     {
-  //       order_id: order_id,
-  //       order_status: order_status,
-  //       order_date: order_date,
-  //       order_number: order_number,
-  //       restaurant_name: restaurant_name
-  //     }
-  //   );
-  // }
+    let order_id = order.order_id;
+    let order_status = order.status;
+    let order_date = order.order.order_date;
+    let order_number = order.order.order_number;
+    let restaurant_name = order.order.restaurant.name;
+    this.navigateTo(routeConstants.KEXY.DISTRIBUTOR_REP_ORDER_DETAILS),{
+      order_id: order_id,
+      order_status: order_status,
+      order_date: order_date,
+      order_number: order_number,
+      restaurant_name: restaurant_name
+    }
+
 }
 }

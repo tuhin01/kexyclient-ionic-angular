@@ -31,12 +31,12 @@ export class ForgetPasswordPage extends BasePage implements OnInit {
   }
 
   async primaryFormSubmitted() {
-    // if (!this.primaryForm.valid) return;
-    // let res = await this.callApi(
-    //   apis.API_USER_REQUEST_PASSWORD_RECOVERY_CODE,
-    //   this.primaryForm.value
-    // );
-    // if (!res.success) return;
+    if (!this.primaryForm.valid) return;
+    let res = await this.callApi(
+      apis.API_USER_REQUEST_PASSWORD_RECOVERY_CODE,
+      this.primaryForm.value
+    );
+    if (!res.success) return;
     await this.navigateTo(routeConstants.KEXY.PASSWORD_RESET, {email: this.primaryForm.value.email})
   }
 

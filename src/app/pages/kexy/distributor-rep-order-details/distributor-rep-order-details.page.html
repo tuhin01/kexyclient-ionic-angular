@@ -1,0 +1,70 @@
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-buttons slot="start">
+      <ion-back-button></ion-back-button>
+    </ion-buttons>
+    <ion-title>Order Details</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="lightGreyBg">
+
+  <ion-grid class="ion-no-padding">
+
+        <!-- Date, User and Order Section-->
+        <ion-row  class="tr-date-user-order ion-text-center">
+          <ion-col size="6">
+            <p>Date</p>
+            <h3>{{order_date  | date:'MM/dd/yy'}}</h3>
+          </ion-col>
+          <ion-col size="6">
+            <p>Order #</p>
+            <h3>{{order_number}}</h3>
+          </ion-col>
+        </ion-row>
+
+
+        <ion-row class="tr-kexy-order-all">
+
+          <ion-col size="10" class="ion-no-padding">
+            <div class="kexy-distributor">
+              <ion-item mode="md"  class="bg-transparent ion-no-padding" *ngIf="org">
+                <ion-icon style="font-size: 20px;" color="primary"
+                          name="checkbox"></ion-icon> {{restaurant_name}}
+              </ion-item>
+            </div>
+          </ion-col>
+          <ion-col size="2" class="kexy-distributor-icon">
+            <ion-icon name="contact" item-end></ion-icon>
+          </ion-col>
+
+          <ng-template ngFor let-cat="$implicit" [ngForOf]="order_categories" let-j="index">
+            <ion-col size="7" class="kexy-tr-order-head">{{cat.name}}</ion-col>
+            <ion-col size="5"  class="kexy-tr-order-head ion-text-right">Quantity Ordering</ion-col>
+            <ng-template ngFor let-product="$implicit" [ngForOf]="cat.ordered_products" let-k="index">
+              <ion-col size="7" class="kexy-tr-order-product">{{product.product.name}}</ion-col>
+              <ion-col size="5"  class="kexy-tr-order-product ion-text-right">
+                {{product.amount_to_order}}
+              </ion-col>
+            </ng-template>
+          </ng-template>
+
+        </ion-row>
+
+        <ion-row  class="submit-buttons ion-padding ion-margin-bottom">
+          <ion-col>
+            <ion-button
+                    *ngIf="order_status == 'pending'"
+                    (click)="orderConfirmTapped()"
+                    type="button"
+                    color="light"
+                    shape="round"
+                    class="common button ion-margin-top"
+            >CONFIRM ORDER</ion-button>
+
+          </ion-col>
+        </ion-row>
+
+  </ion-grid>
+
+</ion-content>

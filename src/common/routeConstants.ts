@@ -45,6 +45,7 @@ export const routeConstants = {
     EDIT_SUPPLIER: "kexy-edit-supplier",
     SUPPLIER_DASHBOARD: "kexy-supplier-dashboard",
     DISTRIBUTOR_REP_ORDERS: "kexy-distributor-rep-orders",
+    DISTRIBUTOR_REP_ORDER_DETAILS: "kexy-distributor-rep-order-details",
 
   },
 };

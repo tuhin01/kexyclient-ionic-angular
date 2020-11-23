@@ -1,14 +1,14 @@
 import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
-import { LoadingController, AlertController, MenuController, NavController, NavParams } from '@ionic/angular';
+import { LoadingController, AlertController, MenuController, NavController } from '@ionic/angular';
 import { BasePage } from '../../basePage';
 import { Storage } from '@ionic/storage';
 import { FormGroup, FormBuilder, FormControl, Validators, FormArray } from '@angular/forms';
 import { constants, apis } from '../../../../common/shared';
 
-import { TermsAndConditionsPage } from '../terms-and-conditions/terms-and-conditions.page';
 import { routeConstants } from 'src/common/routeConstants';
+import { CameraService } from 'src/app/services/camera.service';
 
 @Component({
   selector: 'app-distributor-create',
@@ -17,7 +17,7 @@ import { routeConstants } from 'src/common/routeConstants';
 })
 export class DistributorCreatePage extends BasePage implements OnInit {
   private readonly params: any;
-  private distributorCreateForm: FormGroup;
+  distributorCreateForm: FormGroup;
   private imageUrl = null;
   private distributor_id: number = null;
   private job_title: string = '';
@@ -31,9 +31,8 @@ export class DistributorCreatePage extends BasePage implements OnInit {
     public alertCtrl: AlertController,
     public menu: MenuController,
     public navCtrl: NavController,
-    public navParams: NavParams,
     public formBuilder: FormBuilder,
-    // public takePhoto: TakePhotoProvider,
+    public cameraService: CameraService,
   ) {
     super(router, route, httpClient, loadingCtrl, alertCtrl, storage, menu, navCtrl);
     if (this.router.getCurrentNavigation().extras.state) {
@@ -92,8 +91,8 @@ export class DistributorCreatePage extends BasePage implements OnInit {
   async distributorCreateFormSubmitted(): Promise<void> {
     if (!this.distributorCreateForm.valid) return;
 
-    let side = this.navParams.get('side');
-    const restaurant_id_list = this.navParams.get('restaurantIdList');
+    let side = this.params.side;
+    const restaurant_id_list = this.params.restaurantIdList;
 
     if (!side) {
       throw new Error("DEV_ERROR: Expected 'side' navParam.");
@@ -141,15 +140,15 @@ export class DistributorCreatePage extends BasePage implements OnInit {
 
   async presentFileChooser() {
 
-    //TODO -Fix
-    // let imageData = await this.takePhoto.presentFileChooser();
-    // if (imageData) {
-    //   this.imageUrl = imageData;
-    // }
+
+    let imageData = await this.cameraService.presentFileChooser();
+    if (imageData) {
+      this.imageUrl = imageData;
+    }
   }
 
   async termsClicked() {
-    await this.navigateTo(routeConstants.KEXY.TERMS_AND_CONDITION)
+    await this.navigateTo(routeConstants.KEXY.TERMS_AND_CONDITION);
   }
 
 }

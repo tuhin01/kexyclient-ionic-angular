@@ -54,12 +54,12 @@ export class DistributorSetupRestaurantBarPage extends BasePage implements OnIni
     this.restaurant_list = [];
     this.invited_list = [];
 
-    this.zip_code_list = this.params.get('zip_code_list');
+    this.zip_code_list = this.params.zip_code_list;
     this.searchedWithZipCode = this.zip_code_list.reduce((str, item) => {
       return str + item.zip_code + ", "
     }, "").slice(0, -2);
-    this.side = this.params.get('side');
-    this.distributor_id = this.params.get('distributor_id');
+    this.side = this.params.side;
+    this.distributor_id = this.params.distributor_id;
     this.listMatchingRestaurants(this.zip_code_list);
   }
   async listMatchingRestaurants(zip_code_list) {
