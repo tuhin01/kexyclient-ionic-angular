@@ -69,7 +69,7 @@ export class AppComponent {
       distributorDashboardPage = routeConstants.KEXY.DISTRIBUTOR_DASHBOARD;
       logoutPage = routeConstants.KEXY.LOGOUT;
       editRestaurantPage = routeConstants.KEXY.EDIT_RESTAURANT;
-      editSubscriptionPage = "EditSubscriptionPage";
+      editSubscriptionPage = routeConstants.KEXY.EDIT_SUPPLIER;
       settingsPage = routeConstants.KEXY.SETTINGS;
       tutorialPage =  routeConstants.KEXY.TUTORIAL;
       restaurantDashboardPage = routeConstants.KEXY.RESTAURANT_TABS;

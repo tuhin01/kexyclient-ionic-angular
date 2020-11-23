@@ -183,7 +183,8 @@ export class DistributorDashboardPage extends BasePage implements OnInit {
   // }
 
   public invitePeopleTapped() {
-    //TODO-Fix
+ 
+    this.navigateTo(routeConstants.KEXY.INVITE_PEOPLE)
     // this.navCtrl.push("InvitePeoplePage");
   }
 

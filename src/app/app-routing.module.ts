@@ -182,6 +182,12 @@ const routes: Routes = [
     path: routeConstants.KEXY.LOGOUT,
     loadChildren: () => import('./pages/kexy/logout/logout.module').then( m => m.LogoutPageModule)
   },
+ 
+  {
+    path: routeConstants.KEXY.EDIT_SUPPLIER,
+    loadChildren: () => import('./pages/kexy/edit-supplier/edit-supplier.module').then( m => m.EditSupplierPageModule)
+  },
+ 
 
 
 

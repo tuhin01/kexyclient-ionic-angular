@@ -23,7 +23,7 @@ export class LogoutPage extends BasePage implements OnInit {
     public alertCtrl: AlertController,
     public menu: MenuController,
     public navCtrl: NavController,
-    private cameraService: CameraService
+    // private cameraService: CameraService
   ) {
     super(router, route, httpClient, loadingCtrl, alertCtrl, storage, menu, navCtrl);
   }
