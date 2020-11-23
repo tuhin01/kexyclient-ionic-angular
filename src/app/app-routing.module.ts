@@ -168,6 +168,18 @@ const routes: Routes = [
     loadChildren: () => import('./pages/kexy/my-restaurants/my-restaurants.module').then( m => m.MyRestaurantsPageModule)
   },
   {
+    path: routeConstants.KEXY.MESSAGE,
+    loadChildren: () =>
+      import("./pages/kexy/message/message.module").then((m) => m.MessagePageModule),
+  },
+  {
+    path: routeConstants.KEXY.ALL_CONTACTS,
+    loadChildren: () =>
+      import("./pages/kexy/all-contacts/all-contacts.module").then(
+        (m) => m.AllContactsPageModule
+      ),
+  },
+  {
     path: routeConstants.KEXY.MESSAGE_CONV,
     loadChildren: () => import('./pages/kexy/message-conversation/message-conversation.module').then( m => m.MessageConversationPageModule)
   },

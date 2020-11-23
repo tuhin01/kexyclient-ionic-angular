@@ -11,7 +11,7 @@ import {
 } from "@ionic/angular";
 import { BasePage } from "../../basePage";
 import { NodeSocketService } from "../../../services/node-socket.service";
-import { constants } from "../../../../common/shared";
+import { apis, constants } from "../../../../common/shared";
 import { routeConstants } from "../../../../common/routeConstants";
 
 @Component({
@@ -28,6 +28,7 @@ export class MessagePage extends BasePage implements OnInit {
   conversation_list: any = [];
   conversation_list_backup: any = [];
   online_user_list: any;
+  public org: any;
 
   constructor(
     public router: Router,
@@ -47,6 +48,7 @@ export class MessagePage extends BasePage implements OnInit {
 
   ngOnInit() {
     (async () => {
+      this.org = await this.storage.get(constants.STORAGE_ORGANIZATION);
       this.currentUser = await this.storage.get(constants.STORAGE_USER);
       this.nodeSocket.setUserId(this.currentUser.id);
       this.nodeSocket.event("conversation-list-updated").subscribe(({ conversation_list }) => {
@@ -109,7 +111,9 @@ export class MessagePage extends BasePage implements OnInit {
 
   async _startConversation(conversation) {
     this.shouldIgnoreNextPageLeave = true;
-    await this.navigateTo(routeConstants.KEXY.MESSAGE_CONV, { conversation: JSON.stringify(conversation) });
+    await this.navigateTo(routeConstants.KEXY.MESSAGE_CONV, {
+      conversation: JSON.stringify(conversation),
+    });
   }
 
   async conversationTapped(i) {
@@ -119,11 +123,23 @@ export class MessagePage extends BasePage implements OnInit {
 
   async addConversationTapped() {
     this.shouldIgnoreNextPageLeave = true;
-    await this.navigateTo(routeConstants.KEXY.RESTAURANT_TABS + "/" + routeConstants.KEXY.ALL_CONTACTS);
+    let url = this.getAllContactsPageUrl();
+    await this.navigateTo(url);
+  }
+
+  private getAllContactsPageUrl() {
+    let url = "";
+    if (this.org.type === constants.ORGANIZATION_TYPE_RESTAURANT) {
+      url = routeConstants.KEXY.RESTAURANT_TABS + "/" + routeConstants.KEXY.ALL_CONTACTS;
+    } else {
+      url = routeConstants.KEXY.ALL_CONTACTS;
+    }
+    return url;
   }
 
   async addParticipantsTapped() {
-    await this.navigateTo(routeConstants.KEXY.RESTAURANT_TABS + "/" + routeConstants.KEXY.ALL_CONTACTS, {
+    let url = this.getAllContactsPageUrl();
+    await this.navigateTo(url, {
       conversation: [],
       mode: "add-participants",
     });
