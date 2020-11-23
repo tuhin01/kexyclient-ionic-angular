@@ -273,7 +273,7 @@ export class BasePage {
   }
 
   async setRoot(url, params = {}) {
-    await this.navCtrl.navigateForward(url, { animated: false, replaceUrl: true, state: params });
+    await this.navCtrl.navigateRoot(url, { animated: false, replaceUrl: true, state: params });
   }
 
   async setRootWithAnimationForward(url, params = {}) {
