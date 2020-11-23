@@ -199,6 +199,11 @@ const routes: Routes = [
     path: routeConstants.KEXY.DISTRIBUTOR_REP_ORDER_DETAILS,
     loadChildren: () => import('./pages/kexy/distributor-rep-order-details/distributor-rep-order-details.module').then( m => m.DistributorRepOrderDetailsPageModule)
   },
+  {
+    path: routeConstants.KEXY.AUTO_CREATED_USER_UPDATE,
+    loadChildren: () => import('./pages/kexy/auto-created-user-update/auto-created-user-update.module').then( m => m.AutoCreatedUserUpdatePageModule)
+  },
+
 
 
 

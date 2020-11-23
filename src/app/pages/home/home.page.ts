@@ -66,7 +66,7 @@ export class HomePage extends BasePage implements OnInit {
       loginDecisionPage = routeConstants.KEXY.LOGIN_DICISION;
       loginPage = routeConstants.KEXY.LOGIN;
       //TODO- Fix
-      autoCreatedUserUpdate = "AutoCreatedUserUpdate";
+      autoCreatedUserUpdate = routeConstants.KEXY.AUTO_CREATED_USER_UPDATE;
       joinRequestPage = "JoinRequestPage";
       messagePage = routeConstants.KEXY.MESSAGE;
       welcomePage = routeConstants.KEXY.WELCOME;
