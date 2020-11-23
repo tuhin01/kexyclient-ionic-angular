@@ -25,7 +25,7 @@
                 shape="round"
                 class="common button"
                 expand="block"
-        >Sign Up <ion-icon name="attach"></ion-icon>
+        ><ion-icon name="attach"></ion-icon>
           Change Company Logo</ion-button>
       </ion-col>
     </ion-row>
@@ -34,7 +34,7 @@
 
       <ion-row class="border-bottom">
         <ion-col size="1" class="tr-kx-icon">
-          <ion-icon name="ios-browsers-outline"></ion-icon>
+          <ion-icon name="browsers-outline"></ion-icon>
         </ion-col>
         <ion-col size="11">
           <div class="tr-kexy-edit-side">
@@ -55,10 +55,10 @@
       <label>
         <ion-row class="border-bottom">
           <ion-col size="1" class="tr-kx-icon">
-            <ion-icon name="ios-person-outline"></ion-icon>
+            <ion-icon name="person-outline"></ion-icon>
           </ion-col>
           <ion-col size="11">
-            <ion-input placeholder="Job Title" type="text" formControlName="job_title" [(ngModel)]="orgInfo.job_title"></ion-input>
+            <ion-input class="kx-edit-dist" placeholder="Job Title" type="text" formControlName="job_title" [(ngModel)]="orgInfo.job_title"></ion-input>
           </ion-col>
         </ion-row>
         <div class="validation-errors ion-text-center" >
@@ -71,10 +71,10 @@
       <label>
         <ion-row class="border-bottom">
           <ion-col size="1" class="tr-kx-icon">
-            <ion-icon name="ios-home-outline"></ion-icon>
+            <ion-icon name="home-outline"></ion-icon>
           </ion-col>
           <ion-col size="11">
-            <ion-input placeholder="Company Name" type="text" formControlName="name" [(ngModel)]="orgInfo.name"></ion-input>
+            <ion-input class="kx-edit-dist" placeholder="Company Name" type="text" formControlName="name" [(ngModel)]="orgInfo.name"></ion-input>
           </ion-col>
         </ion-row>
         <div class="validation-errors ion-text-center" >
@@ -87,10 +87,10 @@
       <label>
         <ion-row class="border-bottom">
           <ion-col size="1" class="tr-kx-icon">
-            <ion-icon name="ios-call-outline"></ion-icon>
+            <ion-icon name="call-outline"></ion-icon>
           </ion-col>
           <ion-col size="11">
-            <ion-input placeholder="Mobile Number" type="tel" formControlName="phone" [(ngModel)]="orgInfo.phone"></ion-input>
+            <ion-input class="kx-edit-dist" placeholder="Mobile Number" type="tel" formControlName="phone" [(ngModel)]="orgInfo.phone"></ion-input>
           </ion-col>
         </ion-row>
         <div class="validation-errors ion-text-center" >
@@ -110,13 +110,13 @@
         <label [formGroupName]="i" *ngFor="let zip_code of distributorEditForm.controls.zip_code_list.controls; let i = index">
           <ion-row class="border-bottom">
             <ion-col size="1" class="tr-kx-icon">
-              <ion-icon name="ios-list-outline"></ion-icon>
+              <ion-icon name="list-outline"></ion-icon>
             </ion-col>
             <ion-col size="10">
-              <ion-input placeholder="Zip Code" type="text" formControlName="zip_code"></ion-input>
+              <ion-input class="kx-edit-dist" placeholder="Zip Code" type="text" formControlName="zip_code"></ion-input>
             </ion-col>
             <ion-col size="1" class="tr-kx-icon">
-              <ion-icon name="ios-trash-outline" *ngIf="distributorEditForm.controls.zip_code_list.length > 1" (click)="removeZipCode(i)"></ion-icon>
+              <ion-icon name="trash-outline" *ngIf="distributorEditForm.controls.zip_code_list.length > 1" (click)="removeZipCode(i)"></ion-icon>
             </ion-col>
           </ion-row>
           <div class="validation-errors ion-text-center" >
@@ -133,7 +133,7 @@
                       fill="clear"
                       class="kexy-zip-code-btn"
                       *ngIf="distributorEditForm.controls.zip_code_list.length - 1 === i"
-              ><ion-icon name="ios-add-circle-outline"></ion-icon>
+              ><ion-icon name="add-circle-outline"></ion-icon>
                 Add another zip code</ion-button>
             </ion-col>
           </ion-row>
@@ -158,5 +158,3 @@
   </ion-grid>
 
 </ion-content>
-<kexy-bottom-nagigation-bar></kexy-bottom-nagigation-bar>
-

@@ -20,7 +20,7 @@
       </ion-col>
     </ion-row>
 
-    <form class="ion-padding" [formGroup]="primaryForm" (ngSubmit)="primaryFormSubmitted()">
+    <form [formGroup]="primaryForm" (ngSubmit)="primaryFormSubmitted()">
       <label *ngIf="!isMobileLogin">
         <ion-row class="border-bottom">
           <ion-col size="1" class="tr-kx-icon">
@@ -85,9 +85,9 @@
       </label>
 
       <label>
-        <ion-row class="ion-padding-top">
+        <ion-row class="ion-padding-top kx-rem-pass">
           <ion-col size="6">
-            <ion-checkbox formControlName="rememberMe" color="primary"></ion-checkbox>
+            <ion-checkbox mode="md" formControlName="rememberMe" color="primary"></ion-checkbox>
             <ion-label>Remember me</ion-label>
           </ion-col>
           <ion-col size="6" class="ion-text-right">

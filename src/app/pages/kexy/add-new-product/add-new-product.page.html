@@ -7,7 +7,7 @@
   </ion-toolbar>
 </ion-header>
 
-<ion-content class="lightGreyBg">
+<ion-content class="lightBlueBg">
   <div class="dashboard-segment">
     <ion-segment (ionChange)="segmentChanged($event)" [(ngModel)]="restaurantSide" mode="md">
       <ion-segment-button [disabled]="allowedSide === 'boh'" id="segment1" value="foh">
@@ -26,10 +26,10 @@
         <p class="location-headline">CATEGORIES</p>
       </ion-col>
       <ion-col class="kexy-scroll-left-to-right" size="12">
-        <div class="kexy-ion-scroll ion-text-left" scrollX="true">
-          <ion-item
+        <div class="kexy-ion-scroll ion-text-left">
+          <div
             *ngFor="let cat of categoryList"
-            class="kexy-marketplace-card ion-align-items-start ion-text-center"
+            class="kexy-marketplace-card ion-text-center ion-align-items-start"
           >
             <div
               (click)="categoryTapped(cat)"
@@ -39,12 +39,12 @@
               <img [alt]="cat.name" [src]="baseUriForImages + cat.photo" />
             </div>
             <p class="marketplace-name">{{cat.name}}</p>
-          </ion-item>
+          </div>
         </div>
       </ion-col>
     </ion-row>
 
-    <form (ngSubmit)="primaryFormSubmitted()" [formGroup]="primaryForm" style="margin: 0 8px">
+    <form (ngSubmit)="primaryFormSubmitted()" [formGroup]="primaryForm" style="margin: 0 8px" class="ion-padding">
       <!-- first_name - start -->
       <label>
         <ion-row class="border-bottom">
@@ -247,5 +247,3 @@
     </form>
   </ion-grid>
 </ion-content>
-
-<kexy-bottom-nagigation-bar [selectedPage]="'order'"></kexy-bottom-nagigation-bar>
