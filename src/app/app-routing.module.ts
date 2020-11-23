@@ -191,6 +191,11 @@ const routes: Routes = [
     path: routeConstants.KEXY.SUPPLIER_DASHBOARD,
     loadChildren: () => import('./pages/kexy/supplier-dashboard/supplier-dashboard.module').then( m => m.SupplierDashboardPageModule)
   },
+  {
+    path: routeConstants.KEXY.DISTRIBUTOR_REP_ORDERS,
+    loadChildren: () => import('./pages/kexy/distributor-rep-orders/distributor-rep-orders.module').then( m => m.DistributorRepOrdersPageModule)
+  },
+
 
  
 

@@ -159,13 +159,14 @@ export class DistributorDashboardPage extends BasePage implements OnInit {
    }
 
   messagesTapped() {
-    // TODO-UPdate from tuhin
-    // this.navCtrl.push("MessagePage");
+ 
+    this.navigateTo(routeConstants.KEXY.MESSAGE);
+
   }
 
   public contactBtnTapped(): void {
-     // TODO-UPdate from tuhin
-    // this.navCtrl.push("AllContactsPage");
+     this.navigateTo(routeConstants.KEXY.ALL_CONTACTS);
+
   }
 
   restaurantBarTapped() {
@@ -185,12 +186,13 @@ export class DistributorDashboardPage extends BasePage implements OnInit {
   public invitePeopleTapped() {
  
     this.navigateTo(routeConstants.KEXY.INVITE_PEOPLE)
-    // this.navCtrl.push("InvitePeoplePage");
+  
   }
 
 
   public myOrdersTapped() {
-    //TODO-Fix
-    // this.navCtrl.push("DistributorRepOrdersPage");
+
+    this.navigateTo(routeConstants.KEXY.DISTRIBUTOR_REP_ORDERS);
+  
   }
 }
