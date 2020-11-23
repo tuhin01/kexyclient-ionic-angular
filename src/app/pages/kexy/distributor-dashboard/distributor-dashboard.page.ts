@@ -40,15 +40,16 @@ export class DistributorDashboardPage extends BasePage implements OnInit {
   ngOnInit() {
     this.notificationCount = 0;
     this.online_user_list = [];
-    this._setupNotificationCountUpdate();
+    (async () => {
+      await this._enableDistributorMenu();
+
+    })();
    
   }
-  _setupNotificationCountUpdate() {
-    // this.kFire.afStore.collection('personal').doc(String(this.uid)).collection('notification').valueChanges().subscribe((list) => {
-    //   list = list.filter(item => !item.isRead)
-    //   this.notificationCount = list.length;
-    // })
+  async openMenu() {
+    await this.menu.open("distributorMenu");
   }
+
 
   async _getDashboardData() {
     this.organization = await this.storage.get(constants.STORAGE_ORGANIZATION);
@@ -59,80 +60,6 @@ export class DistributorDashboardPage extends BasePage implements OnInit {
   }
 
 
-
-  // _setupWebSocketApis() {
-  //   console.log("(ws)> Setting up APIs.");
-  //   this.socket.removeAllListeners('conversation-list-updated');
-  //   this.socket.on('conversation-list-updated', ({ conversation_list }) => {
-  //     console.log('(ws)> conversation-list-updated', conversation_list);
-  //     // console.log("AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA")
-  //     // conversation_list.forEach(conversation => {
-  //     //   console.log(conversation.updated_at, conversation.id);
-  //     // });
-  //     // 'TEST'
-  //     conversation_list.sort((a, b) => {
-  //       if (b.updated_at === a.updated_at) return b.id - a.id;
-  //       return Date.parse(b.updated_at) - Date.parse(a.updated_at);
-  //     });
-  //     // console.log("BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB")
-  //     // conversation_list.forEach(conversation => {
-  //     //   console.log(conversation.updated_at, conversation.id);
-  //     // });
-  //     this.conversation_list = conversation_list;
-  //     this.conversation_list_backup = conversation_list;
-  //     this.unreadMessageCount = this.conversation_list.filter(c => c.unread_message_count > 0).length;
-  //   });
-  //   this._loadConversations();
-
-  //   this.socket.removeAllListeners('global-online');
-  //   this.socket.on('global-online', (user_id) => {
-  //     let i = this.online_user_list.indexOf(user_id);
-  //     if (i === -1) this.online_user_list.push(user_id);
-  //     console.log('online_user_list', this.online_user_list)
-  //   });
-
-  //   this.socket.removeAllListeners('global-offline');
-  //   this.socket.on('global-offline', (user_id) => {
-  //     let i = this.online_user_list.indexOf(user_id);
-  //     if (i > -1) this.online_user_list.splice(i, 1);
-  //     console.log('online_user_list', this.online_user_list)
-  //   });
-
-  //   this.socket.removeAllListeners('online-list');
-  //   this.socket.on('online-list', (user_list) => {
-  //     this.online_user_list = user_list.map(i => parseInt(String(i)));
-  //     console.log('online_user_list', this.online_user_list)
-  //   });
-  //   this.socket.emit('request-push', { event: 'online-list' });
-  // }
-
-  /** FIXME needing to duplicate everywhere */
-  // _setupWebSocket() {
-  //   const onConnection = () => {
-  //     console.log('onConnection');
-  //     this.socket.emit('subscribe', { user_id: this.currentUser.id });
-  //   };
-  //   const onSubscribe = () => {
-  //     console.log('onSubscribe');
-  //     this._setupWebSocketApis();
-  //   }
-  //   this.socket.on('connection', onConnection);
-  //   this.socket.on('subscribed', onSubscribe);
-  //   if (this.socket.ioSocket.connected) {
-  //     console.log("(ws)> Socket already connected.");
-  //     onSubscribe();
-  //   } else {
-  //     console.log("(ws)> Socket not connected. Trying to connect.");
-  //     this.socket.connect();
-  //   }
-  // }
-
-  // async _loadConversations() {
-  //   this.socket.emit('request-push', { event: 'conversation-list-updated' });
-  //   if (this.conversation_list_backup.length === 0) {
-  //     window.setTimeout(() => { this._loadConversations() }, 5000); // not sure why it's necessary
-  //   }
-  // }
 
 
 
@@ -175,13 +102,7 @@ export class DistributorDashboardPage extends BasePage implements OnInit {
 
   }
 
-  // notificationTapped() {
-  //   this.navCtrl.push("NotificationsPage");
-  // }
-
-  // public inProgress() {
-  //   this.showAwaitableAlert("Coming Soon!", "We are working hard to get it ready for you!");
-  // }
+  
 
   public invitePeopleTapped() {
  

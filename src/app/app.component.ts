@@ -92,27 +92,27 @@ export class AppComponent {
     }
 
     this.distributorMenuPages = [
-      { title: "Edit Profile", icon: "ios-create-outline", url: editProfilePage },
-      { title: "Edit Company", icon: "ios-keypad-outline", url: editDistributorPage },
-      { title: "Invite People", icon: "ios-people-outline", url: invitePeoplePage },
-      { title: "Logout", icon: "ios-log-out-outline", url: logoutPage },
+      { title: "Edit Profile", icon: "create-outline", url: editProfilePage },
+      { title: "Edit Company", icon: "keypad-outline", url: editDistributorPage },
+      { title: "Invite People", icon: "people-outline", url: invitePeoplePage },
+      { title: "Logout", icon: "log-out-outline", url: logoutPage },
       { title: "Home", icon: "home", url: distributorDashboardPage, cssClass: "home-option" },
     ];
 
     this.restaurantMenuPages = [
-      { title: "Edit Profile", icon: "ios-create-outline", url: editProfilePage },
-      { title: "Edit Company", icon: "ios-keypad-outline", url: editRestaurantPage },
-      { title: "Invite People", icon: "ios-people-outline", url: invitePeoplePage },
-      { title: "Settings", icon: "ios-settings-outline", url: settingsPage },
-      { title: "Tutorial Video", icon: "ios-videocam-outline", url: tutorialPage },
-      { title: "Logout", icon: "ios-log-out-outline", url: logoutPage },
+      { title: "Edit Profile", icon: "create-outline", url: editProfilePage },
+      { title: "Edit Company", icon: "keypad-outline", url: editRestaurantPage },
+      { title: "Invite People", icon: "people-outline", url: invitePeoplePage },
+      { title: "Settings", icon: "settings-outline", url: settingsPage },
+      { title: "Tutorial Video", icon: "videocam-outline", url: tutorialPage },
+      { title: "Logout", icon: "log-out-outline", url: logoutPage },
       { title: "Home", icon: "home", url: restaurantDashboardPage, cssClass: "home-option" },
     ];
 
     this.supplierMenuPages = [
-      { title: "Edit Profile", icon: "ios-create-outline", url: editProfilePage },
-      { title: "Edit Company", icon: "ios-keypad-outline", url: editSupplierPage },
-      { title: "Logout", icon: "ios-log-out-outline", url: logoutPage },
+      { title: "Edit Profile", icon: "create-outline", url: editProfilePage },
+      { title: "Edit Company", icon: "keypad-outline", url: editSupplierPage },
+      { title: "Logout", icon: "log-out-outline", url: logoutPage },
       { title: "Home", icon: "home", url: supplierDashboardPage, cssClass: "home-option" },
     ];
   }

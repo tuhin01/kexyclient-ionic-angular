@@ -41,7 +41,7 @@
             </ion-col>
           </ion-row>
           <p class="tr-list-user-title">List of invited co-workers</p>
-          <ion-row class="border-bottom">
+          <ion-row class="border-bottom kx-in-peo">
             <ion-col size="7">
               <strong>Email</strong>
             </ion-col>
@@ -52,7 +52,7 @@
               <strong style="font-size: 12px;">Resend</strong>
             </ion-col>
           </ion-row>
-          <div *ngIf="employee_invitation_list.length > 0">
+          <div *ngIf="employee_invitation_list.length > 0" class="kx-in-peo">
             <ion-row *ngFor="let invitation of employee_invitation_list">
               <ion-col size="7">
                 {{invitation.email}}
@@ -61,14 +61,8 @@
                 <span class="ion-text-capitalize">{{invitation.role}}</span>
               </ion-col>
               <ion-col size="2" class="ion-no-padding">
-                <ion-button
-                        (click)="resendEmployeeInvitation(invitation)"
-                        color="primary"
-                        class="common button ion-no-padding ion-no-margin"
-                        style="height: auto"
-                        size="small"
-                        fill="clear"
-                ><u>Resend</u></ion-button>
+
+               <u (click)="resendEmployeeInvitation(invitation)" class="link" >Resend</u>
               </ion-col>
             </ion-row>
           </div>

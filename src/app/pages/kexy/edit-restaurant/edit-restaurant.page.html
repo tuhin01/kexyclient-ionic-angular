@@ -32,7 +32,7 @@
 
             <ion-row class="border-bottom">
                 <ion-col size="1" class="tr-kx-icon">
-                    <ion-icon name="ios-browsers-outline"></ion-icon>
+                    <ion-icon name="browsers-outline"></ion-icon>
                 </ion-col>
                 <ion-col size="11">
                     <div class="tr-kexy-edit-side">
@@ -70,7 +70,7 @@
                         <ion-icon name="restaurant"></ion-icon>
                     </ion-col>
                     <ion-col size="11">
-                        <ion-input formControlName="name" placeholder="Name of your Restaurant/Bar" type="text"
+                        <ion-input class="tr-kx-input" formControlName="name" placeholder="Name of your Restaurant/Bar" type="text"
                                    [(ngModel)]="orgInfo.name"></ion-input>
                     </ion-col>
                 </ion-row>
@@ -85,10 +85,10 @@
             <label>
                 <ion-row class="border-bottom">
                     <ion-col size="1" class="tr-kx-icon">
-                        <ion-icon name="ios-call-outline"></ion-icon>
+                        <ion-icon name="call-outline"></ion-icon>
                     </ion-col>
                     <ion-col size="11">
-                        <ion-input formControlName="phone" placeholder="Phone Number" type="tel"
+                        <ion-input class="tr-kx-input" formControlName="phone" placeholder="Phone Number" type="tel"
                                    [(ngModel)]="orgInfo.phone"></ion-input>
                     </ion-col>
                 </ion-row>
@@ -103,7 +103,7 @@
             <label>
                 <ion-row class="border-bottom">
                     <ion-col size="12">
-                        <ion-input placeholder="Street Address" type="text" formControlName="street_address"
+                        <ion-input class="tr-kx-input" placeholder="Street Address" type="text" formControlName="street_address"
                                    [(ngModel)]="orgInfo.street_address"></ion-input>
                     </ion-col>
                 </ion-row>
@@ -118,7 +118,7 @@
             <label>
                 <ion-row class="border-bottom">
                     <ion-col size="12">
-                        <ion-input placeholder="City" type="text" formControlName="city"
+                        <ion-input class="tr-kx-input" placeholder="City" type="text" formControlName="city"
                                    [(ngModel)]="orgInfo.city"></ion-input>
                     </ion-col>
                 </ion-row>
@@ -155,7 +155,7 @@
             <label>
                 <ion-row class="border-bottom">
                     <ion-col size="1" class="tr-kx-icon">
-                        <ion-icon name="ios-bookmark-outline"></ion-icon>
+                        <ion-icon name="bookmark-outline"></ion-icon>
                     </ion-col>
                     <ion-col size="11">
                         <ion-input placeholder="Zip Code" type="number" formControlName="zip_code"
@@ -189,4 +189,3 @@
     </ion-grid>
 
 </ion-content>
-<kexy-bottom-nagigation-bar></kexy-bottom-nagigation-bar>

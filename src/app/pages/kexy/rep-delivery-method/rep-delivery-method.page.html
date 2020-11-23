@@ -4,7 +4,7 @@
       <ion-menu-toggle>
         <ion-menu-button></ion-menu-button>
       </ion-menu-toggle>
-        <ion-button
+        <ion-button *ngIf="tempRepList.length > 0" 
                 (click)="updateRepDeliveryMethod()"
         >SAVE</ion-button>
     </ion-buttons>
