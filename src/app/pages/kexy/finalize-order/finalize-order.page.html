@@ -46,16 +46,18 @@
             <ion-item class="bg-transparent ion-no-padding" mode="md">
               <ion-label>Order All</ion-label>
               <ion-checkbox
+                slot="start"
                 *ngIf="!order_all"
                 (ionChange)="orderAllTapped()"
-                [(ngModel)]="should_order_all"
+                checked="false"
                 color="primary"
                 mode="md"
               ></ion-checkbox>
               <ion-checkbox
+                slot="start"
                 *ngIf="order_all"
                 (ionChange)="uncheckAllOrder()"
-                [(ngModel)]="order_all"
+                checked="true"
                 color="primary"
                 mode="md"
                 class="order_all"
@@ -81,12 +83,24 @@
           <ion-col size="10" class="ion-no-padding">
             <div class="kexy-distributor">
               <ion-item class="bg-transparent ion-no-padding" mode="md">
-                <ion-label
-                  >{{distributor.distributor.name}} {{distributor.isOderConfirmed}}</ion-label
-                >
+                <ion-label>
+                  {{distributor.distributor.name}} {{distributor.isOderConfirmed}}
+                </ion-label>
                 <ion-checkbox
-                  (ionChange)="distributorCheckedUnchecked(distributor)"
-                  [(ngModel)]="distributor.isSent"
+                  slot="start"
+                  (click)="distributorCheckedUnchecked(distributor)"
+                  *ngIf="distributor.isSent"
+                  checked="true"
+                  class="distributor-checkbox"
+                  color="primary"
+                  disabled="{{!distributor.isUncheckable}}"
+                  mode="md"
+                ></ion-checkbox>
+                <ion-checkbox
+                  slot="start"
+                  (click)="distributorCheckedUnchecked(distributor)"
+                  *ngIf="!distributor.isSent"
+                  checked="false"
                   class="distributor-checkbox"
                   color="primary"
                   disabled="{{!distributor.isUncheckable}}"
@@ -101,13 +115,11 @@
               *ngIf="distributor.distributor_employee.logo_url != ''"
               [ngStyle]="{'background-image': 'url(' + baseUriForImages + distributor.distributor_employee.logo_url + ')'}"
               class="user-pp"
-              slot="end"
             ></div>
             <div
               (click)="contactTapped(distributor)"
               *ngIf="distributor.distributor_employee.logo_url == '' && !(distributor.distributor.name.toLowerCase().indexOf('distributor unknown') > -1)"
               class="user-pp"
-              slot="end"
             >
               {{nameToInitials(distributor.distributor_employee.name)}}
             </div>
@@ -197,12 +209,12 @@
 </ion-content>
 
 <!--Contact popup overlay-->
-<div [class.traddoverlay]="shouldShowContactDialog"></div>
+<div [class.traddoverlay]="shouldShowContactDialog" (click)="closeContactDialog()"></div>
 <div class="tr-kexy-contact" *ngIf="selectedContact" [class.hidden]="!shouldShowContactDialog">
   <div class="note-header">
     <span><b>{{selectedContact.distributor_employee.name}}</b></span>
     <span class="kexy-tr-modal-close" (click)="closeContactDialog()">
-      <ion-icon name="ios-close-outline"></ion-icon>
+      <ion-icon name="close-outline"></ion-icon>
     </span>
   </div>
 

@@ -31,6 +31,7 @@ export class FinalizeOrderPage extends BasePage implements OnInit {
   settings: Settings = null;
   order_all: boolean = false;
   customMetrics: any;
+  public currentUser;
 
   constructor(
     public router: Router,
@@ -46,10 +47,31 @@ export class FinalizeOrderPage extends BasePage implements OnInit {
     super(router, route, httpClient, loadingCtrl, alertCtrl, storage, menu, navCtrl);
   }
 
-  ngOnInit() {
+  async ngOnInit() {
     this.route.queryParams.subscribe((params) => {
       if (params) {
         this.params = params;
+      }
+    });
+
+    this.currentUser = await this.storage.get(constants.STORAGE_USER);
+    this.nodeSocket.setUserId(this.currentUser.id);
+    (<any>window).openedConversationIdAndTimestampList = [];
+    this.nodeSocket.event("new-conversation-created").subscribe((conversation) => {
+      let entry = (<any>window).openedConversationIdAndTimestampList.find((entry) => {
+        return entry.conversation_id === conversation.id && Date.now() - entry.timestamp < 1000;
+      });
+      if (!entry) {
+        (<any>window).openedConversationIdAndTimestampList.push({
+          conversation_id: conversation.id,
+          timestamp: Date.now(),
+        });
+
+        if (this.loadingDialog) {
+          this.loadingDialog.dismiss();
+          this.loadingDialog = null;
+        }
+        this.navigateTo(routeConstants.KEXY.MESSAGE_CONV, { conversation: JSON.stringify(conversation) });
       }
     });
   }
@@ -90,6 +112,7 @@ export class FinalizeOrderPage extends BasePage implements OnInit {
   }
 
   async restructureInventory(inventory) {
+    console.log("restructureInventory called");
     let distributorMap = {};
     inventory.product_category_list.forEach((product_category) => {
       product_category.product_list.forEach((product) => {
@@ -271,7 +294,9 @@ export class FinalizeOrderPage extends BasePage implements OnInit {
   }
 
   orderAllTapped() {
+    console.log("orderAllTapped Called");
     this.inventory.distributorList.forEach((distributor) => {
+      console.log({ distributor });
       if (distributor.isUncheckable) {
         distributor.isSent = true;
       }
@@ -290,7 +315,13 @@ export class FinalizeOrderPage extends BasePage implements OnInit {
     this.should_order_all = false;
   }
 
-  distributorCheckedUnchecked() {
+  distributorCheckedUnchecked(distributor) {
+    this.inventory.distributorList.forEach((dis) => {
+      if (dis.id === distributor.id) {
+        dis.isSent = !dis.isSent;
+      }
+    });
+
     const distributorUncheckedList = this.inventory.distributorList.filter(
       (dist) => dist.isSent === false
     );
@@ -434,12 +465,11 @@ export class FinalizeOrderPage extends BasePage implements OnInit {
 
   async _processSubmittedOrder() {
     await this.preprocessOrder();
-    await this.preprocessFinalizeOrder("finalized");
-    //TODO - If error then stop navigation
+    let result = await this.preprocessFinalizeOrder("finalized");
+    if (!result) return;
     await this.setRoot(routeConstants.KEXY.RESTAURANT_TABS);
   }
 
-  // ==================================================================
   shouldShowContactDialog: boolean = false;
   selectedContact: any;
   async contactTapped(distributor) {
@@ -452,13 +482,13 @@ export class FinalizeOrderPage extends BasePage implements OnInit {
   }
 
   public loadingDialog: any = null;
-  startConversation(event, contact) {
+  async startConversation(event, contact) {
     event.preventDefault();
     console.log({ contact });
     this.nodeSocket.emit("begin-conversation", {
       participant_id_list: [contact.distributor_employee.user_id],
     });
-    this.loadingDialog = this.loadingCtrl.create({
+    this.loadingDialog = await this.loadingCtrl.create({
       spinner: "crescent",
       message: "Talking to the server. Please wait.",
     });
