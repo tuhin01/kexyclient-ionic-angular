@@ -74,7 +74,7 @@ export class AppComponent {
       tutorialPage =  routeConstants.KEXY.TUTORIAL;
       restaurantDashboardPage = routeConstants.KEXY.RESTAURANT_TABS;
       editSupplierPage = routeConstants.KEXY.EDIT_SUPPLIER;
-      supplierDashboardPage = "SupplierDashboardPage";
+      supplierDashboardPage = routeConstants.KEXY.SUPPLIER_DASHBOARD;
     } else {
       this.isRestaurant = false;
       editProfilePage = routeConstants.KEXY.EDIT_PROFILE;

@@ -1,11 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { BasePage } from '../../basePage';
-import { Storage } from "@ionic/storage";
+import { Storage } from '@ionic/storage';
 import { HttpClient } from '@angular/common/http';
 import { Router, ActivatedRoute } from '@angular/router';
 import { LoadingController, AlertController, MenuController, NavController } from '@ionic/angular';
 // import { CameraService } from 'src/app/services/camera.service';
-import { apis, constants } from "../../../../common/shared";
+import { apis, constants } from '../../../../common/shared';
 import { FormGroup, FormControl, Validators, FormArray, FormBuilder } from '@angular/forms';
 // import { HomePage } from '../../home/home.page';
 import { routeConstants } from 'src/common/routeConstants';
@@ -15,10 +15,10 @@ import { routeConstants } from 'src/common/routeConstants';
   styleUrls: ['./edit-supplier.page.scss'],
 })
 export class EditSupplierPage extends BasePage implements OnInit {
-  private supplierEditForm: FormGroup;
-  private imageUrl: any = null;
-  private newImageUploaded = false;
-  private orgInfo: any = {}; // TODO model
+  supplierEditForm: FormGroup;
+  public imageUrl: any = null;
+  public newImageUploaded = false;
+  public orgInfo: any = {}; // TODO model
 
   constructor(
     public router: Router,
@@ -65,7 +65,7 @@ export class EditSupplierPage extends BasePage implements OnInit {
   }
   async getCompanyData(): Promise<any> {
     this.orgInfo = await this.storage.get(constants.STORAGE_ORGANIZATION);
-    if (this.orgInfo.logo_image_url) this.imageUrl = this.baseUriForImages + this.orgInfo.logo_image_url;
+    if (this.orgInfo.logo_image_url) { this.imageUrl = this.baseUriForImages + this.orgInfo.logo_image_url; }
     console.log(this.orgInfo);
     this.orgInfo.zip_code_list.forEach(list => {
       this.addNewZipCode(list.zip_code);
@@ -84,36 +84,36 @@ export class EditSupplierPage extends BasePage implements OnInit {
   }
 
   public addNewZipCode(zip_code): void {
-    const control = <FormArray>this.supplierEditForm.controls.zip_code_list;
+    const control = this.supplierEditForm.controls.zip_code_list as FormArray;
     control.push(this.initZipCodeFields(zip_code));
   }
 
   public removeZipCode(i: number): void {
-    const control = <FormArray>this.supplierEditForm.controls.zip_code_list;
+    const control = this.supplierEditForm.controls.zip_code_list as FormArray;
     control.removeAt(i);
   }
 
   async supplierEditFormSubmitted(): Promise<void> {
-    if (!this.supplierEditForm.valid) return;
+    if (!this.supplierEditForm.valid) { return; }
 
-    let data = this.supplierEditForm.value;
+    const data = this.supplierEditForm.value;
     data.supplier_id = this.orgInfo.supplier_id;
 
     if (this.newImageUploaded) {
       data.logo_image = this.imageUrl;
     }
 
-    let res = await this.callApi(apis.API_SUPPLIER_EDIT, data);
-    if (!res.success) return;
+    const res = await this.callApi(apis.API_SUPPLIER_EDIT, data);
+    if (!res.success) { return; }
     Object.assign(this.orgInfo, res.data.company);
     await this.storage.set(constants.STORAGE_ORGANIZATION, this.orgInfo);
-    await this.showAwaitableAlert("Success!", "Your company profile has been updated.");
+    await this.showAwaitableAlert('Success!', 'Your company profile has been updated.');
     this.setRoot(routeConstants.HOME);
 
   }
 
   public openFileDialog(): void {
-    (<any>document.querySelector('.company-logo-file-input')).click();
+    (document.querySelector('.company-logo-file-input') as any).click();
   }
 
   public fileSelected(e: any): void {
@@ -121,14 +121,14 @@ export class EditSupplierPage extends BasePage implements OnInit {
       this.imageUrl = null;
       return;
     }
-    let file = e.target.files[0];
+    const file = e.target.files[0];
 
     if (file.type.indexOf('image/') !== 0) {
-      this.showAwaitableAlert("Invalid Image", "Please select a valid image.");
+      this.showAwaitableAlert('Invalid Image', 'Please select a valid image.');
       return;
     }
 
-    let reader = new FileReader();
+    const reader = new FileReader();
     reader.onload = () => {
       this.imageUrl = reader.result;
       this.newImageUploaded = true;

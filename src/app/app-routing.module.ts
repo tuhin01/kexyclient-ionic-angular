@@ -187,6 +187,11 @@ const routes: Routes = [
     path: routeConstants.KEXY.EDIT_SUPPLIER,
     loadChildren: () => import('./pages/kexy/edit-supplier/edit-supplier.module').then( m => m.EditSupplierPageModule)
   },
+  {
+    path: routeConstants.KEXY.SUPPLIER_DASHBOARD,
+    loadChildren: () => import('./pages/kexy/supplier-dashboard/supplier-dashboard.module').then( m => m.SupplierDashboardPageModule)
+  },
+
  
 
 
