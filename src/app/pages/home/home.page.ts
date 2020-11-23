@@ -99,17 +99,16 @@ export class HomePage extends BasePage implements OnInit {
     }
 
     if (!user.is_claimed) {
-      // TODO - Fix
-      // Take suer to update email/password page.
-      // await this.navCtrl.setRoot(autoCreatedUserUpdate);
+
+      await this.setRoot(autoCreatedUserUpdate);
+     
       return;
     }
 
     // If user got no invitation but wants to join to his/her org.
     if (isJoinType === "join" && !isInvited) {
-      // TODO - Fix
-      // await this.navCtrl.setRoot(joinRequestPage);
-      return;
+      await this.setRoot(joinRequestPage);
+       return;
     }
 
     if (!this.isAlreadySubscribed) {
