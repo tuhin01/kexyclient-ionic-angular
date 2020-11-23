@@ -171,7 +171,7 @@ export class DistributorDashboardPage extends BasePage implements OnInit {
 
   restaurantBarTapped() {
    
-    this.navigateTo(routeConstants.KEXY.MY_RESTAURANTS)
+    this.navigateTo(routeConstants.KEXY.MY_RESTAURANTS);
 
   }
 
@@ -185,7 +185,7 @@ export class DistributorDashboardPage extends BasePage implements OnInit {
 
   public invitePeopleTapped() {
  
-    this.navigateTo(routeConstants.KEXY.INVITE_PEOPLE)
+    this.navigateTo(routeConstants.KEXY.INVITE_PEOPLE);
   
   }
 

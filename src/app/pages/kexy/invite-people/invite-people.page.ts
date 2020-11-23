@@ -271,6 +271,6 @@ export class InvitePeoplePage extends BasePage implements OnInit {
   requestsToJoin() {
 
     this.navigateTo(routeConstants.KEXY.JOIN_REQUEST_LIST)
-    // this.navCtrl.push('JoinRequestListPage');
+
   }
 }
