@@ -1,0 +1,88 @@
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-buttons slot="start">
+      <ion-back-button></ion-back-button>
+    </ion-buttons>
+    <ion-title *ngIf="isOrderPage">View Orders</ion-title>
+    <ion-title *ngIf="!isOrderPage">View Inventory</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="lightBlueBg">
+  <div style="overflow-y: scroll; height: 92vh">
+    <div class="dashboard-segment">
+      <ion-segment mode="md" [(ngModel)]="restaurantSide" (ionChange)="segmentChanged()">
+        <ion-segment-button [disabled]="allowedSide === 'boh'" id="segment1" value="foh">
+          FOH
+        </ion-segment-button>
+        <ion-segment-button [disabled]="allowedSide === 'foh'" id="segment2" value="boh">
+          BOH
+        </ion-segment-button>
+      </ion-segment>
+    </div>
+
+    <ion-grid class="ion-no-padding">
+      <ion-row class="tr-hint-icon" *ngIf="isOrderPage">
+        <ion-col size="12" class="ion-no-padding">
+          <ion-icon style="font-size: 20px" color="primary" name="checkbox"></ion-icon>
+          = Submitted,
+          <ion-checkbox mode="md" checked="false" disabled></ion-checkbox>
+          = Created,
+          <div class="order-partial">
+            <div class="partial-fill"></div>
+          </div>
+          = Partial
+        </ion-col>
+      </ion-row>
+
+      <ion-row class="tr-kexy-order-header">
+        <ion-col>
+          <ion-button
+            fill="clear"
+            size="small"
+            class="kexy-add-location-btn kexy-product-sort"
+            (click)="sortProducts()"
+          >
+            Date
+            <ion-icon *ngIf="!sort" name="arrow-up-outline"></ion-icon>
+            <ion-icon *ngIf="sort" name="arrow-down-outline"></ion-icon>
+          </ion-button>
+        </ion-col>
+        <ion-col *ngIf="isOrderPage">Order #</ion-col>
+        <ion-col *ngIf="!isOrderPage">Inventory #</ion-col>
+        <ion-col>Created By</ion-col>
+        <ion-col *ngIf="isOrderPage">Status</ion-col>
+      </ion-row>
+
+      <ion-row
+        class="tr-kexy-order-row"
+        *ngFor="let order of orderList; let i = index;"
+        (click)="orderTapped(order)"
+      >
+        <ion-col> {{dateFormat(order.inventory_date) | date:'MM/dd/yy'}} </ion-col>
+        <ion-col> {{order.possible_order_number}} </ion-col>
+        <ion-col>{{__prepName(order.employee.first_name)}} {{order.employee.last_name}}</ion-col>
+        <ion-col *ngIf="isOrderPage">
+          <ion-icon
+            style="font-size: 20px"
+            *ngIf="order.order.status === 'finalized'"
+            color="primary"
+            name="checkbox"
+          ></ion-icon>
+
+          <ion-checkbox
+            *ngIf="!order.order || order.order.status === 'saved'"
+            mode="md"
+            color="primary"
+            checked="false"
+            disabled
+          ></ion-checkbox>
+
+          <div class="order-partial" *ngIf="order.order.status === 'partial'">
+            <div class="partial-fill"></div>
+          </div>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+  </div>
+</ion-content>

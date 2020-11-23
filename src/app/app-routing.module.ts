@@ -167,25 +167,14 @@ const routes: Routes = [
     path: routeConstants.KEXY.MY_RESTAURANTS,
     loadChildren: () => import('./pages/kexy/my-restaurants/my-restaurants.module').then( m => m.MyRestaurantsPageModule)
   },
-
-
-
-
-
-
-
-
   {
     path: routeConstants.KEXY.MESSAGE_CONV,
     loadChildren: () => import('./pages/kexy/message-conversation/message-conversation.module').then( m => m.MessageConversationPageModule)
   },
-
-
-
-
-
-
-
+  {
+    path: routeConstants.KEXY.REVIEW_ORDER,
+    loadChildren: () => import('./pages/kexy/review-order/review-order.module').then( m => m.ReviewOrderPageModule)
+  },
 ];
 
 @NgModule({

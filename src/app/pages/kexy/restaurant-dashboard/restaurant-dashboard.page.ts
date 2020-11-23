@@ -75,8 +75,6 @@ export class RestaurantDashboardPage extends BasePage implements OnInit {
   async ionViewDidEnter() {
     await this._enableRestaurantMenu();
     await this._getDashboardData();
-    // TODO - Fix me
-    // this.nodeSocket.emit("request-push", { event: "conversation-list-updated" });
   }
 
   async _loadDefaultSide() {
@@ -90,8 +88,8 @@ export class RestaurantDashboardPage extends BasePage implements OnInit {
   }
 
   async _getDashboardData(): Promise<any> {
-    let res = await this.callApi(apis.API_USER_GET_DASHBOARD_DATA, {}, { shouldBlockUi: false });
-    if (!res.success) return;
+    // let res = await this.callApi(apis.API_USER_GET_DASHBOARD_DATA, {}, { shouldBlockUi: false });
+    // if (!res.success) return;
     // this.unreadMessageCount = res.data.unread_message;
   }
 
@@ -103,8 +101,7 @@ export class RestaurantDashboardPage extends BasePage implements OnInit {
   }
 
   async reviewOrdersTapped(type) {
-    // TODO - Fix
-    // await this.navCtrl.push("ReviewOrderPage", { pageType: type });
+    await this.navigateTo(routeConstants.KEXY.REVIEW_ORDER, { pageType: type });
   }
 
   employeeScheduleTapped() {
