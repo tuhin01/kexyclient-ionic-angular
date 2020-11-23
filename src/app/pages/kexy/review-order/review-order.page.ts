@@ -5,6 +5,7 @@ import { Storage } from "@ionic/storage";
 import { HttpClient } from "@angular/common/http";
 import { AlertController, LoadingController, MenuController, NavController } from "@ionic/angular";
 import { apis, constants } from "../../../../common/shared";
+import { routeConstants } from "../../../../common/routeConstants";
 
 @Component({
   selector: "app-review-order",
@@ -102,16 +103,20 @@ export class ReviewOrderPage extends BasePage implements OnInit {
     return new Date(date);
   }
 
-  orderTapped(order) {
-    // let order_id = null;
-    // if (order.order) order_id = order.order.id;
+  async orderTapped(order) {
     let inventory_id = order.id;
-    // TODO - Fix me
-    // this.navCtrl.push("FinalizeOrderPage", {
-    //   inventory_id,
-    //   restaurantSide: this.restaurantSide,
-    //   orderStatus: order.order.status,
-    // });
+    await this.navigateTo(
+      routeConstants.KEXY.RESTAURANT_TABS + "/" + routeConstants.KEXY.FINALIZE_ORDER,
+      {
+        inventory_id,
+        restaurantSide: this.restaurantSide,
+        orderStatus: order.order.status,
+      }
+    );
+  }
+
+  backBtnPressed() {
+    this.navCtrl.back({ animated: true, animationDirection: "back" });
   }
 
   async segmentChanged() {

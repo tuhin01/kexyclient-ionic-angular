@@ -1,9 +1,9 @@
 <ion-header>
   <ion-toolbar color="primary">
     <ion-buttons slot="start">
-      <ion-menu-toggle>
-        <ion-menu-button></ion-menu-button>
-      </ion-menu-toggle>
+      <ion-button mode="ios" fill="clear" (click)="backBtnPressed()">
+        <ion-icon name="chevron-back-outline"></ion-icon> Back
+      </ion-button>
     </ion-buttons>
     <ion-title *ngIf="isOrderPage">View Orders</ion-title>
     <ion-title *ngIf="!isOrderPage">View Inventory</ion-title>

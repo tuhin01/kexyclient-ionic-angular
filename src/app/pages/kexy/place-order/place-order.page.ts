@@ -638,12 +638,14 @@ export class PlaceOrderPage extends BasePage implements OnInit {
         side: this.restaurantSide,
       });
     } else {
-      // TODO - Fix me
-      // await this.navCtrl.push("FinalizeOrderPage", {
-      //   inventory_id,
-      //   restaurantSide: this.restaurantSide,
-      //   type,
-      // });
+      await this.navigateTo(
+        routeConstants.KEXY.RESTAURANT_TABS + "/" + routeConstants.KEXY.FINALIZE_ORDER,
+        {
+          inventory_id,
+          restaurantSide: this.restaurantSide,
+          type,
+        }
+      );
     }
   }
 
