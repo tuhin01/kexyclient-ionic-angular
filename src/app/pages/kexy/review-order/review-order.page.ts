@@ -36,6 +36,13 @@ export class ReviewOrderPage extends BasePage implements OnInit {
   }
 
   ngOnInit() {
+    /**
+     * We must initialize everything in ionViewDidEnter() as this is a child of a tabs page
+     * It calls ngOnInit() only once in the life of app running instance
+     **/
+  }
+
+  ionViewDidEnter() {
     this.route.queryParams.subscribe((params) => {
       if (params) {
         this.params = params;
@@ -44,9 +51,7 @@ export class ReviewOrderPage extends BasePage implements OnInit {
 
     (async () => {
       this.pageType = this.params.pageType;
-      if (this.pageType === "order") {
-        this.isOrderPage = true;
-      }
+      this.isOrderPage = this.pageType === "order";
       await this._preparePage();
     })();
   }

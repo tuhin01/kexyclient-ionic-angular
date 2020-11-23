@@ -45,36 +45,17 @@ export class RestaurantDashboardPage extends BasePage implements OnInit {
     }
   }
 
-  async ngOnInit() {
+  ngOnInit() {
     this.notificationCount = 0;
     this.online_user_list = [];
-    await this._enableRestaurantMenu();
-    await this._loadDefaultSide();
-
-    this.currentUser = await this.storage.get(constants.STORAGE_USER);
-    // TODO - Fix me
-    // this.nodeSocket.setUserId(this.currentUser.id);
-    //
-    // this.nodeSocket.event("conversation-list-updated").subscribe(({ conversation_list }) => {
-    //   conversation_list.sort((a, b) => {
-    //     if (b.updated_at === a.updated_at) return b.id - a.id;
-    //     return Date.parse(b.updated_at) - Date.parse(a.updated_at);
-    //   });
-    //   this.conversation_list = conversation_list;
-    //   this.conversation_list_backup = conversation_list;
-    //   this.unreadMessageCount = this.conversation_list.filter((c) => c.unread_message_count > 0).length;
-    // });
-    // this.nodeSocket.subscribeToUserOnlineStatus((list) => (this.online_user_list = list));
-    // this._setupNotificationCountUpdate();
+    (async () => {
+      await this._enableRestaurantMenu();
+      await this._loadDefaultSide();
+    })();
   }
 
   async openMenu() {
     await this.menu.open("restaurantMenu");
-  }
-
-  async ionViewDidEnter() {
-    await this._enableRestaurantMenu();
-    await this._getDashboardData();
   }
 
   async _loadDefaultSide() {
@@ -87,12 +68,6 @@ export class RestaurantDashboardPage extends BasePage implements OnInit {
     }
   }
 
-  async _getDashboardData(): Promise<any> {
-    // let res = await this.callApi(apis.API_USER_GET_DASHBOARD_DATA, {}, { shouldBlockUi: false });
-    // if (!res.success) return;
-    // this.unreadMessageCount = res.data.unread_message;
-  }
-
   async addOrderTapped(type) {
     await this.navigateTo(
       `${routeConstants.KEXY.RESTAURANT_TABS}/${routeConstants.KEXY.PLACE_ORDER}`,
@@ -101,43 +76,10 @@ export class RestaurantDashboardPage extends BasePage implements OnInit {
   }
 
   async reviewOrdersTapped(type) {
-    await this.navigateTo(routeConstants.KEXY.REVIEW_ORDER, { pageType: type });
+    await this.navigateTo(
+      `${routeConstants.KEXY.RESTAURANT_TABS}/${routeConstants.KEXY.REVIEW_ORDER}`,
+      { pageType: type }
+    );
   }
 
-  employeeScheduleTapped() {
-    let appId, appStoreUrl;
-
-    // if (this.platform.is("ios")) {
-    //   appId = "ossapp://";
-    //   appStoreUrl = "itms-apps://itunes.apple.com/us/app/opensimsim/id1059921540";
-    // } else if (this.platform.is("android")) {
-    //   appId = "ossapp://";
-    //   appStoreUrl = "market://details?id=com.opensimsim";
-    // }
-    //
-    // this.appAvailability.check(appId).then(
-    //     (yes: boolean) => {
-    //       window.open(appId, "_system");
-    //     },
-    //     (no: boolean) => {
-    //       window.open(appStoreUrl, "_system", "location=no");
-    //     }
-    // );
-  }
-
-  async showPartnerRelationWithOpensimsim() {
-    let notice = await this.storage.get("__OPENSIMSIM_NOTICE");
-
-    if (notice !== "showed") {
-      this.openSimSimNotice = true;
-    } else {
-      this.employeeScheduleTapped();
-    }
-  }
-
-  async undersatndOpenSimSimNotice() {
-    await this.storage.set("__OPENSIMSIM_NOTICE", "showed");
-    this.openSimSimNotice = false;
-    this.employeeScheduleTapped();
-  }
 }

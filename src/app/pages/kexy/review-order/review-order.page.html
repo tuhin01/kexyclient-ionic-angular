@@ -1,7 +1,9 @@
 <ion-header>
   <ion-toolbar color="primary">
     <ion-buttons slot="start">
-      <ion-back-button></ion-back-button>
+      <ion-menu-toggle>
+        <ion-menu-button></ion-menu-button>
+      </ion-menu-toggle>
     </ion-buttons>
     <ion-title *ngIf="isOrderPage">View Orders</ion-title>
     <ion-title *ngIf="!isOrderPage">View Inventory</ion-title>
