@@ -12,17 +12,6 @@ import { IonicStorageModule } from "@ionic/storage";
 import { HttpClientModule } from "@angular/common/http";
 import { Camera } from "@ionic-native/camera/ngx";
 import { Keyboard } from "@ionic-native/keyboard/ngx";
-// import { SocketIoConfig, SocketIoModule } from "ngx-socket-io";
-// import { getConfig } from "../common/config";
-//
-// const config: SocketIoConfig = {
-//   url: getConfig().mockSocketUri,
-//   options: {
-//     reconnectionDelay: 500,
-//     reconnectionDelayMax: 2000,
-//     transports: ["websocket", "polling"],
-//   },
-// };
 
 
 @NgModule({
@@ -34,7 +23,6 @@ import { Keyboard } from "@ionic-native/keyboard/ngx";
     AppRoutingModule,
     IonicStorageModule.forRoot(),
     HttpClientModule,
-    // SocketIoModule.forRoot(config)
   ],
   providers: [
     StatusBar,

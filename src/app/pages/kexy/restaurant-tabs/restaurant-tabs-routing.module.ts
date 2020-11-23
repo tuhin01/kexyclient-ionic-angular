@@ -36,6 +36,17 @@ const routes: Routes = [
           import("../../../pages/kexy/message/message.module").then((m) => m.MessagePageModule),
       },
       {
+        path: routeConstants.KEXY.REVIEW_ORDER,
+        loadChildren: () =>
+          import("../../../pages/kexy/review-order/review-order.module").then(
+            (m) => m.ReviewOrderPageModule
+          ),
+      },
+      {
+        path: routeConstants.KEXY.FINALIZE_ORDER,
+        loadChildren: () => import('../../../pages/kexy/finalize-order/finalize-order.module').then( m => m.FinalizeOrderPageModule)
+      },
+      {
         path: "",
         redirectTo: routeConstants.KEXY.RESTAURANT_DASHBOARD,
         pathMatch: "full",

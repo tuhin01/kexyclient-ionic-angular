@@ -72,9 +72,7 @@ export class MessageConversationPage extends BasePage implements OnInit {
       console.log("Convo", this.params.conversation);
       this.conversation = JSON.parse(this.params.conversation);
       if (!this.conversation) {
-        // TODO - Fix me
-        console.log("Heres");
-        // this.navCtrl.setRoot("MessagePage");
+        await this.setRoot(routeConstants.KEXY.MESSAGE);
         return;
       }
 
@@ -86,8 +84,9 @@ export class MessageConversationPage extends BasePage implements OnInit {
       let subscription;
 
       subscription = this.nodeSocket.event("message-list").subscribe(({ message_list }) => {
+        console.log("(ws)> message-list", message_list);
         this.message_list = message_list;
-        this.scrollToBottom();
+        this.scrollToBottom(500);
       });
 
       this.subscriptionList.push(subscription);
@@ -96,7 +95,7 @@ export class MessageConversationPage extends BasePage implements OnInit {
       subscription = this.nodeSocket.event("new-message-queued").subscribe(({ message }) => {
         console.log("(ws)> new-message-queued", message);
         this.message_list.push(message);
-        this.scrollToBottom();
+        this.scrollToBottom(400);
       });
 
       this.subscriptionList.push(subscription);
