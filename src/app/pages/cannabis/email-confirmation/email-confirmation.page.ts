@@ -52,7 +52,7 @@ export class EmailConfirmationPage extends BasePage implements OnInit {
         will be used to find existing marketplaces that you have joined or have invitation(s) to join.`;
     }
     if (this.typeEmailConfirmation == "registrer") {
-      this.title = "Create a New Marketplace";
+      this.title = "Create a Marketplace";
       this.subTitle =
         "Please confirm your email address in order to create a marketplace from scratch.";
     }
