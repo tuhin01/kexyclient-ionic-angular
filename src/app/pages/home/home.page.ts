@@ -74,16 +74,16 @@ export class HomePage extends BasePage implements OnInit {
       distributorDashboardPage = routeConstants.KEXY.DISTRIBUTOR_DASHBOARD;
       supplierDashboardPage = routeConstants.KEXY.SUPPLIER_DASHBOARD;
     } else {
-      loginDecisionPage = "/kexy-login-decision";
-      loginPage = routeConstants.KEXY.LOGIN;
-      autoCreatedUserUpdate = "CannabisAutoCreatedUserUpdate";
-      joinRequestPage = "CannabisJoinRequestPage";
-      messagePage = "CannabisMessagePage";
-      welcomePage = "CannabisWelcomePage";
-      marketPlaceTypePage = "CannabisMarketPlaceTypePage";
-      restaurantTabsPage = "CannabisRestaurantDashboardPage";
-      distributorDashboardPage = "CannabisDistributorDashboardPage";
-      supplierDashboardPage = "CannabisSupplierDashboardPage";
+      loginDecisionPage = routeConstants.CANNABIS.LOGIN_DICISION;
+      loginPage = routeConstants.CANNABIS.LOGIN;
+      autoCreatedUserUpdate = routeConstants.CANNABIS.AUTO_CREATED_USER_UPDATE;
+      joinRequestPage = routeConstants.CANNABIS.JOIN_REQUEST;
+      messagePage = routeConstants.CANNABIS.MESSAGE;
+      welcomePage = routeConstants.CANNABIS.WELCOME;
+      marketPlaceTypePage = routeConstants.CANNABIS.MARKETPLACE_TYPE;
+      restaurantTabsPage = routeConstants.CANNABIS.RESTAURANT_TABS;
+      distributorDashboardPage = routeConstants.CANNABIS.DISTRIBUTOR_DASHBOARD;
+      supplierDashboardPage = routeConstants.CANNABIS.SUPPLIER_DASHBOARD;
     }
 
     let user = await this.storage.get(constants.STORAGE_USER);
@@ -99,23 +99,21 @@ export class HomePage extends BasePage implements OnInit {
     }
 
     if (!user.is_claimed) {
-
       await this.setRoot(autoCreatedUserUpdate);
-     
+
       return;
     }
 
     // If user got no invitation but wants to join to his/her org.
     if (isJoinType === "join" && !isInvited) {
       await this.setRoot(joinRequestPage);
-       return;
+      return;
     }
 
     if (!this.isAlreadySubscribed) {
       const newMessagePopupThreshold = 3000;
       this.isAlreadySubscribed = true;
       this.subscriptionTimestamp = Date.now();
-   
     }
 
     let res = await this.callApi(apis.API_USER_GET_USER_ORGANIZATIONS, {});
@@ -138,9 +136,7 @@ export class HomePage extends BasePage implements OnInit {
         if (joinRequest.data.request) {
           if (joinRequest.data.request.status !== "accepted") {
             await this.storage.set(constants.IS_JOIN_TYPE, "request_sent");
-
             await this.setRoot(welcomePage);
-
             return;
           }
         }
@@ -173,7 +169,6 @@ export class HomePage extends BasePage implements OnInit {
     } else {
       org.id = org.supplier_id;
     }
-    //org.id = (org.type === constants.ORGANIZATION_TYPE_RESTAURANT) ? org.restaurant_id : org.distributor_id;
     await this.storage.set(constants.STORAGE_ORGANIZATION, org);
 
     // Remove these 2 from local storage here as they are no longer necessary and keeping them will cause issue
@@ -181,7 +176,6 @@ export class HomePage extends BasePage implements OnInit {
     await this.storage.remove(constants.IS_INVITED);
 
     if (org.type === constants.ORGANIZATION_TYPE_RESTAURANT) {
-      // this.navCtrl.setRoot("CannabisRestaurantTabsPage");
       let settings = await this.callApi(
         apis.API_GET_USER_SETTINGS,
         { restaurant_id: org.restaurant_id },
@@ -199,12 +193,10 @@ export class HomePage extends BasePage implements OnInit {
       await this.setRoot(restaurantTabsPage);
       return;
     } else if (org.type === constants.ORGANIZATION_TYPE_DISTRIBUTOR) {
- 
-      this.setRoot(routeConstants.KEXY.DISTRIBUTOR_DASHBOARD);
+      await this.setRoot(routeConstants.KEXY.DISTRIBUTOR_DASHBOARD);
       return;
     } else {
-
-      this.setRoot(routeConstants.KEXY.SUPPLIER_DASHBOARD);
+      await this.setRoot(routeConstants.KEXY.SUPPLIER_DASHBOARD);
       return;
     }
   }
