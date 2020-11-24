@@ -37,6 +37,7 @@ export class AddNewProductPage extends BasePage implements OnInit {
   public inventoryId: any = null;
   public createdFromPage: any = null;
   public ignoreNextFilter = false;
+  public ignoreRepNextFilter = false;
   public primaryForm: FormGroup;
   public hideRepSearchResult: boolean = true;
   public searchRepList: any = [];
@@ -115,25 +116,28 @@ export class AddNewProductPage extends BasePage implements OnInit {
     this.product = JSON.parse(this.params.product);
     this.product.employee.name = `${this.product.employee.first_name} ${this.product.employee.last_name}`;
     this.product.par_level = this.product.tempData.par_level;
-
+    console.log(this.product);
     const distributor = this.distributorList.find(
       (dist) => dist.id === this.product.distributor_id
     );
     if (distributor) {
+      console.log({distributor});
       this.selectDistributor(distributor);
+
       this.searchRep();
+
       const rep = this.searchRepList.find(
         (rep) => rep.employee_id === this.product.distributor_employee_id
       );
-      console.log({rep});
+      console.log({ rep });
       this.selectRep(rep);
 
       /**
        * We need to ignore next filter of distributor or rep search here
        * since it's pre populated in product edit
        **/
-      this.ignoreNextFilter = false;
-      this.ignoreRepNextFilter = false;
+      // this.ignoreNextFilter = false;
+      // this.ignoreRepNextFilter = false;
       this.hideDistributorSearchResult = true;
       this.hideRepSearchResult = true;
     } else {
@@ -247,17 +251,20 @@ export class AddNewProductPage extends BasePage implements OnInit {
     this.ignoreNextFilter = true;
     this.product.distributor.id = distributor.id;
     this.product.distributor.name = distributor.name;
-    this.leaveDistributorField();
+    this.searchDistributorList = [];
+    this.hideDistributorSearchResult = true;
   }
 
   selectRep(rep) {
+    console.log("Here");
     this.ignoreRepNextFilter = true;
     this.shouldShowEmailPhoneFiled = false;
     this.product.employee.id = rep.employee_id;
     this.product.employee.name = rep.employee_name;
     this.product.employee.email = rep.employee_email;
     this.product.employee.phone = rep.employee_phone;
-    this.leaveRepField();
+    this.searchRepList = [];
+    this.hideRepSearchResult = true;
   }
 
   leaveDistributorField() {
@@ -274,9 +281,8 @@ export class AddNewProductPage extends BasePage implements OnInit {
     }, 10);
   }
 
-  ignoreRepNextFilter = false;
   searchRep() {
-    console.log("ignoreNextFilter searchRep", this.ignoreNextFilter);
+    console.log("ignoreNextFilter searchRep", this.ignoreRepNextFilter);
     if (this.ignoreRepNextFilter) {
       this.ignoreRepNextFilter = false;
       return;
@@ -323,9 +329,10 @@ export class AddNewProductPage extends BasePage implements OnInit {
     this.searchDistributorList = this.distributorList.filter((distributor) => {
       return distributor.name.toLowerCase().startsWith(value);
     });
-    this.hideDistributorSearchResult = !(
+    this.hideDistributorSearchResult = (
       this.searchDistributorList.length > 0 && this.product.distributor.name !== ""
     );
+    console.log(this.hideDistributorSearchResult );
   }
 
   async primaryFormSubmitted(): Promise<any> {
