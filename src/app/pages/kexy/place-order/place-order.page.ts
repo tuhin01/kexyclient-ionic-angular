@@ -85,8 +85,6 @@ export class PlaceOrderPage extends BasePage implements OnInit {
   }
 
   ngOnInit() {
-    this._enableRestaurantMenu();
-
     /*****
      * We must do everything else in ionViewDidEnter()
      * Since ngOnInit() is called only once in the life of the app instance as this page is a child of tabs page
@@ -634,7 +632,7 @@ export class PlaceOrderPage extends BasePage implements OnInit {
       await this.navigateTo(routeConstants.KEXY.ADD_NEW_PRODUCT, {
         inventory_id,
         createdFromPage: this.isOrderPage ? "order" : "",
-        category: this.selectedCategory,
+        category: JSON.stringify(this.selectedCategory),
         side: this.restaurantSide,
       });
     } else {

@@ -13,6 +13,7 @@ import {
 } from "@ionic/angular";
 import { ActivatedRoute, Router } from "@angular/router";
 import { apis, constants } from "../../../../common/shared";
+import { routeConstants } from "../../../../common/routeConstants";
 
 @Component({
   selector: "app-add-new-product",
@@ -65,70 +66,14 @@ export class AddNewProductPage extends BasePage implements OnInit {
     public navCtrl: NavController
   ) {
     super(router, route, httpClient, loadingCtrl, alertCtrl, storage, menu, navCtrl);
-    if (this.router.getCurrentNavigation().extras.state) {
-      this.params = this.router.getCurrentNavigation().extras.state;
-    }
   }
 
   ngOnInit() {
     this.__addBlankProduct();
-
-    this.primaryForm = new FormGroup({
-      product_name: new FormControl(
-        "",
-        Validators.compose([
-          Validators.required,
-          Validators.minLength(0),
-          Validators.maxLength(64),
-          Validators.pattern("^[a-zA-Z-0-9 ]+$"),
-        ])
-      ),
-      par_level: new FormControl(
-        "",
-        Validators.compose([
-          Validators.required,
-          Validators.minLength(0),
-          Validators.maxLength(64),
-          Validators.pattern("^[0-9 ]+$"),
-        ])
-      ),
-      unit: new FormControl(
-        "",
-        Validators.compose([
-          Validators.required,
-          Validators.minLength(0),
-          Validators.maxLength(128),
-          Validators.pattern("^[a-zA-Z-0-9 ]+$"),
-        ])
-      ),
-      distributor_name: new FormControl(
-        "",
-        Validators.compose([
-          Validators.required,
-          Validators.minLength(0),
-          Validators.maxLength(64),
-          Validators.pattern("^[a-zA-Z-0-9 ]+$"),
-        ])
-      ),
-      rep_name: new FormControl(
-        "",
-        Validators.compose([
-          Validators.required,
-          Validators.minLength(0),
-          Validators.maxLength(64),
-          Validators.pattern("^[a-zA-Z-0-9 ]+$"),
-        ])
-      ),
-      rep_email: new FormControl("", Validators.compose([Validators.required, Validators.email])),
-      rep_phone: new FormControl(
-        "",
-        Validators.compose([
-          Validators.required,
-          Validators.minLength(0),
-          Validators.maxLength(21),
-          Validators.pattern(/^\(?([0-9]{3})\)?[-. ]?([0-9]{3})[-. ]?([0-9]{4})$/),
-        ])
-      ),
+    this.route.queryParams.subscribe((params) => {
+      if (params) {
+        this.params = params;
+      }
     });
 
     this._preparePage();
@@ -142,12 +87,13 @@ export class AddNewProductPage extends BasePage implements OnInit {
     console.log(this.org, this.user);
     this.allowedSide = this.org.side.toLowerCase();
     if (!this.tabChange) {
-      this.selectedCategory = this.params.category;
+      this.selectedCategory = JSON.parse(this.params.category);
       this.restaurantSide = this.params.side;
       this.inventoryId = this.params.inventory_id;
       this.createdFromPage = this.params.createdFromPage;
       this.tabChange = true;
       this.isEdit = this.params.is_edit;
+      console.log(this.selectedCategory);
     }
 
     await Promise.all([
@@ -174,9 +120,10 @@ export class AddNewProductPage extends BasePage implements OnInit {
     if (distributor) {
       this.selectDistributor(distributor);
 
-      /** We need to ignore next filter of distributor or rep search here
+      /**
+       * We need to ignore next filter of distributor or rep search here
        * since it's pre populated in product edit
-       */
+       **/
       this.ignoreNextFilter = false;
 
       this.searchRep();
@@ -189,8 +136,6 @@ export class AddNewProductPage extends BasePage implements OnInit {
       this.product.employee.name = "";
     }
   }
-
-  // ==================================================================
 
   async prepareCategoryList() {
     let res = await this.callApi(
@@ -277,7 +222,7 @@ export class AddNewProductPage extends BasePage implements OnInit {
 
   async categoryTapped(category) {
     if (this.isEdit) {
-      this.showAwaitableAlert(
+      await this.showAwaitableAlert(
         "Warning!",
         "You may not switch to a different category when editing this product."
       );
@@ -297,12 +242,27 @@ export class AddNewProductPage extends BasePage implements OnInit {
   }
 
   selectDistributor(distributor) {
-
+    console.log({ distributor });
+    this.ignoreNextFilter = true;
     this.product.distributor.id = distributor.id;
     this.product.distributor.name = distributor.name;
-    this.ignoreNextFilter = true;
-    this.searchDistributorList = [];
-    this.hideDistributorSearchResult = true;
+    this.leaveDistributorField();
+  }
+
+  selectRep(rep) {
+    console.log({ rep });
+    this.ignoreRepNextFilter = true;
+    this.shouldShowEmailPhoneFiled = false;
+
+    // this.primaryForm.controls["rep_email"].setValue(rep.employee_email);
+    // this.primaryForm.controls["rep_phone"].setValue(rep.employee_phone);
+
+    this.product.employee.id = rep.employee_id;
+    this.product.employee.name = rep.employee_name;
+    this.product.employee.email = rep.employee_email;
+    this.product.employee.phone = rep.employee_phone;
+    console.log(this.product);
+    this.leaveRepField();
   }
 
   leaveDistributorField() {
@@ -312,15 +272,22 @@ export class AddNewProductPage extends BasePage implements OnInit {
     }, 10);
   }
 
+  leaveRepField() {
+    setTimeout(() => {
+      this.searchRepList = [];
+      this.hideRepSearchResult = true;
+    }, 10);
+  }
+
+  ignoreRepNextFilter = false;
   searchRep() {
-    if (this.ignoreNextFilter) {
-      this.ignoreNextFilter = false;
+    console.log("ignoreNextFilter searchRep", this.ignoreNextFilter);
+    if (this.ignoreRepNextFilter) {
+      this.ignoreRepNextFilter = false;
       return;
     }
 
     this.shouldShowEmailPhoneFiled = true;
-    this.primaryForm.controls["rep_email"].setValue("");
-    this.primaryForm.controls["rep_phone"].setValue("");
 
     this.product.employee.id = "";
     this.product.employee.email = "";
@@ -334,37 +301,18 @@ export class AddNewProductPage extends BasePage implements OnInit {
       this.searchRepList = [];
       this.hideRepSearchResult = true;
     } else {
-      this.searchRepList = employees.filter(
-        (v) =>
+      this.searchRepList = employees.filter((v) => {
+        return (
           v["employee_name"].toLowerCase().indexOf(this.product.employee.name.toLowerCase()) > -1
-      );
+        );
+      });
       this.hideRepSearchResult = false;
     }
   }
 
-  leaveRepField() {
-    setTimeout(() => {
-      this.searchRepList = [];
-      this.hideRepSearchResult = true;
-    }, 10);
-  }
+  searchDistributor() {
+    console.log("ignoreNextFilter searchDistributor", this.ignoreNextFilter);
 
-  selectRep(rep) {
-    this.shouldShowEmailPhoneFiled = false;
-
-    this.primaryForm.controls["rep_email"].setValue(rep.employee_email);
-    this.primaryForm.controls["rep_phone"].setValue(rep.employee_phone);
-
-    this.product.employee.id = rep.employee_id;
-    this.product.employee.name = rep.employee_name;
-    this.product.employee.email = rep.employee_email;
-    this.product.employee.phone = rep.employee_phone;
-    this.ignoreNextFilter = true;
-    this.searchRepList = [];
-    this.hideRepSearchResult = true;
-  }
-
-  protected searchDistributor() {
     if (this.ignoreNextFilter) {
       this.ignoreNextFilter = false;
       return;
@@ -376,8 +324,8 @@ export class AddNewProductPage extends BasePage implements OnInit {
     this.product.employee.email = "";
     this.product.employee.phone = "";
 
+    const value = this.product.distributor.name.toLowerCase();
     this.searchDistributorList = this.distributorList.filter((distributor) => {
-      const value = this.product.distributor.name.toLowerCase();
       return distributor.name.toLowerCase().startsWith(value);
     });
     this.hideDistributorSearchResult = !(
@@ -386,23 +334,19 @@ export class AddNewProductPage extends BasePage implements OnInit {
   }
 
   async primaryFormSubmitted(): Promise<any> {
-    let form = this.primaryForm.value;
-
-    if (!form.product_name) {
+    if (!this.product.name) {
       await this.showAwaitableAlert("Error!", "Product Name is required");
       return;
     }
 
-    if (!form.unit) {
+    if (!this.product.unit) {
       await this.showAwaitableAlert("Error!", "Unit/Size is required");
       return;
     }
 
-    if (form.rep_phone) {
-      form.rep_phone = form.rep_phone.replace(/\D/g, "");
+    if (this.product.employee.phone) {
+      this.product.employee.phone = this.product.employee.phone.replace(/\D/g, "");
     }
-    console.log("NNN", form);
-    console.log("NNN", this.product);
 
     let distributor_id = "";
     if (this.product.distributor.name) {
@@ -449,7 +393,6 @@ export class AddNewProductPage extends BasePage implements OnInit {
         custom_metrics: {},
       },
     };
-    console.log(newProduct);
     let tab = this.restaurantSide.toUpperCase();
     let postData = {
       inventory_date: "",
@@ -465,7 +408,7 @@ export class AddNewProductPage extends BasePage implements OnInit {
       message = "Product has been updated.";
     }
     await this.showAwaitableAlert("Success!", message);
-    this.goToPlaceOrderOrInventory();
+    await this.goToPlaceOrderOrInventory();
     // this.__addBlankProduct();
     // this.primaryForm.reset();
     //await this.navCtrl.setRoot(HomePage);
@@ -476,14 +419,18 @@ export class AddNewProductPage extends BasePage implements OnInit {
   //     this.goToPlaceOrderOrInventory();
   // }
 
-  goToPlaceOrderOrInventory() {
+  async goToPlaceOrderOrInventory() {
     console.log("NNN4", this.inventoryId);
     // TODO - Fix me
-    // this.setRootWithAnimation("PlaceOrderPage", {
-    //   inventory_id: this.inventoryId,
-    //   from_finalize_order: true,
-    //   pageType: this.createdFromPage,
-    // });
+    //    this.setRootWithAnimation("PlaceOrderPage", {
+    await this.setRootWithAnimationBackword(
+      routeConstants.KEXY.RESTAURANT_TABS + "/" + routeConstants.KEXY.PLACE_ORDER,
+      {
+        inventory_id: this.inventoryId,
+        from_finalize_order: true,
+        pageType: this.createdFromPage,
+      }
+    );
   }
 
   async segmentChanged(event) {

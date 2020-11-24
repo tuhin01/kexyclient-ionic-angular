@@ -44,14 +44,16 @@
       </ion-col>
     </ion-row>
 
-    <form (ngSubmit)="primaryFormSubmitted()" [formGroup]="primaryForm" style="margin: 0 8px" class="ion-padding">
+    <div
+      style="margin: 0 8px"
+      class="ion-padding-start ion-padding-end"
+    >
       <!-- first_name - start -->
       <label>
         <ion-row class="border-bottom">
           <ion-col size="12">
             <ion-input
               [(ngModel)]="product.name"
-              formControlName="product_name"
               placeholder="Product Name*"
               type="text"
             ></ion-input>
@@ -59,7 +61,7 @@
         </ion-row>
         <div class="validation-errors">
           <div
-            *ngIf="!primaryForm.controls.product_name.valid && (primaryForm.get('product_name').dirty || primaryForm.get('product_name').touched)"
+            *ngIf="product.name === ''"
             class="error-message"
           >
             Please enter a valid product name.
@@ -73,7 +75,6 @@
           <ion-col size="12">
             <ion-input
               [(ngModel)]="product.par_level"
-              formControlName="par_level"
               placeholder="Par Level"
               type="text"
             ></ion-input>
@@ -86,7 +87,6 @@
           <ion-col size="12">
             <ion-input
               [(ngModel)]="product.unit"
-              formControlName="unit"
               placeholder="Unit/Size*"
               type="text"
             ></ion-input>
@@ -94,7 +94,7 @@
         </ion-row>
         <div class="validation-errors">
           <div
-            *ngIf="!primaryForm.controls.unit.valid && (primaryForm.get('unit').dirty || primaryForm.get('unit').touched)"
+            *ngIf="product.unit === ''"
             class="error-message"
           >
             Please enter a valid unit/size.
@@ -107,10 +107,8 @@
         <ion-row class="border-bottom">
           <ion-col size="12" style="position: relative">
             <ion-input
-              (ionBlur)="leaveDistributorField()"
               (ionChange)="searchDistributor()"
               [(ngModel)]="product.distributor.name"
-              formControlName="distributor_name"
               placeholder="Distributor"
               type="text"
             >
@@ -123,37 +121,28 @@
                 left: 0;
                 right: 0;
                 z-index: 100;
-                height: 200px;
+                max-height: 200px;
                 overflow: scroll;
               "
             >
               <ion-item
-                (click)="selectDistributor(distributor)"
+                style="--background: white; --padding-start: 0; --inner-padding-start: 16px"
                 *ngFor="let distributor of searchDistributorList"
+                (click)="selectDistributor(distributor)"
               >
                 {{ distributor.name }}
               </ion-item>
             </ion-list>
           </ion-col>
         </ion-row>
-        <div class="validation-errors">
-          <div
-            *ngIf="!primaryForm.controls.distributor_name.valid && (primaryForm.get('distributor_name').dirty || primaryForm.get('distributor_name').touched)"
-            class="error-message"
-          >
-            Please enter a valid distributor name.
-          </div>
-        </div>
       </label>
 
       <label>
         <ion-row class="border-bottom">
           <ion-col size="12" style="position: relative">
             <ion-input
-              (ionBlur)="leaveRepField()"
               (ionChange)="searchRep()"
               [(ngModel)]="product.employee.name"
-              formControlName="rep_name"
               placeholder="Rep Name (First & Last)"
               type="text"
             >
@@ -166,24 +155,20 @@
                 left: 0;
                 right: 0;
                 z-index: 100;
-                height: 200px;
+                max-height: 200px;
                 overflow: scroll;
               "
             >
-              <ion-item (click)="selectRep(rep)" *ngFor="let rep of searchRepList">
+              <ion-item
+                style="--background: white; --padding-start: 0; --inner-padding-start: 16px"
+                (click)="selectRep(rep)"
+                *ngFor="let rep of searchRepList"
+              >
                 {{ rep.employee_name }}
               </ion-item>
             </ion-list>
           </ion-col>
         </ion-row>
-        <div class="validation-errors">
-          <div
-            *ngIf="!primaryForm.controls.rep_name.valid && (primaryForm.get('rep_name').dirty || primaryForm.get('rep_name').touched)"
-            class="error-message"
-          >
-            Please enter a valid rep name.
-          </div>
-        </div>
       </label>
 
       <!-- email - start -->
@@ -192,21 +177,11 @@
           <ion-col size="12">
             <ion-input
               [(ngModel)]="product.employee.email"
-              [disabled]="product.employee.is_claimed"
-              formControlName="rep_email"
               placeholder="Rep Email"
               type="email"
             ></ion-input>
           </ion-col>
         </ion-row>
-        <div class="validation-errors">
-          <div
-            *ngIf="!primaryForm.controls.rep_email.valid && (primaryForm.get('rep_email').dirty || primaryForm.get('rep_email').touched)"
-            class="error-message"
-          >
-            Please enter a valid email address.
-          </div>
-        </div>
       </label>
       <!-- email - end -->
 
@@ -215,27 +190,17 @@
           <ion-col size="12">
             <ion-input
               [(ngModel)]="product.employee.phone"
-              [disabled]="product.employee.is_claimed"
-              formControlName="rep_phone"
-              placeholder="Rep Number"
+              placeholder="Rep Phone Number"
               type="tel"
             ></ion-input>
           </ion-col>
         </ion-row>
-        <div class="validation-errors">
-          <div
-            *ngIf="!primaryForm.controls.rep_phone.valid && (primaryForm.get('rep_phone').dirty || primaryForm.get('rep_phone').touched)"
-            class="error-message"
-          >
-            Please enter a valid US Mobile Phone Number.
-          </div>
-        </div>
       </label>
 
-      <ion-row padding>
+      <ion-row class="ion-padding">
         <ion-col size="12">
           <ion-button
-            type="submit"
+            (click)="primaryFormSubmitted()"
             color="light"
             expand="full"
             shape="round"
@@ -244,6 +209,6 @@
           </ion-button>
         </ion-col>
       </ion-row>
-    </form>
+    </div>
   </ion-grid>
 </ion-content>

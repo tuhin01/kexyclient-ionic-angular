@@ -287,7 +287,7 @@ export class BasePage implements OnInit {
   }
 
   async setRoot(url, params = {}) {
-    await this.navCtrl.navigateRoot(url, { animated: false, replaceUrl: true, state: params });
+    await this.navCtrl.navigateRoot(url, { animated: false, replaceUrl: true, state: params, queryParams: params });
   }
 
   async setRootWithAnimationForward(url, params = {}) {
@@ -296,6 +296,7 @@ export class BasePage implements OnInit {
       replaceUrl: true,
       animationDirection: "forward",
       state: params,
+      queryParams: params
     });
   }
 
@@ -305,6 +306,7 @@ export class BasePage implements OnInit {
       replaceUrl: true,
       animationDirection: "back",
       state: params,
+      queryParams: params
     });
   }
 }
