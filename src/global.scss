@@ -16,7 +16,7 @@
 @import "~@ionic/angular/css/normalize.css";
 @import "~@ionic/angular/css/structure.css";
 @import "~@ionic/angular/css/typography.css";
-@import '~@ionic/angular/css/display.css';
+@import "~@ionic/angular/css/display.css";
 
 /* Optional CSS utils that can be commented out */
 @import "~@ionic/angular/css/padding.css";
@@ -26,13 +26,24 @@
 @import "~@ionic/angular/css/flex-utils.css";
 
 body,
-html, ion-app {
-  font-family: 'Montserrat', sans-serif !important;
+html,
+ion-app {
+  font-family: "Montserrat", sans-serif !important;
   -webkit-user-select: text;
   -moz-user-select: text;
   -ms-user-select: text;
   user-select: text;
-  
+}
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+a,
+p,
+span {
+  font-family: "Montserrat", sans-serif !important;
 }
 html {
   width: 100%;
@@ -67,7 +78,7 @@ ion-app {
   background-color: white;
   //width: calc(100% - 60px);
   margin: auto;
-  font-family: 'Montserrat', sans-serif;
+  font-family: "Montserrat", sans-serif;
   font-weight: 500;
   text-transform: capitalize;
   border: 1px solid #88a9d6;
@@ -76,35 +87,41 @@ ion-app {
   box-shadow: 0px 0px 4px 0px #dbe0fc;
 }
 .common.button.btn-cannabis {
-  border: 1px solid rgba(54, 149, 96, .5);
+  border: 1px solid rgba(54, 149, 96, 0.5);
 }
 
 ion-header .tr-custom-toolbar .toolbar-background {
-  background: linear-gradient(90deg, rgba(44,162,221,1) 0%, rgba(41,93,208,1) 100%) !important;
+  background: linear-gradient(
+    90deg,
+    rgba(44, 162, 221, 1) 0%,
+    rgba(41, 93, 208, 1) 100%
+  ) !important;
 }
 
-
-ion-nav ion-header.tr-cannabis ion-navbar.toolbar .toolbar-background{
+ion-nav ion-header.tr-cannabis ion-navbar.toolbar .toolbar-background {
   background: rgb(54, 149, 96) !important;
-  background: linear-gradient(90deg, rgb(54, 149, 96) 0%, rgb(3, 94, 43) 100%) !important
+  background: linear-gradient(90deg, rgb(54, 149, 96) 0%, rgb(3, 94, 43) 100%) !important;
 }
 .submit-buttons.cannabis {
   .button {
     border: 1px solid rgb(54, 149, 96) !important;
   }
 }
-button.cannabis.button-ios, .cannabis.toggle-ios.toggle-checked .toggle-icon {
+button.cannabis.button-ios,
+.cannabis.toggle-ios.toggle-checked .toggle-icon {
   background-color: rgb(54, 149, 96) !important;
 }
-.cannabis-color, .location-headline.cannabis, .cannabis.icon-ios-primary  {
+.cannabis-color,
+.location-headline.cannabis,
+.cannabis.icon-ios-primary {
   color: rgb(54, 149, 96) !important;
 }
-.cannabis.checkbox-ios .checkbox-checked, .cannabis .checkbox-checked {
+.cannabis.checkbox-ios .checkbox-checked,
+.cannabis .checkbox-checked {
   border: 1px solid rgb(54, 149, 96) !important;
   background-color: rgb(54, 149, 96) !important;
 }
 .cannabis .checkbox-checked {
-
 }
 
 .user-pp {
@@ -222,16 +239,15 @@ ion-content.bgimg {
   }
 }
 .tr-popover {
-
 }
 .tr-kexy-login-start-box {
   h2 {
-    font-family: 'Montserrat', sans-serif;
+    font-family: "Montserrat", sans-serif;
     font-weight: 500;
   }
 
   p {
-    font-family: 'Montserrat', sans-serif;
+    font-family: "Montserrat", sans-serif;
     font-weight: 200;
   }
 }
@@ -265,11 +281,10 @@ ion-content.bgimg {
     }
     ion-label {
       white-space: normal;
-      font-family: 'Montserrat', sans-serif !important;
+      font-family: "Montserrat", sans-serif !important;
       font-size: 14px;
     }
     ion-avatar {
-
       margin: 5px auto;
       border: 1px solid #488aff;
       overflow: hidden;
@@ -280,10 +295,8 @@ ion-content.bgimg {
         margin: auto;
         //border-radius: unset !important;
       }
-
     }
   }
-
 }
 
 .tr-badge {
@@ -300,7 +313,7 @@ ion-content.bgimg {
 }
 
 ::-webkit-scrollbar {
-  width: 0 !important
+  width: 0 !important;
 }
 
 .profile-photo {
@@ -311,21 +324,20 @@ ion-content.bgimg {
 }
 
 .tr-login-text {
-  font-family: 'Montserrat', sans-serif;
+  font-family: "Montserrat", sans-serif;
   font-weight: 300;
 }
 ion-searchbar {
   background-color: lightgray;
 }
 .lightGreyBg {
-  background: #eff3f7 !important;;
+  background: #eff3f7 !important;
 }
 
 // To enable click but still keep the segment disabled segemnt ios
 .segment-ios .segment-button-disabled {
   pointer-events: auto !important;
 }
-
 
 .submit-buttons {
   .button {
@@ -488,7 +500,6 @@ ion-searchbar {
       color: rgb(54, 149, 96);
     }
   }
-
 }
 
 .tr-accordion {
@@ -498,8 +509,8 @@ ion-searchbar {
   border-bottom: 1px solid #eee;
   border-radius: 0;
   box-shadow: none !important;
-  .tr-card-header  {
-      --background: white;
+  .tr-card-header {
+    --background: white;
     --border-color: #ffffff;
     //--padding-start: 8px;
     .label {
@@ -533,7 +544,4 @@ ion-searchbar {
   .tr-expanded {
     height: auto !important;
   }
-
 }
-
-
