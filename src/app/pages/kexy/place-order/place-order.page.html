@@ -325,36 +325,37 @@
         </ion-row>
 
         <ion-row class="submit-buttons ion-padding">
-          <ion-col [class.should_full_width]="is_from_finalize_order" size="6">
+          <ion-col [class.should_full_width]="is_from_finalize_order" size="4">
             <ion-button
               type="submit"
               (click)="preFinalizeOrderTapped('finalize')"
               color="light"
               expand="full"
               shape="round"
-              class="ion-margin-top"
+              class="ion-margin-top common button"
               >SAVE
             </ion-button>
           </ion-col>
-          <ion-col *ngIf="isOrderPage && !is_from_finalize_order" size="6">
+          <ion-col size="1"></ion-col>
+          <ion-col *ngIf="isOrderPage && !is_from_finalize_order" size="7">
             <ion-button
               type="submit"
               (click)="preFinalizeOrderTapped('finalize')"
               color="light"
               expand="full"
               shape="round"
-              class="ion-margin-top"
+              class="ion-margin-top common button"
               >FINALIZE MY ORDER
             </ion-button>
           </ion-col>
-          <ion-col *ngIf="!isOrderPage && !is_from_finalize_order" size="6">
+          <ion-col *ngIf="!isOrderPage && !is_from_finalize_order" size="7">
             <ion-button
               type="submit"
               (click)="confirmOrderCreation()"
               color="light"
               expand="full"
               shape="round"
-              class="ion-margin-top"
+              class="ion-margin-top common button"
               >CREATE ORDER
             </ion-button>
           </ion-col>
