@@ -1,0 +1,489 @@
+<ion-header>
+  <ion-toolbar [style.background-color]="'red'" color="primary">
+    <ion-buttons slot="start">
+      <ion-menu-toggle>
+        <ion-menu-button></ion-menu-button>
+      </ion-menu-toggle>
+    </ion-buttons>
+    <ion-title *ngIf="isOrderPage">Place An Order</ion-title>
+    <ion-title *ngIf="!isOrderPage">Take Inventory</ion-title>
+    <ion-buttons slot="end">
+      <ion-button fill="clear" (click)="presentBottomSheet()">
+        <ion-icon name="ellipsis-vertical"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="lightBlueBg">
+  <div class="dashboard-segment">
+    <ion-segment (ionChange)="segmentChanged($event)" [(ngModel)]="restaurantSide" mode="md">
+      <ion-segment-button [disabled]="allowedSide === 'boh'" id="segment1" value="foh">
+        FOH
+      </ion-segment-button>
+      <ion-segment-button [disabled]="allowedSide === 'foh'" id="segment2" value="boh">
+        BOH
+      </ion-segment-button>
+    </ion-segment>
+  </div>
+
+  <ion-grid class="ion-no-padding">
+    <div>
+      <div>
+        <!-- Date, User and Order Section-->
+        <ion-row class="tr-date-user-order ion-text-center">
+          <ion-col size="4">
+            <p>Date</p>
+            <h3>{{(inventory_date | date:'MM/dd/yy')}}</h3>
+          </ion-col>
+          <ion-col size="4">
+            <p>User</p>
+            <h3 *ngIf="user">{{__prepName(user.first_name)}} {{user.last_name}}</h3>
+          </ion-col>
+          <ion-col size="4">
+            <p>Order #</p>
+            <h3>{{possible_order_number}}</h3>
+          </ion-col>
+        </ion-row>
+
+        <!--Search Product Section-->
+        <ion-row class="kexy-product-search">
+          <ion-col size="12">
+            <ion-searchbar
+              (ionChange)="searchStringChanged()"
+              [(ngModel)]="search_string"
+              animated="true"
+              mode="ios"
+              color="light"
+              placeholder="Search Products Here..."
+            ></ion-searchbar>
+          </ion-col>
+        </ion-row>
+
+        <!-- Location Slide Section-->
+        <ion-row *ngIf="!isOrderPage && search_string.length === 0" class="ion-no-padding">
+          <ion-col size="12" class="ion-no-padding">
+            <p class="location-headline">LOCATIONS</p>
+          </ion-col>
+          <ion-col class="kexy-scroll-left-to-right kexy-location" size="12">
+            <div class="kexy-ion-scroll">
+              <div
+                *ngFor="let location of locationList"
+                class="kexy-marketplace-card ion-text-center"
+              >
+                <div
+                  (click)="locationTapped(location)"
+                  [class.active]="selectedLocation && location.id === selectedLocation.id"
+                  class="scroll-left-to-right-image"
+                >
+                  <img [alt]="location.name" [src]="baseUriForImages + location.photo" />
+                </div>
+                <p class="marketplace-name">{{location.name}}</p>
+              </div>
+            </div>
+          </ion-col>
+        </ion-row>
+
+        <!-- Category Slide Section-->
+        <ion-row *ngIf="search_string.length === 0" class="ion-no-padding">
+          <ion-col size="12" class="ion-no-padding">
+            <p class="location-headline">CATEGORIES</p>
+          </ion-col>
+          <ion-col class="kexy-scroll-left-to-right" size="12">
+            <div class="kexy-ion-scroll ion-text-left">
+              <div
+                *ngFor="let cat of categoryList"
+                class="kexy-marketplace-card ion-text-center ion-align-items-start"
+              >
+                <div
+                  (click)="categoryTapped(cat)"
+                  [class.active]="selectedCategory && cat.id === selectedCategory.id"
+                  class="scroll-left-to-right-image"
+                >
+                  <img [alt]="cat.name" [src]="baseUriForImages + cat.photo" />
+                </div>
+                <p class="marketplace-name">{{cat.name}}</p>
+              </div>
+            </div>
+          </ion-col>
+        </ion-row>
+
+        <ion-row class="all-category-sort-note">
+          <ion-col size="12" class="ion-text-left" *ngIf="search_string.length === 0">
+            <ion-item class="kexy-all-product-show-toggle">
+              <ion-toggle [(ngModel)]="showAllProduct" style="zoom: 0.9"></ion-toggle>
+              <ion-label>Show all products within category</ion-label>
+            </ion-item>
+          </ion-col>
+          <ion-col size="12" class="ion-text-left" *ngIf="search_string.length !== 0">
+            <ion-item class="kexy-all-product-show-toggle">
+              <ion-label>Search Results For - <strong>{{search_string}}</strong></ion-label>
+            </ion-item>
+          </ion-col>
+        </ion-row>
+
+        <ion-row *ngIf="!showAllProduct && productList.length > 0" class="kexy-single-product-view">
+          <ng-template [ngIf]="true">
+            <ion-col size="12" class="ion-text-center">
+              <p *ngIf="singleViewProduct" class="product-name">{{singleViewProduct.name}}</p>
+              <table>
+                <tr *ngIf="!isOrderPage">
+                  <td>Qty In House:</td>
+                  <td>
+                    <ion-input
+                      (change)="productQuantityChanged(singleViewProduct)"
+                      (keyup)="closeKeyboard($event)"
+                      *ngIf="singleViewProduct"
+                      [(ngModel)]="singleViewProduct.tempData.qty_in_house"
+                      type="number"
+                    ></ion-input>
+                  </td>
+                </tr>
+                <tr *ngIf="!isOrderPage">
+                  <td>Total Qty In House:</td>
+                  <td>
+                    <ion-input
+                      *ngIf="singleViewProduct"
+                      [(ngModel)]="singleViewProduct.tempData.total_qty_in_house"
+                      disabled
+                      type="number"
+                    ></ion-input>
+                  </td>
+                </tr>
+                <tr>
+                  <td>Par Level:</td>
+                  <td>
+                    <ion-input
+                      (change)="productParLevelChanged(singleViewProduct)"
+                      (keyup)="closeKeyboard($event)"
+                      *ngIf="singleViewProduct"
+                      [(ngModel)]="singleViewProduct.tempData.par_level"
+                      type="number"
+                    ></ion-input>
+                  </td>
+                </tr>
+                <tr>
+                  <td>Amount to Order:</td>
+                  <td>
+                    <ion-input
+                      (change)="productAmountToOrderChanged(singleViewProduct)"
+                      (keyup)="closeKeyboard($event)"
+                      *ngIf="singleViewProduct"
+                      [(ngModel)]="singleViewProduct.tempData.amount_to_order"
+                      type="number"
+                    ></ion-input>
+                  </td>
+                </tr>
+                <tr>
+                  <td>Unit:</td>
+                  <td *ngIf="singleViewProduct">{{singleViewProduct.unit}}</td>
+                </tr>
+              </table>
+            </ion-col>
+
+            <ion-col *ngIf="singleViewProduct" size="12" class="ion-text-center">
+              <ion-button
+                fill="clear"
+                (click)="createProductNote(singleViewProduct)"
+                class="kexy-add-location-btn"
+              >
+                <ion-icon name="ios-add-circle-outline"></ion-icon>
+                <span
+                  *ngIf="!singleViewProduct.selectedProduct || (singleViewProduct.selectedProduct && singleViewProduct.selectedProduct.note.length === 0)"
+                  >Create a Note</span
+                >
+                <span
+                  *ngIf="singleViewProduct.selectedProduct && singleViewProduct.selectedProduct.note.length > 0"
+                  >View Note</span
+                >
+              </ion-button>
+            </ion-col>
+
+            <ion-col size="6" class="ion-text-center">
+              <ion-button
+                fill="clear"
+                *ngIf="this.singleViewProductIndex > 0"
+                (click)="previousProductTapped()"
+                class="kexy-add-location-btn"
+              >
+                <ion-icon name="ios-arrow-dropleft-outline"></ion-icon>
+                Previous Product
+              </ion-button>
+            </ion-col>
+            <ion-col size="6" class="ion-text-center">
+              <ion-button
+                fill="clear"
+                *ngIf="this.singleViewProductIndex < this.productList.length - 1"
+                (click)="nextProductTapped()"
+                class="kexy-add-location-btn"
+              >
+                Next Product
+                <ion-icon name="ios-arrow-dropright-outline"></ion-icon>
+              </ion-button>
+            </ion-col>
+          </ng-template>
+        </ion-row>
+
+        <ion-row *ngIf="showAllProduct && productList.length > 0" class="kexy-all-product-view">
+          <div class="tr-all-product-container" style="width: 100%">
+            <div class="all-product-scroll">
+              <table [class.order-page]="isOrderPage">
+                <tr>
+                  <th class="tr-f-ch" style="width: 150px">
+                    <ion-button
+                      fill="clear"
+                      (click)="sortProducts()"
+                      class="kexy-add-location-btn kexy-product-sort"
+                    >
+                      Item
+                      <ion-icon *ngIf="!sort" class="icon-sort" name="arrow-up-outline"></ion-icon>
+                      <ion-icon *ngIf="sort" class="icon-sort" name="arrow-down-outline"></ion-icon>
+                    </ion-button>
+                  </th>
+                  <th *ngIf="!isOrderPage && !isProductEdit">Qty In Location</th>
+                  <th *ngIf="!isOrderPage && !isProductEdit">Total Qty</th>
+                  <th *ngIf="isOrderPage && !isProductEdit">Amount to Order</th>
+                  <th *ngIf="!isProductEdit">Par</th>
+                  <th *ngIf="!isOrderPage && !isProductEdit">Amount to Order</th>
+                  <th *ngIf="!isProductEdit">Unit</th>
+                  <th *ngIf="isProductEdit">Edit</th>
+                </tr>
+                <tr *ngFor="let product of productList; let i = index;" class="tr-product">
+                  <td class="tr-product tr-f-ch">
+                    {{product.name}}
+                    <ion-icon
+                      (click)="createProductNote(product)"
+                      *ngIf="!product.selectedProduct || (product.selectedProduct && product.selectedProduct.note.length === 0)"
+                      name="ios-create-outline"
+                    ></ion-icon>
+                    <ion-icon
+                      (click)="createProductNote(product)"
+                      *ngIf="product.selectedProduct && product.selectedProduct.note.length > 0"
+                      name="ios-information-circle-outline"
+                    ></ion-icon>
+                  </td>
+                  <td *ngIf="!isOrderPage && !isProductEdit">
+                    <ion-input
+                      (change)="productQuantityChanged(product)"
+                      (keyup)="closeKeyboard($event)"
+                      [(ngModel)]="product.tempData.qty_in_house"
+                      type="number"
+                    ></ion-input>
+                  </td>
+                  <td *ngIf="!isOrderPage && !isProductEdit">
+                    <ion-input
+                      [(ngModel)]="product.tempData.total_qty_in_house"
+                      disabled
+                      type="number"
+                    ></ion-input>
+                  </td>
+                  <td *ngIf="isOrderPage && !isProductEdit">
+                    <ion-input
+                      (change)="productAmountToOrderChanged(product)"
+                      (keyup)="closeKeyboard($event)"
+                      [(ngModel)]="product.tempData.amount_to_order"
+                      type="number"
+                    ></ion-input>
+                  </td>
+                  <td *ngIf="!isProductEdit">
+                    <ion-input
+                      (change)="productParLevelChanged(product)"
+                      (keyup)="closeKeyboard($event)"
+                      [(ngModel)]="product.tempData.par_level"
+                      type="number"
+                    ></ion-input>
+                  </td>
+                  <td *ngIf="!isOrderPage && !isProductEdit">
+                    <ion-input
+                      (change)="productAmountToOrderChanged(product)"
+                      (keyup)="closeKeyboard($event)"
+                      [(ngModel)]="product.tempData.amount_to_order"
+                      type="number"
+                    ></ion-input>
+                  </td>
+
+                  <td *ngIf="!isProductEdit">{{product.unit}}</td>
+                  <td *ngIf="isProductEdit" style="text-align: center">
+                    <ion-button
+                      (click)="editProduct(product)"
+                      class="kexy-add-location-btn"
+                      style="margin: 0"
+                      fill="clear"
+                      size="small"
+                    >
+                      <ion-icon name="create"></ion-icon>
+                    </ion-button>
+                  </td>
+                </tr>
+              </table>
+            </div>
+          </div>
+        </ion-row>
+
+        <ion-row *ngIf="inventory_date && productList.length <= 0" class="ion-padding">
+          <ion-col class="ion-text-center"> No products found in this category. </ion-col>
+        </ion-row>
+
+        <ion-row class="submit-buttons ion-padding">
+          <ion-col [class.should_full_width]="is_from_finalize_order" size="4">
+            <ion-button
+              type="submit"
+              (click)="preFinalizeOrderTapped('finalize')"
+              color="light"
+              expand="full"
+              shape="round"
+              class="ion-margin-top common button"
+              >SAVE
+            </ion-button>
+          </ion-col>
+          <ion-col size="1"></ion-col>
+          <ion-col *ngIf="isOrderPage && !is_from_finalize_order" size="7">
+            <ion-button
+              type="submit"
+              (click)="preFinalizeOrderTapped('finalize')"
+              color="light"
+              expand="full"
+              shape="round"
+              class="ion-margin-top common button"
+              >FINALIZE MY ORDER
+            </ion-button>
+          </ion-col>
+          <ion-col *ngIf="!isOrderPage && !is_from_finalize_order" size="7">
+            <ion-button
+              type="submit"
+              (click)="confirmOrderCreation()"
+              color="light"
+              expand="full"
+              shape="round"
+              class="ion-margin-top common button"
+              >CREATE ORDER
+            </ion-button>
+          </ion-col>
+        </ion-row>
+      </div>
+    </div>
+  </ion-grid>
+</ion-content>
+
+<!--Note popup overlay-->
+<div [class.traddoverlay]="noteTaking.show"></div>
+<div class="tr-kexy-rpoduct-note" [class.hidden]="!noteTaking.show">
+  <div class="note-header">
+    <span>Create a Note</span>
+    <span (click)="cancelNote()" class="kexy-tr-modal-close">
+      <ion-icon name="ios-close-outline"></ion-icon>
+    </span>
+  </div>
+  <div class="note-content">
+    <ion-textarea [(ngModel)]="noteTaking.text" mode="ios" placeholder=""></ion-textarea>
+  </div>
+  <div class="note-footer">
+    <ion-button (click)="saveNote()" color="primary" shape="round" class="ion-margin-bottom">
+      SAVE
+    </ion-button>
+  </div>
+</div>
+
+<!--Subscription popup overlay-->
+<div [class.traddoverlay]="(shouldShowSubscriptionDialog && doesNotHaveProperSubscription)"></div>
+<div
+  class="tr-kexy-subscription"
+  [class.hidden]="!(shouldShowSubscriptionDialog && doesNotHaveProperSubscription)"
+>
+  <div class="note-header">
+    <span>Subscription Required</span>
+    <span class="kexy-tr-modal-close" (click)="closeSubscriptionDialog()">
+      <ion-icon name="ios-close-outline"></ion-icon>
+    </span>
+  </div>
+
+  <ion-col size="12">
+    <p style="text-align: left; margin: 10px">
+      It appears as though you don’t have a subscription? Click below to either sign up or renew
+      your package:
+    </p>
+    <ion-button
+      (click)="buySuscription()"
+      color="primary"
+      shape="round"
+      class="ion-margin-bottom"
+      style="width: 85%"
+    >
+      Buy or renew subscription
+    </ion-button>
+    <p *ngIf="isSubscriptionTrial" style="text-align: left; margin: 10px">
+      To request an extension of your free trial:
+    </p>
+    <ion-button
+      (click)="extendTrialRequest()"
+      *ngIf="isSubscriptionTrial"
+      color="primary"
+      shape="round"
+      style="width: 85%"
+    >
+      Request Extension
+    </ion-button>
+    <p style="text-align: left; margin: 10px">
+      If you already purchased a subscription, click below:
+    </p>
+    <ion-button (click)="checkSubscription()" color="primary" shape="round" style="width: 85%">
+      Recheck Now
+    </ion-button>
+  </ion-col>
+</div>
+
+<!--Add category popup overlay-->
+<div #categoryOverlay [class.traddoverlay]="showCategoryModal"></div>
+<div
+  class="tr-kexy-rpoduct-note"
+  #categoryModal
+  style="padding: 16px"
+  [class.hidden]="!showCategoryModal"
+>
+  <div class="note-header" style="border: none">
+    <span style="float: left; font-size: 18px">Add new category</span>
+    <span class="kexy-tr-modal-close" (click)="closeAddCategoryModal()">
+      <ion-icon name="close"></ion-icon>
+    </span>
+  </div>
+  <div class="note-content" style="clear: both">
+    <ion-row>
+      <ion-col size="6">
+        <div class="width-100">
+          <img class="profile-photo" [src]="categoryImageUrl" [hidden]="!categoryImageUrl" />
+          <img
+            class="profile-photo"
+            src="https://www.getkexy.com/client/assets/images/loc-default.png"
+            [hidden]="categoryImageUrl"
+          />
+          <p class="ion-no-padding ion-no-margin">Current Photo</p>
+        </div>
+      </ion-col>
+    </ion-row>
+    <ion-row class="border-bottom">
+      <ion-col size="12">
+        <ion-input
+          [(ngModel)]="categoryName"
+          autofocus
+          placeholder="Type Category Name"
+          type="text"
+        ></ion-input>
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col size="12">
+        <ion-button style="padding: 0" fill="clear" color="primary" (click)="presentFileChooser()">
+          <ion-icon name="attach"></ion-icon>
+          Upload New Photo
+        </ion-button>
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col size="12">
+        <ion-button color="primary" expand="full" shape="round" (click)="saveCategory()"
+          >ADD CATEGORY</ion-button
+        >
+      </ion-col>
+    </ion-row>
+  </div>
+</div>

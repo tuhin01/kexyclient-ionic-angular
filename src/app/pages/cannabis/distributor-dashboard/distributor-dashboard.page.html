@@ -1,0 +1,66 @@
+<ion-content class="lightBlueBg" style="z-index: 100">
+  <ion-grid class="dashboard-grid">
+    <ion-row class="dashboard-header">
+      <ion-col size="6" class="ion-no-padding">
+        <ion-button
+          fill="clear"
+          color="light"
+          class="ripple-parent"
+          (click)="openMenu()"
+          style="background: transparent; margin-top: 18px; margin-left: -8px"
+        >
+          <ion-icon slot="icon-only" name="menu"></ion-icon>
+          <ion-ripple-effect></ion-ripple-effect>
+        </ion-button>
+      </ion-col>
+      <ion-col size="6" class="ion-no-padding"></ion-col>
+    </ion-row>
+
+    <ion-list>
+      <ion-row class="ion-padding">
+        <ion-col size="12">
+          <ion-button
+            (click)="messagesTapped()"
+            color="light"
+            expand="block"
+            shape="round"
+            class="common button"
+            >Messages</ion-button
+          >
+        </ion-col>
+        <ion-col size="12">
+          <ion-button
+            (click)="contactBtnTapped()"
+            color="light"
+            expand="block"
+            shape="round"
+            class="common button"
+            >Contacts</ion-button
+          >
+        </ion-col>
+        <ion-col size="12">
+          <ion-button
+            (click)="restaurantBarTapped()"
+            color="light"
+            expand="block"
+            shape="round"
+            class="common button"
+            >Restaurants & Bars</ion-button
+          >
+        </ion-col>
+
+        <ion-col size="12">
+          <ion-button
+            (click)="myOrdersTapped()"
+            color="light"
+            expand="block"
+            shape="round"
+            class="common button"
+            >My Orders</ion-button
+          >
+        </ion-col>
+      </ion-row>
+    </ion-list>
+    <!-- Dashboard Buttons - end -->
+  </ion-grid>
+</ion-content>

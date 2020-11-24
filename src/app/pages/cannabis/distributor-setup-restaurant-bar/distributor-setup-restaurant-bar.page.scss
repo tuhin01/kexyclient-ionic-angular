@@ -1,0 +1,70 @@
+.kexy-marketplace-card.checked {
+  border: 2px solid cornflowerblue;
+}
+
+.kexy-marketplace-card {
+  width: 100%;
+  padding: 5px;
+  height: 60px;
+  border-radius: 6px;
+
+  .person-name {
+    font-weight: bold;
+    font-size: 12px;
+  }
+
+  .marketplace-name {
+    color: gray;
+    font-size: 12px;
+  }
+
+  ion-label {
+    white-space: unset;
+    margin: 0;
+  }
+
+  .checkbox-icon {
+    display: none;
+  }
+
+  .checkbox {
+    margin: 0 !important;
+  }
+
+  .item-inner {
+    margin: 0;
+    padding: 0 !important;
+    border: none !important;
+  }
+}
+
+.item-checkbox {
+  border: 2px solid white;
+}
+
+.item-checkbox-checked {
+  border: 2px solid cornflowerblue;
+}
+
+.kexy-card-area {
+  max-height: 210px;
+  height: auto;
+  overflow-y: scroll;
+}
+
+.kexy-zip-code-btn {
+  color: black;
+  text-transform: initial;
+  margin-top: 10px;
+  text-decoration: underline;
+}
+
+#checkAll {
+  padding:0;
+  border: 0;
+  font-size: 12px;
+}
+
+#checkAll .item-inner {
+  border: 0;
+}

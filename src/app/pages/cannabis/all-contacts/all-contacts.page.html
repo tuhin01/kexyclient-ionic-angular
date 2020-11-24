@@ -1,0 +1,202 @@
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-buttons slot="start">
+      <ion-back-button></ion-back-button>
+    </ion-buttons>
+    <ion-title *ngIf="!isInGroupSelectionMode">All Contacts</ion-title>
+    <ion-title *ngIf="isInGroupSelectionMode">Select People</ion-title>
+    <ion-buttons slot="end">
+      <ion-button
+        *ngIf="isInGroupSelectionMode"
+        fill="clear"
+        (click)="groupSelectionCancelTapped()"
+      >
+        <ion-icon name="close-circle-outline"></ion-icon>
+      </ion-button>
+      <ion-button
+        *ngIf="isInGroupSelectionMode"
+        fill="clear"
+        (click)="groupSelectionConfirmTapped()"
+      >
+        <ion-icon name="checkmark-circle"></ion-icon>
+      </ion-button>
+      <ion-button *ngIf="!isInGroupSelectionMode" fill="clear" (click)="addParticipantsTapped()">
+        <ion-icon name="people"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="lightBlueBg">
+  <div class="dashboard-segment">
+    <ion-segment mode="md" [(ngModel)]="contactSide">
+      <ion-segment-button id="segment1" value="restaurant_bar">
+        <ion-label>Restaurants & Bars</ion-label>
+      </ion-segment-button>
+      <ion-segment-button id="segment2" value="distributor_supplier">
+        <ion-label>Distributors & Suppliers</ion-label>
+      </ion-segment-button>
+    </ion-segment>
+  </div>
+
+  <div style="padding: 16px" *ngIf="contactSide=='restaurant_bar'">
+    <ion-searchbar
+      animated
+      color="light"
+      [(ngModel)]="restaurant_search_string"
+      (change)="restaurantSearchStringChanged()"
+      (input)="restaurantSearchStringChanged()"
+      (ionCancel)="restaurantSearchCanceled()"
+      (ionClear)="restaurantSearchCanceled()"
+    >
+    </ion-searchbar>
+
+    <div class="restaurant" style="margin-top: 16px">
+      <accordion
+        *ngFor="let restaurant of restaurant_contact_list; let k = index;"
+        title="{{restaurant.name}}"
+      >
+        <div *ngIf="restaurant.employee.length > 0">
+          <div class="tr-item-border" *ngFor="let contact of restaurant.employee; let i = index;">
+            <ion-item (click)="contactTapped($event, contact)">
+              <ion-avatar slot="start" (click)="showContactInfo($event, contact)">
+                <div
+                  class="user-pp"
+                  *ngIf="contact.logo_image_url != ''"
+                  [ngStyle]="{'background-image': 'url(' + baseUriForImages + contact.logo_image_url + ')'}"
+                ></div>
+                <div class="user-pp" *ngIf="contact.logo_image_url == ''">
+                  {{nameToInitials(contact.first_name, contact.last_name)}}
+                </div>
+              </ion-avatar>
+              <ion-label>
+                <h2>{{contact.first_name}} {{contact.last_name}}</h2>
+                <p>{{contact.job_title}}</p>
+              </ion-label>
+              <div slot="end">
+                <div *ngIf="contact.unread_message > 0" class="unread-message">
+                  {{contact.unread_message}} unread
+                </div>
+                <div
+                  class="online-indicator"
+                  [class.online]="online_user_list.indexOf(contact.user_id) > -1"
+                ></div>
+                <div
+                  class="tr-kexy-contact-select tr-contact"
+                  *ngIf="isInGroupSelectionMode && selected_contact_list.indexOf(contact) > -1"
+                >
+                  <div class="tr-contact-selected"></div>
+                </div>
+                <div
+                  class="tr-kexy-contact-select tr-contact"
+                  *ngIf="isInGroupSelectionMode && selected_contact_list.indexOf(contact) == -1"
+                ></div>
+              </div>
+            </ion-item>
+          </div>
+        </div>
+        <div *ngIf="restaurant.employee.length == 0">
+          <p style="padding: 16px">No Contacts</p>
+        </div>
+      </accordion>
+    </div>
+  </div>
+
+  <div style="padding: 16px" *ngIf="contactSide=='distributor_supplier'">
+    <ion-searchbar
+      animated="true"
+      color="light"
+      [(ngModel)]="distributor_supplier_search_string"
+      (change)="distributorSearchStringChanged()"
+      (input)="distributorSearchStringChanged()"
+      (ionCancel)="distributorSearchCanceled()"
+      (ionClear)="distributorSearchCanceled()"
+    >
+    </ion-searchbar>
+    <div class="restaurant" style="margin-top: 16px">
+      <accordion
+        *ngFor="let distributor_supplier of distributor_supplier_contact_list; let k = index;"
+        title="{{distributor_supplier.name}}"
+      >
+        <div *ngIf="distributor_supplier.employee.length > 0">
+          <div class="tr-item-border" *ngFor="let contact of distributor_supplier.employee; let i = index;">
+            <ion-item (click)="contactTapped($event, contact)">
+              <ion-avatar slot="start" (click)="showContactInfo($event, contact)">
+                <div
+                  class="user-pp"
+                  *ngIf="contact.logo_image_url != ''"
+                  [ngStyle]="{'background-image': 'url(' + baseUriForImages + contact.logo_image_url + ')'}"
+                ></div>
+                <div class="user-pp" *ngIf="contact.logo_image_url == ''">
+                  {{nameToInitials(contact.first_name, contact.last_name)}}
+                </div>
+              </ion-avatar>
+              <ion-label>
+                <h2>{{contact.first_name}} {{contact.last_name}}</h2>
+                <p>{{contact.job_title}}</p>
+              </ion-label>
+              <div slot="end">
+                <div *ngIf="contact.unread_message > 0" class="unread-message">
+                  {{contact.unread_message}} unread
+                </div>
+                <div
+                  class="online-indicator"
+                  [class.online]="online_user_list.indexOf(contact.user_id) > -1"
+                ></div>
+                <div
+                  class="tr-kexy-contact-select tr-contact"
+                  *ngIf="isInGroupSelectionMode && selected_contact_list.indexOf(contact) > -1"
+                >
+                  <div class="tr-contact-selected"></div>
+                </div>
+                <div
+                  class="tr-kexy-contact-select tr-contact"
+                  *ngIf="isInGroupSelectionMode && selected_contact_list.indexOf(contact) == -1"
+                ></div>
+              </div>
+            </ion-item>
+          </div>
+        </div>
+        <div *ngIf="distributor_supplier.employee.length == 0">
+          <p style="padding: 16px">No Contacts</p>
+        </div>
+      </accordion>
+    </div>
+  </div>
+</ion-content>
+
+<!--Contact popup overlay-->
+<div [class.traddoverlay]="shouldShowContactDialog"></div>
+<div class="tr-kexy-contact" *ngIf="selectedContact" [class.hidden]="!shouldShowContactDialog">
+  <div class="note-header">
+    <span><b>{{selectedContact.first_name + " " + selectedContact.last_name}}</b></span>
+    <span class="kexy-tr-modal-close" (click)="closeContactDialog()">
+      <ion-icon name="close"></ion-icon>
+    </span>
+  </div>
+
+  <div class="note-content">
+    <ion-col size="12">
+      <table>
+        <tr>
+          <td style="width: 60px">Email -</td>
+          <td style="word-break: break-all">
+            <a href="mailto:{{selectedContact.email}}">{{selectedContact.email}}</a>
+          </td>
+        </tr>
+      </table>
+      <table>
+        <tr>
+          <td style="width: 70px">Phone -</td>
+          <td><a href="tel:{{selectedContact.phone}}">{{selectedContact.phone}}</a></td>
+        </tr>
+      </table>
+      <table>
+        <tr>
+          <td style="width: 130px">In App Message -</td>
+          <td><a href="#" (click)="contactTapped($event, selectedContact)">Click Here</a></td>
+        </tr>
+      </table>
+    </ion-col>
+  </div>
+</div>

@@ -1,0 +1,23 @@
+.tr-kexy-order-header {
+    font-size: 14px;
+    background: white;
+    padding: 8px;
+    .rep-info {
+        display: flex;
+        align-items: center;
+    }
+}
+.rep-checkbox-row {
+    font-size: 10px;
+}
+.tr-kexy-rep-delivery {
+    padding: 0 8px;
+    border-bottom: 1px solid lightgray;
+    .rep-info {
+        display: flex;
+        align-items: center;
+    }
+}
+.scroll-content {
+    margin-bottom: 0 !important;
+}

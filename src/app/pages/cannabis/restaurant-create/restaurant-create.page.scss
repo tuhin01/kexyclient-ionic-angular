@@ -1,0 +1,116 @@
+ion-label {
+  display: inline;
+  position: relative;
+  bottom: 3px;
+  left: 10px;
+}
+
+.scroll-content {
+  margin-bottom: 0 !important;
+}
+
+ion-col {
+  padding-bottom: 0 !important;
+}
+
+.text-input {
+  margin-bottom: 2px;
+}
+
+ion-icon {
+  font-weight: bold;
+  font-size: 20px;
+}
+
+.profile-photo {
+  /*max-width: 150px;
+  max-height: 150px;*/
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
+  object-fit: cover;
+}
+
+.tr-kexy-edit-side {
+  .item-select {
+    padding-left: 0;
+    background-color: transparent;
+    font-size: 14px;
+    margin-bottom: -10px;
+
+    ion-label {
+      bottom: -3px;
+      left: 0px;
+    }
+
+    ion-select {
+      max-width: max-content;
+      padding-bottom: 0;
+    }
+
+    .item-inner {
+      border-bottom: none;
+      padding-right: 0;
+    }
+  }
+}
+
+ion-select.select-md {
+  padding-left: 12px;
+  padding-bottom: 6px;
+  width: 100%;
+  max-width: 100%;
+
+  .select-text {
+    font-size: 14px;
+  }
+}
+
+.item-md.item-block .item-inner {
+  border-bottom: 1px solid lightgray;
+}
+
+
+.tr-modal-popup {
+  position: absolute;
+  background: white;
+  border-radius: 10px;
+  top: 10%;
+  width: 90%;
+  z-index: 99;
+  padding: 16px;
+  height: auto;
+  max-height: 65%;
+  overflow: scroll;
+
+  .tr-modal-close {
+    cursor: pointer;
+  }
+
+  .tr-list-title {
+    text-align: center;
+    font-size: 16px;
+    font-weight: bold;
+  }
+
+  .tr-loading {
+    .loading-spinner {
+      width: 50px;
+      float: left;
+    }
+    .loading-content {
+      position: relative;
+      top: 6px;
+    }
+  }
+}
+
+.overlay {
+  background: rgba(0, 0, 0, 0.5);
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 99;
+}

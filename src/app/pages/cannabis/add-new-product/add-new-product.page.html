@@ -1,0 +1,215 @@
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-buttons slot="start">
+      <ion-back-button></ion-back-button>
+    </ion-buttons>
+    <ion-title>{{title}}</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="lightBlueBg">
+  <div class="dashboard-segment">
+    <ion-segment (ionChange)="segmentChanged($event)" [(ngModel)]="restaurantSide" mode="md">
+      <ion-segment-button [disabled]="allowedSide === 'boh'" id="segment1" value="foh">
+        FOH
+      </ion-segment-button>
+      <ion-segment-button [disabled]="allowedSide === 'foh'" id="segment2" value="boh">
+        BOH
+      </ion-segment-button>
+    </ion-segment>
+  </div>
+
+  <ion-grid class="ion-no-padding">
+    <!-- Category Slide Section-->
+    <ion-row class="ion-no-padding">
+      <ion-col size="12" class="ion-no-padding">
+        <p class="location-headline">CATEGORIES</p>
+      </ion-col>
+      <ion-col class="kexy-scroll-left-to-right" size="12">
+        <div class="kexy-ion-scroll ion-text-left">
+          <div
+            *ngFor="let cat of categoryList"
+            class="kexy-marketplace-card ion-text-center ion-align-items-start"
+          >
+            <div
+              (click)="categoryTapped(cat)"
+              [class.active]="selectedCategory && cat.id === selectedCategory.id"
+              class="scroll-left-to-right-image"
+            >
+              <img [alt]="cat.name" [src]="baseUriForImages + cat.photo" />
+            </div>
+            <p class="marketplace-name">{{cat.name}}</p>
+          </div>
+        </div>
+      </ion-col>
+    </ion-row>
+
+    <div
+      style="margin: 0 8px"
+      class="ion-padding-start ion-padding-end"
+    >
+      <!-- first_name - start -->
+      <label>
+        <ion-row class="border-bottom">
+          <ion-col size="12">
+            <ion-input
+              [(ngModel)]="product.name"
+              placeholder="Product Name*"
+              style="text-transform: capitalize"
+              type="text"
+            ></ion-input>
+          </ion-col>
+        </ion-row>
+        <div class="validation-errors">
+          <div
+            *ngIf="product.name === ''"
+            class="error-message"
+          >
+            Please enter a valid product name.
+          </div>
+        </div>
+      </label>
+      <!-- first_name - end -->
+      <!-- last_name - start -->
+      <label>
+        <ion-row class="border-bottom">
+          <ion-col size="12">
+            <ion-input
+              [(ngModel)]="product.par_level"
+              placeholder="Par Level"
+              type="text"
+            ></ion-input>
+          </ion-col>
+        </ion-row>
+      </label>
+      <!-- email - start -->
+      <label>
+        <ion-row class="border-bottom">
+          <ion-col size="12">
+            <ion-input
+              [(ngModel)]="product.unit"
+              placeholder="Unit/Size*"
+              type="text"
+            ></ion-input>
+          </ion-col>
+        </ion-row>
+        <div class="validation-errors">
+          <div
+            *ngIf="product.unit === ''"
+            class="error-message"
+          >
+            Please enter a valid unit/size.
+          </div>
+        </div>
+      </label>
+
+      <!-- last_name - start -->
+      <label>
+        <ion-row class="border-bottom">
+          <ion-col size="12" style="position: relative">
+            <ion-input
+              (ionChange)="searchDistributor()"
+              [(ngModel)]="product.distributor.name"
+              placeholder="Distributor"
+              type="text"
+            >
+            </ion-input>
+            <ion-list
+              *ngIf="hideDistributorSearchResult"
+              style="
+                position: absolute;
+                top: 46px;
+                left: 0;
+                right: 0;
+                z-index: 100;
+                max-height: 200px;
+                overflow: scroll;
+              "
+            >
+              <ion-item
+                style="--background: white; --padding-start: 0; --inner-padding-start: 16px"
+                *ngFor="let distributor of searchDistributorList"
+                (click)="selectDistributor(distributor)"
+              >
+                {{ distributor.name }}
+              </ion-item>
+            </ion-list>
+          </ion-col>
+        </ion-row>
+      </label>
+
+      <label>
+        <ion-row class="border-bottom">
+          <ion-col size="12" style="position: relative">
+            <ion-input
+              (ionChange)="searchRep()"
+              [(ngModel)]="product.employee.name"
+              placeholder="Rep Name (First & Last)"
+              type="text"
+            >
+            </ion-input>
+            <ion-list
+              [class.hidden]="hideRepSearchResult"
+              style="
+                position: absolute;
+                top: 46px;
+                left: 0;
+                right: 0;
+                z-index: 100;
+                max-height: 200px;
+                overflow: scroll;
+              "
+            >
+              <ion-item
+                style="--background: white; --padding-start: 0; --inner-padding-start: 16px"
+                (click)="selectRep(rep)"
+                *ngFor="let rep of searchRepList"
+              >
+                {{ rep.employee_name }}
+              </ion-item>
+            </ion-list>
+          </ion-col>
+        </ion-row>
+      </label>
+
+      <!-- email - start -->
+      <label *ngIf="shouldShowEmailPhoneFiled">
+        <ion-row class="border-bottom">
+          <ion-col size="12">
+            <ion-input
+              [(ngModel)]="product.employee.email"
+              placeholder="Rep Email"
+              type="email"
+            ></ion-input>
+          </ion-col>
+        </ion-row>
+      </label>
+      <!-- email - end -->
+
+      <label *ngIf="shouldShowEmailPhoneFiled">
+        <ion-row class="border-bottom">
+          <ion-col size="12">
+            <ion-input
+              [(ngModel)]="product.employee.phone"
+              placeholder="Rep Phone Number"
+              type="tel"
+            ></ion-input>
+          </ion-col>
+        </ion-row>
+      </label>
+
+      <ion-row class="ion-padding">
+        <ion-col size="12">
+          <ion-button
+            (click)="primaryFormSubmitted()"
+            color="light"
+            expand="full"
+            shape="round"
+            class="common button ion-margin-top"
+            >SUBMIT
+          </ion-button>
+        </ion-col>
+      </ion-row>
+    </div>
+  </ion-grid>
+</ion-content>

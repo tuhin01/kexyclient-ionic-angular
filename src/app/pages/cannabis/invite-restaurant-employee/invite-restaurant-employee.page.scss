@@ -1,0 +1,36 @@
+ion-label {
+    display: inline;
+    position: relative;
+    bottom: 3px;
+    left: 10px;
+  }
+  ion-col {
+    padding-bottom: 0 !important;
+  }
+  .text-input {
+    margin-bottom: 2px;
+    margin-left: 0;
+  }
+  ion-icon {
+    font-size: 20px;
+  }
+  .common.button {
+    width: 100%;
+  }
+  .kexy-add-more-invite-btn {
+    text-transform: initial;
+    margin-top: 20px;
+    text-decoration: underline;
+    font-weight: normal;
+  }
+  .tr-kx-icon {
+    display: inline-block;
+    padding-top: 15px;
+  }
+
+  ion-select {
+    display: inline-flex;
+    overflow: initial;
+    max-width: none;
+    padding: 10px 0 0 0 !important;
+  }

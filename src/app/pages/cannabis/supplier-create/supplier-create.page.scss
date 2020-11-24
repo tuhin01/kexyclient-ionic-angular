@@ -1,0 +1,35 @@
+ion-label {
+    display: inline;
+    position: relative;
+    bottom: 3px;
+    left: 10px;
+  }
+  .scroll-content {
+    margin-bottom: 0 !important;
+  }
+
+  /*ion-col {
+    padding-bottom: 0 !important;
+  }*/
+
+  .text-input {
+    margin-bottom: 2px;
+  }
+
+  ion-icon {
+    font-weight: bold;
+    font-size: 20px;
+  }
+
+  .kexy-zip-code-btn {
+    color: black;
+    text-transform: initial;
+    margin-top: 12px;
+  }
+
+  .profile-photo {
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    object-fit: cover;
+  }

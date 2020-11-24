@@ -1,0 +1,42 @@
+.tr-kexy-order-header {
+    padding-top: 10px;
+    ion-col {
+      padding: 0px;
+      text-align: center;
+      color: gray;
+    }
+  }
+
+  .tr-kexy-order-row {
+    margin-bottom: 10px;
+    margin-top: 5px;
+
+    ion-col {
+      text-align: center;
+    }
+  }
+
+  .kexy-add-location-btn {
+    color: black;
+    text-transform: initial;
+    font-weight: normal;
+    padding: 0 !important;
+    margin: -8px 0 0 0 !important;
+
+    ion-icon {
+      background: white;
+      padding: 3px;
+      margin-left: 5px;
+      border-radius: 3px;
+    }
+  }
+  .tr-hint-icon {
+    margin-bottom: 20px;
+    padding: 8px 16px;
+    font-style: italic;
+
+    ion-icon, ion-checkbox {
+      position: relative;
+      top: 3px;
+    }
+  }

@@ -1,0 +1,30 @@
+.icon-white-rounded-bg {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background: white;
+  line-height: 40px;
+  text-align: center;
+  font-size: 22px;
+}
+.icon-arrow {
+  width: 40px;
+  height: 40px;
+  line-height: 40px;
+  text-align: center;
+}
+.shadow {
+  -webkit-box-shadow: 0 10px 25px -6px #bfbfbf;
+  -moz-box-shadow: 0 10px 25px -6px #bfbfbf;
+  box-shadow: 0 10px 25px -6px #bfbfbf;
+}
+
+.login-decision-headline {
+  margin: 8px 0 4px 0 !important;
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 400;
+}
+
+.scroll-content {
+  margin-bottom: 0 !important;
+}

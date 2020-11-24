@@ -1,0 +1,65 @@
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-buttons slot="start">
+      <ion-back-button></ion-back-button>
+    </ion-buttons>
+    <ion-title>FOH/BOH</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="bgimg ion-padding">
+
+  <div class="width-100 ion-text-center ion-padding-top ion-margin-top">
+    <img alt="Kexy Logo" width="196" src="../../../../assets/imgs/logo.png" />
+  </div>
+
+  <ion-grid class="ion-padding-top">
+
+    <ion-row class="ion-padding-top">
+      <ion-col size="12">
+        <ion-card class="ion-text-center">
+          <ion-card-header>
+            <strong>Select Restaurant/Bar Type</strong>
+          </ion-card-header>
+          <ion-card-content>
+            <ion-list mode="ios" >
+              <ion-radio-group [(ngModel)]="side">
+                <ion-item>
+                  <ion-label>Front of the House (FOH)</ion-label>
+                  <ion-radio slot="start" value="FOH"></ion-radio>
+                </ion-item>
+
+                <ion-item>
+                  <ion-label>Back of the House (BOH)</ion-label>
+                  <ion-radio slot="start" value="BOH"></ion-radio>
+                </ion-item>
+
+                <ion-item>
+                  <ion-label>Both</ion-label>
+                  <ion-radio slot="start" value="BOTH"></ion-radio>
+                </ion-item>
+              </ion-radio-group>
+            </ion-list>
+          </ion-card-content>
+        </ion-card>
+      </ion-col>
+    </ion-row>
+
+    <ion-row class="ion-padding-top">
+      <ion-col size="12">
+        <ion-button
+                (click)="nextBtnTapped()"
+                color="light"
+                shape="round"
+                class="common button"
+        >Next</ion-button
+        >
+      </ion-col>
+    </ion-row>
+
+
+  </ion-grid>
+
+
+</ion-content>
+

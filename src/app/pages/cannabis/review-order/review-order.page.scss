@@ -1,0 +1,65 @@
+.tr-kexy-order-header {
+  ion-col {
+    padding: 0;
+    text-align: center;
+    color: gray;
+    font-size: 14px;
+  }
+}
+
+.tr-kexy-order-row {
+  margin-bottom: 10px;
+  margin-top: 5px;
+
+  ion-col {
+    text-align: center;
+  }
+}
+
+.kexy-add-location-btn {
+  color: black;
+  text-transform: initial;
+  font-weight: normal;
+  padding: 0 !important;
+  margin: -8px 0 0 0 !important;
+
+  ion-icon {
+    padding: 3px;
+    margin-left: 2px;
+    border-radius: 3px;
+  }
+}
+
+.order-partial {
+  width: 17px;
+  height: 17px;
+  border: 1px solid lightgray;
+  margin: auto;
+  display: inline-block;
+
+  .partial-fill {
+    width: 0;
+    height: 0;
+    border-bottom: 15px solid #488aff;
+    border-right: 15px solid white;
+  }
+}
+
+.order-partial-info {
+  font-size: 10px;
+}
+
+.tr-hint-icon {
+  margin-bottom: 0;
+  padding: 16px 8px 0 8px;
+  ion-col {
+    font-size: 14px;
+  }
+  ion-icon, ion-checkbox, .order-partial {
+    position: relative;
+    top: 3px;
+  }
+}
+.tr-kexy-order-header {
+  padding-top: 16px;
+}

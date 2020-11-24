@@ -1,0 +1,45 @@
+ion-label {
+  display: inline;
+  position: relative;
+  bottom: 3px;
+  left: 10px;
+}
+
+ion-col {
+  padding-bottom: 0 !important;
+}
+
+.text-input {
+  margin-bottom: 2px;
+}
+
+ion-icon {
+  font-weight: bold;
+  font-size: 20px;
+}
+
+.profile-photo {
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
+  object-fit: cover;
+}
+
+.action-sheet-ios {
+  .action-sheet-button-default-ios {
+    .button-inner {
+      display: block !important;
+      text-align: left !important;
+      float: left !important;
+      .action-sheet-icon {
+        float:right !important;
+      }
+    }
+
+  }
+}
+.tr-kx-input {
+  padding-left: 7px !important;
+  font-size: 16px !important;
+  padding-top: 2px !important;
+}

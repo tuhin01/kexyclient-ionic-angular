@@ -1,0 +1,59 @@
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-buttons slot="start">
+      <ion-back-button></ion-back-button>
+    </ion-buttons>
+    <ion-title>My Orders</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="lightGreyBg ion-no-padding">
+
+  <ion-grid>
+
+    <ion-row class="tr-hint-icon">
+      <ion-col size="12" class="ion-no-padding">
+        Hint -
+        <ion-icon style="font-size: 20px;" color="primary" name="checkbox"></ion-icon>
+        = Confirmed,
+        <ion-checkbox mode="md" checked="false" disabled></ion-checkbox>
+        = Pending
+      </ion-col>
+    </ion-row>
+
+    <ion-row class="tr-kexy-order-header">
+      <ion-col>
+        <ion-button
+                (click)="sortProducts()"
+                size="small"
+                fill="clear"
+                class="kexy-add-location-btn kexy-product-sort"
+        >Date
+          <ion-icon *ngIf="!sort" name="md-arrow-round-up"></ion-icon>
+          <ion-icon *ngIf="sort" name="md-arrow-round-down"></ion-icon></ion-button>
+
+      </ion-col>
+      <ion-col>Order #</ion-col>
+      <ion-col>Restaurant</ion-col>
+      <ion-col>Status</ion-col>
+    </ion-row>
+
+    <ion-row class="tr-kexy-order-row" *ngFor="let order of orderList; let i = index;" (click)="orderTapped(order)">
+      <ion-col>
+        {{dateFormat(order.order.order_date) | date:'MM/dd/yy'}}
+      </ion-col>
+      <ion-col>{{order.order.order_number}}</ion-col>
+      <ion-col>{{order.order.restaurant.name}}</ion-col>
+      <ion-col>
+        <ion-icon *ngIf="order.status == 'confirmed'" style="font-size: 20px;" color="primary"
+                  name="checkbox"></ion-icon>
+        <ion-checkbox *ngIf="order.status === 'pending'" mode="md" color="primary"
+                      checked="false" disabled></ion-checkbox>
+      </ion-col>
+    </ion-row>
+
+
+  </ion-grid>
+
+
+</ion-content>

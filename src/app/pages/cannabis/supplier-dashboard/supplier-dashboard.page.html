@@ -1,0 +1,76 @@
+<ion-content class="lightBlueBg">
+
+  <ion-grid class="dashboard-grid">
+
+    <!-- Dashboard top header - start -->
+    <ion-row class="dashboard-header">
+      <ion-col class="ion-no-padding" size="12">
+        <ion-button
+                class="dashboard-header-iocn"
+        ><ion-icon name='menu'></ion-icon></ion-button>
+      </ion-col>
+      
+    </ion-row>
+    <!-- Dashboard top header - end -->
+
+    <!-- Dashboard Buttons - start -->
+    <ion-row class="ion-padding">
+      <ion-col size="12">
+        <ion-button
+                (click)="messagesTapped()"
+                color="light"
+                expand="block"
+                shape="round"
+                class="common button"
+        >Messages</ion-button>
+
+      </ion-col>
+      <ion-col size="12">
+        <ion-button
+                (click)="contactBtnTapped()"
+                color="light"
+                expand="block"
+                shape="round"
+                class="common button"
+        >Contacts</ion-button>
+
+      </ion-col>
+      <ion-col size="12">
+        <ion-button
+                color="light"
+                expand="block"
+                shape="round"
+                class="common button"
+        >Product Request Board</ion-button>
+
+      </ion-col>
+      <ion-col size="12">
+        <ion-button
+                color="light"
+                expand="block"
+                shape="round"
+                class="common button"
+        >Post a Deal</ion-button>
+      </ion-col>
+      <ion-col size="12">
+        <ion-button
+                color="light"
+                expand="block"
+                shape="round"
+                class="common button"
+        >Expired Deals You Posted</ion-button>
+      </ion-col>
+      <ion-col size="12">
+        <ion-button
+                color="light"
+                expand="block"
+                shape="round"
+                class="common button"
+        >Business Intelligence</ion-button>
+      </ion-col>
+    </ion-row>
+    <!-- Dashboard Buttons - end -->
+
+  </ion-grid>
+
+</ion-content>

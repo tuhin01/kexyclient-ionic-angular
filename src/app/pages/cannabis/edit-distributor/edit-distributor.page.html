@@ -1,0 +1,160 @@
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-buttons slot="start">
+      <ion-menu-toggle>
+        <ion-menu-button></ion-menu-button>
+      </ion-menu-toggle>
+    </ion-buttons>
+    <ion-title>Edit Company Details</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content  class="bgimg ion-padding">
+
+  <div class="width-100 ion-text-center">
+    <img class="profile-photo" [src]="imageUrl" [hidden]="!imageUrl" />
+    <img class="profile-photo" src="../../../../assets/imgs/no_profile_image.png" [hidden]="imageUrl" />
+  </div>
+
+  <ion-grid>
+
+    <ion-row>
+      <ion-col>
+        <ion-button
+                (click)="presentFileChooser()"
+                shape="round"
+                class="common button"
+                expand="block"
+        ><ion-icon name="attach"></ion-icon>
+          Change Company Logo</ion-button>
+      </ion-col>
+    </ion-row>
+
+    <form [formGroup]="distributorEditForm" (ngSubmit)="distributorEditFormSubmitted()">
+
+      <ion-row class="border-bottom">
+        <ion-col size="1" class="tr-kx-icon">
+          <ion-icon name="browsers-outline"></ion-icon>
+        </ion-col>
+        <ion-col size="11">
+          <div class="tr-kexy-edit-side">
+            <ion-item>
+              <ion-label>FOH/BOH</ion-label>
+              <ion-select formControlName="side" [(ngModel)]="orgInfo.side">
+                <ion-select-option value="FOH">Front of the house (FOH)</ion-select-option>
+                <ion-select-option value="BOH">Back of the house (BOH)</ion-select-option>
+                <ion-select-option value="BOTH">BOTH</ion-select-option>
+              </ion-select>
+
+            </ion-item>
+          </div>
+        </ion-col>
+      </ion-row>
+
+
+      <label>
+        <ion-row class="border-bottom">
+          <ion-col size="1" class="tr-kx-icon">
+            <ion-icon name="person-outline"></ion-icon>
+          </ion-col>
+          <ion-col size="11">
+            <ion-input class="kx-edit-dist" placeholder="Job Title" type="text" formControlName="job_title" [(ngModel)]="orgInfo.job_title"></ion-input>
+          </ion-col>
+        </ion-row>
+        <div class="validation-errors ion-text-center" >
+          <div class="error-message" *ngIf="!distributorEditForm.controls.job_title.valid && (distributorEditForm.get('job_title').dirty || distributorEditForm.get('job_title').touched)">
+            Please enter a valid Job Title.
+          </div>
+        </div>
+      </label>
+
+      <label>
+        <ion-row class="border-bottom">
+          <ion-col size="1" class="tr-kx-icon">
+            <ion-icon name="home-outline"></ion-icon>
+          </ion-col>
+          <ion-col size="11">
+            <ion-input class="kx-edit-dist" placeholder="Company Name" type="text" formControlName="name" [(ngModel)]="orgInfo.name"></ion-input>
+          </ion-col>
+        </ion-row>
+        <div class="validation-errors ion-text-center" >
+          <div class="error-message" *ngIf="!distributorEditForm.controls.name.valid && (distributorEditForm.get('name').dirty || distributorEditForm.get('name').touched)">
+            Please enter a valid Company Name.
+          </div>
+        </div>
+      </label>
+
+      <label>
+        <ion-row class="border-bottom">
+          <ion-col size="1" class="tr-kx-icon">
+            <ion-icon name="call-outline"></ion-icon>
+          </ion-col>
+          <ion-col size="11">
+            <ion-input class="kx-edit-dist" placeholder="Mobile Number" type="tel" formControlName="phone" [(ngModel)]="orgInfo.phone"></ion-input>
+          </ion-col>
+        </ion-row>
+        <div class="validation-errors ion-text-center" >
+          <div class="error-message" *ngIf="!distributorEditForm.controls.phone.valid && (distributorEditForm.get('phone').dirty || distributorEditForm.get('phone').touched)">
+            Please enter a valid 10 digit US Mobile Phone Number.
+          </div>
+        </div>
+      </label>
+
+      <ion-row class="border-bottom">
+        <ion-col size="12">
+          <p>Please list all of the zip codes your territory covers</p>
+        </ion-col>
+      </ion-row>
+
+      <div formArrayName="zip_code_list" class="ion-margin-bottom">
+        <label [formGroupName]="i" *ngFor="let zip_code of distributorEditForm.controls.zip_code_list.controls; let i = index">
+          <ion-row class="border-bottom">
+            <ion-col size="1" class="tr-kx-icon">
+              <ion-icon name="list-outline"></ion-icon>
+            </ion-col>
+            <ion-col size="10">
+              <ion-input class="kx-edit-dist" placeholder="Zip Code" type="text" formControlName="zip_code"></ion-input>
+            </ion-col>
+            <ion-col size="1" class="tr-kx-icon">
+              <ion-icon name="trash-outline" *ngIf="distributorEditForm.controls.zip_code_list.length > 1" (click)="removeZipCode(i)"></ion-icon>
+            </ion-col>
+          </ion-row>
+          <div class="validation-errors ion-text-center" >
+            <div class="error-message" *ngIf="!this.distributorEditForm.controls.zip_code_list.controls[i].valid && this.distributorEditForm.controls.zip_code_list.controls[i].dirty">
+              Please enter a valid US Zip Code.
+            </div>
+          </div>
+          <ion-row>
+            <ion-col size="12">
+              <ion-button
+                      (click)="addNewZipCode()"
+                      color="light"
+                      size="small"
+                      fill="clear"
+                      class="kexy-zip-code-btn"
+                      *ngIf="distributorEditForm.controls.zip_code_list.length - 1 === i"
+              ><ion-icon name="add-circle-outline"></ion-icon>
+                Add another zip code</ion-button>
+            </ion-col>
+          </ion-row>
+        </label>
+      </div>
+
+      <ion-row class="ion-padding-top">
+        <ion-col size="12">
+          <ion-button
+                  [disabled]="!distributorEditForm.valid"
+                  type="submit"
+                  color="light"
+                  expand="full"
+                  shape="round"
+                  class="common button"
+          >Confirm</ion-button>
+        </ion-col>
+      </ion-row>
+
+    </form>
+
+  </ion-grid>
+
+</ion-content>

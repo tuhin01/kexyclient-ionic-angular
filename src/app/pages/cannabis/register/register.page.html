@@ -1,0 +1,191 @@
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-buttons slot="start">
+      <ion-back-button></ion-back-button>
+    </ion-buttons>
+    <ion-title>Register</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content  class="bgimg ion-padding">
+  <div class="ion-text-center ion-padding-top ion-margin-top" style="width: 100%">
+    <img alt="Kexy Logo" width="196" src="../../../../assets/imgs/logo.png" />
+  </div>
+
+  <ion-grid>
+    <!-- profile_photo - start -->
+    <ion-row class="ion-padding-top">
+      <ion-col>
+        <div class="ion-text-center" [hidden]="!imageUrl">
+          <img class="profile-photo" [src]="imageUrl" />
+        </div>
+        <ion-button (click)="presentFileChooser()" shape="round" class="common button"
+          ><ion-icon name="attach"></ion-icon> Upload Profile Photo</ion-button
+        >
+      </ion-col>
+    </ion-row>
+    <!-- profile_photo - end -->
+
+    <form [formGroup]="primaryForm" (ngSubmit)="primaryFormSubmitted()">
+      <!-- first_name - start -->
+      <label>
+        <ion-row class="border-bottom">
+          <ion-col size="1" class="tr-kx-icon">
+            <ion-icon name="ios-person-outline"></ion-icon>
+          </ion-col>
+          <ion-col size="11">
+            <ion-input
+              placeholder="First Name"
+              type="text"
+              formControlName="first_name"
+            ></ion-input>
+          </ion-col>
+        </ion-row>
+        <div class="validation-errors ion-text-center">
+          <div
+            class="error-message"
+            *ngIf="!primaryForm.controls.first_name.valid && (primaryForm.get('first_name').dirty || primaryForm.get('first_name').touched)"
+          >
+            Please enter a valid First Name.
+          </div>
+        </div>
+      </label>
+      <!-- first_name - end -->
+
+      <!-- last_name - start -->
+      <label>
+        <ion-row class="border-bottom">
+          <ion-col size="1" class="tr-kx-icon">
+            <ion-icon name="ios-person-outline"></ion-icon>
+          </ion-col>
+          <ion-col size="11">
+            <ion-input placeholder="Last Name" type="text" formControlName="last_name"></ion-input>
+          </ion-col>
+        </ion-row>
+        <div class="validation-errors ion-text-center">
+          <div
+            class="error-message"
+            *ngIf="!primaryForm.controls.last_name.valid && (primaryForm.get('last_name').dirty || primaryForm.get('last_name').touched)"
+          >
+            Please enter a valid Last Name.
+          </div>
+        </div>
+      </label>
+      <!-- last_name - end -->
+
+      <label>
+        <ion-row class="border-bottom">
+          <ion-col size="1" class="tr-kx-icon">
+            <ion-icon name="ios-person-outline"></ion-icon>
+          </ion-col>
+          <ion-col size="11">
+            <ion-input formControlName="job_title" placeholder="Job Title" type="text"></ion-input>
+          </ion-col>
+        </ion-row>
+        <div class="validation-errors ion-text-center">
+          <div
+            class="error-message"
+            *ngIf="!primaryForm.controls.job_title.valid && (primaryForm.get('job_title').dirty || primaryForm.get('job_title').touched)"
+          >
+            Please enter a valid Job Title.
+          </div>
+        </div>
+      </label>
+
+      <!-- email - start -->
+      <label>
+        <ion-row class="border-bottom">
+          <ion-col size="1" class="tr-kx-icon">
+            <ion-icon name="ios-mail-outline"></ion-icon>
+          </ion-col>
+          <ion-col size="11">
+            <ion-input
+              placeholder="name@example.com"
+              type="email"
+              disabled
+              [value]="getEmail()"
+            ></ion-input>
+          </ion-col>
+        </ion-row>
+      </label>
+      <!-- email - end -->
+
+      <!-- email - start -->
+      <label>
+        <ion-row class="border-bottom">
+          <ion-col size="1" class="tr-kx-icon">
+            <ion-icon name="ios-call-outline"></ion-icon>
+          </ion-col>
+          <ion-col size="11">
+            <ion-input placeholder="Mobile Number" type="tel" formControlName="phone"></ion-input>
+          </ion-col>
+        </ion-row>
+        <div class="validation-errors ion-text-center">
+          <div
+            class="error-message"
+            *ngIf="!primaryForm.controls.phone.valid && (primaryForm.get('phone').dirty || primaryForm.get('phone').touched)"
+          >
+            Please enter a valid 10 digit US/Canada Mobile Phone Number.
+          </div>
+        </div>
+      </label>
+      <!-- email - end -->
+
+      <!-- password - start -->
+      <label>
+        <ion-row class="border-bottom">
+          <ion-col size="1" class="tr-kx-icon">
+            <ion-icon name="ios-lock-outline"></ion-icon>
+          </ion-col>
+          <ion-col size="11">
+            <ion-input
+              placeholder="Create Password"
+              type="password"
+              formControlName="password"
+            ></ion-input>
+          </ion-col>
+        </ion-row>
+        <div class="validation-errors ion-text-center">
+          <div
+            class="error-message"
+            *ngIf="!primaryForm.controls.password.valid && (primaryForm.get('password').dirty || primaryForm.get('password').touched)"
+          >
+            Please pick a strong password with at least 8 characters.
+          </div>
+        </div>
+      </label>
+      <!-- password - end -->
+
+      <!-- Terms and Conditions - start -->
+      <label>
+        <ion-row class="ion-padding-top">
+          <ion-col>
+            <ion-checkbox
+              color="primary"
+              [(ngModel)]="hasAgreedToTermsAndConditions"
+              [ngModelOptions]="{standalone: true}"
+            ></ion-checkbox>
+            <ion-label
+              >I agree to the
+              <span class="link" (click)="termsClicked()">Terms & Conditions</span></ion-label
+            >
+          </ion-col>
+        </ion-row>
+      </label>
+      <!-- Terms and Conditions - end -->
+
+      <ion-row class="ion-padding">
+        <ion-col size="12">
+          <ion-button
+            [disabled]="!primaryForm.valid"
+            type="submit"
+            color="light"
+            expand="full"
+            shape="round"
+            class="common button"
+            >Sign Up</ion-button>
+        </ion-col>
+      </ion-row>
+    </form>
+  </ion-grid>
+</ion-content>

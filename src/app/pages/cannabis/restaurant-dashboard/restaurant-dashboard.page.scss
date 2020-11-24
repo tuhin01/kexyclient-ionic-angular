@@ -1,0 +1,153 @@
+.dashboard-grid {
+  padding: 0;
+}
+
+.dashboard-header-iocn {
+  background: transparent !important;
+  box-shadow: none;
+  position: relative;
+}
+
+.tr-dashboard-icon-right {
+  float: right;
+}
+
+.tr-icon-notification {
+  margin-right: -10px;
+}
+
+.dashboard-header {
+  height: 162px;
+  background: url("../../../../assets/imgs/dashboard-bg.png") no-repeat center center;
+  background-size: cover;
+}
+
+.kexy-marketplace-card {
+  width: 70px;
+  height: 90px;
+  padding: 0 5px;
+  border-radius: 6px;
+  margin-right: 5px;
+  margin-left: 5px;
+  display: inline-block !important;
+
+  img {
+    height: 62px;
+    background: white;
+  }
+
+  .marketplace-name {
+    color: gray;
+    font-size: 12px;
+  }
+
+  ion-label {
+    white-space: unset;
+    margin: 0;
+  }
+
+  .radio-icon {
+    display: none;
+  }
+
+  .radio {
+    margin: 0 !important;
+  }
+
+  .item-inner {
+    margin: 0;
+    padding: 0 !important;
+    border: none !important;
+  }
+}
+
+.kexy-scroll-left-to-right {
+  padding: 16px 0 0 0;
+}
+
+.item-radio {
+  border: 2px solid white;
+}
+
+.item-radio-checked {
+  border: 2px solid cornflowerblue;
+}
+
+.recommended-deal-headline {
+  margin: 0 0 10px 5px;
+}
+
+.recommended-deal {
+  .kexy-marketplace-card {
+    border: none;
+    padding: 0 0 5px 0;
+  }
+}
+
+.kexy-zip-code-btn {
+  color: black;
+  text-transform: initial;
+  text-decoration: underline;
+}
+
+.content-ios {
+  .dashboard-grid {
+    padding: 0;
+  }
+
+  .tr-badge {
+    top: 5px;
+  }
+}
+
+.hidden {
+  display: none !important;
+}
+
+.tr-kexy-modal {
+  background: white;
+  display: block;
+  position: absolute;
+  top: 20%;
+  left: 0;
+  right: 0;
+  width: 80%;
+  z-index: 100;
+  margin: auto;
+  border-radius: 15px;
+  text-align: center;
+
+  ion-col {
+    margin-top: 10px;
+    margin-bottom: 20px;
+    display: block;
+  }
+
+  .note-header {
+    text-align: center;
+    padding: 15px 10px 0 10px;
+    font-weight: bold;
+    font-size: 18px;
+
+    .kexy-tr-modal-close {
+      float: right;
+      font-size: 20px;
+      margin-top: -5px;
+    }
+  }
+
+  .note-content {
+    padding: 0 20px;
+  }
+
+  .note-footer {
+    border-top: 1px solid rgba(128, 128, 128, 0.33);
+    padding: 10px;
+    text-align: center;
+
+    button {
+      height: auto !important;
+      font-weight: bold;
+    }
+  }
+}

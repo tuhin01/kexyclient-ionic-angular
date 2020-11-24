@@ -1,0 +1,84 @@
+<ion-header *ngIf="from_page === 'my_distributor'">
+  <ion-toolbar color="primary">
+    <ion-buttons slot="start">
+      <ion-back-button></ion-back-button>
+    </ion-buttons>
+    <ion-title>Invite Your Co-workers</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="bgimg ion-padding">
+
+  <ion-grid>
+
+    <ion-row>
+      <ion-col class="ion-text-center">
+        <h4 class="ion-padding-top ion-margin-top" *ngIf="from_page !== 'my_distributor'">Invite Your Co-workers</h4>
+        <p class="ion-text-left">Invite your co-workers and employees to join KEXY</p>
+      </ion-col>
+    </ion-row>
+
+    <ion-row>
+      <ion-col>
+        <p class="ion-margin-top"><strong>Email Address</strong></p>
+      </ion-col>
+    </ion-row>
+
+    <form [formGroup]="primaryForm" (ngSubmit)="primaryFormSubmitted()">
+
+      <div formArrayName="invited_employee_list" class="ion-margin-bottom">
+        <label [formGroupName]="i"
+          *ngFor="let zip_code of primaryForm.controls.invited_employee_list.controls; let i = index">
+          <ion-row class="border-bottom ion-no-padding">
+            <ion-col size="1" class="tr-kx-icon">
+              <ion-icon name="ios-mail-outline"></ion-icon>
+            </ion-col>
+            <ion-col size="7">
+              <ion-input placeholder="name@example.com" formControlName="email" type="email"></ion-input>
+            </ion-col>
+            <ion-col size="3">
+              <ion-select formControlName="role" interface="popover">
+                <ion-select-option value="admin">Admin</ion-select-option>
+                <ion-select-option value="manager">Manager</ion-select-option>
+                <ion-select-option value="employee">Employee</ion-select-option>
+              </ion-select>
+
+            </ion-col>
+            <ion-col size="1" class="tr-kx-icon">
+              <ion-icon name="ios-trash-outline" (click)="trashedTapped(i)"></ion-icon>
+            </ion-col>
+          </ion-row>
+          <div class="validation-errors ion-text-center">
+            <div class="error-message"
+              *ngIf="!this.primaryForm.controls.invited_employee_list.controls[i].valid && this.primaryForm.controls.invited_employee_list.controls[i].dirty">
+              Please enter a valid email
+            </div>
+          </div>
+        </label>
+      </div>
+
+    </form>
+
+    <ion-row>
+      <ion-col class="ion-text-center" size="12">
+        <ion-button (click)="addNewInvite()" color="primary" size="small" fill="clear" class="kexy-add-more-invite-btn">
+          <u>+ Add another invitation</u></ion-button>
+      </ion-col>
+    </ion-row>
+
+    <ion-row class="ion-padding-top ion-justify-content-center">
+      <ion-col size="6" *ngIf="from_page !== 'my_distributor'">
+        <ion-button (click)="skipForNowBtnTapped()" color="light" expand="full" shape="round" class="common button">Skip
+          For Now</ion-button>
+
+      </ion-col>
+      <ion-col size="6">
+        <ion-button (click)="primaryFormSubmitted()" color="light" expand="full" shape="round" class="common button"
+          style="text-transform: initial">Send Invitation(s)</ion-button>
+
+      </ion-col>
+    </ion-row>
+
+  </ion-grid>
+
+</ion-content>
