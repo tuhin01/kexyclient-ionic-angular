@@ -1,6 +1,6 @@
 <ion-content class="lightBlueBg" style="z-index: 100">
   <ion-grid class="dashboard-grid">
-    <ion-row class="dashboard-header">
+    <ion-row class="dashboard-header cannabis">
       <ion-col size="6" class="ion-no-padding">
         <ion-button
           fill="clear"
@@ -24,7 +24,7 @@
             color="light"
             expand="block"
             shape="round"
-            class="common button"
+            class="common button btn-cannabis"
           >Place an Order
           </ion-button>
         </ion-col>
@@ -34,7 +34,7 @@
             color="light"
             expand="block"
             shape="round"
-            class="common button"
+            class="common button btn-cannabis"
           >Take Inventory
           </ion-button>
         </ion-col>
@@ -44,7 +44,7 @@
             color="light"
             expand="block"
             shape="round"
-            class="common button"
+            class="common button btn-cannabis"
           >View Orders
           </ion-button>
         </ion-col>
@@ -54,7 +54,7 @@
             color="light"
             expand="block"
             shape="round"
-            class="common button"
+            class="common button btn-cannabis"
           >View Inventory
           </ion-button>
         </ion-col>
@@ -63,34 +63,3 @@
     <!-- Dashboard Buttons - end -->
   </ion-grid>
 </ion-content>
-
-<!--<kexy-bottom-nagigation-bar [selectedTab]="'home'"></kexy-bottom-nagigation-bar>-->
-
-<!--Note popup overlay-->
-<div class="traddoverlay" [class.hidden]="!openSimSimNotice"></div>
-<div class="tr-kexy-modal" [class.hidden]="!openSimSimNotice">
-  <div class="note-header">
-    <span>Notice!</span>
-  </div>
-
-  <div class="note-content">
-    <ion-col class="ion-no-padding ion-text-left" size="12">
-      <p style="margin-top: 0">
-        KEXY has partnered with OpenSimSim to power its Employee Scheduling. Please follow these
-        one-time steps:
-      </p>
-      <p>
-        1) Make sure you have the OpenSimSim app downloaded on your phone (we recommend using the
-        same email address and password you used for KEXY).
-      </p>
-      <p>
-        2) Now, every time you open up KEXY and click on the Employee Scheduling tab, it will
-        automatically launch the OpenSimSim app.
-      </p>
-    </ion-col>
-  </div>
-
-  <div class="note-footer">
-    <ion-button (click)="undersatndOpenSimSimNotice()" fill="clear">Ok</ion-button>
-  </div>
-</div>

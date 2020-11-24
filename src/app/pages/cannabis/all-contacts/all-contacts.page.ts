@@ -99,7 +99,7 @@ export class AllContactsPage extends BasePage implements OnInit {
             this.loadingDialog.dismiss();
             this.loadingDialog = null;
           }
-          this.navigateTo(routeConstants.KEXY.MESSAGE_CONV, { conversation: JSON.stringify(conversation) });
+          this.navigateTo(routeConstants.CANNABIS.MESSAGE_CONV, { conversation: JSON.stringify(conversation) });
         }
       });
 

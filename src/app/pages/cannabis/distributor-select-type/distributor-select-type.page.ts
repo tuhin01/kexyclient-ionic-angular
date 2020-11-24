@@ -34,7 +34,7 @@ export class DistributorSelectTypePage extends BasePage implements OnInit {
   }
   public nextBtnTapped() {
     const restaurantIdList = this.params.restaurantIdList;
-    this.navigateTo(routeConstants.KEXY.DISTRIBUTOR_CREATE,{
+    this.navigateTo(routeConstants.CANNABIS.DISTRIBUTOR_CREATE,{
       side: this.side, restaurantIdList
     })
     

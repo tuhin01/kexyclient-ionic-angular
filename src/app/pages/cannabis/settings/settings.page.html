@@ -1,5 +1,5 @@
 <ion-header>
-  <ion-toolbar color="primary">
+  <ion-toolbar color="success">
     <ion-buttons slot="start">
       <ion-menu-toggle>
         <ion-menu-button></ion-menu-button>
@@ -13,7 +13,7 @@
 
   <ion-item>
       <ion-label>Par Level Change</ion-label>
-      <ion-toggle color="primary"
+      <ion-toggle color="success"
                   (ionChange)="addOrUpdateSettings()"
                   [(ngModel)]="settings.par_level_update"
                   checked="{{settings.par_level_update}}">

@@ -106,7 +106,7 @@ export class RegisterPage extends BasePage implements OnInit {
         email: this.email,
       });
 
-      await this.setRoot(routeConstants.KEXY.MARKETPLACE_TYPE, {
+      await this.setRoot(routeConstants.CANNABIS.MARKETPLACE_TYPE, {
         organization_invitations: this.organization_invitations,
       });
     } else {
@@ -117,7 +117,7 @@ export class RegisterPage extends BasePage implements OnInit {
           email: this.email,
         });
         let invitation = this.employee_invitations[0];
-        await this.navigateTo(routeConstants.KEXY.WELCOME, {
+        await this.navigateTo(routeConstants.CANNABIS.WELCOME, {
           distributor_id: invitation.distributor_id,
           restaurant_id: invitation.restaurant_id,
           role: invitation.role,
@@ -176,7 +176,7 @@ export class RegisterPage extends BasePage implements OnInit {
   }
 
   async termsClicked() {
-    await this.navigateTo(routeConstants.KEXY.TERMS_AND_CONDITION);
+    await this.navigateTo(routeConstants.CANNABIS.TERMS_AND_CONDITION);
   }
 
   async presentFileChooser() {

@@ -55,7 +55,7 @@ export class WelcomePage extends BasePage implements OnInit {
   public async exploreKexyTapped() {
     if (this.restaurant_id) {
 
-      this.navigateTo(routeConstants.KEXY.TUTORIAL,{
+      this.navigateTo(routeConstants.CANNABIS.TUTORIAL,{
         'signup': true
       });
       // await this.navCtrl.push('TutorialPage', {'signup': true})

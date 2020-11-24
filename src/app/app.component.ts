@@ -77,18 +77,18 @@ export class AppComponent {
       supplierDashboardPage = routeConstants.KEXY.SUPPLIER_DASHBOARD;
     } else {
       this.isRestaurant = false;
-      editProfilePage = routeConstants.KEXY.EDIT_PROFILE;
-      editDistributorPage = "CannabisEditDistributorPage";
-      invitePeoplePage = "CannabisInvitePeoplePage";
-      distributorDashboardPage = "CannabisDistributorDashboardPage";
-      logoutPage = "CannabisLogoutPage";
-      editRestaurantPage = "CannabisEditRestaurantPage";
-      editSubscriptionPage = "CannabisEditSubscriptionPage";
-      settingsPage = "CannabisSettingsPage";
-      tutorialPage = "CannabisTutorialPage";
-      restaurantDashboardPage = "CannabisRestaurantDashboardPage";
-      editSupplierPage = "CannabisEditSupplierPage";
-      supplierDashboardPage = "CannabisSupplierDashboardPage";
+      editProfilePage = routeConstants.CANNABIS.EDIT_PROFILE;
+      editDistributorPage = routeConstants.CANNABIS.EDIT_DISTRIBUTOR;
+      invitePeoplePage = routeConstants.CANNABIS.INVITE_PEOPLE;
+      distributorDashboardPage = routeConstants.CANNABIS.DISTRIBUTOR_DASHBOARD;
+      logoutPage = routeConstants.CANNABIS.LOGOUT;
+      editRestaurantPage = routeConstants.CANNABIS.EDIT_RESTAURANT;
+      editSubscriptionPage = routeConstants.CANNABIS.EDIT_SUPPLIER;
+      settingsPage = routeConstants.CANNABIS.SETTINGS;
+      tutorialPage =  routeConstants.CANNABIS.TUTORIAL;
+      restaurantDashboardPage = routeConstants.CANNABIS.RESTAURANT_TABS;
+      editSupplierPage = routeConstants.CANNABIS.EDIT_SUPPLIER;
+      supplierDashboardPage = routeConstants.CANNABIS.SUPPLIER_DASHBOARD;
     }
 
     this.distributorMenuPages = [

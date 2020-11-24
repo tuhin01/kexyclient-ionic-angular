@@ -65,11 +65,11 @@ export class PasswordResetPage extends BasePage implements OnInit {
     Object.assign(data, this.primaryForm.value);
     let res = await this.callApi(apis.API_USER_VERIFY_PASSWORD_RECOVERY_CODE, data);
     if (!res.success) return;
-    await this.navigateTo(routeConstants.KEXY.LOGIN, {email: this.email});
+    await this.navigateTo(routeConstants.CANNABIS.LOGIN, {email: this.email});
   }
 
   async loginTapped() {
-    await this.setRootWithAnimationBackword(routeConstants.KEXY.LOGIN, {email: this.email});
+    await this.setRootWithAnimationBackword(routeConstants.CANNABIS.LOGIN, {email: this.email});
   }
 
 

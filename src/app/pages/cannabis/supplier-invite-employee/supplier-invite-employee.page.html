@@ -1,5 +1,5 @@
 <ion-header *ngIf="from_page === 'my_distributor'">
-  <ion-toolbar color="primary">
+  <ion-toolbar color="success">
     <ion-buttons slot="start">
       <ion-back-button></ion-back-button>
     </ion-buttons>
@@ -61,19 +61,19 @@
 
     <ion-row>
       <ion-col class="ion-text-center" size="12">
-        <ion-button (click)="addNewInvite()" color="primary" size="small" fill="clear" class="kexy-add-more-invite-btn">
+        <ion-button (click)="addNewInvite()" color="success" size="small" fill="clear" class="kexy-add-more-invite-btn">
           <u>+ Add another invitation</u></ion-button>
       </ion-col>
     </ion-row>
 
     <ion-row class="ion-padding-top ion-justify-content-center">
       <ion-col size="6" *ngIf="from_page !== 'my_distributor'">
-        <ion-button (click)="skipForNowBtnTapped()" color="light" expand="full" shape="round" class="common button">Skip
+        <ion-button (click)="skipForNowBtnTapped()" color="light" expand="full" shape="round" class="common button btn-cannabis">Skip
           For Now</ion-button>
 
       </ion-col>
       <ion-col size="6">
-        <ion-button (click)="primaryFormSubmitted()" color="light" expand="full" shape="round" class="common button"
+        <ion-button (click)="primaryFormSubmitted()" color="light" expand="full" shape="round" class="common button btn-cannabis"
           style="text-transform: initial">Send Invitation(s)</ion-button>
 
       </ion-col>

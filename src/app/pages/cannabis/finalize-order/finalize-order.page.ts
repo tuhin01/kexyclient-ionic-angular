@@ -71,7 +71,7 @@ export class FinalizeOrderPage extends BasePage implements OnInit {
           this.loadingDialog.dismiss();
           this.loadingDialog = null;
         }
-        this.navigateTo(routeConstants.KEXY.MESSAGE_CONV, { conversation: JSON.stringify(conversation) });
+        this.navigateTo(routeConstants.CANNABIS.MESSAGE_CONV, { conversation: JSON.stringify(conversation) });
       }
     });
   }
@@ -98,7 +98,7 @@ export class FinalizeOrderPage extends BasePage implements OnInit {
     this.user = await this.storage.get(constants.STORAGE_USER);
     let inventory_id = this.params.inventory_id;
     if (inventory_id === null || typeof inventory_id === "undefined") {
-      await this.setRoot(routeConstants.KEXY.RESTAURANT_TABS);
+      await this.setRoot(routeConstants.CANNABIS.RESTAURANT_TABS);
       return;
     }
     this.restaurantSide = this.params.restaurantSide;
@@ -467,7 +467,7 @@ export class FinalizeOrderPage extends BasePage implements OnInit {
     await this.preprocessOrder();
     let result = await this.preprocessFinalizeOrder("finalized");
     if (!result) return;
-    await this.setRoot(routeConstants.KEXY.RESTAURANT_TABS);
+    await this.setRoot(routeConstants.CANNABIS.RESTAURANT_TABS);
   }
 
   shouldShowContactDialog: boolean = false;
@@ -498,7 +498,7 @@ export class FinalizeOrderPage extends BasePage implements OnInit {
   async addProductToInventoryTapped() {
     let createdFromPage = this.inventory.created_from_page;
     await this.navigateTo(
-      routeConstants.KEXY.RESTAURANT_TABS + "/" + routeConstants.KEXY.PLACE_ORDER,
+      routeConstants.CANNABIS.RESTAURANT_TABS + "/" + routeConstants.CANNABIS.PLACE_ORDER,
       {
         inventory_id: this.inventory.id,
         from_finalize_order: true,

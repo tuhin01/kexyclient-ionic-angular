@@ -1,5 +1,5 @@
-<ion-header>
-  <ion-toolbar color="primary">
+<ion-header class="tr-cannabis">
+  <ion-toolbar color="success">
     <ion-buttons slot="start">
       <ion-back-button></ion-back-button>
     </ion-buttons>
@@ -9,7 +9,7 @@
 
 <ion-content class="bgimg">
   <div class="ion-text-center ion-margin-top" style="width: 100%">
-    <img alt="Kexy Logo" (click)="logoTapped()" width="196" src="../../../../assets/imgs/logo.png" />
+    <img alt="Kexy Logo" (click)="logoTapped()" width="196" src="../../../../assets/cannabis/images/logo.png" />
   </div>
 
   <ion-grid>
@@ -87,11 +87,11 @@
       <label>
         <ion-row class="ion-padding-top kx-rem-pass">
           <ion-col size="6">
-            <ion-checkbox mode="md" formControlName="rememberMe" color="primary"></ion-checkbox>
+            <ion-checkbox mode="md" formControlName="rememberMe" color="success"></ion-checkbox>
             <ion-label>Remember me</ion-label>
           </ion-col>
           <ion-col size="6" class="ion-text-right">
-            <span class="link" (click)="forgotPasswordTapped()">Forgot password?</span>
+            <span class="can-link" (click)="forgotPasswordTapped()">Forgot password?</span>
           </ion-col>
         </ion-row>
       </label>
@@ -99,14 +99,14 @@
       <label>
         <ion-row class="ion-padding-top">
           <ion-col size="12" class="ion-text-center">
-            <span (click)="loginUsingphoneNumber()" class="link">{{loginText}}</span>
+            <span (click)="loginUsingphoneNumber()" class="can-link">{{loginText}}</span>
           </ion-col>
         </ion-row>
       </label>
 
       <!-- <ion-row padding>
         <ion-col col-12>
-          <button ion-button color="light" full round class="common button" (click)="signInBtnTapped()">Sign in</button>
+          <button ion-button color="light" full round class="common button btn-cannabis" (click)="signInBtnTapped()">Sign in</button>
         </ion-col>
       </ion-row> -->
 
@@ -118,7 +118,7 @@
             color="light"
             expand="full"
             shape="round"
-            class="common button"
+            class="common button btn-cannabis"
             >Login
           </ion-button>
         </ion-col>
@@ -128,7 +128,7 @@
         <ion-col class="ion-text-center">
           <p>
             Don't have an account on KEXY?
-            <span class="link" (click)="createOrJoinTapped()">Create account</span>
+            <span class="can-link" (click)="createOrJoinTapped()">Create account</span>
           </p>
         </ion-col>
       </ion-row>

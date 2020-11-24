@@ -21,7 +21,7 @@
           color="light"
           expand="full"
           shape="round"
-          class="common button"
+          class="common button btn-cannabis"
           >Check Request Status</ion-button
         >
       </ion-col>
@@ -34,7 +34,7 @@
                 color="light"
                 expand="full"
                 shape="round"
-                class="common button"
+                class="common button btn-cannabis"
         >Explore KEXY</ion-button
         >
       </ion-col>
@@ -44,7 +44,7 @@
       <ion-col class="ion-text-center">
         <p>
           Not your first KEXY marketplace?
-          <span class="link" (click)="skipTutorialTapped()">Skip the tutorial</span>
+          <span class="can-link" (click)="skipTutorialTapped()">Skip the tutorial</span>
         </p>
       </ion-col>
     </ion-row>
@@ -52,6 +52,6 @@
 
   <p *ngIf="isJoinType === 'request_sent' && joinToOrg !== ''" class="tr-select-other-company">
     <strong>{{joinToOrg}}</strong> is not your company? <br />
-    <span class="link" (click)="changeCompanyTapped()">Select Another Company</span>
+    <span class="can-link" (click)="changeCompanyTapped()">Select Another Company</span>
   </p>
 </ion-content>

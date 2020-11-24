@@ -426,7 +426,7 @@ export class AddNewProductPage extends BasePage implements OnInit {
     // TODO - Fix me
     //    this.setRootWithAnimation("PlaceOrderPage", {
     await this.setRootWithAnimationBackword(
-      routeConstants.KEXY.RESTAURANT_TABS + "/" + routeConstants.KEXY.PLACE_ORDER,
+      routeConstants.CANNABIS.RESTAURANT_TABS + "/" + routeConstants.CANNABIS.PLACE_ORDER,
       {
         inventory_id: this.inventoryId,
         from_finalize_order: true,

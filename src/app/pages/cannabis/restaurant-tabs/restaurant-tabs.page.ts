@@ -17,17 +17,17 @@ export class RestaurantTabsPage implements OnInit {
   constructor(public router: Router) {}
 
   ngOnInit() {
-    this.restaurantDashboard = routeConstants.KEXY.RESTAURANT_DASHBOARD;
-    this.messagesPage = routeConstants.KEXY.MESSAGE;
-    this.contactsPage = routeConstants.KEXY.ALL_CONTACTS;
-    this.placeOrderPage = routeConstants.KEXY.PLACE_ORDER;
+    this.restaurantDashboard = routeConstants.CANNABIS.RESTAURANT_DASHBOARD;
+    this.messagesPage = routeConstants.CANNABIS.MESSAGE;
+    this.contactsPage = routeConstants.CANNABIS.ALL_CONTACTS;
+    this.placeOrderPage = routeConstants.CANNABIS.PLACE_ORDER;
   }
 
   async tabClicked(tab: string) {
     if (tab === 'order') {
       this.isPlaceOrderSelected = true;
       await this.router.navigate([
-        `${routeConstants.KEXY.RESTAURANT_TABS}/${routeConstants.KEXY.PLACE_ORDER}`,
+        `${routeConstants.CANNABIS.RESTAURANT_TABS}/${routeConstants.CANNABIS.PLACE_ORDER}`,
       ]);
     } else {
       this.isPlaceOrderSelected = false;

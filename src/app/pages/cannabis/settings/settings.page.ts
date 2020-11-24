@@ -58,7 +58,7 @@ export class SettingsPage extends BasePage implements OnInit {
 
   repDeliveryMethodEditTapped() {
 
-    this.navigateTo(routeConstants.KEXY.REP_DELIVERY_METHOD)
+    this.navigateTo(routeConstants.CANNABIS.REP_DELIVERY_METHOD)
     // this.navCtrl.push('RepDeliveryMethodPage');
   }
 }

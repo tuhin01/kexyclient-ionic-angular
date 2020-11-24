@@ -81,7 +81,7 @@ export class EmailConfirmationPage extends BasePage implements OnInit {
     if (res.is_invited) {
       isInvited = true;
     }
-    await this.navigateTo(routeConstants.KEXY.EMAIL_VERIFICATION, {
+    await this.navigateTo(routeConstants.CANNABIS.EMAIL_VERIFICATION, {
       type: this.typeEmailConfirmation,
       is_invited: isInvited,
       email: this.primaryForm.value.email,

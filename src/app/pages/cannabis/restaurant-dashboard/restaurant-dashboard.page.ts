@@ -70,14 +70,14 @@ export class RestaurantDashboardPage extends BasePage implements OnInit {
 
   async addOrderTapped(type) {
     await this.navigateTo(
-      `${routeConstants.KEXY.RESTAURANT_TABS}/${routeConstants.KEXY.PLACE_ORDER}`,
+      `${routeConstants.CANNABIS.RESTAURANT_TABS}/${routeConstants.CANNABIS.PLACE_ORDER}`,
       { pageType: type }
     );
   }
 
   async reviewOrdersTapped(type) {
     await this.navigateTo(
-      `${routeConstants.KEXY.RESTAURANT_TABS}/${routeConstants.KEXY.REVIEW_ORDER}`,
+      `${routeConstants.CANNABIS.RESTAURANT_TABS}/${routeConstants.CANNABIS.REVIEW_ORDER}`,
       { pageType: type }
     );
   }

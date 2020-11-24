@@ -37,7 +37,7 @@ export class ForgetPasswordPage extends BasePage implements OnInit {
       this.primaryForm.value
     );
     if (!res.success) return;
-    await this.navigateTo(routeConstants.KEXY.PASSWORD_RESET, {email: this.primaryForm.value.email})
+    await this.navigateTo(routeConstants.CANNABIS.PASSWORD_RESET, {email: this.primaryForm.value.email})
   }
 
   async loginNowTapped() {

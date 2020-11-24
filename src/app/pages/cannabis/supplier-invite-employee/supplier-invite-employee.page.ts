@@ -77,7 +77,7 @@ export class SupplierInviteEmployeePage extends BasePage implements OnInit {
       this.setRoot(routeConstants.HOME)
       return;
     }
-    this.setRoot(routeConstants.KEXY.WELCOME, {
+    this.setRoot(routeConstants.CANNABIS.WELCOME, {
       supplier_id: this.supplier_id
     });
   }

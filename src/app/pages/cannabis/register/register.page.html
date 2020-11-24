@@ -1,5 +1,5 @@
 <ion-header>
-  <ion-toolbar color="primary">
+  <ion-toolbar color="success">
     <ion-buttons slot="start">
       <ion-back-button></ion-back-button>
     </ion-buttons>
@@ -19,7 +19,7 @@
         <div class="ion-text-center" [hidden]="!imageUrl">
           <img class="profile-photo" [src]="imageUrl" />
         </div>
-        <ion-button (click)="presentFileChooser()" shape="round" class="common button"
+        <ion-button (click)="presentFileChooser()" shape="round" class="common button btn-cannabis"
           ><ion-icon name="attach"></ion-icon> Upload Profile Photo</ion-button
         >
       </ion-col>
@@ -161,13 +161,13 @@
         <ion-row class="ion-padding-top">
           <ion-col>
             <ion-checkbox
-              color="primary"
+              color="success"
               [(ngModel)]="hasAgreedToTermsAndConditions"
               [ngModelOptions]="{standalone: true}"
             ></ion-checkbox>
             <ion-label
               >I agree to the
-              <span class="link" (click)="termsClicked()">Terms & Conditions</span></ion-label
+              <span class="can-link" (click)="termsClicked()">Terms & Conditions</span></ion-label
             >
           </ion-col>
         </ion-row>
@@ -182,7 +182,7 @@
             color="light"
             expand="full"
             shape="round"
-            class="common button"
+            class="common button btn-cannabis"
             >Sign Up</ion-button>
         </ion-col>
       </ion-row>

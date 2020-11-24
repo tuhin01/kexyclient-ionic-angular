@@ -37,7 +37,7 @@ export class RestaurantTypePage extends BasePage implements OnInit {
     const email = this.params.email;
     const distributorIdList = this.params.distributorIdList;
 
-    await this.navigateTo(routeConstants.KEXY.RESTAURANT_CREATE, {
+    await this.navigateTo(routeConstants.CANNABIS.RESTAURANT_CREATE, {
       side: this.side, email, distributorIdList
     });
     

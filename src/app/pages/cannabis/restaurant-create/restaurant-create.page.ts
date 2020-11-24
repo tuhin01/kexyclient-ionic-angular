@@ -284,7 +284,7 @@ export class RestaurantCreatePage extends BasePage implements OnInit {
     await this.storage.remove(constants.IS_JOIN_TYPE);
 
 
-    await this.setRootWithAnimationForward(routeConstants.KEXY.INVITE_RESTAURANT_EMPLOYEE, {
+    await this.setRootWithAnimationForward(routeConstants.CANNABIS.INVITE_RESTAURANT_EMPLOYEE, {
       restaurant_id: this.restaurant_id,
     });
   }
@@ -302,7 +302,7 @@ export class RestaurantCreatePage extends BasePage implements OnInit {
   }
 
   public async termsClicked() {
-    await this.navigateTo(routeConstants.KEXY.TERMS_AND_CONDITION);
+    await this.navigateTo(routeConstants.CANNABIS.TERMS_AND_CONDITION);
   }
 
   onCountrySelect() {

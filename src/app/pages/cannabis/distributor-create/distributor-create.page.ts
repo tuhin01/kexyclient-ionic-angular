@@ -132,7 +132,7 @@ export class DistributorCreatePage extends BasePage implements OnInit {
 
     this.distributor_id = distributor_id;
 
-    this.navigateTo(routeConstants.KEXY.DISTRIBUTOR_SETUP_RESTAURANT_BAR,{
+    this.navigateTo(routeConstants.CANNABIS.DISTRIBUTOR_SETUP_RESTAURANT_BAR,{
       distributor_id, zip_code_list, side
     })
  
@@ -148,7 +148,7 @@ export class DistributorCreatePage extends BasePage implements OnInit {
   }
 
   async termsClicked() {
-    await this.navigateTo(routeConstants.KEXY.TERMS_AND_CONDITION);
+    await this.navigateTo(routeConstants.CANNABIS.TERMS_AND_CONDITION);
   }
 
 }

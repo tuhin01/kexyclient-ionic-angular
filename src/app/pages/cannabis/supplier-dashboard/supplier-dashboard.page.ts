@@ -57,12 +57,12 @@ export class SupplierDashboardPage extends BasePage implements OnInit {
   }
 
   messagesTapped() {
-    this.navigateTo(routeConstants.KEXY.MESSAGE);
+    this.navigateTo(routeConstants.CANNABIS.MESSAGE);
     
   }
 
   public contactBtnTapped(): void {
-    this.navigateTo(routeConstants.KEXY.ALL_CONTACTS);
+    this.navigateTo(routeConstants.CANNABIS.ALL_CONTACTS);
     
   }
 

@@ -1,5 +1,5 @@
 <ion-header>
-  <ion-toolbar color="primary">
+  <ion-toolbar color="success">
     <ion-buttons slot="start">
       <ion-button mode="ios" fill="clear" (click)="backBtnPressed()">
         <ion-icon name="chevron-back-outline"></ion-icon> Back
@@ -26,7 +26,7 @@
     <ion-grid class="ion-no-padding">
       <ion-row class="tr-hint-icon" *ngIf="isOrderPage">
         <ion-col size="12" class="ion-no-padding">
-          <ion-icon style="font-size: 20px" color="primary" name="checkbox"></ion-icon>
+          <ion-icon style="font-size: 20px" color="success" name="checkbox"></ion-icon>
           = Submitted,
           <ion-checkbox mode="md" checked="false" disabled></ion-checkbox>
           = Created,
@@ -68,14 +68,14 @@
           <ion-icon
             style="font-size: 20px"
             *ngIf="order.order.status === 'finalized'"
-            color="primary"
+            color="success"
             name="checkbox"
           ></ion-icon>
 
           <ion-checkbox
             *ngIf="!order.order || order.order.status === 'saved'"
             mode="md"
-            color="primary"
+            color="success"
             checked="false"
             disabled
           ></ion-checkbox>

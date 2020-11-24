@@ -106,7 +106,7 @@ export class ReviewOrderPage extends BasePage implements OnInit {
   async orderTapped(order) {
     let inventory_id = order.id;
     await this.navigateTo(
-      routeConstants.KEXY.RESTAURANT_TABS + "/" + routeConstants.KEXY.FINALIZE_ORDER,
+      routeConstants.CANNABIS.RESTAURANT_TABS + "/" + routeConstants.CANNABIS.FINALIZE_ORDER,
       {
         inventory_id,
         restaurantSide: this.restaurantSide,

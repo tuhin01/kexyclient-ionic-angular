@@ -204,7 +204,7 @@ export class EditProfilePage extends BasePage implements OnInit {
     console.log(this.userInfo);
     await this.storage.set(constants.STORAGE_USER, this.userInfo);
     await this.showAwaitableAlert("Success!", "Your profile has been updated.");
-    await this.setRoot(routeConstants.KEXY.RESTAURANT_TABS);
+    await this.setRoot(routeConstants.CANNABIS.RESTAURANT_TABS);
   }
 
   async presentFileChooser() {

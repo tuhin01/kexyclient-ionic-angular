@@ -72,7 +72,7 @@ export class MessageConversationPage extends BasePage implements OnInit {
       console.log("Convo", this.params.conversation);
       this.conversation = JSON.parse(this.params.conversation);
       if (!this.conversation) {
-        await this.setRoot(routeConstants.KEXY.MESSAGE);
+        await this.setRoot(routeConstants.CANNABIS.MESSAGE);
         return;
       }
 
@@ -193,7 +193,7 @@ export class MessageConversationPage extends BasePage implements OnInit {
   }
 
   async addParticipantsTapped() {
-    await this.navigateTo(routeConstants.KEXY.ALL_CONTACTS, {
+    await this.navigateTo(routeConstants.CANNABIS.ALL_CONTACTS, {
       conversation: this.conversation,
       mode: "add-participants", // TODO - Fix me all contacts page
     });

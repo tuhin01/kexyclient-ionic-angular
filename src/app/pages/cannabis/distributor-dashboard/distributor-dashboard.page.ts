@@ -74,12 +74,12 @@ export class DistributorDashboardPage extends BasePage implements OnInit {
 
   addAnotherRestaurant() {
    
-      this.navigateTo(routeConstants.KEXY.MY_RESTAURANTS)
+      this.navigateTo(routeConstants.CANNABIS.MY_RESTAURANTS)
 
   }
 
   private addAnotherRep(): void {
-    this.navigateTo(routeConstants.KEXY.INVITE_DISTRIBUTOR_EMPLOYEE,{
+    this.navigateTo(routeConstants.CANNABIS.INVITE_DISTRIBUTOR_EMPLOYEE,{
       distributor_id: this.organization.distributor_id,
       from_page: 'my_restaurant'
     })
@@ -87,18 +87,18 @@ export class DistributorDashboardPage extends BasePage implements OnInit {
 
   messagesTapped() {
  
-    this.navigateTo(routeConstants.KEXY.MESSAGE);
+    this.navigateTo(routeConstants.CANNABIS.MESSAGE);
 
   }
 
   public contactBtnTapped(): void {
-     this.navigateTo(routeConstants.KEXY.ALL_CONTACTS);
+     this.navigateTo(routeConstants.CANNABIS.ALL_CONTACTS);
 
   }
 
   restaurantBarTapped() {
    
-    this.navigateTo(routeConstants.KEXY.MY_RESTAURANTS);
+    this.navigateTo(routeConstants.CANNABIS.MY_RESTAURANTS);
 
   }
 
@@ -106,14 +106,14 @@ export class DistributorDashboardPage extends BasePage implements OnInit {
 
   public invitePeopleTapped() {
  
-    this.navigateTo(routeConstants.KEXY.INVITE_PEOPLE);
+    this.navigateTo(routeConstants.CANNABIS.INVITE_PEOPLE);
   
   }
 
 
   public myOrdersTapped() {
 
-    this.navigateTo(routeConstants.KEXY.DISTRIBUTOR_REP_ORDERS);
+    this.navigateTo(routeConstants.CANNABIS.DISTRIBUTOR_REP_ORDERS);
   
   }
 }

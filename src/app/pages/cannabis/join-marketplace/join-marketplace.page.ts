@@ -61,7 +61,7 @@ export class JoinMarketplacePage extends BasePage implements OnInit {
       organization_invitations: this.organization_invitations,
       employee_invitations: this.employee_invitations
     }
-    await this.navigateTo(routeConstants.KEXY.REGISTER, data);
+    await this.navigateTo(routeConstants.CANNABIS.REGISTER, data);
   }
 
 }

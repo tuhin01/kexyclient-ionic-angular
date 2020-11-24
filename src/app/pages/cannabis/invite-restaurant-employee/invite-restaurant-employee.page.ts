@@ -81,7 +81,7 @@ export class InviteRestaurantEmployeePage extends BasePage implements OnInit {
       this.setRoot(routeConstants.HOME)
       return;
     }
-    this.setRoot(routeConstants.KEXY.WELCOME,{
+    this.setRoot(routeConstants.CANNABIS.WELCOME,{
       restaurant_id: this.restaurant_id
     });
 

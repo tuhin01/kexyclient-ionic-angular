@@ -1,5 +1,5 @@
 <ion-header>
-  <ion-toolbar color="primary">
+  <ion-toolbar color="success">
     <ion-buttons slot="start">
       <ion-back-button></ion-back-button>
     </ion-buttons>
@@ -34,7 +34,7 @@
                       color="light"
                       expand="full"
                       shape="round"
-                      class="common button"
+                      class="common button btn-cannabis"
                       style="text-transform: initial"
               >List of requests to join</ion-button>
 
@@ -62,7 +62,7 @@
               </ion-col>
               <ion-col size="2" class="ion-no-padding">
 
-               <u (click)="resendEmployeeInvitation(invitation)" class="link" >Resend</u>
+               <u (click)="resendEmployeeInvitation(invitation)" class="can-link" >Resend</u>
               </ion-col>
             </ion-row>
           </div>
@@ -118,7 +118,7 @@
             <ion-col class="ion- text-center" size="12">
               <ion-button
                       (click)="addNewInvite()"
-                      color="primary"
+                      color="success"
                       fill="clear"
                       size="small"
                       class="kexy-add-more-invite-btn"
@@ -134,7 +134,7 @@
                       color="light"
                       expand="full"
                       shape="round"
-                      class="common button"
+                      class="common button btn-cannabis"
                       style="text-transform: initial"
               >Send Invitation(s)</ion-button>
             </ion-col>
@@ -150,7 +150,7 @@
   <!--      <ion-grid>-->
   <!--        <ion-row justify-content-center padding-top>-->
   <!--          <ion-col>-->
-  <!--            <button (click)="requestsToJoin()" class="common button" color="light" full ion-button round-->
+  <!--            <button (click)="requestsToJoin()" class="common button btn-cannabis" color="light" full ion-button round-->
   <!--                    style="text-transform: initial">List of requests to join-->
   <!--            </button>-->
   <!--          </ion-col>-->
@@ -171,7 +171,7 @@
   <!--              {{invitation.email}}-->
   <!--            </ion-col>-->
   <!--            <ion-col col-2 no-padding>-->
-  <!--              <button (click)="resendOrgInvitation(invitation)" clear color="primary" ion-button no-margin no-padding-->
+  <!--              <button (click)="resendOrgInvitation(invitation)" clear color="success" ion-button no-margin no-padding-->
   <!--                      small style="height: auto">-->
   <!--                <u>Resend</u>-->
   <!--              </button>-->
@@ -222,7 +222,7 @@
   
   <!--        <ion-row>-->
   <!--          <ion-col text-center col-12>-->
-  <!--            <button ion-button color="primary" small clear class="kexy-add-more-invite-btn" (click)="addNewInvite()">-->
+  <!--            <button ion-button color="success" small clear class="kexy-add-more-invite-btn" (click)="addNewInvite()">-->
   <!--              <u>+ Add another invitation</u>-->
   <!--            </button>-->
   <!--          </ion-col>-->
@@ -230,7 +230,7 @@
   
   <!--        <ion-row padding-top justify-content-center>-->
   <!--          <ion-col>-->
-  <!--            <button (click)="organizationInviteFormSubmitted()" class="common button" color="light" full ion-button-->
+  <!--            <button (click)="organizationInviteFormSubmitted()" class="common button btn-cannabis" color="light" full ion-button-->
   <!--                    round-->
   <!--                    style="text-transform: initial">Send Invitation(s)-->
   <!--            </button>-->

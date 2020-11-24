@@ -1,5 +1,5 @@
 <ion-header>
-  <ion-toolbar [style.background-color]="'red'" color="primary">
+  <ion-toolbar [style.background-color]="'red'" color="success">
     <ion-buttons slot="start">
       <ion-menu-toggle>
         <ion-menu-button></ion-menu-button>
@@ -378,7 +378,7 @@
     <ion-textarea [(ngModel)]="noteTaking.text" mode="ios" placeholder=""></ion-textarea>
   </div>
   <div class="note-footer">
-    <ion-button (click)="saveNote()" color="primary" shape="round" class="ion-margin-bottom">
+    <ion-button (click)="saveNote()" color="success" shape="round" class="ion-margin-bottom">
       SAVE
     </ion-button>
   </div>
@@ -404,7 +404,7 @@
     </p>
     <ion-button
       (click)="buySuscription()"
-      color="primary"
+      color="success"
       shape="round"
       class="ion-margin-bottom"
       style="width: 85%"
@@ -417,7 +417,7 @@
     <ion-button
       (click)="extendTrialRequest()"
       *ngIf="isSubscriptionTrial"
-      color="primary"
+      color="success"
       shape="round"
       style="width: 85%"
     >
@@ -426,7 +426,7 @@
     <p style="text-align: left; margin: 10px">
       If you already purchased a subscription, click below:
     </p>
-    <ion-button (click)="checkSubscription()" color="primary" shape="round" style="width: 85%">
+    <ion-button (click)="checkSubscription()" color="success" shape="round" style="width: 85%">
       Recheck Now
     </ion-button>
   </ion-col>
@@ -472,7 +472,7 @@
     </ion-row>
     <ion-row>
       <ion-col size="12">
-        <ion-button style="padding: 0" fill="clear" color="primary" (click)="presentFileChooser()">
+        <ion-button style="padding: 0" fill="clear" color="success" (click)="presentFileChooser()">
           <ion-icon name="attach"></ion-icon>
           Upload New Photo
         </ion-button>
@@ -480,7 +480,7 @@
     </ion-row>
     <ion-row>
       <ion-col size="12">
-        <ion-button color="primary" expand="full" shape="round" (click)="saveCategory()"
+        <ion-button color="success" expand="full" shape="round" (click)="saveCategory()"
           >ADD CATEGORY</ion-button
         >
       </ion-col>

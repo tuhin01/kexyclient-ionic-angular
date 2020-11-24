@@ -81,14 +81,14 @@ export class EmailVerificationPage extends BasePage implements OnInit {
 
     if (joinByInvitation) {
       let { organization_invitations, employee_invitations } = res.data;
-      await this.navigateTo(routeConstants.KEXY.JOIN_MARKETPLACED, {
+      await this.navigateTo(routeConstants.CANNABIS.JOIN_MARKETPLACED, {
         email: this.email,
         organization_invitations,
         employee_invitations,
       });
     } else {
       Object.assign(data, { is_invited: this.isInvited, type: this.type });
-      await this.navigateTo(routeConstants.KEXY.REGISTER, data);
+      await this.navigateTo(routeConstants.CANNABIS.REGISTER, data);
     }
   }
 

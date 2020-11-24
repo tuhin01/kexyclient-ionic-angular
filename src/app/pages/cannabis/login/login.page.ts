@@ -133,11 +133,11 @@ export class LoginPage extends BasePage implements OnInit {
   }
 
   async forgotPasswordTapped() {
-    await this.navigateTo(routeConstants.KEXY.FORGET_PASSWORD);
+    await this.navigateTo(routeConstants.CANNABIS.FORGET_PASSWORD);
   }
 
   async createOrJoinTapped() {
-    await this.setRootWithAnimationBackword(routeConstants.KEXY.LOGIN_DICISION, { from: "login" });
+    await this.setRootWithAnimationBackword(routeConstants.CANNABIS.LOGIN_DICISION, { from: "login" });
     return;
   }
 
@@ -177,7 +177,7 @@ export class LoginPage extends BasePage implements OnInit {
       let isDev = window.localStorage.getItem(keyName);
       isDev = isDev === "NO" ? "YES" : "NO";
       window.localStorage.setItem(keyName, isDev);
-      this.navigateTo(routeConstants.KEXY.LOGOUT);
+      this.navigateTo(routeConstants.CANNABIS.LOGOUT);
      
       setTimeout(() => {
         window.location.reload();

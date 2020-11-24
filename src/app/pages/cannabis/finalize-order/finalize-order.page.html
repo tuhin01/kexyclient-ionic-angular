@@ -1,5 +1,5 @@
 <ion-header>
-  <ion-toolbar color="primary">
+  <ion-toolbar color="success">
     <ion-buttons slot="start">
       <ion-button mode="ios" fill="clear" (click)="backBtnPressed()">
         <ion-icon name="chevron-back-outline"></ion-icon> Back
@@ -50,7 +50,7 @@
                 *ngIf="!order_all"
                 (ionChange)="orderAllTapped()"
                 checked="false"
-                color="primary"
+                color="success"
                 mode="md"
               ></ion-checkbox>
               <ion-checkbox
@@ -58,7 +58,7 @@
                 *ngIf="order_all"
                 (ionChange)="uncheckAllOrder()"
                 checked="true"
-                color="primary"
+                color="success"
                 mode="md"
                 class="order_all"
               ></ion-checkbox>
@@ -92,7 +92,7 @@
                   *ngIf="distributor.isSent"
                   checked="true"
                   class="distributor-checkbox"
-                  color="primary"
+                  color="success"
                   disabled="{{!distributor.isUncheckable}}"
                   mode="md"
                 ></ion-checkbox>
@@ -102,7 +102,7 @@
                   *ngIf="!distributor.isSent"
                   checked="false"
                   class="distributor-checkbox"
-                  color="primary"
+                  color="success"
                   disabled="{{!distributor.isUncheckable}}"
                   mode="md"
                 ></ion-checkbox>

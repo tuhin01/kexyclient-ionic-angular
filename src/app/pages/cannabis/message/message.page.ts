@@ -111,7 +111,7 @@ export class MessagePage extends BasePage implements OnInit {
 
   async _startConversation(conversation) {
     this.shouldIgnoreNextPageLeave = true;
-    await this.navigateTo(routeConstants.KEXY.MESSAGE_CONV, {
+    await this.navigateTo(routeConstants.CANNABIS.MESSAGE_CONV, {
       conversation: JSON.stringify(conversation),
     });
   }
@@ -130,9 +130,9 @@ export class MessagePage extends BasePage implements OnInit {
   private getAllContactsPageUrl() {
     let url = "";
     if (this.org.type === constants.ORGANIZATION_TYPE_RESTAURANT) {
-      url = routeConstants.KEXY.RESTAURANT_TABS + "/" + routeConstants.KEXY.ALL_CONTACTS;
+      url = routeConstants.CANNABIS.RESTAURANT_TABS + "/" + routeConstants.CANNABIS.ALL_CONTACTS;
     } else {
-      url = routeConstants.KEXY.ALL_CONTACTS;
+      url = routeConstants.CANNABIS.ALL_CONTACTS;
     }
     return url;
   }

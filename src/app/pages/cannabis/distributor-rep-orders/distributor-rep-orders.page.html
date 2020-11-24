@@ -1,5 +1,5 @@
 <ion-header>
-  <ion-toolbar color="primary">
+  <ion-toolbar color="success">
     <ion-buttons slot="start">
       <ion-back-button></ion-back-button>
     </ion-buttons>
@@ -14,7 +14,7 @@
     <ion-row class="tr-hint-icon">
       <ion-col size="12" class="ion-no-padding">
         Hint -
-        <ion-icon style="font-size: 20px;" color="primary" name="checkbox"></ion-icon>
+        <ion-icon style="font-size: 20px;" color="success" name="checkbox"></ion-icon>
         = Confirmed,
         <ion-checkbox mode="md" checked="false" disabled></ion-checkbox>
         = Pending
@@ -45,9 +45,9 @@
       <ion-col>{{order.order.order_number}}</ion-col>
       <ion-col>{{order.order.restaurant.name}}</ion-col>
       <ion-col>
-        <ion-icon *ngIf="order.status == 'confirmed'" style="font-size: 20px;" color="primary"
+        <ion-icon *ngIf="order.status == 'confirmed'" style="font-size: 20px;" color="success"
                   name="checkbox"></ion-icon>
-        <ion-checkbox *ngIf="order.status === 'pending'" mode="md" color="primary"
+        <ion-checkbox *ngIf="order.status === 'pending'" mode="md" color="success"
                       checked="false" disabled></ion-checkbox>
       </ion-col>
     </ion-row>

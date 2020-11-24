@@ -184,7 +184,7 @@ export class DistributorSetupRestaurantBarPage extends BasePage implements OnIni
     let res2 = await this.processInvites();
     if (!res2) return;
 
-    this.navigateTo(routeConstants.KEXY.INVITE_DISTRIBUTOR_EMPLOYEE,{
+    this.navigateTo(routeConstants.CANNABIS.INVITE_DISTRIBUTOR_EMPLOYEE,{
       distributor_id: this.distributor_id
     })
 

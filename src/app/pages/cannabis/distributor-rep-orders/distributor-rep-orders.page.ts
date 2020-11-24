@@ -73,7 +73,7 @@ export class DistributorRepOrdersPage extends BasePage implements OnInit {
     let order_date = order.order.order_date;
     let order_number = order.order.order_number;
     let restaurant_name = order.order.restaurant.name;
-    this.navigateTo(routeConstants.KEXY.DISTRIBUTOR_REP_ORDER_DETAILS),{
+    this.navigateTo(routeConstants.CANNABIS.DISTRIBUTOR_REP_ORDER_DETAILS),{
       order_id: order_id,
       order_status: order_status,
       order_date: order_date,

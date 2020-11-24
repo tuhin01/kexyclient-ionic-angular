@@ -79,7 +79,7 @@ export class InviteDistributorEmployeePage extends BasePage implements OnInit {
       this.setRoot(routeConstants.HOME)
       return;
     }
-    this.navigateTo(routeConstants.KEXY.WELCOME, {
+    this.navigateTo(routeConstants.CANNABIS.WELCOME, {
       distributor_id: this.distributor_id
     });
   }

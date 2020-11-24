@@ -131,13 +131,13 @@ export class SupplierCreatePage extends BasePage implements OnInit {
     // });
 
 
-    this.navigateTo(routeConstants.KEXY.SUPPLIER_INVITE_EMPLOYEE,{
+    this.navigateTo(routeConstants.CANNABIS.SUPPLIER_INVITE_EMPLOYEE,{
       supplier_id: this.supplier_id
     });
   }
 
   public termsClicked(): void {
-    this.navigateTo(routeConstants.KEXY.TERMS_AND_CONDITION)
+    this.navigateTo(routeConstants.CANNABIS.TERMS_AND_CONDITION)
   }
 
   async presentFileChooser() {

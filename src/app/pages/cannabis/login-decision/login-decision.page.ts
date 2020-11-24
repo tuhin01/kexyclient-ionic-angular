@@ -41,7 +41,7 @@ export class LoginDecisionPage extends BasePage implements OnInit {
         let lastUsedEmail = await this.storage.get("__LAST_USED_EMAIL");
         console.log({ lastUsedEmail });
         if (lastUsedEmail) {
-          await this.setRoot(routeConstants.KEXY.LOGIN);
+          await this.setRoot(routeConstants.CANNABIS.LOGIN);
         }
       } catch (ex) {
         ("pass");
@@ -50,14 +50,14 @@ export class LoginDecisionPage extends BasePage implements OnInit {
   }
 
   async loginTapped() {
-    await this.navigateTo(routeConstants.KEXY.LOGIN);
+    await this.navigateTo(routeConstants.CANNABIS.LOGIN);
   }
 
   async joinTapped() {
-    await this.navigateTo(routeConstants.KEXY.EMAIL_CONFIRMATION, { type: "join" });
+    await this.navigateTo(routeConstants.CANNABIS.EMAIL_CONFIRMATION, { type: "join" });
   }
 
   async registerTapped() {
-    await this.navigateTo(routeConstants.KEXY.EMAIL_CONFIRMATION, { type: "registrer" });
+    await this.navigateTo(routeConstants.CANNABIS.EMAIL_CONFIRMATION, { type: "registrer" });
   }
 }

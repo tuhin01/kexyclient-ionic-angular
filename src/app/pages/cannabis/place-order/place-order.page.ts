@@ -616,7 +616,7 @@ export class PlaceOrderPage extends BasePage implements OnInit {
     if (inventory_id === null) return;
     this.preventPageLeave = false;
     if (action === "addNewProduct") {
-      await this.navigateTo(routeConstants.KEXY.ADD_NEW_PRODUCT, {
+      await this.navigateTo(routeConstants.CANNABIS.ADD_NEW_PRODUCT, {
         inventory_id,
         createdFromPage: this.isOrderPage ? "order" : "",
         category: JSON.stringify(this.selectedCategory),
@@ -624,7 +624,7 @@ export class PlaceOrderPage extends BasePage implements OnInit {
       });
     } else {
       await this.navigateTo(
-        routeConstants.KEXY.RESTAURANT_TABS + "/" + routeConstants.KEXY.FINALIZE_ORDER,
+        routeConstants.CANNABIS.RESTAURANT_TABS + "/" + routeConstants.CANNABIS.FINALIZE_ORDER,
         {
           inventory_id,
           restaurantSide: this.restaurantSide,
@@ -922,7 +922,7 @@ export class PlaceOrderPage extends BasePage implements OnInit {
 
   async editProduct(product: any) {
     let inventory_id = "NOT_SET";
-    await this.navigateTo(routeConstants.KEXY.ADD_NEW_PRODUCT, {
+    await this.navigateTo(routeConstants.CANNABIS.ADD_NEW_PRODUCT, {
       inventory_id,
       createdFromPage: this.isOrderPage ? "order" : "",
       category: JSON.stringify(this.selectedCategory),
@@ -1019,7 +1019,7 @@ export class PlaceOrderPage extends BasePage implements OnInit {
     if (this.isProductEdit) {
       this.isProductEdit = false;
     } else {
-      await this.setRootWithAnimationBackword(routeConstants.KEXY.RESTAURANT_TABS);
+      await this.setRootWithAnimationBackword(routeConstants.CANNABIS.RESTAURANT_TABS);
     }
   }
 }

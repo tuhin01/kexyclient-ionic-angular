@@ -40,6 +40,6 @@ export class LogoutPage extends BasePage implements OnInit {
       }, { shouldBlockUi: true });
     }
     await this.removeLocalUserData();
-    await this.setRoot(routeConstants.KEXY.LOGIN);
+    await this.setRoot(routeConstants.CANNABIS.LOGIN);
   }
 }
