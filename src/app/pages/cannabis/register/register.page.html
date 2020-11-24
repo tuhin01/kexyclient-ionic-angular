@@ -31,10 +31,10 @@
       <label>
         <ion-row class="border-bottom">
           <ion-col size="1" class="tr-kx-icon">
-            <ion-icon name="ios-person-outline"></ion-icon>
+            <ion-icon name="person-outline"></ion-icon>
           </ion-col>
           <ion-col size="11">
-            <ion-input
+            <ion-input class="tr-kx-input"
               placeholder="First Name"
               type="text"
               formControlName="first_name"
@@ -56,10 +56,10 @@
       <label>
         <ion-row class="border-bottom">
           <ion-col size="1" class="tr-kx-icon">
-            <ion-icon name="ios-person-outline"></ion-icon>
+            <ion-icon name="person-outline"></ion-icon>
           </ion-col>
           <ion-col size="11">
-            <ion-input placeholder="Last Name" type="text" formControlName="last_name"></ion-input>
+            <ion-input class="tr-kx-input" placeholder="Last Name" type="text" formControlName="last_name"></ion-input>
           </ion-col>
         </ion-row>
         <div class="validation-errors ion-text-center">
@@ -76,10 +76,10 @@
       <label>
         <ion-row class="border-bottom">
           <ion-col size="1" class="tr-kx-icon">
-            <ion-icon name="ios-person-outline"></ion-icon>
+            <ion-icon name="person-outline"></ion-icon>
           </ion-col>
           <ion-col size="11">
-            <ion-input formControlName="job_title" placeholder="Job Title" type="text"></ion-input>
+            <ion-input class="tr-kx-input" formControlName="job_title" placeholder="Job Title" type="text"></ion-input>
           </ion-col>
         </ion-row>
         <div class="validation-errors ion-text-center">
@@ -96,10 +96,10 @@
       <label>
         <ion-row class="border-bottom">
           <ion-col size="1" class="tr-kx-icon">
-            <ion-icon name="ios-mail-outline"></ion-icon>
+            <ion-icon name="mail-outline"></ion-icon>
           </ion-col>
           <ion-col size="11">
-            <ion-input
+            <ion-input class="tr-kx-input"
               placeholder="name@example.com"
               type="email"
               disabled
@@ -114,10 +114,10 @@
       <label>
         <ion-row class="border-bottom">
           <ion-col size="1" class="tr-kx-icon">
-            <ion-icon name="ios-call-outline"></ion-icon>
+            <ion-icon name="call-outline"></ion-icon>
           </ion-col>
           <ion-col size="11">
-            <ion-input placeholder="Mobile Number" type="tel" formControlName="phone"></ion-input>
+            <ion-input class="tr-kx-input" placeholder="Mobile Number" type="tel" formControlName="phone"></ion-input>
           </ion-col>
         </ion-row>
         <div class="validation-errors ion-text-center">
@@ -135,10 +135,10 @@
       <label>
         <ion-row class="border-bottom">
           <ion-col size="1" class="tr-kx-icon">
-            <ion-icon name="ios-lock-outline"></ion-icon>
+            <ion-icon name="lock-closed-outline"></ion-icon>
           </ion-col>
           <ion-col size="11">
-            <ion-input
+            <ion-input class="tr-kx-input"
               placeholder="Create Password"
               type="password"
               formControlName="password"
@@ -161,6 +161,7 @@
         <ion-row class="ion-padding-top">
           <ion-col>
             <ion-checkbox
+            mode="md"
               color="success"
               [(ngModel)]="hasAgreedToTermsAndConditions"
               [ngModelOptions]="{standalone: true}"
