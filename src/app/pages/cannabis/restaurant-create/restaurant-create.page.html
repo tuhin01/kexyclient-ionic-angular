@@ -47,7 +47,7 @@
         <div class="ion-text-center" [hidden]="!imageUrl">
           <img class="profile-photo" [src]="imageUrl" />
         </div>
-        <ion-button (click)="presentFileChooser()" lass="cannabis" expand="full" shape="round">
+        <ion-button (click)="presentFileChooser()" class="common button btn-cannabis" expand="full" shape="round">
           <ion-icon name="attach"></ion-icon> Upload Company Logo
         </ion-button>
       </ion-col>
@@ -60,9 +60,9 @@
             <ion-icon name="restaurant"></ion-icon>
           </ion-col>
           <ion-col size="11">
-            <ion-input
+            <ion-input class="tr-kx-input"
               formControlName="name"
-              placeholder="Restaurant/Bar Name"
+              placeholder="Dispensary Name"
               type="text"
             ></ion-input>
           </ion-col>
@@ -72,7 +72,7 @@
             class="error-message"
             *ngIf="!primaryFormGroup.controls.name.valid && (primaryFormGroup.get('name').dirty || primaryFormGroup.get('name').touched)"
           >
-            Please enter a valid Restaurant/Bar Name.
+            Please enter a valid Dispensary Name.
           </div>
         </div>
       </label>
@@ -80,12 +80,12 @@
       <label>
         <ion-row class="border-bottom">
           <ion-col size="1" class="tr-kx-icon">
-            <ion-icon name="ios-call-outline"></ion-icon>
+            <ion-icon name="call-outline"></ion-icon>
           </ion-col>
           <ion-col size="11">
-            <ion-input
+            <ion-input class="tr-kx-input"
               formControlName="phone"
-              placeholder="Restaurant/Bar Phone Number"
+              placeholder="Dispensary Phone Number"
               type="tel"
             ></ion-input>
           </ion-col>
@@ -103,7 +103,7 @@
       <label>
         <ion-row class="border-bottom">
           <ion-col size="12">
-            <ion-input
+            <ion-input class="tr-kx-input"
               placeholder="Street Address"
               type="text"
               formControlName="street_address"
@@ -124,7 +124,7 @@
       <label>
         <ion-row class="border-bottom">
           <ion-col size="12">
-            <ion-input
+            <ion-input class="tr-kx-input"
               placeholder="City"
               type="text"
               formControlName="city"
@@ -144,7 +144,8 @@
 
       <ion-row class="border-bottom">
         <ion-col class="tr-kx-icon" size="1">
-          <ion-icon name="ios-browsers-outline"></ion-icon>
+          <ion-icon name="earth-outline"></ion-icon>
+          
         </ion-col>
         <ion-col size="11">
           <div class="tr-kexy-edit-side">
@@ -176,7 +177,7 @@
 
       <ion-row class="border-bottom">
         <ion-col size="1" class="tr-kx-icon">
-          <ion-icon name="ios-browsers-outline"></ion-icon>
+          <ion-icon name="browsers-outline"></ion-icon>
         </ion-col>
         <ion-col size="11">
           <div class="tr-kexy-edit-side">
@@ -204,10 +205,10 @@
       <label>
         <ion-row class="border-bottom">
           <ion-col size="1" class="tr-kx-icon">
-            <ion-icon name="ios-bookmark-outline"></ion-icon>
+            <ion-icon name="bookmark-outline"></ion-icon>
           </ion-col>
           <ion-col size="11">
-            <ion-input
+            <ion-input class="tr-kx-input"
               placeholder="{{zipLabel}}"
               formControlName="zip_code"
               [(ngModel)]="geolocationDetails.zip_code"
