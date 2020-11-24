@@ -14,7 +14,7 @@ export class MarketPlaceTypePage extends BasePage implements OnInit {
   private readonly params: any;
   private organization_invitations;
   public marketPlaceType: string = "restaurant";
-
+  public side: string = 'FOH';
   constructor(
     public router: Router,
     public route: ActivatedRoute,
@@ -42,6 +42,7 @@ export class MarketPlaceTypePage extends BasePage implements OnInit {
     console.log(this.organization_invitations);
     let restaurantIdList = [];
     let distributorIdList = [];
+    const email = this.params.email;
 
     if (this.organization_invitations.length) {
       this.organization_invitations.forEach((item) => {
@@ -51,19 +52,19 @@ export class MarketPlaceTypePage extends BasePage implements OnInit {
     }
 
     if (this.marketPlaceType === "distributor") {
-      await this.navigateTo(routeConstants.CANNABIS.DISTRIBUTOR_SELECT_TYPE,{
-        restaurantIdList
+      await this.navigateTo(routeConstants.CANNABIS.DISTRIBUTOR_CREATE,{
+        side: this.side, restaurantIdList
       });
     }
     if (this.marketPlaceType === "restaurant") {
-      await this.navigateTo(routeConstants.CANNABIS.RESTAURANT_TYPE,{
-        distributorIdList
+      await this.navigateTo(routeConstants.CANNABIS.RESTAURANT_CREATE, {
+        side: this.side, email, distributorIdList
       });
     }
-    if (this.marketPlaceType === "supplier") {
-      await this.navigateTo(routeConstants.CANNABIS.SUPPLIER_SELECT_TYPE, {
-        distributorIdList
-      });
-    }
+    // if (this.marketPlaceType === "supplier") {
+    //   await this.navigateTo(routeConstants.CANNABIS.SUPPLIER_SELECT_TYPE, {
+    //     distributorIdList
+    //   });
+    // }
   }
 }
