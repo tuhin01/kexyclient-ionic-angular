@@ -76,7 +76,9 @@ export class AddNewProductPage extends BasePage implements OnInit {
       }
     });
 
-    this._preparePage();
+    (async () => {
+      await this._preparePage();
+    })();
   }
 
   async _preparePage() {
@@ -110,7 +112,7 @@ export class AddNewProductPage extends BasePage implements OnInit {
   }
 
   _prepareEditProduct() {
-    this.product = this.params.product;
+    this.product = JSON.parse(this.params.product);
     this.product.employee.name = `${this.product.employee.first_name} ${this.product.employee.last_name}`;
     this.product.par_level = this.product.tempData.par_level;
 
@@ -119,18 +121,21 @@ export class AddNewProductPage extends BasePage implements OnInit {
     );
     if (distributor) {
       this.selectDistributor(distributor);
+      this.searchRep();
+      const rep = this.searchRepList.find(
+        (rep) => rep.employee_id === this.product.distributor_employee_id
+      );
+      console.log({rep});
+      this.selectRep(rep);
 
       /**
        * We need to ignore next filter of distributor or rep search here
        * since it's pre populated in product edit
        **/
       this.ignoreNextFilter = false;
-
-      this.searchRep();
-      const rep = this.searchRepList.find(
-        (rep) => rep.employee_id === this.product.distributor_employee_id
-      );
-      this.selectRep(rep);
+      this.ignoreRepNextFilter = false;
+      this.hideDistributorSearchResult = true;
+      this.hideRepSearchResult = true;
     } else {
       this.product.distributor.name = "";
       this.product.employee.name = "";
@@ -146,7 +151,6 @@ export class AddNewProductPage extends BasePage implements OnInit {
       { shouldBlockUi: true }
     );
     if (!res.success) {
-      //this.loading.dismiss();
       return;
     }
 
@@ -155,7 +159,6 @@ export class AddNewProductPage extends BasePage implements OnInit {
       (category) => category.side.toLowerCase() === this.restaurantSide.toLowerCase()
     );
     this.categoryList = categoryList;
-    console.log("categoryList", this.categoryList);
     this.categoryList.sort(function (a, b) {
       let catA = a.name.toLowerCase();
       let catB = b.name.toLowerCase();
@@ -228,7 +231,6 @@ export class AddNewProductPage extends BasePage implements OnInit {
       );
     } else {
       this.selectedCategory = category;
-      console.log(this.selectedCategory);
     }
   }
 
@@ -242,7 +244,6 @@ export class AddNewProductPage extends BasePage implements OnInit {
   }
 
   selectDistributor(distributor) {
-    console.log({ distributor });
     this.ignoreNextFilter = true;
     this.product.distributor.id = distributor.id;
     this.product.distributor.name = distributor.name;
@@ -250,18 +251,12 @@ export class AddNewProductPage extends BasePage implements OnInit {
   }
 
   selectRep(rep) {
-    console.log({ rep });
     this.ignoreRepNextFilter = true;
     this.shouldShowEmailPhoneFiled = false;
-
-    // this.primaryForm.controls["rep_email"].setValue(rep.employee_email);
-    // this.primaryForm.controls["rep_phone"].setValue(rep.employee_phone);
-
     this.product.employee.id = rep.employee_id;
     this.product.employee.name = rep.employee_name;
     this.product.employee.email = rep.employee_email;
     this.product.employee.phone = rep.employee_phone;
-    console.log(this.product);
     this.leaveRepField();
   }
 

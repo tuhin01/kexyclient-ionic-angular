@@ -248,7 +248,6 @@ export class PlaceOrderPage extends BasePage implements OnInit {
       { shouldBlockUi: true }
     );
     if (!res.success) {
-      //this.loading.dismiss();
       return;
     }
     let inventory = res.data.inventory;
@@ -299,7 +298,6 @@ export class PlaceOrderPage extends BasePage implements OnInit {
       { shouldBlockUi: true }
     );
     if (!res.success) {
-      //this.loading.dismiss();
       return;
     }
     this.singleViewProductIndex = 0;
@@ -337,7 +335,6 @@ export class PlaceOrderPage extends BasePage implements OnInit {
         },
         { shouldBlockUi: shouldBlockUi }
       );
-      //this.loading.dismiss();
       if (!res.success) return;
       this.productListCache = res.data.product_list;
     }
@@ -350,8 +347,6 @@ export class PlaceOrderPage extends BasePage implements OnInit {
     this.productList = productList;
     this.updateSingleViewProduct();
   }
-
-  // ==================================================================
 
   mapTemporaryProductList(productList) {
     productList.forEach((product) => {
@@ -455,7 +450,7 @@ export class PlaceOrderPage extends BasePage implements OnInit {
     this.productQuantityChanged(product);
   }
 
-  productAmountToOrderChanged(product) {
+  async productAmountToOrderChanged(product) {
     this.ensureSelectedProductIsInTemporaryProduct(product);
 
     let list = this.selectedProductList.filter(
@@ -478,7 +473,7 @@ export class PlaceOrderPage extends BasePage implements OnInit {
     // If par level update is on in user settings
     if (this.settings && this.settings.par_level_update) {
       if (total_qty_will_be_in_house > par_level && par_level > 0) {
-        this.showParChangeAlert(total_qty_will_be_in_house, product);
+        await this.showParChangeAlert(total_qty_will_be_in_house, product);
       }
     }
   }
@@ -552,14 +547,6 @@ export class PlaceOrderPage extends BasePage implements OnInit {
       this.productList = productList;
       this.showAllProduct = true;
     }
-    // if (!products) return;
-    // let category = this.categoryList.find(category => category.id === product.product_category_id);
-    // console.log("NNN2", category);
-    // if (!category) return;
-    // // await this.categoryTapped(category);
-    // this.singleViewProductIndex = this.productList.findIndex(_product => _product.id === product.id);
-    // console.log(this.singleViewProductIndex);
-    // this.updateSingleViewProduct();
   }
 
   // ==================================================================
@@ -938,10 +925,10 @@ export class PlaceOrderPage extends BasePage implements OnInit {
     await this.navigateTo(routeConstants.KEXY.ADD_NEW_PRODUCT, {
       inventory_id,
       createdFromPage: this.isOrderPage ? "order" : "",
-      category: this.selectedCategory,
+      category: JSON.stringify(this.selectedCategory),
       side: this.restaurantSide,
       is_edit: true,
-      product: product,
+      product: JSON.stringify(product),
     });
   }
 

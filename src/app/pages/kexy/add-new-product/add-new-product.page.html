@@ -55,6 +55,7 @@
             <ion-input
               [(ngModel)]="product.name"
               placeholder="Product Name*"
+              style="text-transform: capitalize"
               type="text"
             ></ion-input>
           </ion-col>
@@ -114,7 +115,7 @@
             >
             </ion-input>
             <ion-list
-              [class.hidden]="hideDistributorSearchResult"
+              *ngIf="hideDistributorSearchResult"
               style="
                 position: absolute;
                 top: 46px;

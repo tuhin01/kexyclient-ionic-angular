@@ -243,9 +243,9 @@
                   <th *ngIf="!isOrderPage && !isProductEdit">Qty In Location</th>
                   <th *ngIf="!isOrderPage && !isProductEdit">Total Qty</th>
                   <th *ngIf="isOrderPage && !isProductEdit">Amount to Order</th>
-                  <th>Par</th>
+                  <th *ngIf="!isProductEdit">Par</th>
                   <th *ngIf="!isOrderPage && !isProductEdit">Amount to Order</th>
-                  <th>Unit</th>
+                  <th *ngIf="!isProductEdit">Unit</th>
                   <th *ngIf="isProductEdit">Edit</th>
                 </tr>
                 <tr *ngFor="let product of productList; let i = index;" class="tr-product">
@@ -285,7 +285,7 @@
                       type="number"
                     ></ion-input>
                   </td>
-                  <td>
+                  <td *ngIf="!isProductEdit">
                     <ion-input
                       (change)="productParLevelChanged(product)"
                       (keyup)="closeKeyboard($event)"
@@ -302,16 +302,16 @@
                     ></ion-input>
                   </td>
 
-                  <td>{{product.unit}}</td>
+                  <td *ngIf="!isProductEdit">{{product.unit}}</td>
                   <td *ngIf="isProductEdit" style="text-align: center">
                     <ion-button
                       (click)="editProduct(product)"
                       class="kexy-add-location-btn"
                       style="margin: 0"
                       fill="clear"
+                      size="small"
                     >
-                      Next Product
-                      <ion-icon name="md-create"></ion-icon>
+                      <ion-icon name="create"></ion-icon>
                     </ion-button>
                   </td>
                 </tr>
