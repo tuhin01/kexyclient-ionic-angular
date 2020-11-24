@@ -23,7 +23,7 @@
     <!-- Category Slide Section-->
     <ion-row class="ion-no-padding">
       <ion-col size="12" class="ion-no-padding">
-        <p class="location-headline">CATEGORIES</p>
+        <p class="location-headline cannabis">CATEGORIES</p>
       </ion-col>
       <ion-col class="kexy-scroll-left-to-right" size="12">
         <div class="kexy-ion-scroll ion-text-left">
@@ -34,7 +34,7 @@
             <div
               (click)="categoryTapped(cat)"
               [class.active]="selectedCategory && cat.id === selectedCategory.id"
-              class="scroll-left-to-right-image"
+              class="scroll-left-to-right-image cannabis"
             >
               <img [alt]="cat.name" [src]="baseUriForImages + cat.photo" />
             </div>
@@ -205,7 +205,7 @@
             color="light"
             expand="full"
             shape="round"
-            class="common button ion-margin-top"
+            class="common button ion-margin-top btn-cannabis"
             >SUBMIT
           </ion-button>
         </ion-col>

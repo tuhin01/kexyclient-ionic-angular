@@ -63,7 +63,7 @@
         <!-- Location Slide Section-->
         <ion-row *ngIf="!isOrderPage && search_string.length === 0" class="ion-no-padding">
           <ion-col size="12" class="ion-no-padding">
-            <p class="location-headline">LOCATIONS</p>
+            <p class="location-headline cannabis">LOCATIONS</p>
           </ion-col>
           <ion-col class="kexy-scroll-left-to-right kexy-location" size="12">
             <div class="kexy-ion-scroll">
@@ -74,7 +74,7 @@
                 <div
                   (click)="locationTapped(location)"
                   [class.active]="selectedLocation && location.id === selectedLocation.id"
-                  class="scroll-left-to-right-image"
+                  class="scroll-left-to-right-image cannabis"
                 >
                   <img [alt]="location.name" [src]="baseUriForImages + location.photo" />
                 </div>
@@ -87,7 +87,7 @@
         <!-- Category Slide Section-->
         <ion-row *ngIf="search_string.length === 0" class="ion-no-padding">
           <ion-col size="12" class="ion-no-padding">
-            <p class="location-headline">CATEGORIES</p>
+            <p class="location-headline cannabis">CATEGORIES</p>
           </ion-col>
           <ion-col class="kexy-scroll-left-to-right" size="12">
             <div class="kexy-ion-scroll ion-text-left">
@@ -98,7 +98,7 @@
                 <div
                   (click)="categoryTapped(cat)"
                   [class.active]="selectedCategory && cat.id === selectedCategory.id"
-                  class="scroll-left-to-right-image"
+                  class="scroll-left-to-right-image cannabis"
                 >
                   <img [alt]="cat.name" [src]="baseUriForImages + cat.photo" />
                 </div>
@@ -111,7 +111,7 @@
         <ion-row class="all-category-sort-note">
           <ion-col size="12" class="ion-text-left" *ngIf="search_string.length === 0">
             <ion-item class="kexy-all-product-show-toggle">
-              <ion-toggle [(ngModel)]="showAllProduct" style="zoom: 0.9"></ion-toggle>
+              <ion-toggle class="cannabis" [(ngModel)]="showAllProduct" style="zoom: 0.9"></ion-toggle>
               <ion-label>Show all products within category</ion-label>
             </ion-item>
           </ion-col>
@@ -324,7 +324,7 @@
           <ion-col class="ion-text-center"> No products found in this category. </ion-col>
         </ion-row>
 
-        <ion-row class="submit-buttons ion-padding">
+        <ion-row class="submit-buttons ion-padding cannabis">
           <ion-col [class.should_full_width]="is_from_finalize_order" size="4">
             <ion-button
               type="submit"

@@ -28,13 +28,13 @@
 </ion-header>
 
 <ion-content class="lightBlueBg">
-  <div class="dashboard-segment">
+  <div class="dashboard-segment cannabis">
     <ion-segment mode="md" [(ngModel)]="contactSide">
       <ion-segment-button id="segment1" value="restaurant_bar">
-        <ion-label>Restaurants & Bars</ion-label>
+        <ion-label>Dispensary/Vape</ion-label>
       </ion-segment-button>
       <ion-segment-button id="segment2" value="distributor_supplier">
-        <ion-label>Distributors & Suppliers</ion-label>
+        <ion-label>Distributors</ion-label>
       </ion-segment-button>
     </ion-segment>
   </div>
@@ -82,13 +82,13 @@
                   [class.online]="online_user_list.indexOf(contact.user_id) > -1"
                 ></div>
                 <div
-                  class="tr-kexy-contact-select tr-contact"
+                  class="tr-kexy-contact-select tr-contact cannabis"
                   *ngIf="isInGroupSelectionMode && selected_contact_list.indexOf(contact) > -1"
                 >
-                  <div class="tr-contact-selected"></div>
+                  <div class="tr-contact-selected cannabis"></div>
                 </div>
                 <div
-                  class="tr-kexy-contact-select tr-contact"
+                  class="tr-kexy-contact-select tr-contact cannabis"
                   *ngIf="isInGroupSelectionMode && selected_contact_list.indexOf(contact) == -1"
                 ></div>
               </div>
@@ -144,13 +144,13 @@
                   [class.online]="online_user_list.indexOf(contact.user_id) > -1"
                 ></div>
                 <div
-                  class="tr-kexy-contact-select tr-contact"
+                  class="tr-kexy-contact-select tr-contact cannabis"
                   *ngIf="isInGroupSelectionMode && selected_contact_list.indexOf(contact) > -1"
                 >
-                  <div class="tr-contact-selected"></div>
+                  <div class="tr-contact-selected cannabis"></div>
                 </div>
                 <div
-                  class="tr-kexy-contact-select tr-contact"
+                  class="tr-kexy-contact-select tr-contact cannabis"
                   *ngIf="isInGroupSelectionMode && selected_contact_list.indexOf(contact) == -1"
                 ></div>
               </div>

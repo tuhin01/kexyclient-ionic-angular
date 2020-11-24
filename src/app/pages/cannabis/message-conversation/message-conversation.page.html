@@ -71,7 +71,7 @@
   <div class="removeScrollBar">
     <div
       *ngFor="let message of message_list"
-      [ngClass]="{'chatbox': true, 'left': message.user_id !== currentUser.id, 'right': message.user_id === currentUser.id}"
+      [ngClass]="{'chatbox': true, 'left': message.user_id !== currentUser.id, 'right cannabis': message.user_id === currentUser.id}"
     >
       <div [ngSwitch]="message.type">
         <p class="message-user-name" *ngIf="message.user_id !== currentUser.id">
@@ -131,13 +131,13 @@
       placeholder="Type here"
     ></ion-textarea>
     <ion-buttons slot="end">
-      <ion-button fill="clear" (mousedown)="sendButtonTapped(); $event.preventDefault()">
+      <ion-button fill="clear" class="cannabis" (mousedown)="sendButtonTapped(); $event.preventDefault()">
         <ion-label>
           <ion-icon name="send"></ion-icon>
         </ion-label>
       </ion-button>
 
-      <ion-button *ngIf="!isTypingNewMessage" fill="clear" (click)="openFileDialog()">
+      <ion-button *ngIf="!isTypingNewMessage" class="cannabis" fill="clear" (click)="openFileDialog()">
         <ion-label>
           <ion-icon style="line-height: inherit; margin-bottom: 2px" name="attach"></ion-icon>
         </ion-label>
@@ -151,7 +151,7 @@
         (change)="fileSelected($event)"
       />
 
-      <ion-button *ngIf="!isTypingNewMessage" fill="clear" (click)="cameraTapped()">
+      <ion-button *ngIf="!isTypingNewMessage" fill="clear" class="cannabis"  (click)="cameraTapped()">
         <ion-label>
           <ion-icon name="camera"></ion-icon>
         </ion-label>

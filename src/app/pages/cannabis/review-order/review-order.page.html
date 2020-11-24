@@ -12,7 +12,7 @@
 
 <ion-content class="lightBlueBg">
   <div style="overflow-y: scroll; height: 92vh">
-    <div class="dashboard-segment">
+    <div class="dashboard-segment cannabis">
       <ion-segment mode="md" [(ngModel)]="restaurantSide" (ionChange)="segmentChanged()">
         <ion-segment-button [disabled]="allowedSide === 'boh'" id="segment1" value="foh">
           FOH
@@ -30,7 +30,7 @@
           = Submitted,
           <ion-checkbox mode="md" checked="false" disabled></ion-checkbox>
           = Created,
-          <div class="order-partial">
+          <div class="order-partial cannabis">
             <div class="partial-fill"></div>
           </div>
           = Partial
@@ -80,7 +80,7 @@
             disabled
           ></ion-checkbox>
 
-          <div class="order-partial" *ngIf="order.order.status === 'partial'">
+          <div class="order-partial cannabis" *ngIf="order.order.status === 'partial'">
             <div class="partial-fill"></div>
           </div>
         </ion-col>

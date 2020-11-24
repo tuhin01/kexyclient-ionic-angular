@@ -3,7 +3,7 @@
     <ion-buttons slot="start">
       <ion-back-button></ion-back-button>
     </ion-buttons>
-    <ion-title>Restaurant/Bar Create</ion-title>
+    <ion-title>Dispensary Create</ion-title>
   </ion-toolbar>
 </ion-header>
 
@@ -11,7 +11,7 @@
   <div *ngIf="modalShow" class="overlay"></div>
 
   <div class="width-100 ion-text-center ion-padding-top ion-margin-top">
-    <img alt="Kexy Logo" width="196" src="../../../../assets/imgs/logo.png" />
+    <img alt="Kexy Logo" width="196" src="../../../../assets/cannabis/images/logo.png" />
   </div>
 
   <div *ngIf="modalShow" class="tr-modal-popup">
@@ -26,11 +26,11 @@
           </svg>
         </ion-spinner>
       </div>
-      <div class="loading-content">Loading restaurants nearby, please wait.</div>
+      <div class="loading-content">Loading dispensaries nearby, please wait.</div>
     </div>
 
     <div *ngIf="placeSuggestionList.length > 0">
-      <p class="tr-list-title">List of restaurants nearby</p>
+      <p class="tr-list-title">List of dispensaries nearby</p>
       <ion-item *ngFor="let placeSuggestion of placeSuggestionList; let i of index;">
         <ion-icon name="restaurant" slot="start"></ion-icon>
         <ion-label (click)="addressClicked(placeSuggestion)">
@@ -47,7 +47,7 @@
         <div class="ion-text-center" [hidden]="!imageUrl">
           <img class="profile-photo" [src]="imageUrl" />
         </div>
-        <ion-button (click)="presentFileChooser()" expand="full" shape="round">
+        <ion-button (click)="presentFileChooser()" lass="cannabis" expand="full" shape="round">
           <ion-icon name="attach"></ion-icon> Upload Company Logo
         </ion-button>
       </ion-col>

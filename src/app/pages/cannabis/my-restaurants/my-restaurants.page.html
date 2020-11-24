@@ -1,6 +1,6 @@
 <ion-header>
   <ion-toolbar color="success">
-    <ion-title> My Restaurants/Bars</ion-title>
+    <ion-title> My Dispensary/Vape </ion-title>
     <ion-buttons slot="start">
       <ion-button
               (click)="addRestaurants()"
@@ -20,13 +20,13 @@
 </ion-header>
 
 <ion-content class="bgimg">
-  <div class="dashboard-segment">
+  <div class="dashboard-segment cannabis">
     <ion-segment mode="md" [(ngModel)]="selectedTab">
       <ion-segment-button id="segment1" value="list">
-        My Restaurants & Bars
+        My Dispensary/Vape
       </ion-segment-button>
       <ion-segment-button id="segment2" value="add">
-        Add Restaurants & Bars
+        Add Dispensary/Vape
       </ion-segment-button>
     </ion-segment>
   </div>
@@ -98,7 +98,7 @@
                 color="success"
                 expand="block"
                 shape="round"
-        >Search a Restaurant By Name</ion-button>
+        >Search a Dispensary By Name</ion-button>
       </div>
     </div>
   </div>
