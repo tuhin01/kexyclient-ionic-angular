@@ -48,7 +48,8 @@ export class JoinRequestPage extends BasePage implements OnInit {
     await this.setRoot(routeConstants.HOME);
   }
 
-  async createYourOrg() {
+  async createYourOrg(e) {
+    e.preventDefault();
     await this.storage.set(constants.IS_JOIN_TYPE, "create_new");
     await this.setRoot(routeConstants.HOME);
     return;
@@ -63,6 +64,7 @@ export class JoinRequestPage extends BasePage implements OnInit {
     await this.searchStringChanged();
   }
 
+  submitted: boolean = false;
   async searchStringChanged() {
     console.log(this.marketPlaceType);
     if (this.search_string.length === 0 || this.marketPlaceType === "") {
@@ -74,7 +76,7 @@ export class JoinRequestPage extends BasePage implements OnInit {
       search_string: this.search_string,
       org_type: this.marketPlaceType,
     };
-    console.log({ data });
+    this.submitted = true;
     let res = await this.callApi(apis.API_SEARCH_ORGANIZATIONS, data);
     if (!res.success) return;
 

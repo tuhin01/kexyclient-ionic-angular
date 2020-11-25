@@ -7,53 +7,51 @@
   </ion-toolbar>
 </ion-header>
 
-<ion-content class="lightBlueBg">
-  <!-- contacts - start -->
-  <div style="padding: 16px 16px 16px 16px">
-    <ion-list>
-      <ion-item>
-        <ion-label>Company Type</ion-label>
-        <ion-select
-          [(ngModel)]="marketPlaceType"
-          placeholder="Select Company"
-          (ionChange)="onOrgTypeChange()"
-        >
-          <ion-select-option value="restaurant">Restaurant or Bar</ion-select-option>
-          <ion-select-option value="distributor">Distributor</ion-select-option>
-          <ion-select-option value="supplier">Supplier</ion-select-option>
-        </ion-select>
-      </ion-item>
-    </ion-list>
+<ion-content class="lightBlueBg ion-padding">
+  <ion-item style="--border-color: transparent; --padding-start: 0" class="ion-margin-bottom">
+    <ion-label>Company Type</ion-label>
+    <ion-select
+      [(ngModel)]="marketPlaceType"
+      (ionChange)="onOrgTypeChange()"
+      placeholder="Select Company"
+    >
+      <ion-select-option value="restaurant">Dispensary/Vape</ion-select-option>
+      <ion-select-option value="distributor">Distributor</ion-select-option>
+    </ion-select>
+  </ion-item>
 
-    <ion-searchbar
-      mode="ios"
-      color="light"
-      animated="true"
-      [(ngModel)]="search_string"
-      (change)="searchStringChanged()"
-      (ionCancel)="searchCanceled()"
-    ></ion-searchbar>
-    <ion-list>
-      <!-- If there are no org in search result -->
-      <div class="tr-contact-empty" *ngIf="org_list.length < 1 && search_string ">
-        <p class="ion-text-center">
-          There are no companies found. <br />
-          <a href="#" (click)="createYourOrg()">Create a new company</a>.
-        </p>
-      </div>
+  <ion-searchbar
+    mode="ios"
+    color="light"
+    animated="true"
+    [(ngModel)]="search_string"
+    (change)="searchStringChanged()"
+    (ionCancel)="searchCanceled()"
+  ></ion-searchbar>
+  <ion-list>
+    <!-- If there are no org in search result -->
+    <div class="tr-contact-empty" *ngIf="org_list.length < 1 && submitted">
+      <p class="ion-text-center">
+        There are no companies found. <br />
+        <a href="#" (click)="createYourOrg($event)">Create a new company</a>.
+      </p>
+    </div>
 
-      <div class="tr-contact-empty" *ngIf="org_list.length < 1 && !search_string">
-        <p class="ion-text-center">Please search by company name</p>
-      </div>
+    <div class="tr-contact-empty" *ngIf="org_list.length < 1 && !search_string">
+      <p class="ion-text-center">Please search by company name</p>
+    </div>
 
-      <ion-item-sliding *ngFor="let org of org_list; let i = index;">
-        <ion-item class="tr-kexy-item" (click)="orgTapped(org)">
-          <h2>{{org.name}}</h2>
-          <p *ngIf="marketPlaceType === 'restaurant'">{{org.street_address}}</p>
-          <p *ngIf="marketPlaceType !== 'restaurant'">Zip code - {{org.zip_code_list}}</p>
-        </ion-item>
-      </ion-item-sliding>
-    </ion-list>
-    <!-- contacts - end -->
-  </div>
+    <ion-item
+      style="--padding-start: 0"
+      *ngFor="let org of org_list"
+      class="tr-kexy-item"
+      (click)="orgTapped(org)"
+    >
+      <ion-label>
+        <h2>{{org.name}}</h2>
+        <p *ngIf="marketPlaceType === 'restaurant'">{{org.street_address}}</p>
+        <p *ngIf="marketPlaceType !== 'restaurant'">Zip code - {{org.zip_code_list}}</p>
+      </ion-label>
+    </ion-item>
+  </ion-list>
 </ion-content>

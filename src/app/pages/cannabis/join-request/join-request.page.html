@@ -30,10 +30,10 @@
   ></ion-searchbar>
   <ion-list>
     <!-- If there are no org in search result -->
-    <div class="tr-contact-empty" *ngIf="org_list.length < 1 && search_string ">
+    <div class="tr-contact-empty" *ngIf="org_list.length < 1 && submitted">
       <p class="ion-text-center">
         There are no companies found. <br />
-        <a href="#" (click)="createYourOrg()">Create a new company</a>.
+        <a href="#" (click)="createYourOrg($event)">Create a new company</a>.
       </p>
     </div>
 
@@ -41,12 +41,17 @@
       <p class="ion-text-center">Please search by company name</p>
     </div>
 
-    <ion-item-sliding *ngFor="let org of org_list; let i = index;">
-      <ion-item class="tr-kexy-item" (click)="orgTapped(org)">
+    <ion-item
+      style="--padding-start: 0"
+      *ngFor="let org of org_list"
+      class="tr-kexy-item"
+      (click)="orgTapped(org)"
+    >
+      <ion-label>
         <h2>{{org.name}}</h2>
         <p *ngIf="marketPlaceType === 'restaurant'">{{org.street_address}}</p>
         <p *ngIf="marketPlaceType !== 'restaurant'">Zip code - {{org.zip_code_list}}</p>
-      </ion-item>
-    </ion-item-sliding>
+      </ion-label>
+    </ion-item>
   </ion-list>
 </ion-content>
