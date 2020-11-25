@@ -11,8 +11,9 @@
   <ion-item style="--border-color: transparent; --padding-start: 0" class="ion-margin-bottom">
     <ion-label>Company Type</ion-label>
     <ion-select
+      #C
       [(ngModel)]="marketPlaceType"
-      (ionChange)="onOrgTypeChange()"
+      (ionChange)="onOrgTypeChange(C.value)"
       placeholder="Select Company"
     >
       <ion-select-option value="restaurant">Dispensary/Vape</ion-select-option>

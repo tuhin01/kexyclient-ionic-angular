@@ -55,7 +55,9 @@ export class JoinRequestPage extends BasePage implements OnInit {
     return;
   }
 
-  onOrgTypeChange() {
+  onOrgTypeChange(value) {
+    this.marketPlaceType = value;
+    console.log({value});
     this.search_string = "";
     this.org_list = [];
   }
