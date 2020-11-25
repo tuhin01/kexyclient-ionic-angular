@@ -35,10 +35,10 @@
 <!--      <label>-->
 <!--        <ion-row class="border-bottom">-->
 <!--          <ion-col col-1 class="tr-kx-icon">-->
-<!--            <ion-icon name="ios-person-outline"></ion-icon>-->
+<!--            <ion-icon name="person-outline"></ion-icon>-->
 <!--          </ion-col>-->
 <!--          <ion-col col-11>-->
-<!--            <ion-input placeholder="Job Title" type="text" formControlName="job_title"></ion-input>-->
+<!--            <ion-input  class="tr-kx-input" placeholder="Job Title" type="text" formControlName="job_title"></ion-input>-->
 <!--          </ion-col>-->
 <!--        </ion-row>-->
 <!--        <div class="validation-errors" text-center>-->
@@ -51,10 +51,10 @@
       <label>
         <ion-row class="border-bottom">
           <ion-col size="1" class="tr-kx-icon">
-            <ion-icon name="ios-briefcase-outline"></ion-icon>
+            <ion-icon name="briefcase-outline"></ion-icon>
           </ion-col>
           <ion-col size="11">
-            <ion-input placeholder="Company Name" type="text" formControlName="name"></ion-input>
+            <ion-input  class="tr-kx-input" placeholder="Company Name" type="text" formControlName="name"></ion-input>
           </ion-col>
         </ion-row>
         <div class="validation-errors ion-text-center" >
@@ -67,10 +67,10 @@
       <label>
         <ion-row class="border-bottom">
           <ion-col size="1" class="tr-kx-icon">
-            <ion-icon name="ios-call-outline"></ion-icon>
+            <ion-icon name="call-outline"></ion-icon>
           </ion-col>
           <ion-col size="11">
-            <ion-input placeholder="Mobile Number" type="tel" formControlName="phone"></ion-input>
+            <ion-input  class="tr-kx-input" placeholder="Mobile Number" type="tel" formControlName="phone"></ion-input>
           </ion-col>
         </ion-row>
         <div class="validation-errors ion-text-center" >
@@ -92,19 +92,19 @@
             <label [formGroupName]="i" *ngFor="let zip_code of distributorCreateForm.controls.zip_code_list.controls; let i = index">
               <ion-row class="border-bottom pt-0">
                 <ion-col size="1" class="tr-kx-icon">
-                  <ion-icon name="ios-list-outline"></ion-icon>
+                  <ion-icon name="list-outline"></ion-icon>
                 </ion-col>
                 <ion-col size="10">
-                  <ion-input placeholder="Zip Code" type="text" formControlName="zip_code"></ion-input>
+                  <ion-input  class="tr-kx-input" placeholder="Zip Code" type="text" formControlName="zip_code"></ion-input>
                 </ion-col>
                 <ion-col size="1" class="tr-kx-icon">
-                  <ion-icon name="ios-trash-outline" *ngIf="distributorCreateForm.controls.zip_code_list.length > 1" (click)="removeZipCode(i)"></ion-icon>
+                  <ion-icon name="trash-outline" *ngIf="distributorCreateForm.controls.zip_code_list.length > 1" (click)="removeZipCode(i)"></ion-icon>
                 </ion-col>
               </ion-row>
               <!--<ion-row>
                 <ion-col col-12>
                   <button ion-button color="light" icon-start small clear class="kexy-zip-code-btn" *ngIf="distributorCreateForm.controls.zip_code_list.length - 1 === i" (click)="addNewZipCode()">
-                    <ion-icon name="ios-add-circle-outline"></ion-icon>
+                    <ion-icon name="add-circle-outline"></ion-icon>
                     Add more ZIP codes
                   </button>
                 </ion-col>
@@ -124,7 +124,7 @@
                     size="small"
                     shape="round"
                     class="kexy-zip-code-btn"
-            ><ion-icon name="ios-add-circle-outline"></ion-icon>
+            ><ion-icon name="add-circle-outline"></ion-icon>
               Add another zip code</ion-button
             >
 
