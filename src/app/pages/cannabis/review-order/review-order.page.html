@@ -13,7 +13,7 @@
 <ion-content class="lightBlueBg">
   <div style="overflow-y: scroll; height: 92vh">
     <div class="dashboard-segment cannabis">
-      <ion-segment mode="md" [(ngModel)]="restaurantSide" (ionChange)="segmentChanged()">
+      <ion-segment color="success" mode="md" [(ngModel)]="restaurantSide" (ionChange)="segmentChanged()">
         <ion-segment-button [disabled]="allowedSide === 'boh'" id="segment1" value="foh">
           FOH
         </ion-segment-button>
