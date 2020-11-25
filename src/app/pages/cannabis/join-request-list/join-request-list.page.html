@@ -24,9 +24,9 @@
           </ion-col>
         </ion-row>
         <ion-row *ngFor="let request of join_request_list">
-          <ion-col size="7"> {{request.user.email}} </ion-col>
+          <ion-col size="7"><span style="font-size: 13px;"> {{request.user.email}} </span></ion-col>
           <ion-col size="3">
-            <span class="ion-text-capitalize">{{request.status}}</span>
+            <span class="ion-text-capitalize" style="font-size: 13px;">{{request.status}}</span>
           </ion-col>
           <ion-col size="2" class="ion-no-padding">
             <ion-button
