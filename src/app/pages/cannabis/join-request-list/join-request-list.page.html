@@ -1,51 +1,51 @@
 <ion-header>
   <ion-toolbar color="success">
     <ion-buttons slot="start">
-      <ion-menu-toggle>
-        <ion-menu-button></ion-menu-button>
-      </ion-menu-toggle>
+      <ion-back-button></ion-back-button>
     </ion-buttons>
-    <ion-title>Select Company</ion-title>
+    <ion-title>Requests to Join</ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content class="lightBlueBg">
-
-  <!-- contacts - start -->
-  <div style="padding: 16px 16px 16px 16px">
-
-    <ion-list>
-      <ion-item>
-        <ion-label>Company Type</ion-label>
-
-        <ion-select [(ngModel)]="marketPlaceType" placeholder="Select Company" #C (ionChange)="onOrgTypeChange(C.value)">
-          <ion-select-option value="restaurant">Restaurant or Bar</ion-select-option>
-          <ion-select-option value="distributor">Distributor</ion-select-option>
-          <ion-select-option value="supplier">Supplier</ion-select-option>
-        </ion-select>
-      </ion-item>
-    </ion-list>
-
-    <ion-searchbar mode="ios" animated="true" [(ngModel)]="search_string" (change)="searchStringChanged()" (ionCancel)="searchCanceled()"></ion-searchbar>
-    <ion-list>
-      <!-- If there are no org in search result -->
-      <div class="tr-contact-empty" *ngIf="org_list.length < 1 && search_string ">
-        <p class="ion-text-center">There are no companies found. <br> <a href="#" (click)="createYourOrg()">Create a new company</a>.</p>
+  <div style="padding-left: 6px; padding-right: 6px">
+    <ion-grid>
+      <div *ngIf="join_request_list.length > 0">
+        <p class="tr-list-user-title">List of users requesting to join your account</p>
+        <ion-row class="border-bottom">
+          <ion-col size="7">
+            <strong>Email</strong>
+          </ion-col>
+          <ion-col size="3">
+            <strong>Status</strong>
+          </ion-col>
+          <ion-col size="2" style="padding-left: 0">
+            <strong style="font-size: 12px">Action</strong>
+          </ion-col>
+        </ion-row>
+        <ion-row *ngFor="let request of join_request_list">
+          <ion-col size="7"> {{request.user.email}} </ion-col>
+          <ion-col size="3">
+            <span class="ion-text-capitalize">{{request.status}}</span>
+          </ion-col>
+          <ion-col size="2" class="ion-no-padding">
+            <ion-button
+              class="ion-no-padding ion-no-margin"
+              color="success"
+              size="small"
+              fill="clear"
+              style="height: auto"
+              (click)="showActionList(request)"
+            >
+              <ion-icon name="create-outline"></ion-icon>
+            </ion-button>
+          </ion-col>
+        </ion-row>
       </div>
 
-      <div class="tr-contact-empty" *ngIf="org_list.length < 1 && !search_string">
-        <p class="ion-text-center">Please search by company name</p>
+      <div *ngIf="join_request_list.length === 0">
+        <p class="no-request-message">No requests yet!</p>
       </div>
-
-      <ion-item-sliding *ngFor="let org of org_list; let i = index;">
-        <ion-item class="tr-kexy-item" (click)="orgTapped(org)">
-          <h2>{{org.name}}</h2>
-          <p *ngIf="marketPlaceType === 'restaurant'">{{org.street_address}}</p>
-          <p *ngIf="marketPlaceType !== 'restaurant'">Zip code - {{org.zip_code_list}}</p>
-        </ion-item>
-      </ion-item-sliding>
-    </ion-list>
-    <!-- contacts - end -->
-
+    </ion-grid>
   </div>
 </ion-content>

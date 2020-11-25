@@ -1,44 +1,46 @@
-ion-item {
-    background-color: #e2f1f9 !important;
-  }
+ion-label {
+  display: inline;
+  position: relative;
+  bottom: 3px;
+  left: 10px;
+}
+ion-col {
+  padding-bottom: 0 !important;
+}
+.text-input {
+  margin-bottom: 2px;
+  margin-left: 0;
+}
+ion-icon {
+  font-size: 20px;
+}
+.common.button {
+  width: 100%;
+}
+.kexy-add-more-invite-btn {
+  text-transform: initial;
+  margin-top: 20px;
+  text-decoration: underline;
+  font-weight: normal;
+}
+.tr-kx-icon {
+  display: inline-block;
+  padding-top: 15px;
+}
 
-  .content-md {
-    .scroll-content {
-      padding: 6px 0 16px 0 !important;
-    }
-  }
-
-  .avatar-missing {
-    background: white;
-    width: 40px;
-    height: 40px;
-    border-radius: 50%;
-
-    p {
-      font-size: 16px;
-      text-align: center;
-      line-height: 40px;
-      color: black;
-      font-weight: bold;
-    }
-  }
-
-  .user-profile-pic {
-    color: white;
-    line-height: 40px;
-    text-align: center;
-    font-weight: bold;
-    float: left;
-    margin-top: 0 !important;
-  }
-  .tr-kexy-item {
-    padding-left: 0;
-    h2 {
-      margin-top: 0px;
-    }
-  }
-
-  .tr-contact-empty {
-    margin-top: 50px;
-    font-size: 16px;
-  }
+ion-select {
+  display: inline-flex;
+  overflow: initial;
+  max-width: none;
+  padding: 10px 0 0 0 !important;
+}
+.tr-list-user-title {
+  margin-bottom: 0;
+  padding-left: 5px;
+  font-size: 16px;
+}
+p.no-request-message {
+  text-align: center;
+  margin-top: 50%;
+  font-style: italic;
+}
