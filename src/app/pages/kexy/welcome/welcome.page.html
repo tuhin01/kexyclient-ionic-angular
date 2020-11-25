@@ -27,7 +27,7 @@
       </ion-col>
     </ion-row>
 
-    <ion-row class="ion-padding">
+    <ion-row class="ion-padding" *ngIf="restaurant_id">
       <ion-col size="12">
         <ion-button
           (click)="exploreKexyTapped()"

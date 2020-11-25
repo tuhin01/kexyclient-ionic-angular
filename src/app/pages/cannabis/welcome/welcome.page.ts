@@ -14,7 +14,7 @@ import { routeConstants } from "../../../../common/routeConstants";
 })
 export class WelcomePage extends BasePage implements OnInit {
   private readonly params: any;
-  private restaurant_id: number;
+  restaurant_id: number;
   private distributor_id: number;
   private supplier_id: number;
   public isJoinType: any;
@@ -38,16 +38,9 @@ export class WelcomePage extends BasePage implements OnInit {
   }
 
   async ngOnInit() {
-    this._disableMenu();
-    this.params.restaurant_id
-      ? (this.restaurant_id = this.params.restaurant_id)
-      : (this.restaurant_id = null);
-    this.params.distributor_id
-      ? (this.distributor_id = this.params.distributor_id)
-      : (this.distributor_id = null);
-    this.params.supplier_id
-      ? (this.supplier_id = this.params.supplier_id)
-      : (this.supplier_id = null);
+    await this._disableMenu();
+    this.restaurant_id = this.params.restaurant_id || null;
+    this.distributor_id = this.params.distributor_id || null;
 
     this.isJoinType = await this.storage.get(constants.IS_JOIN_TYPE);
 
