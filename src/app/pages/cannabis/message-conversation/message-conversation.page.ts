@@ -67,7 +67,6 @@ export class MessageConversationPage extends BasePage implements OnInit {
       }
     });
     (async () => {
-      await this._disableMenu();
       this.online_user_list = [];
       console.log("Convo", this.params.conversation);
       this.conversation = JSON.parse(this.params.conversation);

@@ -54,41 +54,54 @@ export class JoinRequestListPage extends BasePage implements OnInit {
 
 
   async showActionList(request) {
-    // let alert = await this.alertCtrl.create();
-    // alert.header('Update Request Status');
-    //
-    // alert.addInput({
-    //   type: 'radio',
-    //   label: 'Pending',
-    //   value: 'pending',
-    //   checked: (request.status === 'pending')
-    // });
-    // alert.addInput({
-    //   type: 'radio',
-    //   label: 'Accept',
-    //   value: 'accepted',
-    //   checked: (request.status === 'accepted')
-    // });
-    // alert.addInput({
-    //   type: 'radio',
-    //   label: 'Delete',
-    //   value: 'deleted',
-    //   checked: (request.status === 'deleted')
-    // });
-    //
-    // alert.addButton('Cancel');
-    // alert.addButton({
-    //   text: 'OK',
-    //   handler: (status) => {
-    //     console.log(status);
-    //     let postData = {
-    //       join_request_id: request.id,
-    //       status: status
-    //     };
-    //     this.updateRequestStatus(postData);
-    //   }
-    // });
-    // await alert.present();
+    let alert = await this.alertCtrl.create({
+      cssClass: 'cannabis',
+      header:'Update Request Status',
+      inputs:[
+        {
+          type: 'radio',
+          label: 'Pending',
+          value: 'pending',
+          checked: (request.status === 'pending')
+        },
+        {
+          type: 'radio',
+          label: 'Accept',
+          value: 'accepted',
+          checked: (request.status === 'accepted')
+        },
+        {
+          type: 'radio',
+          label: 'Delete',
+          value: 'deleted',
+          checked: (request.status === 'deleted')
+        },
+
+      ],
+      buttons: [
+        {
+          text: 'Cancel',
+          role: 'cancel',
+          cssClass: 'secondary',
+          handler: () => {
+            console.log('Confirm Cancel');
+          }
+        },
+        {
+          text: 'OK',
+            handler: (status) => {
+              console.log(status);
+              let postData = {
+                join_request_id: request.id,
+                status: status
+              };
+              this.updateRequestStatus(postData);
+            }
+        }
+      ]
+    });
+
+     await alert.present();
   }
 
   async updateRequestStatus(data) {

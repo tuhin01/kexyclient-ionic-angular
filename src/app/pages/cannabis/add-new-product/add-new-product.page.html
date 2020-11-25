@@ -9,7 +9,7 @@
 
 <ion-content class="lightBlueBg">
   <div class="dashboard-segment">
-    <ion-segment (ionChange)="segmentChanged($event)" [(ngModel)]="restaurantSide" mode="md">
+    <ion-segment color="success" (ionChange)="segmentChanged($event)" [(ngModel)]="restaurantSide" mode="md">
       <ion-segment-button [disabled]="allowedSide === 'boh'" id="segment1" value="foh">
         FOH
       </ion-segment-button>
@@ -176,7 +176,7 @@
       <label *ngIf="shouldShowEmailPhoneFiled">
         <ion-row class="border-bottom">
           <ion-col size="12">
-            <ion-input
+            <ion-input 
               [(ngModel)]="product.employee.email"
               placeholder="Rep Email"
               type="email"

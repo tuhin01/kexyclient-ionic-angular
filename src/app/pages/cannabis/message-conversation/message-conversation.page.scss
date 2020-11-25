@@ -90,9 +90,11 @@ ion-footer {
 .right .attachment-file {
   color: white;
   border-radius: 15px 15px 0 15px;
-  background-color: #488aff;
+  background-color: #35955d;
 }
-
+ion-label{
+  color:#35955d;
+}
 .left .message-text,
 .left .attachment-file {
   background-color: white;
