@@ -30,7 +30,7 @@
         <label [formGroupName]="i" *ngFor="let zip_code of primaryForm.controls.invited_employee_list.controls; let i = index">
           <ion-row  class="border-bottom ion-no-padding">
             <ion-col size="1" class="tr-kx-icon">
-              <ion-icon name="ios-mail-outline"></ion-icon>
+              <ion-icon name="mail-outline"></ion-icon>
             </ion-col>
             <ion-col size="7">
               <ion-input placeholder="name@example.com" formControlName="email" type="email"></ion-input>
@@ -45,7 +45,7 @@
 
             </ion-col>
             <ion-col size="1" class="tr-kx-icon">
-              <ion-icon name="ios-trash-outline" (click)="trashedTapped(i)"></ion-icon>
+              <ion-icon name="trash-outline" (click)="trashedTapped(i)"></ion-icon>
             </ion-col>
           </ion-row>
           <div class="validation-errors ion-text-center">

@@ -97,6 +97,7 @@ ion-content {
 .common.button.btn-cannabis {
   border: 1px solid rgba(54, 149, 96, 0.5);
   --background: #35955d;
+  --background-hover: #35955d !important;
 }
 
 ion-header .tr-custom-toolbar .toolbar-background {
