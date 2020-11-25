@@ -36,7 +36,7 @@ export class RegisterPage extends BasePage implements OnInit {
     public alertCtrl: AlertController,
     public menu: MenuController,
     public navCtrl: NavController,
-    private cameraService: CameraService,
+    private cameraService: CameraService
   ) {
     super(router, route, httpClient, loadingCtrl, alertCtrl, storage, menu, navCtrl);
     if (this.router.getCurrentNavigation().extras.state) {
@@ -169,8 +169,9 @@ export class RegisterPage extends BasePage implements OnInit {
     await this.storeDataAfterLogin(res2.data);
     await this.storage.set(constants.JOB_TITLE, this.primaryForm.value.job_title);
 
-    // Call API to create user in getkexy website
-    await this.callApi(apis.API_CREATE_USER_IN_WEBSITE, loginData, { shouldBlockUi: false });
+    // Call API to create user in getkexy website.
+    // Do not await it as otherwise the page will just sit there until the call is finished
+    this.callApi(apis.API_CREATE_USER_IN_WEBSITE, loginData, { shouldBlockUi: false }).then();
 
     await this.setNextPage(res2.data.user);
   }

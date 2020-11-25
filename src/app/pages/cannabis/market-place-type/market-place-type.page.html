@@ -7,58 +7,49 @@
   </ion-toolbar>
 </ion-header>
 
-
-<ion-content  class="bgimg ion-padding" style="height: 100vh;">
-
-  <div class="ion-text-center ion-padding-top ion-margin-top" style="width:100%">
+<ion-content class="lightBlueBg" style="height: 100vh">
+  <div class="ion-text-center ion-padding-top ion-margin-top" style="width: 100%">
     <img alt="Kexy Logo" width="196" src="../../../../assets/cannabis/images/logo.png" />
   </div>
 
   <ion-grid class="ion-padding-top">
-
     <ion-row class="ion-padding-top">
       <ion-col size="12">
-        <ion-card class="ion-text-center">
+        <ion-card class="ion-text-center ion-padding-bottom">
           <ion-card-header>
             <strong>Type of Marketplace</strong>
           </ion-card-header>
-          <ion-card-content>
-            <ion-list mode="ios" >
+          <ion-card-content class="ion-no-padding">
+            <ion-list mode="md">
               <ion-radio-group [(ngModel)]="marketPlaceType">
                 <ion-item>
                   <ion-label>Dispensary/Vape</ion-label>
-                  <ion-radio slot="start" value="restaurant"></ion-radio>
+                  <ion-radio color="success" slot="start" value="restaurant"></ion-radio>
                 </ion-item>
 
                 <ion-item>
                   <ion-label>Distributor</ion-label>
-                  <ion-radio slot="start" value="distributor"></ion-radio>
+                  <ion-radio color="success" slot="start" value="distributor"></ion-radio>
                 </ion-item>
-
-       
               </ion-radio-group>
             </ion-list>
-
           </ion-card-content>
         </ion-card>
       </ion-col>
     </ion-row>
 
-    <ion-row class="ion-padding-top">
+    <ion-row class="ion-padding">
       <ion-col size="12">
         <ion-button
-        (click)="nextBtnTapped()"
-        type="submit"
-        color="light"
-        expand="full"
-        shape="round"
-        class="common button btn-cannabis"
-        >Next</ion-button
-      >
+          (click)="nextBtnTapped()"
+          type="submit"
+          color="light"
+          expand="full"
+          shape="round"
+          class="common button btn-cannabis"
+          >Next</ion-button
+        >
       </ion-col>
     </ion-row>
-
   </ion-grid>
-
-
 </ion-content>

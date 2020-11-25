@@ -10,7 +10,7 @@
 <ion-content class="bgimg ion-padding">
   <div *ngIf="modalShow" class="overlay"></div>
 
-  <div class="width-100 ion-text-center ion-padding-top ion-margin-top">
+  <div class="width-100 ion-text-center">
     <img alt="Kexy Logo" width="196" src="../../../../assets/cannabis/images/logo.png" />
   </div>
 
@@ -47,109 +47,106 @@
         <div class="ion-text-center" [hidden]="!imageUrl">
           <img class="profile-photo" [src]="imageUrl" />
         </div>
-        <ion-button (click)="presentFileChooser()" class="common button btn-cannabis" expand="full" shape="round">
+        <ion-button
+          (click)="presentFileChooser()"
+          class="common button btn-cannabis"
+          expand="full"
+          shape="round"
+        >
           <ion-icon name="attach"></ion-icon> Upload Company Logo
         </ion-button>
       </ion-col>
     </ion-row>
 
     <form [formGroup]="primaryFormGroup" (ngSubmit)="restaurantCreateFormSubmitted()">
-      <label id="nameEditField">
-        <ion-row class="border-bottom">
-          <ion-col size="1" class="tr-kx-icon">
-            <ion-icon name="restaurant"></ion-icon>
-          </ion-col>
-          <ion-col size="11">
-            <ion-input class="tr-kx-input"
-              formControlName="name"
-              placeholder="Dispensary Name"
-              type="text"
-            ></ion-input>
-          </ion-col>
-        </ion-row>
-        <div class="validation-errors ion-text-center">
-          <div
-            class="error-message"
-            *ngIf="!primaryFormGroup.controls.name.valid && (primaryFormGroup.get('name').dirty || primaryFormGroup.get('name').touched)"
-          >
-            Please enter a valid Dispensary Name.
-          </div>
-        </div>
-      </label>
-
-      <label>
-        <ion-row class="border-bottom">
-          <ion-col size="1" class="tr-kx-icon">
-            <ion-icon name="call-outline"></ion-icon>
-          </ion-col>
-          <ion-col size="11">
-            <ion-input class="tr-kx-input"
-              formControlName="phone"
-              placeholder="Dispensary Phone Number"
-              type="tel"
-            ></ion-input>
-          </ion-col>
-        </ion-row>
-        <div class="validation-errors ion-text-center">
-          <div
-            class="error-message"
-            *ngIf="!primaryFormGroup.controls.phone.valid && (primaryFormGroup.get('phone').dirty || primaryFormGroup.get('phone').touched)"
-          >
-            Please enter a valid 10 digit US/Canada Mobile Phone Number.
-          </div>
-        </div>
-      </label>
-
-      <label>
-        <ion-row class="border-bottom">
-          <ion-col size="12">
-            <ion-input class="tr-kx-input"
-              placeholder="Street Address"
-              type="text"
-              formControlName="street_address"
-              [(ngModel)]="geolocationDetails.street_address"
-            ></ion-input>
-          </ion-col>
-        </ion-row>
-        <div class="validation-errors ion-text-center">
-          <div
-            class="error-message"
-            *ngIf="!primaryFormGroup.controls.street_address.valid && (primaryFormGroup.get('street_address').dirty || primaryFormGroup.get('street_address').touched)"
-          >
-            Please enter a valid Street Address.
-          </div>
-        </div>
-      </label>
-
-      <label>
-        <ion-row class="border-bottom">
-          <ion-col size="12">
-            <ion-input class="tr-kx-input"
-              placeholder="City"
-              type="text"
-              formControlName="city"
-              [(ngModel)]="geolocationDetails.city"
-            ></ion-input>
-          </ion-col>
-        </ion-row>
-        <div class="validation-errors ion-text-center">
-          <div
-            class="error-message"
-            *ngIf="!primaryFormGroup.controls.city.valid && (primaryFormGroup.get('city').dirty || primaryFormGroup.get('city').touched)"
-          >
-            Please enter a valid City name.
-          </div>
-        </div>
-      </label>
-
       <ion-row class="border-bottom">
-        <ion-col class="tr-kx-icon" size="1">
-          <ion-icon name="earth-outline"></ion-icon>
-          
+        <ion-col size="1" class="tr-kx-icon">
+          <ion-icon name="medkit-outline"></ion-icon>
         </ion-col>
         <ion-col size="11">
+          <ion-input
+            class="tr-kx-input"
+            formControlName="name"
+            placeholder="Dispensary Name"
+            type="text"
+          ></ion-input>
+        </ion-col>
+      </ion-row>
+      <div class="validation-errors">
+        <div
+          class="error-message"
+          *ngIf="!primaryFormGroup.controls.name.valid && (primaryFormGroup.get('name').dirty || primaryFormGroup.get('name').touched)"
+        >
+          Please enter a valid Dispensary Name.
+        </div>
+      </div>
+
+      <ion-row class="border-bottom">
+        <ion-col size="1" class="tr-kx-icon">
+          <ion-icon name="call-outline"></ion-icon>
+        </ion-col>
+        <ion-col size="11">
+          <ion-input
+            class="tr-kx-input"
+            formControlName="phone"
+            placeholder="Dispensary Phone Number"
+            type="tel"
+          ></ion-input>
+        </ion-col>
+      </ion-row>
+      <div class="validation-errors">
+        <div
+          class="error-message"
+          *ngIf="!primaryFormGroup.controls.phone.valid && (primaryFormGroup.get('phone').dirty || primaryFormGroup.get('phone').touched)"
+        >
+          Please enter a valid 10 digit US/Canada Mobile Phone Number.
+        </div>
+      </div>
+
+      <ion-row class="border-bottom">
+        <ion-col size="12">
+          <ion-input
+            class="tr-kx-input"
+            placeholder="Street Address"
+            type="text"
+            formControlName="street_address"
+            [(ngModel)]="geolocationDetails.street_address"
+          ></ion-input>
+        </ion-col>
+      </ion-row>
+      <div class="validation-errors">
+        <div
+          class="error-message"
+          *ngIf="!primaryFormGroup.controls.street_address.valid && (primaryFormGroup.get('street_address').dirty || primaryFormGroup.get('street_address').touched)"
+        >
+          Please enter a valid Street Address.
+        </div>
+      </div>
+
+      <ion-row class="border-bottom">
+        <ion-col size="12">
+          <ion-input
+            class="tr-kx-input"
+            placeholder="City"
+            type="text"
+            formControlName="city"
+            [(ngModel)]="geolocationDetails.city"
+          ></ion-input>
+        </ion-col>
+      </ion-row>
+      <div class="validation-errors ion-text-center">
+        <div
+          class="error-message"
+          *ngIf="!primaryFormGroup.controls.city.valid && (primaryFormGroup.get('city').dirty || primaryFormGroup.get('city').touched)"
+        >
+          Please enter a valid City name.
+        </div>
+      </div>
+
+      <ion-row class="border-bottom">
+        <ion-col size="12">
           <div class="tr-kexy-edit-side">
-            <ion-item>
+            <ion-item lines="none" style="--padding-start: 0">
               <ion-label>Country</ion-label>
               <ion-select
                 (ionChange)="onCountrySelect()"
@@ -165,7 +162,7 @@
             </ion-item>
           </div>
         </ion-col>
-        <div class="validation-errors ion-text-center">
+        <div class="validation-errors">
           <div
             *ngIf="!primaryFormGroup.controls.country.valid && (primaryFormGroup.get('country').dirty || primaryFormGroup.get('country').touched)"
             class="error-message"
@@ -176,12 +173,9 @@
       </ion-row>
 
       <ion-row class="border-bottom">
-        <ion-col size="1" class="tr-kx-icon">
-          <ion-icon name="browsers-outline"></ion-icon>
-        </ion-col>
-        <ion-col size="11">
+        <ion-col size="12">
           <div class="tr-kexy-edit-side">
-            <ion-item>
+            <ion-item lines="none" style="--padding-start: 0">
               <ion-label>{{stateLabel}}</ion-label>
               <ion-select formControlName="state" [(ngModel)]="geolocationDetails.state">
                 <ion-select-option *ngFor="let state of statesList" [value]="state.abbreviation"
@@ -191,7 +185,7 @@
             </ion-item>
           </div>
         </ion-col>
-        <div class="validation-errors ion-text-center">
+        <div class="validation-errors">
           <div
             class="error-message"
             *ngIf="!primaryFormGroup.controls.state.valid && (primaryFormGroup.get('state').dirty || primaryFormGroup.get('state').touched)"
@@ -208,14 +202,15 @@
             <ion-icon name="bookmark-outline"></ion-icon>
           </ion-col>
           <ion-col size="11">
-            <ion-input class="tr-kx-input"
+            <ion-input
+              class="tr-kx-input"
               placeholder="{{zipLabel}}"
               formControlName="zip_code"
               [(ngModel)]="geolocationDetails.zip_code"
             ></ion-input>
           </ion-col>
         </ion-row>
-        <div class="validation-errors ion-text-center">
+        <div class="validation-errors">
           <div
             class="error-message"
             *ngIf="!primaryFormGroup.controls.zip_code.valid && (primaryFormGroup.get('zip_code').dirty || primaryFormGroup.get('zip_code').touched)"
@@ -225,7 +220,7 @@
         </div>
       </label>
 
-      <ion-row class="ion-padding-top">
+      <ion-row class="ion-padding">
         <ion-col size="12">
           <ion-button
             type="submit"

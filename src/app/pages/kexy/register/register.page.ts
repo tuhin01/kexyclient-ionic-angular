@@ -170,7 +170,8 @@ export class RegisterPage extends BasePage implements OnInit {
     await this.storage.set(constants.JOB_TITLE, this.primaryForm.value.job_title);
 
     // Call API to create user in getkexy website
-    await this.callApi(apis.API_CREATE_USER_IN_WEBSITE, loginData, { shouldBlockUi: false });
+    // Do not await it as otherwise the page will just sit there until the call is finished
+    this.callApi(apis.API_CREATE_USER_IN_WEBSITE, loginData, { shouldBlockUi: false }).then();
 
     await this.setNextPage(res2.data.user);
   }

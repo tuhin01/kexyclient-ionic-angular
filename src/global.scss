@@ -56,6 +56,14 @@ ion-app {
   overflow-y: scroll;
   box-sizing: content-box;
 }
+ion-content {
+  --offset-bottom: auto!important;
+  --overflow: hidden;
+  overflow: auto;
+  &::-webkit-scrollbar {
+    display: none;
+  }
+}
 .common.title {
   font-size: 40px;
 }
