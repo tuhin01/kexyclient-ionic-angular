@@ -1,4 +1,4 @@
-<ion-content  class="bgimg vertical-align-content list-avatar-page ion-padding">
+<ion-content class="bgimg vertical-align-content list-avatar-page ion-padding">
   <ion-grid>
     <ion-row>
       <ion-col class="tr-kexy-login-start-box ion-text-center">
@@ -30,12 +30,12 @@
     <ion-row class="ion-padding">
       <ion-col size="12">
         <ion-button
-                (click)="exploreKexyTapped()"
-                color="light"
-                expand="full"
-                shape="round"
-                class="common button btn-cannabis"
-        >Explore KEXY</ion-button
+          (click)="exploreKexyTapped()"
+          color="light"
+          expand="full"
+          shape="round"
+          class="common button btn-cannabis"
+          >Explore KEXY</ion-button
         >
       </ion-col>
     </ion-row>
@@ -50,7 +50,7 @@
     </ion-row>
   </ion-grid>
 
-  <p *ngIf="isJoinType === 'request_sent' && joinToOrg !== ''" class="tr-select-other-company">
+  <p *ngIf="isJoinType === 'request_sent' && joinToOrg !== ''" class="ion-text-center">
     <strong>{{joinToOrg}}</strong> is not your company? <br />
     <span class="can-link" (click)="changeCompanyTapped()">Select Another Company</span>
   </p>
