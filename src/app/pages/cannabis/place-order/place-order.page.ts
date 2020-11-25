@@ -779,22 +779,6 @@ export class PlaceOrderPage extends BasePage implements OnInit {
     this.doesNotHaveProperSubscription = false;
     this.shouldShowSubscriptionDialog = false;
 
-    // let res = await this.callApi(apis.API_USER_GET_USER_ORGANIZATIONS, {});
-    // if (!res.success) return;
-    // if (res.data.restaurant_list.length > 0) {
-    //     let restaurant = res.data.restaurant_list[0];
-    //     //console.log( (new Date(restaurant.subscription.expire_date).getTime() < Date.now()))
-    //     if (!restaurant.subscription || restaurant.subscription.status !== "active") {
-    //         this.doesNotHaveProperSubscription = true;
-    //         this.shouldShowSubscriptionDialog = true;
-    //     } else if (new Date(restaurant.subscription.expire_date).getTime() < Date.now()) {
-    //         this.doesNotHaveProperSubscription = true;
-    //         this.shouldShowSubscriptionDialog = true;
-    //         if (restaurant.subscription.payment_status === "trial") {
-    //             this.isSubscriptionTrial = true;
-    //         }
-    //     }
-    // }
   }
 
   async addProduct() {
@@ -879,7 +863,7 @@ export class PlaceOrderPage extends BasePage implements OnInit {
     let wasWrong = false;
     if (allowedSide === "foh" && this.restaurantSide === "boh") {
       (<any>document.querySelector("#segment1")).click(); // workaround for ionic not switching style
-      this.showAwaitableAlert(
+      await this.showAwaitableAlert(
         "Sorry!",
         "You are not authorized to access BOH features. Please contact your account admin to receive access."
       );
@@ -888,7 +872,7 @@ export class PlaceOrderPage extends BasePage implements OnInit {
     }
     if (allowedSide === "boh" && this.restaurantSide === "foh") {
       (<any>document.querySelector("#segment2")).click(); // workaround for ionic not switching style
-      this.showAwaitableAlert(
+      await this.showAwaitableAlert(
         "Sorry!",
         "You are not authorized to access FOH features. Please contact your account admin to receive access."
       );
@@ -896,11 +880,10 @@ export class PlaceOrderPage extends BasePage implements OnInit {
       wasWrong = true;
     }
     if (!wasWrong) {
-      this._preparePage();
+      await this._preparePage();
     }
   }
 
-  // ==================================================================
 
   isNumbery(c) {
     let parsed = parseFloat(c);
@@ -960,6 +943,7 @@ export class PlaceOrderPage extends BasePage implements OnInit {
       handler: () => (this.isProductEdit = false),
     });
     let actionSheet = await this.actionSheetCtrl.create({
+      cssClass: "cannabis",
       buttons: buttons,
     });
     await actionSheet.present();

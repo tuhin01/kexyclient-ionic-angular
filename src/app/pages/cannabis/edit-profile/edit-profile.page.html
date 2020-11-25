@@ -10,7 +10,7 @@
 </ion-header>
 
 <ion-content class="bgimg ion-padding">
-  <div class="width-100 ion-text-center ion-padding-top ion-margin-top">
+  <div class="width-100 ion-text-center">
     <img class="profile-photo" [src]="imageUrl" [hidden]="!imageUrl" alt="Profile photo" />
     <img
       class="profile-photo"
@@ -24,7 +24,7 @@
     <!-- profile_photo - start -->
     <ion-row class="ion-padding-top">
       <ion-col>
-        <ion-button class="cannabis" (click)="presentFileChooser()" shape="round" expand="block">
+        <ion-button class="common button btn-cannabis" (click)="presentFileChooser()" shape="round" expand="block">
           <ion-icon name="attach"></ion-icon> Change Profile Photo
         </ion-button>
       </ion-col>
@@ -33,7 +33,7 @@
     <!-- change password link - start -->
     <ion-row class="ion-padding-top">
       <ion-col class="ion-text-center">
-        <span class="can-link" (click)="changePassword();">Change Password</span>
+        <span class="can-link" (click)="changePassword();"><u>Change Password</u></span>
       </ion-col>
     </ion-row>
     <!-- change password link - end -->

@@ -57,7 +57,7 @@ ion-app {
   box-sizing: content-box;
 }
 ion-content {
-  --offset-bottom: auto!important;
+  --offset-bottom: auto !important;
   --overflow: hidden;
   overflow: auto;
   &::-webkit-scrollbar {
@@ -131,6 +131,28 @@ button.cannabis.button-ios,
   background-color: rgb(54, 149, 96) !important;
 }
 .cannabis .checkbox-checked {
+}
+
+.scroll-left-to-right-image {
+  &.active {
+    border: 1px solid darkblue;
+  }
+  &.cannabis.active {
+    border: 1px solid rgb(54, 149, 96) !important;
+  }
+}
+.kexy-location {
+  .scroll-left-to-right-image {
+    &.active {
+      border: 2px solid darkblue;
+    }
+    &.cannabis.active {
+      border: 2px solid rgb(54, 149, 96) !important;
+    }
+  }
+}
+ion-action-sheet.cannabis {
+  --button-color: rgb(54, 149, 96);
 }
 
 .user-pp {
@@ -392,7 +414,6 @@ ion-searchbar {
       ion-label {
         color: rgb(54, 149, 96);
         border-color: rgb(54, 149, 96);
-        background-color: white;
       }
     }
   }
@@ -487,6 +508,7 @@ ion-searchbar {
       ion-label {
         display: flex !important;
         align-items: center !important;
+        font-family: "Montserrat", sans-serif;
 
         ion-icon {
           font-size: 1.65em;
@@ -534,6 +556,15 @@ ion-searchbar {
   .blue {
     .label {
       color: #095cd1 !important;
+    }
+  }
+
+  .cannabis accordion {
+    .blue {
+      color: #28ba62 !important;
+      .label {
+        color: #28ba62 !important;
+      }
     }
   }
 

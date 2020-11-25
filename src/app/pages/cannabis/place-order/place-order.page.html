@@ -1,5 +1,5 @@
 <ion-header>
-  <ion-toolbar [style.background-color]="'red'" color="success">
+  <ion-toolbar color="success">
     <ion-buttons slot="start">
       <ion-menu-toggle>
         <ion-menu-button></ion-menu-button>
@@ -17,7 +17,7 @@
 
 <ion-content class="lightBlueBg">
   <div class="dashboard-segment">
-    <ion-segment (ionChange)="segmentChanged($event)" [(ngModel)]="restaurantSide" mode="md">
+    <ion-segment color="success" (ionChange)="segmentChanged($event)" [(ngModel)]="restaurantSide" mode="md">
       <ion-segment-button [disabled]="allowedSide === 'boh'" id="segment1" value="foh">
         FOH
       </ion-segment-button>
@@ -111,7 +111,7 @@
         <ion-row class="all-category-sort-note">
           <ion-col size="12" class="ion-text-left" *ngIf="search_string.length === 0">
             <ion-item class="kexy-all-product-show-toggle">
-              <ion-toggle class="cannabis" [(ngModel)]="showAllProduct" style="zoom: 0.9"></ion-toggle>
+              <ion-toggle color="success" [(ngModel)]="showAllProduct" style="zoom: 0.9"></ion-toggle>
               <ion-label>Show all products within category</ion-label>
             </ion-item>
           </ion-col>

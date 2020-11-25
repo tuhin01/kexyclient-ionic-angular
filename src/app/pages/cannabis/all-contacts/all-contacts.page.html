@@ -29,7 +29,7 @@
 
 <ion-content class="lightBlueBg">
   <div class="dashboard-segment cannabis">
-    <ion-segment mode="md" [(ngModel)]="contactSide">
+    <ion-segment color="success" mode="md" [(ngModel)]="contactSide">
       <ion-segment-button id="segment1" value="restaurant_bar">
         <ion-label>Dispensary/Vape</ion-label>
       </ion-segment-button>
@@ -51,7 +51,7 @@
     >
     </ion-searchbar>
 
-    <div class="restaurant" style="margin-top: 16px">
+    <div class="restaurant cannabis" style="margin-top: 16px">
       <accordion
         *ngFor="let restaurant of restaurant_contact_list; let k = index;"
         title="{{restaurant.name}}"
@@ -113,7 +113,7 @@
       (ionClear)="distributorSearchCanceled()"
     >
     </ion-searchbar>
-    <div class="restaurant" style="margin-top: 16px">
+    <div class="restaurant cannabis" style="margin-top: 16px">
       <accordion
         *ngFor="let distributor_supplier of distributor_supplier_contact_list; let k = index;"
         title="{{distributor_supplier.name}}"
