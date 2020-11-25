@@ -56,7 +56,6 @@ export class HomePage extends BasePage implements OnInit {
     let loginPage;
     let autoCreatedUserUpdate;
     let joinRequestPage;
-    let messagePage;
     let welcomePage;
     let marketPlaceTypePage;
     let restaurantTabsPage;
@@ -67,7 +66,6 @@ export class HomePage extends BasePage implements OnInit {
       loginPage = routeConstants.KEXY.LOGIN;
       autoCreatedUserUpdate = routeConstants.KEXY.AUTO_CREATED_USER_UPDATE;
       joinRequestPage = routeConstants.KEXY.JOIN_REQUEST;
-      messagePage = routeConstants.KEXY.MESSAGE;
       welcomePage = routeConstants.KEXY.WELCOME;
       marketPlaceTypePage = routeConstants.KEXY.MARKETPLACE_TYPE;
       restaurantTabsPage = routeConstants.KEXY.RESTAURANT_TABS;
@@ -78,7 +76,6 @@ export class HomePage extends BasePage implements OnInit {
       loginPage = routeConstants.CANNABIS.LOGIN;
       autoCreatedUserUpdate = routeConstants.CANNABIS.AUTO_CREATED_USER_UPDATE;
       joinRequestPage = routeConstants.CANNABIS.JOIN_REQUEST;
-      messagePage = routeConstants.CANNABIS.MESSAGE;
       welcomePage = routeConstants.CANNABIS.WELCOME;
       marketPlaceTypePage = routeConstants.CANNABIS.MARKETPLACE_TYPE;
       restaurantTabsPage = routeConstants.CANNABIS.RESTAURANT_TABS;
@@ -100,7 +97,6 @@ export class HomePage extends BasePage implements OnInit {
 
     if (!user.is_claimed) {
       await this.setRoot(autoCreatedUserUpdate);
-
       return;
     }
 
@@ -117,14 +113,12 @@ export class HomePage extends BasePage implements OnInit {
     }
 
     let res = await this.callApi(apis.API_USER_GET_USER_ORGANIZATIONS, {});
-    // console.log(res.data);
     if (!res.success) return;
     let organizationList = [].concat(
       res.data.restaurant_list,
       res.data.distributor_list,
       res.data.supplier_list
     );
-    // console.log(organizationList);
     if (organizationList.length === 0) {
       if (isJoinType !== "create_new") {
         let joinRequest = await this.callApi(
@@ -193,10 +187,10 @@ export class HomePage extends BasePage implements OnInit {
       await this.setRoot(restaurantTabsPage);
       return;
     } else if (org.type === constants.ORGANIZATION_TYPE_DISTRIBUTOR) {
-      await this.setRoot(routeConstants.KEXY.DISTRIBUTOR_DASHBOARD);
+      await this.setRoot(distributorDashboardPage);
       return;
     } else {
-      await this.setRoot(routeConstants.KEXY.SUPPLIER_DASHBOARD);
+      await this.setRoot(supplierDashboardPage);
       return;
     }
   }
