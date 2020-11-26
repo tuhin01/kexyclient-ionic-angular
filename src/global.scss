@@ -136,6 +136,145 @@ button.cannabis.button-ios,
 .cannabis .checkbox-checked {
 }
 
+.kexy-scroll-left-to-right {
+  padding: 0;
+  overflow-x: scroll;
+  overflow-y: hidden;
+  white-space: nowrap;
+
+  .kexy-ion-scroll {
+    height: 125px;
+    display: flex;
+    align-items: flex-start;
+
+    .kexy-marketplace-card {
+      width: 110px;
+      height: 115px;
+      margin-left: 10px;
+      padding: 0;
+      background: none !important;
+      display: inline-block !important;
+
+      .scroll-left-to-right-image {
+        background: white;
+        padding: 5px;
+        border: 1px solid transparent;
+        border-radius: 15px;
+        width: 90px;
+        height: 70px;
+        margin: auto;
+
+        &.active {
+          border: 1px solid darkblue;
+        }
+
+        img {
+          height: 100%;
+          max-width: 100%;
+          border-radius: 15px;
+        }
+      }
+
+      .marketplace-name {
+        color: #303030;
+        font-size: 12px;
+        margin-top: 8px;
+        white-space: normal;
+      }
+
+      ion-label {
+        white-space: unset;
+        margin: 0;
+      }
+
+      .radio-icon {
+        display: none;
+      }
+
+      .radio {
+        margin: 0 !important;
+      }
+
+      .item-inner {
+        margin: 0;
+        padding: 0 !important;
+        border: none !important;
+      }
+    }
+  }
+
+  &.kexy-location {
+    .kexy-ion-scroll {
+      height: 150px;
+
+      .kexy-marketplace-card {
+        width: 120px;
+        height: 150px;
+        margin-left: 10px;
+        padding: 0;
+        background: none !important;
+        display: inline-block !important;
+        position: relative;
+
+        .scroll-left-to-right-image {
+          background: white;
+          padding: 0;
+          border: 2px solid transparent;
+          border-radius: 4px;
+          width: 120px;
+          height: 110px;
+          margin: auto;
+
+          &.active {
+            border: 2px solid darkblue;
+          }
+
+          img {
+            height: 100%;
+            max-width: 100%;
+            border-radius: 4px;
+          }
+        }
+
+        .marketplace-name {
+          color: #303030;
+          font-size: 12px;
+          margin-top: 8px;
+        }
+
+        .kexy-location-inner-menu {
+          position: absolute;
+          top: 1px;
+          right: 3px;
+          border-radius: 50%;
+          width: 16px;
+          height: 16px;
+          font-size: 9px;
+        }
+
+        ion-label {
+          white-space: unset;
+          margin: 0;
+        }
+
+        .radio-icon {
+          display: none;
+        }
+
+        .radio {
+          margin: 0 !important;
+        }
+
+        .item-inner {
+          margin: 0;
+          padding: 0 !important;
+          border: none !important;
+        }
+      }
+    }
+  }
+}
+
 .scroll-left-to-right-image {
   &.active {
     border: 1px solid darkblue;
@@ -146,6 +285,8 @@ button.cannabis.button-ios,
 }
 .kexy-location {
   .scroll-left-to-right-image {
+    width: 80px;
+    height: 70px;
     &.active {
       border: 2px solid darkblue;
     }

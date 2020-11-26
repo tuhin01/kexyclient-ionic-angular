@@ -28,157 +28,8 @@
   }
 }
 
-.kexy-scroll-left-to-right {
-  padding: 0;
-  overflow-x: scroll;
-  overflow-y: hidden;
-  white-space: nowrap;
-
-  .kexy-ion-scroll {
-    height: 125px;
-    display: flex;
-    align-items: flex-start;
-
-    .kexy-marketplace-card {
-      width: calc(115px * (375 / 750));
-      height: 115px;
-      margin-left: 10px;
-      padding: 0;
-      background: none !important;
-      display: inline-block !important;
-
-      .scroll-left-to-right-image {
-
-        background: white;
-        padding: 5px;
-        border: 1px solid transparent;
-        border-radius: 15px;
-        width: 57.5px;
-        height: 57.5px;
-        margin: auto;
-
-        &.active {
-          border: 1px solid darkblue;
-        }
-
-        img {
-          height: 100%;
-          max-width: 100%;
-          border-radius: 15px;
-        }
-
-      }
-
-
-      .marketplace-name {
-        color: #303030;
-        font-size: 12px;
-        margin-top: 8px;
-        white-space: normal;
-
-      }
-
-      ion-label {
-        white-space: unset;
-        margin: 0;
-      }
-
-      .radio-icon {
-        display: none;
-      }
-
-      .radio {
-        margin: 0 !important;
-      }
-
-      .item-inner {
-        margin: 0;
-        padding: 0 !important;
-        border: none !important;
-      }
-
-    }
-  }
-
-  &.kexy-location {
-    .kexy-ion-scroll {
-      height: 150px;
-
-      .kexy-marketplace-card {
-        width: 120px;
-        height: 150px;
-        margin-left: 10px;
-        padding: 0;
-        background: none !important;
-        display: inline-block !important;
-        position: relative;
-
-        .scroll-left-to-right-image {
-
-          background: white;
-          padding: 0;
-          border: 2px solid transparent;
-          border-radius: 4px;
-          width: 120px;
-          height: 110px;
-          margin: auto;
-
-          &.active {
-            border: 2px solid darkblue;
-          }
-
-          img {
-            height: 100%;
-            max-width: 100%;
-            border-radius: 4px;
-          }
-
-        }
-
-
-        .marketplace-name {
-          color: #303030;
-          font-size: 12px;
-          margin-top: 8px;
-
-        }
-
-        .kexy-location-inner-menu {
-          position: absolute;
-          top: 1px;
-          right: 3px;
-          border-radius: 50%;
-          width: 16px;
-          height: 16px;
-          font-size: 9px;
-        }
-
-        ion-label {
-          white-space: unset;
-          margin: 0;
-        }
-
-        .radio-icon {
-          display: none;
-        }
-
-        .radio {
-          margin: 0 !important;
-        }
-
-        .item-inner {
-          margin: 0;
-          padding: 0 !important;
-          border: none !important;
-        }
-
-      }
-    }
-  }
-
-}
-
-.kexy-product-search, .tr-date-user-order {
+.kexy-product-search,
+.tr-date-user-order {
   padding: 0 5px;
 }
 
@@ -207,7 +58,6 @@
 
 .all-category-sort-note {
   padding: 0 8px;
-
 }
 
 .kexy-product-sort {
@@ -234,7 +84,6 @@
 }
 
 .kexy-single-product-view {
-
   min-height: 258px;
 
   table {
@@ -261,7 +110,6 @@
           margin: 2px 0 0 0;
           text-align: center;
           width: 100%;
-
         }
       }
     }
@@ -290,7 +138,6 @@ ion-icon {
   font-size: 20px;
 }
 
-
 .product-name {
   text-decoration: underline;
   text-align: center;
@@ -298,7 +145,6 @@ ion-icon {
 }
 
 .kexy-all-product-view {
-
   .tr-all-product-container {
     overflow: hidden;
     border: 1px solid #efeaea;
@@ -316,7 +162,6 @@ ion-icon {
       float: left;
       width: calc(100% - 160px);
     }
-
 
     table {
       width: 100%;
@@ -410,10 +255,7 @@ ion-icon {
     table.order-page {
       min-width: auto !important;
     }
-
-
   }
-
 }
 
 .tr-kexy-rpoduct-note {
@@ -462,7 +304,6 @@ ion-icon {
     }
   }
 }
-
 
 .selected {
   border: 1px solid darkblue;
@@ -543,7 +384,6 @@ ion-icon {
       }
 
       &.btn-blue {
-
         button {
           background: #1a6eff;
           color: white;
@@ -573,7 +413,6 @@ ion-icon {
       }
     }
   }
-
 }
 
 .calc-pointer-container {
@@ -593,7 +432,7 @@ ion-icon {
 }
 
 .calc-pointer:after {
-  content: '';
+  content: "";
   position: absolute;
   top: 3px;
   left: -8px;
@@ -603,7 +442,6 @@ ion-icon {
   border-right: 8px solid transparent;
   border-bottom: 18px solid white;
 }
-
 
 .tr-kexy-subscription {
   background: white;
@@ -658,7 +496,6 @@ ion-icon {
     }
   }
 }
-
 
 .hidden {
   display: none;
