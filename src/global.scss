@@ -107,7 +107,9 @@ ion-header .tr-custom-toolbar .toolbar-background {
     rgba(41, 93, 208, 1) 100%
   ) !important;
 }
-
+ion-radio{
+  margin-right: 10px;
+}
 ion-nav ion-header.tr-cannabis ion-navbar.toolbar .toolbar-background {
   background: rgb(54, 149, 96) !important;
   background: linear-gradient(90deg, rgb(54, 149, 96) 0%, rgb(3, 94, 43) 100%) !important;

@@ -7,7 +7,7 @@
   </ion-toolbar>
 </ion-header>
 
-<ion-content class="bgimg ion-padding">
+<ion-content class="bgimg">
 
   <div class="width-100 ion-text-center ion-padding-top ion-margin-top">
     <img alt="Kexy Logo" width="196" src="../../../../assets/imgs/logo.png" />
@@ -21,8 +21,8 @@
           <ion-card-header>
             <strong>Select Restaurant/Bar Type</strong>
           </ion-card-header>
-          <ion-card-content>
-            <ion-list mode="ios" >
+          <ion-card-content class="ion-no-padding">
+            <ion-list mode="md" >
               <ion-radio-group [(ngModel)]="side">
                 <ion-item>
                   <ion-label>Front of the House (FOH)</ion-label>

@@ -17,11 +17,13 @@ export class AppSelectPage implements OnInit {
   async selectApp(app: string) {
     window.localStorage.setItem(constants.USER_APP_TYEP, app);
     // Reload the app to show the correct statusbar color based on cannabis or restaurant
-    // window.location = this.initialHref;
-    console.log({ app });
-    await this.navCtrl.navigateForward( routeConstants.HOME, { animated: false, replaceUrl: true });
 
-    // window.location.reload();
-    // await this.navCtrl.setRoot(HomePage);
+    console.log({ app });
+    setTimeout( async () => {
+      
+      await this.navCtrl.navigateForward( routeConstants.HOME, { animated: false, replaceUrl: true });
+      window.location.reload();
+    }, 300);
+    
   }
 }
