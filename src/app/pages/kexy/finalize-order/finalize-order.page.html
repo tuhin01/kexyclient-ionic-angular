@@ -70,7 +70,7 @@
               class="ion-text-right"
             >
               <ion-button (click)="addProductToInventoryTapped()" fill="clear" color="dark">
-                <ion-icon name="ios-add-circle-outline"></ion-icon>&nbsp;{{addProductBtnText}}
+                <ion-icon name="add-circle-outline"></ion-icon>&nbsp;{{addProductBtnText}}
               </ion-button>
             </p>
           </ion-col>
@@ -154,7 +154,7 @@
                           {{product.amount_to_order}}
                         </div>
                         <div>
-                          <ion-input
+                          <ion-input style="--padding-top:0;--padding-bottom:0"
                             (change)="productAmountToOrderChanged(product)"
                             *ngIf="(isInEditMode && distributor.isUncheckable)"
                             [(ngModel)]="product.amount_to_order"
