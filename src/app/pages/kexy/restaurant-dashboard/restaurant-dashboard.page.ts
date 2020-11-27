@@ -94,12 +94,19 @@ export class RestaurantDashboardPage extends BasePage implements OnInit {
         {
           text: "Update",
           handler: async () => {
+            let loading = await this.loadingCtrl.create({
+              spinner: "crescent",
+              message: "The app is being updated. Please wait...",
+            });
+            await loading.present();
             await this.deploy.downloadUpdate((progress) => {
               console.log(progress);
             });
             await this.deploy.extractUpdate((progress) => {
               console.log(progress);
             });
+            await loading.dismiss();
+            await this.showAwaitableAlert("Updated!", "The app has been updated to the latest version.");
             location.reload();
           },
         },
