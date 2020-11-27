@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
-import { LoadingController, AlertController, MenuController, NavController, NavParams } from '@ionic/angular';
+import { LoadingController, AlertController, MenuController, NavController } from '@ionic/angular';
 import { BasePage } from '../../basePage';
 import {Storage} from '@ionic/storage';
 import { FormGroup, FormBuilder, FormControl, Validators, FormArray } from '@angular/forms';
@@ -32,7 +32,7 @@ export class SupplierCreatePage extends BasePage implements OnInit {
     public alertCtrl: AlertController,
     public menu: MenuController,
     public navCtrl: NavController,
-    public navParams: NavParams,
+    // public navParams: NavParams,
     public formBuilder: FormBuilder,
     public cameraService: CameraService,
 ) {

@@ -9,7 +9,7 @@
 
 <ion-content  class="lightBlueBg ion-padding">
 
-  <ion-searchbar animated="true" [(ngModel)]="search_string" (ionInput)="searchStringChanged()"></ion-searchbar>
+  <ion-searchbar color="light" animated="true" [(ngModel)]="search_string" (ionInput)="searchStringChanged()"></ion-searchbar>
 
   <ion-grid>
 
@@ -20,7 +20,7 @@
       <ion-col size="6" class="ion-text-center">
         <ion-button
                 (click)="changeZipCode()"
-                color="light"
+                color="success"
                 size="small"
                 fill="clear"
                 class="kexy-zip-code-btn"

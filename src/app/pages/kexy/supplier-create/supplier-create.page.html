@@ -52,7 +52,7 @@
       <label>
         <ion-row class="border-bottom">
           <ion-col size="1" class="tr-kx-icon">
-            <ion-icon name="ios-briefcase-outline"></ion-icon>
+            <ion-icon name="briefcase-outline"></ion-icon>
           </ion-col>
           <ion-col size="11">
             <ion-input placeholder="Company Name" type="text" formControlName="name"></ion-input>
@@ -69,7 +69,7 @@
       <label>
         <ion-row class="border-bottom">
           <ion-col size="1" class="tr-kx-icon">
-            <ion-icon name="ios-call-outline"></ion-icon>
+            <ion-icon name="call-outline"></ion-icon>
           </ion-col>
           <ion-col size="11">
             <ion-input placeholder="Mobile Number" type="tel" formControlName="phone"></ion-input>
@@ -96,7 +96,7 @@
               *ngFor="let zip_code of supplierCreateForm.controls.zip_code_list.controls; let i = index">
               <ion-row class="border-bottom pt-0">
                 <ion-col size="1" class="tr-kx-icon">
-                  <ion-icon name="ios-list-outline"></ion-icon>
+                  <ion-icon name="list-outline"></ion-icon>
                 </ion-col>
                 <ion-col size="10">
                   <ion-input placeholder="Zip Code" type="text" formControlName="zip_code"></ion-input>
@@ -105,7 +105,7 @@
                   <!-- <span ion-button icon-left clear *ngIf="supplierCreateForm.controls.zip_code_list.length > 1" (click)="removeZipCode(i)">
                     <ion-icon name="close"></ion-icon>
                   </span> -->
-                  <ion-icon name="ios-trash-outline" *ngIf="supplierCreateForm.controls.zip_code_list.length > 1"
+                  <ion-icon name="trash-outline" *ngIf="supplierCreateForm.controls.zip_code_list.length > 1"
                     (click)="removeZipCode(i)"></ion-icon>
                 </ion-col>
               </ion-row>
@@ -124,7 +124,7 @@
                     size="small"
                     fill="clear"
                     class="kexy-zip-code-btn"
-            ><ion-icon name="ios-add-circle-outline"></ion-icon>
+            ><ion-icon name="add-circle-outline"></ion-icon>
               Add more zip codes</ion-button>
 
 <!--            <button ion-button icon-start small clear >-->

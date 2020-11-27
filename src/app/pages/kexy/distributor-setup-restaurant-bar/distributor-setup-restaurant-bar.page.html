@@ -9,7 +9,7 @@
 
 <ion-content  class="lightBlueBg ion-padding">
 
-  <ion-searchbar animated="true" [(ngModel)]="search_string" (ionInput)="searchStringChanged()"></ion-searchbar>
+  <ion-searchbar color="light" animated="true" [(ngModel)]="search_string" (ionInput)="searchStringChanged()"></ion-searchbar>
 
   <ion-grid>
 
@@ -20,7 +20,7 @@
       <ion-col size="6" class="ion-text-center">
         <ion-button
                 (click)="changeZipCode()"
-                color="light"
+                color="primary"
                 size="small"
                 fill="clear"
                 class="kexy-zip-code-btn"
@@ -69,13 +69,13 @@
 
     <ion-row  class="border-bottom ion-no-padding" *ngFor="let invited of invited_list; let i = index;">
       <ion-col size="1" class="tr-kx-icon">
-        <ion-icon name="ios-mail-outline"></ion-icon>
+        <ion-icon name="mail-outline"></ion-icon>
       </ion-col>
       <ion-col size="10">
         {{invited}}
       </ion-col>
       <ion-col size="1" class="tr-kx-icon">
-        <ion-icon name="ios-trash-outline" (click)="deleteInviteTapped(i)"></ion-icon>
+        <ion-icon name="trash-outline" (click)="deleteInviteTapped(i)"></ion-icon>
       </ion-col>
     </ion-row>
 
