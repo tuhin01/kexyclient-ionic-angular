@@ -1,19 +1,18 @@
-import { Component } from '@angular/core';
+import { Component } from "@angular/core";
 
 import { IonRouterOutlet, NavController, Platform } from "@ionic/angular";
-import { SplashScreen } from '@ionic-native/splash-screen/ngx';
-import { StatusBar } from '@ionic-native/status-bar/ngx';
+import { SplashScreen } from "@ionic-native/splash-screen/ngx";
+import { StatusBar } from "@ionic-native/status-bar/ngx";
 import { constants } from "../common/shared";
 import { Router } from "@angular/router";
 import { routeConstants } from "../common/routeConstants";
 
 @Component({
-  selector: 'app-root',
-  templateUrl: 'app.component.html',
-  styleUrls: ['app.component.scss']
+  selector: "app-root",
+  templateUrl: "app.component.html",
+  styleUrls: ["app.component.scss"],
 })
 export class AppComponent {
-
   public appType;
   public isRestaurant: boolean;
 
@@ -26,7 +25,7 @@ export class AppComponent {
     private splashScreen: SplashScreen,
     private statusBar: StatusBar,
     public router: Router,
-    public navCtrl: NavController,
+    public navCtrl: NavController
   ) {
     this.initializeApp();
     this.appType = window.localStorage.getItem(constants.USER_APP_TYEP);
@@ -40,10 +39,11 @@ export class AppComponent {
       let appType = window.localStorage.getItem(constants.USER_APP_TYEP);
       document.getElementById("devModeIndicator").hidden = isDev !== "YES";
       const statusBarBg = appType === constants.RESTAURANT ? "#1a68bd" : "#035e2b";
-
-      this.statusBar.backgroundColorByHexString(statusBarBg);
-      this.statusBar.styleLightContent();
-      this.splashScreen.hide();
+      if (this.platform.is("cordova")) {
+        this.statusBar.backgroundColorByHexString(statusBarBg);
+        this.statusBar.styleLightContent();
+        this.splashScreen.hide();
+      }
     });
   }
 
@@ -71,7 +71,7 @@ export class AppComponent {
       editRestaurantPage = routeConstants.KEXY.EDIT_RESTAURANT;
       editSubscriptionPage = routeConstants.KEXY.EDIT_SUPPLIER;
       settingsPage = routeConstants.KEXY.SETTINGS;
-      tutorialPage =  routeConstants.KEXY.TUTORIAL;
+      tutorialPage = routeConstants.KEXY.TUTORIAL;
       restaurantDashboardPage = routeConstants.KEXY.RESTAURANT_TABS;
       editSupplierPage = routeConstants.KEXY.EDIT_SUPPLIER;
       supplierDashboardPage = routeConstants.KEXY.SUPPLIER_DASHBOARD;
@@ -85,7 +85,7 @@ export class AppComponent {
       editRestaurantPage = routeConstants.CANNABIS.EDIT_RESTAURANT;
       editSubscriptionPage = routeConstants.CANNABIS.EDIT_SUPPLIER;
       settingsPage = routeConstants.CANNABIS.SETTINGS;
-      tutorialPage =  routeConstants.CANNABIS.TUTORIAL;
+      tutorialPage = routeConstants.CANNABIS.TUTORIAL;
       restaurantDashboardPage = routeConstants.CANNABIS.RESTAURANT_TABS;
       editSupplierPage = routeConstants.CANNABIS.EDIT_SUPPLIER;
       supplierDashboardPage = routeConstants.CANNABIS.SUPPLIER_DASHBOARD;
@@ -118,7 +118,7 @@ export class AppComponent {
   }
 
   async openPage(page) {
-    console.log("TDDDD",  page.url);
+    console.log("TDDDD", page.url);
     // Reset the content nav to have just this page
     // we wouldn't want the back button to show in this scenario
     await this.navigateTo(page.url);
@@ -136,7 +136,4 @@ export class AppComponent {
       state: params,
     });
   }
-
-
-
 }
