@@ -1,14 +1,14 @@
 <ion-header>
   <ion-toolbar color="primary">
     <ion-buttons slot="start">
-      <ion-menu-toggle>
-        <ion-menu-button></ion-menu-button>
-      </ion-menu-toggle>
-        <ion-button *ngIf="tempRepList.length > 0" 
-                (click)="updateRepDeliveryMethod()"
-        >SAVE</ion-button>
+        <ion-back-button></ion-back-button>
     </ion-buttons>
     <ion-title>Rep Delivery Method</ion-title>
+    <ion-buttons slot="end">
+        <ion-button *ngIf="tempRepList.length > 0" 
+            (click)="updateRepDeliveryMethod()"
+    >SAVE</ion-button>
+    </ion-buttons>
   </ion-toolbar>
 </ion-header>
 
@@ -17,7 +17,7 @@
       <ion-col size="4" class="rep-info">Rep Name</ion-col>
       <ion-col size="4" class="rep-info">Company</ion-col>
       <ion-col size="4" class="ion-text-center" style="padding: 5px 0">
-          <span>Delivery Method</span>
+          <span style="font-size:13px">Delivery Method</span>
           <ion-row class="rep-checkbox-row">
               <ion-col>Email</ion-col>
               <ion-col>Text</ion-col>

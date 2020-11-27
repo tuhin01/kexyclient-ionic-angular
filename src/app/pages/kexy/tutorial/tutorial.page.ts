@@ -19,7 +19,6 @@ import { routeConstants } from "src/common/routeConstants";
 export class TutorialPage extends BasePage implements OnInit {
   private readonly params: any;
   public isSignup = false;
-
   constructor(
     public router: Router,
     public route: ActivatedRoute,
