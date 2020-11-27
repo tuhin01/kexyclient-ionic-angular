@@ -121,7 +121,7 @@ export class AddNewProductPage extends BasePage implements OnInit {
       (dist) => dist.id === this.product.distributor_id
     );
     if (distributor) {
-      console.log({distributor});
+      console.log({ distributor });
       this.selectDistributor(distributor);
 
       this.searchRep();
@@ -329,10 +329,9 @@ export class AddNewProductPage extends BasePage implements OnInit {
     this.searchDistributorList = this.distributorList.filter((distributor) => {
       return distributor.name.toLowerCase().startsWith(value);
     });
-    this.hideDistributorSearchResult = (
-      this.searchDistributorList.length > 0 && this.product.distributor.name !== ""
-    );
-    console.log(this.hideDistributorSearchResult );
+    this.hideDistributorSearchResult =
+      this.searchDistributorList.length > 0 && this.product.distributor.name !== "";
+    console.log(this.hideDistributorSearchResult);
   }
 
   async primaryFormSubmitted(): Promise<any> {
@@ -411,20 +410,9 @@ export class AddNewProductPage extends BasePage implements OnInit {
     }
     await this.showAwaitableAlert("Success!", message);
     await this.goToPlaceOrderOrInventory();
-    // this.__addBlankProduct();
-    // this.primaryForm.reset();
-    //await this.navCtrl.setRoot(HomePage);
   }
 
-  // ionViewCanLeave() {
-  //
-  //     this.goToPlaceOrderOrInventory();
-  // }
-
   async goToPlaceOrderOrInventory() {
-    console.log("NNN4", this.inventoryId);
-    // TODO - Fix me
-    //    this.setRootWithAnimation("PlaceOrderPage", {
     await this.setRootWithAnimationBackword(
       routeConstants.KEXY.RESTAURANT_TABS + "/" + routeConstants.KEXY.PLACE_ORDER,
       {

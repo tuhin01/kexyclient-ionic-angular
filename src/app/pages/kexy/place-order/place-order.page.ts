@@ -92,6 +92,7 @@ export class PlaceOrderPage extends BasePage implements OnInit {
   }
 
   ionViewDidEnter() {
+    console.log('ionViewDidEnter called');
     this.route.queryParams.subscribe((params) => {
       if (params) {
         this.params = params;
@@ -108,6 +109,7 @@ export class PlaceOrderPage extends BasePage implements OnInit {
    * Order & Inventory types for the page
    **/
   ionViewWillEnter() {
+    console.log('ionViewWillEnter called');
     this.params = undefined;
     this.isOrderPage = true;
     this.pageType = "order";
