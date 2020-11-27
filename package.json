@@ -1,8 +1,8 @@
 {
-  "name": "kexyclient_new",
+  "name": "kexy",
   "version": "0.0.1",
-  "author": "Ionic Framework",
-  "homepage": "https://ionicframework.com/",
+  "author": "Scott Graham",
+  "homepage": "https://www.getkexy.com/",
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
@@ -33,6 +33,7 @@
     "cordova-plugin-camera": "4.0.3",
     "cordova-plugin-device": "^2.0.2",
     "cordova-plugin-inappbrowser": "3.0.0",
+    "cordova-plugin-ionic": "^5.4.7",
     "cordova-plugin-ionic-keyboard": "^2.2.0",
     "cordova-plugin-ionic-webview": "^4.2.1",
     "cordova-plugin-splashscreen": "^5.0.2",
@@ -88,7 +89,15 @@
       "cordova-plugin-ionic-keyboard": {},
       "cordova-plugin-inappbrowser": {},
       "cordova-plugin-appavailability": {},
-      "cordova-plugin-camera": {}
+      "cordova-plugin-camera": {},
+      "cordova-plugin-ionic": {
+        "APP_ID": "b83d6d22",
+        "CHANNEL_NAME": "Prod-New",
+        "UPDATE_METHOD": "none",
+        "MAX_STORE": "2",
+        "MIN_BACKGROUND_DURATION": "30",
+        "UPDATE_API": "https://api.ionicjs.com"
+      }
     },
     "platforms": [
       "browser",

@@ -1,8 +1,8 @@
 <?xml version='1.0' encoding='utf-8'?>
 <widget id="com.getkexy.kexyconnect" version="1.2.4" xmlns="http://www.w3.org/ns/widgets">
-    <name>KÉXY</name>
+    <name>KEXY</name>
     <description>Simplifying operations and communication within the Food and Beverage industry</description>
-    <author email="hollerback@getkexy.com" href="https://www.getkexy.com/">KÉXY Team</author>
+    <author email="hollerback@getkexy.com" href="https://www.getkexy.com/">KEXY Team</author>
     <content src="index.html" />
     <access origin="*" />
     <allow-intent href="http://*/*" />

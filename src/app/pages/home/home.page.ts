@@ -28,14 +28,6 @@ export class HomePage extends BasePage implements OnInit {
   ) {
     super(router, route, httpClient, loadingCtrl, alertCtrl, storage, menu, navCtrl);
 
-    // NOTE: The following is used to trigger the permission dialog.
-    // serves no purpose otherwise.
-    // TODO - Move it to where make more sense (Only request permission for restaurant)
-    // TODO - Fix me
-    // navigator.geolocation.watchPosition((data) => {
-    //   console.log("navigator.geolocation updated. ", data);
-    // });
-
     this._route();
   }
 
