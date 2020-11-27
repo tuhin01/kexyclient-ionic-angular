@@ -1,8 +1,8 @@
 {
-  "name": "kexyclient_new",
+  "name": "kexy",
   "version": "0.0.1",
-  "author": "Ionic Framework",
-  "homepage": "https://ionicframework.com/",
+  "author": "Scott Graham",
+  "homepage": "https://www.getkexy.com/",
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
@@ -92,8 +92,8 @@
       "cordova-plugin-camera": {},
       "cordova-plugin-ionic": {
         "APP_ID": "b83d6d22",
-        "CHANNEL_NAME": "Production-App",
-        "UPDATE_METHOD": "background",
+        "CHANNEL_NAME": "Prod-New",
+        "UPDATE_METHOD": "none",
         "MAX_STORE": "2",
         "MIN_BACKGROUND_DURATION": "30",
         "UPDATE_API": "https://api.ionicjs.com"
