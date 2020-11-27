@@ -14,15 +14,15 @@
               <div
                 class="user-pp"
                 *ngIf="participant.logo_image_url != ''"
-                [ngStyle]="{'background-image': 'url(' + baseUriForImages + participant.logo_image_url + ')'}"
+                [ngStyle]="{'background-image': 'url(' + baseUriForImages + participant.logo_image_url + ')', 'margin-top': '6px'}"
               ></div>
               <div class="user-pp" *ngIf="participant.logo_image_url == ''">
                 {{nameToInitials(participant.first_name, participant.last_name)}}
               </div>
             </ion-avatar>
-            <ion-label color="light">
+            <ion-label style="margin: 0;" color="light">
               <h2>{{participant.first_name}} {{participant.last_name}}</h2>
-              <p>{{participant.company_name}}</p>
+              <p style="font-size: 12px">{{participant.company_name}}</p>
             </ion-label>
           </ion-item>
         </ng-template>
@@ -40,7 +40,7 @@
             [ngStyle]="{'background-image': 'url(https://www.getkexy.com/KEXY_Connect_assets/logo.png)'}"
           ></div>
         </ion-avatar>
-        <ion-label color="light" (click)="showParticipantsTapped()">
+        <ion-label style="margin: 0;" color="light" (click)="showParticipantsTapped()">
           <h2>
             <ng-template
               ngFor
@@ -54,7 +54,7 @@
               </span>
             </ng-template>
           </h2>
-          <p>{{conversation.participant_list.length}} participants</p>
+          <p style="font-size: 12px">{{conversation.participant_list.length}} participants</p>
         </ion-label>
       </ion-item>
     </ng-template>
