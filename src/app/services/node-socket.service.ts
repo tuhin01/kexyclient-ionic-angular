@@ -23,7 +23,7 @@ export class NodeSocketService {
   private socket: any;
 
   constructor(public alertCtrl: AlertController, public storage: Storage, ) {
-    console.log('(NodeSocketProvider)> Constructor');
+    // console.log('(NodeSocketProvider)> Constructor');
     this._message('(NodeSocketProvider)> Constructor');
     //setTimeout(() => {
     this.__conn();
@@ -32,7 +32,7 @@ export class NodeSocketService {
 
   __conn() {
 
-    console.log('(NodeSocketProvider)> Provider Created');
+    // console.log('(NodeSocketProvider)> Provider Created');
     this._message('(NodeSocketProvider)> Provider Created.');
 
     let url = getConfig().socketUri;
@@ -63,13 +63,13 @@ export class NodeSocketService {
     this.socket.on('disconnect', () => this.onDisconnect());
 
     this.socket.on('error', (err) => {
-      console.log('(NodeSocketProvider)> Socket Error', JSON.stringify(err));
+      // console.log('(NodeSocketProvider)> Socket Error', JSON.stringify(err));
       this._message('(NodeSocketProvider)> Socket Error' + JSON.stringify(err));
     })
 
 
     this.socket.on('connect_error', (err) => {
-      console.log('(NodeSocketProvider)> Socket connect_error', JSON.stringify(err));
+      // console.log('(NodeSocketProvider)> Socket connect_error', JSON.stringify(err));
       this._message('(NodeSocketProvider)> Socket connect_error' + JSON.stringify(err));
     })
 
@@ -85,7 +85,7 @@ export class NodeSocketService {
 
 
   public _setUpReconnector() {
-    console.log('(NodeSocketProvider)> Socket Manually Trying to Disconnect.');
+    // console.log('(NodeSocketProvider)> Socket Manually Trying to Disconnect.');
     this._message('(NodeSocketProvider)> Socket Manually Trying to Disconnect.');
 
     this.socket.disconnect();
@@ -95,7 +95,7 @@ export class NodeSocketService {
 
   public setUserId(user_id) {
     if (this.user_id === user_id && this.isSubscribed) return;
-    console.log(`(NodeSocketProvider)> user_id SET TO ${user_id}`);
+    // console.log(`(NodeSocketProvider)> user_id SET TO ${user_id}`);
     this._message(`(NodeSocketProvider)> user_id SET TO ${user_id}`);
     this.isSubscribed = false;
     this.user_id = user_id;
@@ -109,7 +109,7 @@ export class NodeSocketService {
   private processRequestQueue() {
     if (!this.isSubscribed) return;
     this.requestQueue.forEach(({ eventName, data }) => {
-      console.log(`(NodeSocketProvider)> Emitting ${eventName}`, data);
+      // console.log(`(NodeSocketProvider)> Emitting ${eventName}`, data);
       this._message(`(NodeSocketProvider)> Emitting ${eventName} - ${data}`);
       this.socket.emit(eventName, data);
     });
@@ -120,21 +120,21 @@ export class NodeSocketService {
     if (!this.user_id) return;
     if (this.isSubscribed) return;
     this.socket.once('subscribed', () => {
-      console.log('(NodeSocketProvider)> Subscription Acquired.');
+      // console.log('(NodeSocketProvider)> Subscription Acquired.');
       this._message('(NodeSocketProvider)> Subscription Acquired.');
       this.isSubscribed = true;
       this.processRequestQueue();
     });
-    console.log('(NodeSocketProvider)> Subscription Requested.');
+    // console.log('(NodeSocketProvider)> Subscription Requested.');
     this._message('(NodeSocketProvider)> Subscription Requested.');
     this.socket.emit('subscribe', { user_id: this.user_id }, (res) => {
-      console.log('(NodeSocketProvider)> Subscription Requested: RES.', res);
+      // console.log('(NodeSocketProvider)> Subscription Requested: RES.', res);
       this._message('(NodeSocketProvider)> Subscription Requested. RES' + JSON.stringify(res));
     });
   }
 
   private onConnect() {
-    console.log('(NodeSocketProvider)> Socket Connected.');
+    // console.log('(NodeSocketProvider)> Socket Connected.');
     this._message('(NodeSocketProvider)> Socket Connected.');
     this.subscribeToRemote();
   }
@@ -142,9 +142,9 @@ export class NodeSocketService {
   private _message(message) {
     // this.messageLog = String(message) + '<br><br>' + this.messageLog;
     // this.messageLog = this.messageLog.slice(0, 500);
-    // console.log("new message", message);
+    // // console.log("new message", message);
     // this.storage.get('SHOULD_DEBUG').then((now) => {
-    //   // console.log('now', now);
+    // //   // console.log('now', now);
     //   if (now === "YES") {
     //     // let alert = this.alertCtrl.create({
     //     //   title: '',
@@ -163,30 +163,30 @@ export class NodeSocketService {
   }
 
   private onReconnect() {
-    console.log('(NodeSocketProvider)> Socket Reconnected.');
+    // console.log('(NodeSocketProvider)> Socket Reconnected.');
     this._message('(NodeSocketProvider)> Socket Reconnected.');
     // NOTE socket.connect() is automatically called.
   }
 
   private onDisconnect() {
-    console.log('(NodeSocketProvider)> Socket Disconnected.');
+    // console.log('(NodeSocketProvider)> Socket Disconnected.');
     this._message('(NodeSocketProvider)> Socket Disconnected.');
     this.isSubscribed = false;
   }
 
   private initEndpoints() {
-    console.log('(NodeSocketProvider)> Setting up Endpoints');
+    // console.log('(NodeSocketProvider)> Setting up Endpoints');
     this._message('(NodeSocketProvider)> Setting up Endpoints qwqw');
 
     this.endPointList.forEach(endPoint => {
 
       endPoint.observable = new Observable((observer) => {
         this.socket.on(endPoint.eventName, (data) => {
-          console.log(`(NodeSocketProvider)> Received: "${endPoint.eventName}"`);
+          // console.log(`(NodeSocketProvider)> Received: "${endPoint.eventName}"`);
           this._message(`(NodeSocketProvider)> Received: "${endPoint.eventName}"`);
           observer.next(data);
           // observer.complete();
-          console.log("All Done");
+          // console.log("All Done");
         });
       });
 
@@ -206,13 +206,13 @@ export class NodeSocketService {
 
       this.__notify = () => {
         // this.online_user_id_list = online_user_id_list;
-        console.log('(NodeSocketProvider)> online_user_id_list:', online_user_id_list);
+        // console.log('(NodeSocketProvider)> online_user_id_list:', online_user_id_list);
         //this._message(`(NodeSocketProvider)> online_user_id_list:. ${online_user_id_list}`);
         observer.next(online_user_id_list);
       }
 
       this.socket.on('global-online', (user_id) => {
-        console.log('(NodeSocketProvider)> global-online:', user_id);
+        // console.log('(NodeSocketProvider)> global-online:', user_id);
         let i = online_user_id_list.indexOf(user_id);
         if (i === -1) {
           online_user_id_list.push(user_id);
@@ -221,7 +221,7 @@ export class NodeSocketService {
       });
 
       this.socket.on('global-offline', (user_id) => {
-        console.log('(NodeSocketProvider)> global-offline:', user_id)
+        // console.log('(NodeSocketProvider)> global-offline:', user_id)
         let i = online_user_id_list.indexOf(user_id);
         if (i > -1) {
           online_user_id_list.splice(i, 1);

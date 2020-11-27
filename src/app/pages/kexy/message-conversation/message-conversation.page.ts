@@ -23,7 +23,11 @@ import { routeConstants } from "../../../../common/routeConstants";
   styleUrls: ["./message-conversation.page.scss"],
 })
 export class MessageConversationPage extends BasePage implements OnInit {
-  @ViewChild("myMessages") content = IonContent;
+  // @ViewChild("myMessages") content = IonContent;
+  // @ViewChild(IonContent) content: IonContent;
+  // @ViewChild(IonContent, { static: false }) content: IonContent;
+
+
 
   protected params: any;
 
@@ -43,6 +47,8 @@ export class MessageConversationPage extends BasePage implements OnInit {
   online_user_list: any;
   subscriptionList: any;
   isTypingNewMessage: boolean = false;
+  isPageLoadFinished: boolean = false;
+  isMessagesLoadFinished: boolean = false;
 
   constructor(
     public router: Router,
@@ -61,6 +67,18 @@ export class MessageConversationPage extends BasePage implements OnInit {
   }
 
   ngOnInit() {
+  }
+
+  ionViewDidLeave() {
+    console.log("ionViewDidLeave CONVERSATION");
+    this.subscriptionList.forEach((subscription) => {
+      subscription.unsubscribe();
+      // this.nodeSocket.userListObserver.unsubscribe(subscription)
+    });
+  }
+
+  ionViewDidEnter() {
+    console.log("ionViewDidEnter CONVERSATION");
     this.route.queryParams.subscribe((params) => {
       if (params) {
         this.params = params;
@@ -68,7 +86,6 @@ export class MessageConversationPage extends BasePage implements OnInit {
     });
     (async () => {
       this.online_user_list = [];
-      console.log("Convo", this.params.conversation);
       this.conversation = JSON.parse(this.params.conversation);
       if (!this.conversation) {
         await this.setRoot(routeConstants.KEXY.MESSAGE);
@@ -83,36 +100,29 @@ export class MessageConversationPage extends BasePage implements OnInit {
       let subscription;
 
       subscription = this.nodeSocket.event("message-list").subscribe(({ message_list }) => {
-        console.log("(ws)> message-list", message_list);
+        // console.log("(ws)> message-list", message_list);
         this.message_list = message_list;
-        this.scrollToBottom(500);
+        this.scrollBottom(300);
+        this.isMessagesLoadFinished = true;
       });
 
       this.subscriptionList.push(subscription);
       this.nodeSocket.subscribeToUserOnlineStatus((list) => (this.online_user_list = list));
 
       subscription = this.nodeSocket.event("new-message-queued").subscribe(({ message }) => {
-        console.log("(ws)> new-message-queued", message);
+        // console.log("(ws)> new-message-queued", message);
         this.message_list.push(message);
-        this.scrollToBottom(400);
+        this.scrollBottom(400);
       });
 
       this.subscriptionList.push(subscription);
+      this.isPageLoadFinished = true;
     })();
-  }
 
-  ionViewDidLeave() {
-    console.log("ionViewDidLeave CONVERSATION");
-    this.subscriptionList.forEach((subscription) => {
-      subscription.unsubscribe();
-      // this.nodeSocket.userListObserver.unsubscribe(subscription)
-    });
-  }
-
-  ionViewDidEnter() {
-    console.log("ionViewDidEnter CONVERSATION");
-
-    this._loadMessages();
+    (async () => {
+      await this._loadMessages();
+      this.scrollBottom();
+    })();
   }
 
   ionViewWillEnter() {
@@ -183,7 +193,7 @@ export class MessageConversationPage extends BasePage implements OnInit {
     this.isTypingNewMessage = false;
     if (this.newMessageContent != "") this._sendMessage(this.newMessageContent, "text");
     this.resizeInputMessageFieldToOriginal();
-    this.scrollToBottom(10);
+    this.scrollBottom(10);
     this.newMessageContent = "";
   }
 
@@ -239,7 +249,7 @@ export class MessageConversationPage extends BasePage implements OnInit {
   }
 
   imageLoaded() {
-    this.scrollToBottom(100);
+    this.scrollBottom(100);
   }
 
   async downloadContent(message) {
@@ -257,7 +267,7 @@ export class MessageConversationPage extends BasePage implements OnInit {
 
   onFocusInputMessage() {
     console.log("onfocus called");
-    this.scrollToBottom(100);
+    this.scrollBottom(100);
   }
 
   resizeInputMessageField(event: any): void {
@@ -267,7 +277,7 @@ export class MessageConversationPage extends BasePage implements OnInit {
     textarea.style.height = "auto";
     let height = textarea.scrollHeight;
     textarea.style.height = height + "px";
-    this.scrollToBottom(100);
+    this.scrollBottom(100);
   }
 
   resizeInputMessageFieldToOriginal() {
@@ -284,13 +294,23 @@ export class MessageConversationPage extends BasePage implements OnInit {
     return obj.first_name;
   }
 
-  scrollToBottom(delay = 100) {
+  scrollBottom(delay = 100) {
+
     setTimeout(() => {
-      if (this.content != null) {
-        try {
-          (<any>this.content).scrollToBottom();
-        } catch (ex) {}
-      }
+      let el = document.querySelector("#messageList");
+      console.log(el);
+      el.scrollTo(0,document.body.scrollHeight);
+
+      // console.log(this.content);
+      // if (this.content != null) {
+      //   // this.content.scrollToBottom().then(r => false);
+      //   try {
+      //     // (<any>this.content).scrollToBottom();
+      //     document.querySelector("#messageList").scrollTo(0,document.body.scrollHeight);
+      //   } catch (ex) {
+      //     console.log(ex);
+      //   }
+      // }
     }, delay);
   }
 

@@ -115,8 +115,10 @@ export class ReviewOrderPage extends BasePage implements OnInit {
     );
   }
 
-  backBtnPressed() {
-    this.navCtrl.back({ animated: true, animationDirection: "back" });
+  async backBtnPressed() {
+    // await this.navCtrl.pop();
+    await this.setRootWithAnimationBackword(routeConstants.KEXY.RESTAURANT_TABS);
+    // this.navCtrl.back({ animated: true, animationDirection: "back" });
   }
 
   async segmentChanged() {
