@@ -3,9 +3,7 @@
     <ion-buttons slot="start">
       <ion-back-button></ion-back-button>
     </ion-buttons>
-    <ng-template
-      [ngIf]="conversation && conversation.type === 'bidirectional'"
-    >
+    <ng-template [ngIf]="conversation && conversation.type === 'bidirectional'">
       <ng-template ngFor let-participant [ngForOf]="conversation.participant_list">
         <ng-template [ngIf]="isPageLoadFinished && participant.user_id !== currentUser.id">
           <ion-item
@@ -69,11 +67,7 @@
   </ion-toolbar>
 </ion-header>
 
-<ion-content
-  [scrollEvents]="true"
-  class="lightBlueBg ion-padding-start ion-padding-end"
-  id="messageList"
->
+<ion-content class="lightBlueBg ion-padding-start ion-padding-end" id="messageList">
   <div class="removeScrollBar" *ngIf="isMessagesLoadFinished">
     <div
       *ngFor="let message of message_list; let i = index;"
@@ -98,9 +92,7 @@
           [id]="'message' + message_list.length"
           [class.lastmessage]="i+1 === message_list.length"
         >
-          <span *ngIf="message.user_id === currentUser.id">
-            {{message.content}}</span
-          >
+          <span *ngIf="message.user_id === currentUser.id"> {{message.content}}</span>
           <span *ngIf="message.user_id !== currentUser.id">{{message.content}}</span>
         </p>
 

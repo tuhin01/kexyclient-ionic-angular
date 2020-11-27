@@ -5,7 +5,7 @@
     </ion-buttons>
     <ng-template [ngIf]="conversation && conversation.type === 'bidirectional'">
       <ng-template ngFor let-participant [ngForOf]="conversation.participant_list">
-        <ng-template [ngIf]="participant.user_id !== currentUser.id">
+        <ng-template [ngIf]="isPageLoadFinished && participant.user_id !== currentUser.id">
           <ion-item
             class="ion-no-padding"
             style="--border-color: transparent; --background: transparent"
@@ -48,7 +48,7 @@
               let-i="index"
               [ngForOf]="conversation.participant_list"
             >
-              <span *ngIf="participant.user_id !== currentUser.id">
+              <span *ngIf="isPageLoadFinished && participant.user_id !== currentUser.id">
                 {{participant.first_name}} {{participant.last_name}}
                 <ng-template [ngIf]="i < conversation.participant_list.length - 1"> , </ng-template>
               </span>
@@ -67,8 +67,8 @@
   </ion-toolbar>
 </ion-header>
 
-<ion-content class="lightBlueBg ion-padding-start ion-padding-end" #myMessages>
-  <div class="removeScrollBar">
+<ion-content class="lightBlueBg ion-padding-start ion-padding-end">
+  <div class="removeScrollBar" *ngIf="isMessagesLoadFinished">
     <div
       *ngFor="let message of message_list"
       [ngClass]="{'chatbox': true, 'left': message.user_id !== currentUser.id, 'right cannabis': message.user_id === currentUser.id}"
@@ -117,7 +117,7 @@
   </div>
 </ion-content>
 
-<ion-footer>
+<ion-footer *ngIf="isPageLoadFinished">
   <ion-toolbar class="tr-input-toolbar">
     <ion-textarea
       class="message-input"
@@ -131,13 +131,22 @@
       placeholder="Type here"
     ></ion-textarea>
     <ion-buttons slot="end">
-      <ion-button fill="clear" class="cannabis" (mousedown)="sendButtonTapped(); $event.preventDefault()">
+      <ion-button
+        fill="clear"
+        class="cannabis"
+        (mousedown)="sendButtonTapped(); $event.preventDefault()"
+      >
         <ion-label>
           <ion-icon name="send"></ion-icon>
         </ion-label>
       </ion-button>
 
-      <ion-button *ngIf="!isTypingNewMessage" class="cannabis" fill="clear" (click)="openFileDialog()">
+      <ion-button
+        *ngIf="!isTypingNewMessage"
+        class="cannabis"
+        fill="clear"
+        (click)="openFileDialog()"
+      >
         <ion-label>
           <ion-icon style="line-height: inherit; margin-bottom: 2px" name="attach"></ion-icon>
         </ion-label>
@@ -151,7 +160,12 @@
         (change)="fileSelected($event)"
       />
 
-      <ion-button *ngIf="!isTypingNewMessage" fill="clear" class="cannabis"  (click)="cameraTapped()">
+      <ion-button
+        *ngIf="!isTypingNewMessage"
+        fill="clear"
+        class="cannabis"
+        (click)="cameraTapped()"
+      >
         <ion-label>
           <ion-icon name="camera"></ion-icon>
         </ion-label>
