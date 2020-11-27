@@ -3,9 +3,16 @@ import { BasePage } from "../../basePage";
 import { ActivatedRoute, Router } from "@angular/router";
 import { Storage } from "@ionic/storage";
 import { HttpClient } from "@angular/common/http";
-import { AlertController, LoadingController, MenuController, NavController } from "@ionic/angular";
+import {
+  AlertController,
+  LoadingController,
+  MenuController,
+  NavController,
+  Platform,
+} from "@ionic/angular";
 import { apis, constants } from "../../../../common/shared";
 import { routeConstants } from "../../../../common/routeConstants";
+import { Deploy } from "cordova-plugin-ionic/dist/ngx";
 
 @Component({
   selector: "app-restaurant-dashboard",
@@ -37,7 +44,9 @@ export class RestaurantDashboardPage extends BasePage implements OnInit {
     public loadingCtrl: LoadingController,
     public alertCtrl: AlertController,
     public menu: MenuController,
-    public navCtrl: NavController
+    public navCtrl: NavController,
+    private deploy: Deploy,
+    private platform: Platform
   ) {
     super(router, route, httpClient, loadingCtrl, alertCtrl, storage, menu, navCtrl);
     if (this.router.getCurrentNavigation().extras.state) {
@@ -52,6 +61,52 @@ export class RestaurantDashboardPage extends BasePage implements OnInit {
       await this._enableRestaurantMenu();
       await this._loadDefaultSide();
     })();
+  }
+
+  ionViewDidEnter() {
+    console.log("ionViewDidEnter");
+    (async () => {
+      if (this.platform.is("cordova")) {
+        await this.__checkAppUpdates();
+      }
+    })();
+  }
+
+  async __checkAppUpdates() {
+    const update = await this.deploy.checkForUpdate();
+    console.log({ update });
+    if (update.available) {
+      await this.__presentUpdateDownloadPopup();
+    }
+  }
+
+  async __presentUpdateDownloadPopup() {
+    const alert = await this.alertCtrl.create({
+      cssClass: "my-custom-class",
+      header: "Updates Available!",
+      message: "There is a new version of the app available. Please update now.",
+      buttons: [
+        {
+          text: "Cancel",
+          role: "cancel",
+          cssClass: "secondary",
+        },
+        {
+          text: "Update",
+          handler: async () => {
+            await this.deploy.downloadUpdate((progress) => {
+              console.log(progress);
+            });
+            await this.deploy.extractUpdate((progress) => {
+              console.log(progress);
+            });
+            location.reload();
+          },
+        },
+      ],
+    });
+
+    await alert.present();
   }
 
   async openMenu() {
@@ -81,5 +136,4 @@ export class RestaurantDashboardPage extends BasePage implements OnInit {
       { pageType: type }
     );
   }
-
 }

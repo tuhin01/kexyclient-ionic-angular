@@ -12,6 +12,7 @@ import { IonicStorageModule } from "@ionic/storage";
 import { HttpClientModule } from "@angular/common/http";
 import { Camera } from "@ionic-native/camera/ngx";
 import { Keyboard } from "@ionic-native/keyboard/ngx";
+import { Deploy } from 'cordova-plugin-ionic/dist/ngx';
 
 
 @NgModule({
@@ -29,6 +30,7 @@ import { Keyboard } from "@ionic-native/keyboard/ngx";
     SplashScreen,
     Camera,
     Keyboard,
+    Deploy,
     { provide: RouteReuseStrategy, useClass: IonicRouteStrategy },
   ],
   bootstrap: [AppComponent],
