@@ -6,6 +6,7 @@ import { HttpClient } from "@angular/common/http";
 import { AlertController, LoadingController, MenuController, NavController } from "@ionic/angular";
 import { apis, constants } from "../../../../common/shared";
 import { routeConstants } from "../../../../common/routeConstants";
+import { AppUpdateService } from "../../../services/app-update.service";
 
 @Component({
   selector: "app-restaurant-dashboard",
@@ -37,7 +38,8 @@ export class RestaurantDashboardPage extends BasePage implements OnInit {
     public loadingCtrl: LoadingController,
     public alertCtrl: AlertController,
     public menu: MenuController,
-    public navCtrl: NavController
+    public navCtrl: NavController,
+    private appUpdateService: AppUpdateService
   ) {
     super(router, route, httpClient, loadingCtrl, alertCtrl, storage, menu, navCtrl);
     if (this.router.getCurrentNavigation().extras.state) {
@@ -51,6 +53,12 @@ export class RestaurantDashboardPage extends BasePage implements OnInit {
     (async () => {
       await this._enableRestaurantMenu();
       await this._loadDefaultSide();
+    })();
+  }
+
+  ionViewDidEnter() {
+    (async () => {
+      await this.appUpdateService.__checkAppUpdates();
     })();
   }
 
