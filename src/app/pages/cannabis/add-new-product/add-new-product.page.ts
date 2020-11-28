@@ -417,6 +417,7 @@ export class AddNewProductPage extends BasePage implements OnInit {
         pageType: this.createdFromPage,
       }
     );
+    location.reload();
   }
 
   async segmentChanged(event) {

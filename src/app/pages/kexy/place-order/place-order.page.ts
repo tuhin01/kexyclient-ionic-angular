@@ -92,7 +92,6 @@ export class PlaceOrderPage extends BasePage implements OnInit {
   }
 
   ionViewDidEnter() {
-    console.log('ionViewDidEnter called');
     this.route.queryParams.subscribe((params) => {
       if (params) {
         this.params = params;
@@ -100,6 +99,7 @@ export class PlaceOrderPage extends BasePage implements OnInit {
     });
 
     (async () => {
+      await this._enableRestaurantMenu();
       await this._preparePage();
     })();
   }

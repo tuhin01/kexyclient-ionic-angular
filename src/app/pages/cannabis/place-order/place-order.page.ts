@@ -99,6 +99,7 @@ export class PlaceOrderPage extends BasePage implements OnInit {
     });
 
     (async () => {
+      await this._enableRestaurantMenu();
       await this._preparePage();
     })();
   }
